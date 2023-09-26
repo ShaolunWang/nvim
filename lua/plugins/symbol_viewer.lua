@@ -1,4 +1,4 @@
-return{  
-  "preservim/tagbar",
-  cmd = {"Tagbar"},
+return {
+	'preservim/tagbar',
+	cmd = { 'Tagbar' },
 }
