@@ -1,10 +1,7 @@
 return {
 	'ggandor/leap.nvim',
 	config = function()
-		vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
-		require('leap').setup({
-			case_sensitive = true,
-		})
+		require('leap').opts.highlight_unlabeled_phase_one_targets = true
 	end,
-	event = { 'BufEnter' },
+	keys = { 'gs', 's', 'S' },
 }

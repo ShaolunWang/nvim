@@ -1,3 +1,5 @@
+vim.api.nvim_create_augroup('AsyncRunner', {})
+vim.api.nvim_create_augroup('yank_highlight', {})
 vim.api.nvim_create_autocmd('BufReadPost', {
 	callback = function()
 		local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -9,7 +11,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-	group = vim.api.nvim_create_augroup('yank_highlight', {}),
+	group = 'yank_highlight',
 	pattern = '*',
 	callback = function()
 		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })

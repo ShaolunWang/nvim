@@ -1,19 +1,5 @@
 return {
 	{
-		'neovim/nvim-lspconfig',
-		event = { 'BufReadPost', 'BufNewFile', 'BufReadPre' },
-	},
-	{
-		'windwp/nvim-autopairs',
-		event = 'InsertEnter',
-		config = function()
-			require('nvim-autopairs').setup({
-				map_cr = false,
-				check_ts = true,
-			})
-		end,
-	},
-	{
 		'numToStr/Comment.nvim',
 		keys = {
 			{ 'gc', mode = { 'n', 'v' }, desc = 'Comment toggle linewise' },
@@ -26,11 +12,7 @@ return {
 		config = function()
 			require('Comment').setup()
 		end,
-		event = { 'BufRead' },
-	},
-	{
-		'tpope/vim-unimpaired',
-		keys = { '[', ']' },
+		keys = { 'gc', 'gb' },
 	},
 	{
 		'tversteeg/registers.nvim',
@@ -41,5 +23,15 @@ return {
 			{ '"', mode = { 'n', 'v' } },
 		},
 		cmd = 'Registers',
+	},
+	{
+		'kevinhwang91/nvim-bqf',
+		ft = 'qf',
+	},
+	{
+		'skywind3000/asyncrun.vim',
+		config = function()
+			vim.g.asyncrun_open = 10
+		end,
 	},
 }
