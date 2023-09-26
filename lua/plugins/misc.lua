@@ -1,38 +1,6 @@
 return {
-	{
-		'neovim/nvim-lspconfig',
-		event = { 'BufReadPost', 'BufNewFile', 'BufReadPre' },
-	},
-	{
-		'windwp/nvim-autopairs',
-		event = 'InsertEnter',
-		config = function()
-			require('nvim-autopairs').setup({
-				map_cr = false,
-				check_ts = true,
-			})
-		end,
-	},
-	{
-		'numToStr/Comment.nvim',
-		keys = {
-			{ 'gc', mode = { 'n', 'v' }, desc = 'Comment toggle linewise' },
-			{ 'gb', mode = { 'n', 'v' }, desc = 'Comment toggle blockwise' },
-		},
-		opts = function()
-			local commentstring_avail, commentstring = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
-			return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
-		end,
-		config = function()
-			require('Comment').setup()
-		end,
-		event = { 'BufRead' },
-	},
-	{
-		'tpope/vim-unimpaired',
-		keys = { '[', ']' },
-	},
-	{
+
+	--[[ {
 		'tversteeg/registers.nvim',
 		config = function()
 			require('registers').setup({ bind_keys = { normal = false, insert = false } })
@@ -41,5 +9,70 @@ return {
 			{ '"', mode = { 'n', 'v' } },
 		},
 		cmd = 'Registers',
+	}, ]]
+	{
+		'stevearc/overseer.nvim',
+		opts = {
+			dap = false,
+		},
+		config = function()
+			local overseer = require('overseer')
+			overseer.setup(opts)
+			-- Add on_output_quickfix component to all "cargo" templates
+			overseer.add_template_hook({ module = '^just$' }, function(task_defn, util)
+				util.add_component(task_defn, { 'on_output_quickfix', open = true })
+			end)
+			-- Remove the on_complete_notify component from "cargo clean" task
+			overseer.add_template_hook({ name = '^just$' }, function(task_defn, util)
+				util.remove_component(task_defn, 'on_complete_notify')
+			end)
+
+			overseer.add_template_hook({ name = '^grep$' }, function(task_defn, util)
+				util.remove_component(task_defn, 'on_complete_notify')
+			end)
+			-- Add an environment variable for all go tasks in a specific dir
+			local cmd = {
+				'OverseerOpen',
+				'OverseerClose',
+				--				'OverseerToggle',
+				'OverseerSaveBundle',
+				'OverseerLoadBundle',
+				'OverseerDeleteBundle',
+				'OverseerRunCmd',
+				'OverseerRun',
+				--				'OverseerInfo',
+				'OverseerBuild',
+				'OverseerQuickAction',
+				'OverseerTaskAction',
+				--				'OverseerClearCache',
+			}
+			for _, iter in pairs(cmd) do
+				vim.api.nvim_del_user_command(iter)
+			end
+		end,
+	},
+	{
+		'NeogitOrg/neogit',
+		cmd = 'Neogit',
+		dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim', 'ibhagwan/fzf-lua' },
+		opts = {
+			auto_refresh = true,
+			integrations = { diffview = true },
+			kind = 'tab',
+			use_magit_keybindings = true,
+			disable_builtin_notifications = false,
+		},
+	},
+
+	{
+		'folke/which-key.nvim',
+		event = 'VeryLazy',
+		config = function()
+			require('which-key').setup({
+				preset = 'helix',
+				notify = false,
+				show_keypress = false,
+			})
+		end,
 	},
 }

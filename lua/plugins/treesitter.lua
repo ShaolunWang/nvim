@@ -1,16 +1,21 @@
-function treesitter_setup()
-	require('nvim-treesitter.configs').setup({
+return {
+	'nvim-treesitter/nvim-treesitter',
+	opts = {
 		ensure_installed = {
 			'c',
 			'cpp',
 			'lua',
 			'python',
 			'vim',
+			'vimdoc',
 		},
-	})
-end
-return {
-	'nvim-treesitter/nvim-treesitter',
-	config = treesitter_setup,
-	event = 'BufEnter',
+		highlight = { enable = true },
+		matchup = { enable = true },
+	},
+
+	config = function(_, opts)
+		require('nvim-treesitter.configs').setup(opts)
+		require('nvim-treesitter.install').compilers = { 'gcc' }
+	end,
+	event = { 'BufReadPre' },
 }
