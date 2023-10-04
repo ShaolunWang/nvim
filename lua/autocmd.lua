@@ -16,3 +16,37 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
 	end,
 })
+
+
+local llvm_highlight = vim.api.nvim_create_augroup('llvm-highlight', {})
+vim.api.nvim_create_autocmd({ 'BufRead','BufNewFile' },
+  {
+    group = llvm_highlight,
+    pattern = { '*.mlir', '*.xdsl'},
+    callback = function()
+      vim.cmd [[set ft=mlir]]
+    end,
+  })
+
+vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = llvm_highlight,
+  pattern = { '*.td' },
+  callback = function()
+    vim.cmd [[set ft=tablegen]]
+  end,
+})
+
+vim.cmd[[
+  function FormatBuffer()
+    if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+      let cursor_pos = getpos('.')
+      :%!clang-format
+      call setpos('.', cursor_pos)
+    endif
+  endfunction
+
+  autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
+]]

@@ -9,6 +9,7 @@ function treesitter_setup()
 		},
 	})
 end
+
 return {
 	'nvim-treesitter/nvim-treesitter',
 	config = treesitter_setup,
