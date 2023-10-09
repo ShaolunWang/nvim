@@ -2,23 +2,29 @@ function telescope_setup()
 	local present, telescope = pcall(require, 'telescope')
 
 	vim.cmd([[
-  highlight TelescopePromptBorder guifg=#eeeeee      guibg=none     gui=none
-  highlight TelescopeResultsBorder guifg=#eeeeee      guibg=none     gui=italic
-  highlight TelescopePreviewBorder guifg=#eeeeee      guibg=none     gui=none
+    highlight TelescopePromptBorder guifg=#eeeeee      guibg=none     gui=none
+    highlight TelescopeResultsBorder guifg=#eeeeee      guibg=none     gui=italic
+    highlight TelescopePreviewBorder guifg=#eeeeee      guibg=none     gui=none
   ]])
 	local options = telescope_options()
 	telescope.setup(options)
+	telescope.load_extension('ui-select')
+	telescope.load_extension('fzf')
 end
 
 function telescope_options()
 	local options = {
 		extensions = {
-			fzf = {
+			['fzf'] = {
 				fuzzy = true, -- false will only do exact matching
 				override_generic_sorter = true, -- override the generic sorter
 				override_file_sorter = true, -- override the file sorter
 				case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
 				-- the default case_mode is "smart_case"
+			},
+			['ui-select'] = {
+				require('telescope.themes').get_dropdown(),
+				require('telescope.themes').get_ivy(),
 			},
 		},
 		defaults = {
@@ -30,26 +36,32 @@ function telescope_options()
 				'--line-number',
 				'--column',
 				'--smart-case',
+				'--glob=!.git/',
 			},
+			--			cache_picker = { num_pickers = 10 },
+			dynamic_preview_title = true,
 			prompt_prefix = '  ',
 			selection_caret = '❯ ',
 			entry_prefix = '  ',
 			initial_mode = 'insert',
 			selection_strategy = 'reset',
 			sorting_strategy = 'ascending',
-			layout_strategy = 'horizontal',
+			-- layout_strategy = 'vertical',
 			layout_config = {
 				horizontal = {
 					prompt_position = 'top',
 					preview_width = 0.55,
 					results_width = 0.60,
+					width = 0.87,
+					height = 0.80,
+					preview_cutoff = 120,
 				},
 				vertical = {
-					mirror = true,
+					prompt_position = 'top',
+					width = 0.5,
+					height = 0.5,
+					--		mirror = true,
 				},
-				width = 0.87,
-				height = 0.80,
-				preview_cutoff = 120,
 			},
 			file_sorter = require('telescope.sorters').get_fuzzy_file,
 			generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
@@ -69,15 +81,43 @@ function telescope_options()
 			-- Developer configurations: Not meant for general override
 			buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
 		},
+		pickers = {
+			live_grep = {},
+			builtin = { theme = 'ivy', previewer = false, layout_strategy = 'vertical', prompt_position = 'top' },
+			oldfiles = { theme = 'ivy', previewer = false, layout_strategy = 'vertical', prompt_position = 'top' },
+			find_files = { theme = 'ivy', previewer = false, layout_strategy = 'vertical', prompt_position = 'top' },
+			buffers = {
+				theme = 'ivy',
+				previewer = false,
+				layout_strategy = 'vertical',
+				prompt_position = 'top',
+				initial_mode = 'normal',
+				mappings = {
+					n = {
+						['dd'] = require('telescope.actions').delete_buffer,
+					},
+				},
+			},
+		},
 	}
 	return options
 end
+
 return {
-	'nvim-telescope/telescope.nvim',
-	dependencies = {
-		'nvim-lua/plenary.nvim',
+	{
+		'nvim-telescope/telescope-fzf-native.nvim',
+		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+		lazy = true,
 	},
-	keys = { '<leader>' },
-	cmd = { 'Telescope' },
-	config = telescope_setup,
+	{
+		'nvim-telescope/telescope.nvim',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope-ui-select.nvim',
+			'nvim-telescope/telescope-fzf-native.nvim',
+		},
+		keys = { '<leader>' },
+		cmd = { 'Telescope' },
+		config = telescope_setup,
+	},
 }

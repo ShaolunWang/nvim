@@ -1,4 +1,3 @@
-vim.api.nvim_create_augroup('AsyncRunner', {})
 vim.api.nvim_create_augroup('yank_highlight', {})
 vim.api.nvim_create_autocmd('BufReadPost', {
 	callback = function()

@@ -1,5 +1,5 @@
-require('monokai').setup({ palette = require('monokai').pro })
 vim.g.showtabline = 2
+vim.cmd('colorscheme melange')
 
 local theme = {
 	fill = 'TabLineFill',

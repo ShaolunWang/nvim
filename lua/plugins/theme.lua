@@ -1,11 +1,22 @@
 return {
 	{
-		'tanvirtin/monokai.nvim',
+		'savq/melange-nvim',
 		event = 'VeryLazy',
 	},
 	{
 		'nanozuki/tabby.nvim',
+		dependencies = {
+			'tiagovla/scope.nvim',
+		},
 		event = 'VeryLazy',
-		opts = {},
+		config = function()
+			vim.opt.sessionoptions = { -- required
+				'buffers',
+				'tabpages',
+				'globals',
+			}
+			require('scope').setup({})
+			require('tabby').setup({})
+		end,
 	},
 }

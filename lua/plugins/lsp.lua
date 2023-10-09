@@ -1,120 +1,51 @@
 return {
 	'neovim/nvim-lspconfig',
 	config = function()
-		local border = {
-			{ '🭽', 'FloatBorder' },
-			{ '▔', 'FloatBorder' },
-			{ '🭾', 'FloatBorder' },
-			{ '▕', 'FloatBorder' },
-			{ '🭿', 'FloatBorder' },
-			{ '▁', 'FloatBorder' },
-			{ '🭼', 'FloatBorder' },
-			{ '▏', 'FloatBorder' },
-		}
-
-		-- To instead override globally
-		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-			opts = opts or {}
-			opts.border = opts.border or border
-			return orig_util_open_floating_preview(contents, syntax, opts, ...)
-		end
-
-		local function goto_definition(split_cmd)
-			local util = vim.lsp.util
-			local log = require('vim.lsp.log')
-			local api = vim.api
-
-			-- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-			local handler = function(_, result, ctx)
-				if result == nil or vim.tbl_isempty(result) then
-					local _ = log.info() and log.info(ctx.method, 'No location found')
-					return nil
-				end
-				if split_cmd then
-					vim.cmd(split_cmd)
-				end
-
-				if vim.tbl_islist(result) then
-					util.jump_to_location(result[1])
-
-					if #result > 1 then
-						util.set_qflist(util.locations_to_items(result))
-						api.nvim_command('copen')
-						api.nvim_command('wincmd p')
-					end
-				else
-					util.jump_to_location(result)
-				end
-			end
-
-			return handler
-		end
-
-		vim.cmd([[
-  highlight DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
-  highlight DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
-  highlight DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
-  highlight DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
-
-  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
-  sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
-  sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
-  sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
-]])
-
-		vim.diagnostic.config({
-			virtual_text = true,
-			signs = true,
-			underline = true,
-			update_in_insert = true,
-			severity_sort = true,
-		})
-
-		local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
-		for type, icon in pairs(signs) do
-			local hl = 'DiagnosticSign' .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-		end
-
-		local lsp_handlers = {
-			['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-			['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-			['textDocument/definition'] = goto_definition('split'),
-		}
-
-		local c = vim.lsp.protocol.make_client_capabilities()
-		c.textDocument.completion.completionItem.snippetSupport = true
-		c.textDocument.completion.completionItem.resolveSupport = {
-			properties = {
-				'documentation',
-				'detail',
-				'additionalTextEdits',
-			},
-		}
-
+		local utils = require('utils.lsp')
 		vim.o.updatetime = 1
+		vim.cmd([[
+      highlight DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
+      highlight DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
+      highlight DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
+      highlight DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
 
-		local coq_ops = require('coq')
+      sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
+      sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
+      sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
+      sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
+    ]])
+		local coq_opts = require('coq')
 		local lsp = require('lspconfig')
 		local lsp_keymap = require('keymap.lsp_keymaps')
 
 		-- simple example
 		lsp.pyright.setup({
 			on_attach = lsp_keymap.on_attach,
-			capabilities = coq.lsp_ensure_capabilities(c),
-			handlers = lsp_handlers,
+			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
+			handlers = utils.lsp_handlers,
 		})
 
 		lsp.ocamllsp.setup({
 			on_attach = lsp_keymap.on_attach,
-			capabilities = coq.lsp_ensure_capabilities(c),
-			handlers = lsp_handlers,
+			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
+			handlers = utils.lsp_handlers,
 		})
+		--[[ 
+		lsp.clangd.setup({
+			on_attach = function(client, bufnr)
+				require('clangd_extensions.inlay_hints').setup_autocmd()
+				require('clangd_extensions.inlay_hints').set_inlay_hints()
+				lsp_keymap.on_attach(client, bufnr)
+			end,
+			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
+			handlers = utils.lsp_handlers,
+		})
+]]
 	end,
 	ft = {
 		-- make sure only adding configured ones here
 		'python',
 		'ocaml',
+		--		'cpp',
 	},
 }

@@ -4,7 +4,7 @@ return {
 		local miniclue = require('mini.clue')
 		miniclue.setup({
 			window = {
-				delay = 0,
+				delay = 500,
 				config = {
 					anchor = 'SW',
 					width = 'auto',

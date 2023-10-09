@@ -38,7 +38,7 @@ vim.keymap.set('n', '<leader>fo', function()
 	require('telescope.builtin').oldfiles()
 end, { noremap = true, desc = 'Search Old File' })
 
-vim.keymap.set('n', '<leader>f<cr>', ':Telescope ', { noremap = true, desc = 'Custom picker' })
+vim.keymap.set('n', '<leader>fp', ':Telescope<cr>', { noremap = true, desc = 'Custom picker' })
 
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
@@ -50,4 +50,45 @@ vim.keymap.set('n', '<leader>th', ':-tabmove<CR>', { noremap = true, desc = '-Mo
 vim.keymap.set('n', '<leader>tl', ':+tabmove<CR>', { noremap = true, desc = '+Move Tab' })
 
 -- misc
+vim.keymap.set(
+	'n',
+	'""',
+	require('registers').show_window({ mode = 'motion' }),
+	{ noremap = true, desc = 'reg floating window' }
+)
 vim.keymap.set('n', '<f5>', ':AsyncRun ', { noremap = true, desc = 'Runner' })
+local toggle_qf = function()
+	for _, info in ipairs(vim.fn.getwininfo()) do
+		if info.quickfix == 1 then
+			vim.cmd('cclose')
+			return
+		end
+	end
+	if next(vim.fn.getqflist()) == nil then
+		vim.print('No Quickfix Entry')
+		return
+	end
+	vim.cmd('copen')
+end
+vim.keymap.set('n', '<F6>', function()
+	toggle_qf()
+end, noremap_silent)
+
+local toggle_loclist = function()
+	for _, info in ipairs(vim.fn.getwininfo()) do
+		if info.loclist == 1 then
+			vim.cmd('lclose')
+			return
+		end
+	end
+
+	if next(vim.fn.getloclist(0)) == nil then
+		vim.print('No Location List Entry')
+		return
+	end
+	vim.cmd('lopen')
+end
+
+vim.keymap.set('n', '<F7>', function()
+	toggle_loclist()
+end, { noremap = true, silent = true })
