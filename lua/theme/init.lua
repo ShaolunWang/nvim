@@ -1,5 +1,5 @@
 vim.g.showtabline = 2
-vim.cmd('colorscheme melange')
+vim.cmd('colorscheme retrobox')
 
 local theme = {
 	fill = 'TabLineFill',

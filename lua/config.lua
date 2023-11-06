@@ -16,7 +16,7 @@ set.clipboard = 'unnamedplus'
 set.splitkeep = 'screen'
 set.signcolumn = 'yes'
 set.lazyredraw = true
-set.termguicolors =  true
+set.termguicolors = true
 
 vim.g.smartindent = 1
 set.conceallevel = 2

@@ -103,21 +103,35 @@ function telescope_options()
 	return options
 end
 
-return {
-	{
-		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-		lazy = true,
-	},
-	{
-		'nvim-telescope/telescope.nvim',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope-ui-select.nvim',
+local fuzzy = {}
+if vim.loop.os_uname().sysname ~= 'Windows' then
+	fuzzy = {
+		'ibhagwan/fzf-lua',
+		-- optional for icon support
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			-- calling `setup` is optional for customization
+			require('fzf-lua').setup({})
+		end,
+	}
+else
+	fuzzy = {
+		{
 			'nvim-telescope/telescope-fzf-native.nvim',
+			build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+			lazy = true,
 		},
-		keys = { '<leader>' },
-		cmd = { 'Telescope' },
-		config = telescope_setup,
-	},
-}
+		{
+			'nvim-telescope/telescope.nvim',
+			dependencies = {
+				'nvim-lua/plenary.nvim',
+				'nvim-telescope/telescope-ui-select.nvim',
+				'nvim-telescope/telescope-fzf-native.nvim',
+			},
+			keys = { '<leader>' },
+			cmd = { 'Telescope' },
+			config = telescope_setup,
+		},
+	}
+end
+return fuzzy
