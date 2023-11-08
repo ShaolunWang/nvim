@@ -23,19 +23,35 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 -- Telescope
 local function fuzzy_keymaps()
-  if vim.loop.os_uname().sysname ~= 'Windows' then
-    vim.keymap.set('n', '<leader>ff', function() require('fzf-lua').files() end, { noremap = true, desc = 'Find File' })
-    vim.keymap.set('n', '<leader>fg', function() require('fzf-lua').live_grep() end, { noremap = true, desc = 'Grep content' })
-    vim.keymap.set('n', '<leader>fh', function() require('fzf-lua').help_tags() end, { noremap = true, desc = 'Find Help' })
-    vim.keymap.set('n', '<leader>fo', function() require('fzf-lua').oldfiles() end, { noremap = true, desc = 'Search Old File' })
-    vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custom picker' })
-else
-    vim.keymap.set('n', '<leader>ff', function() require('telescope.builtin').find_files() end, { noremap = true, desc = 'Find File' })
-    vim.keymap.set('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, { noremap = true, desc = 'Grep content' })
-    vim.keymap.set('n', '<leader>fh', function() require('telescope.builtin').help_tags() end, { noremap = true, desc = 'Find Help' })
-    vim.keymap.set('n', '<leader>fo', function() require('telescope.builtin').oldfiles() end, { noremap = true, desc = 'Search Old File' })
-    vim.keymap.set('n', '<leader>fp', ':Telescope<cr>', { noremap = true, desc = 'Custom picker' })
-  end
+	if vim.loop.os_uname().sysname ~= 'Windows' then
+		vim.keymap.set('n', '<leader>ff', function()
+			require('fzf-lua').files()
+		end, { noremap = true, desc = 'Find File' })
+		vim.keymap.set('n', '<leader>fg', function()
+			require('fzf-lua').live_grep()
+		end, { noremap = true, desc = 'Grep content' })
+		vim.keymap.set('n', '<leader>fh', function()
+			require('fzf-lua').help_tags()
+		end, { noremap = true, desc = 'Find Help' })
+		vim.keymap.set('n', '<leader>fo', function()
+			require('fzf-lua').oldfiles()
+		end, { noremap = true, desc = 'Search Old File' })
+		vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custom picker' })
+	else
+		vim.keymap.set('n', '<leader>ff', function()
+			require('telescope.builtin').find_files()
+		end, { noremap = true, desc = 'Find File' })
+		vim.keymap.set('n', '<leader>fg', function()
+			require('telescope.builtin').live_grep()
+		end, { noremap = true, desc = 'Grep content' })
+		vim.keymap.set('n', '<leader>fh', function()
+			require('telescope.builtin').help_tags()
+		end, { noremap = true, desc = 'Find Help' })
+		vim.keymap.set('n', '<leader>fo', function()
+			require('telescope.builtin').oldfiles()
+		end, { noremap = true, desc = 'Search Old File' })
+		vim.keymap.set('n', '<leader>fp', ':Telescope<cr>', { noremap = true, desc = 'Custom picker' })
+	end
 end
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })

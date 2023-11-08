@@ -104,15 +104,29 @@ function telescope_options()
 end
 
 local fuzzy = {}
-if vim.loop.os_uname().sysname ~= 'Windows' then
+if vim.loop.os_uname().sysname ~= 'Windows_NT' then
 	fuzzy = {
 		'ibhagwan/fzf-lua',
 		-- optional for icon support
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
-			-- calling `setup` is optional for customization
-			require('fzf-lua').setup({})
+			require('fzf-lua').setup({
+				winopts = {
+					fullscreen = true,
+					border = false,
+					preview = {
+						default = 'bat_native',
+						layout = 'flex',
+            border = 'noborder',
+
+            scrollbar = false,
+            scrollchars    = '',      -- scrollbar chars ({ <full>, <empty> }
+					},
+				},
+			})
 		end,
+		keys = { '<leader>' },
+		cmd = { 'FzfLua' },
 	}
 else
 	fuzzy = {

@@ -1,9 +1,5 @@
 return {
 	{
-		'savq/melange-nvim',
-		event = 'VeryLazy',
-	},
-	{
 		'nanozuki/tabby.nvim',
 		dependencies = {
 			'tiagovla/scope.nvim',

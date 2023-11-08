@@ -21,7 +21,7 @@ return {
 				{ mode = 'n', keys = ']' },
 			},
 			clues = {
-				{ mode = 'n', keys = '<Leader>f', desc = '+Telescope ...' },
+				{ mode = 'n', keys = '<Leader>f', desc = '+Fuzzy Search...' },
 				{ mode = 'n', keys = '<Leader>t', desc = '+Tab ...' },
 				{ mode = 'n', keys = '\\', desc = '+Lsp ...' },
 				{ mode = 'n', keys = 'g', desc = '+g ...' },
