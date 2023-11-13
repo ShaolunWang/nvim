@@ -25,12 +25,103 @@ return {
 	},
 	{
 		'kevinhwang91/nvim-bqf',
-		ft = 'qf',
+		opts = {
+			preview = {
+				win_height = 999,
+				win_vheight = 999,
+			},
+			func_enable = {
+				drop = 'd',
+				openc = 'o',
+				split = '<C-v>',
+				tabdrop = '<C-t>',
+				tabc = '',
+				ptogglemode = 'z,',
+			},
+		},
+		ft = { 'qf' },
 	},
 	{
-		'skywind3000/asyncrun.vim',
+		'j-hui/fidget.nvim',
 		config = function()
-			vim.g.asyncrun_open = 10
+			require('fidget').setup({
+				notification = {
+					override_vim_notify = true,
+					configs = {
+						default = {
+							name = '',
+							icon = '',
+							ttl = 5,
+							group_style = 'Title',
+							icon_style = 'Special',
+							annote_style = 'Question',
+							debug_style = 'Comment',
+							warn_style = 'WarningMsg',
+							error_style = 'ErrorMsg',
+							debug_annote = 'DEBUG',
+							info_annote = 'INFO',
+							warn_annote = 'WARN',
+							error_annote = 'ERROR',
+						},
+					},
+					window = {
+						border = 'rounded',
+						normal_hl = '',
+					},
+				},
+				integration = {
+					['nvim-tree'] = {
+						enable = false, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+					},
+				},
+			})
 		end,
+	},
+	{
+		'hauleth/asyncdo.vim',
+	},
+	{ 'chrisbra/NrrwRgn' },
+	{
+		'SmiteshP/nvim-navic',
+		dependencies = { 'neovim/nvim-lspconfig' },
+		lazy = true,
+	},
+
+	{
+		'lukas-reineke/indent-blankline.nvim',
+		opts = {
+			indent = {
+				char = '│',
+				tab_char = '│',
+			},
+			scope = { enabled = false },
+			exclude = {
+				filetypes = {
+					'NvimTree',
+					'qf',
+					'terminal',
+					'fzf',
+				},
+			},
+		},
+		main = 'ibl',
+	},
+	{
+		'hedyhli/outline.nvim',
+		lazy = true,
+		cmd = { 'Outline', 'OutlineOpen' },
+		opts = {},
+	},
+	{
+		'NeogitOrg/neogit',
+		cmd = 'Neogit',
+		dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim', 'ibhagwan/fzf-lua' },
+		opts = {
+			auto_refresh = true,
+			integrations = { diffview = true },
+			kind = 'tab',
+			use_magit_keybindings = true,
+			disable_builtin_notifications = false,
+		},
 	},
 }

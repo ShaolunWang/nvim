@@ -1,58 +1,53 @@
 local map = vim.api.nvim_set_keymap
 
-vim.keymap.set('n', '<c-n>', ':NvimTreeToggle<CR>', { noremap = true })
-vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })
--- leap.nvim mapping
-vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function()
-	local current_window = vim.fn.win_getid()
-	require('leap').leap({ target_windows = { current_window } })
-end, { noremap = true, desc = 'leap' })
-
-vim.keymap.set({ 'n', 'x', 'o' }, 's', function()
-	require('leap').leap({ offset = -1, inclusive_op = true })
-end, { silent = true, noremap = true, desc = 'leap forward till' })
-vim.keymap.set({ 'n', 'x', 'o' }, 'S', function()
-	require('leap').leap({ backward = true, offset = 2 })
-end, { silent = true, noremap = true, desc = 'leap backward till' })
+-- oil & tree
+vim.keymap.set('n', '<c-n>', function()
+	if vim.bo.filetype == 'oil' then
+		require('oil').close()
+	else
+		require('oil').open()
+	end
+end, { desc = 'File navigation' })
+-- neorg
+vim.keymap.set('n', '<leader>n', ':Neorg<cr>', { noremap = true, desc = 'Neorg' })
+vim.keymap.set('n', '  ', ':noh | Fidget clear<CR>', { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
+-- moving between splits
+vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
+vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
+vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
+vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+-- grapple
+local grapple = require('grapple')
+vim.keymap.set('n', '<leader>gg', grapple.toggle, { desc = 'Grapple Tag' })
+vim.keymap.set('n', '<leader>gr', grapple.reset, { desc = 'Grapple Clear' })
+vim.keymap.set('n', '<leader>gp', grapple.open_tags, { desc = 'Grapple Menu' })
+vim.keymap.set('n', '[g', function()
+	grapple.cycle_tags('prev')
+	local fidget = require('fidget')
+	fidget.notify('Grapple Cycle Backward')
+end, { desc = 'Grapple Prev' })
+vim.keymap.set('n', ']g', function()
+	grapple.cycle_tags('next')
+	local fidget = require('fidget')
+	fidget.notify('Grapple Cycle Forward')
+end, { desc = 'Grapple Next' })
 
 -- Telescope
-local function fuzzy_keymaps()
-	if vim.loop.os_uname().sysname ~= 'Windows' then
-		vim.keymap.set('n', '<leader>ff', function()
-			require('fzf-lua').files()
-		end, { noremap = true, desc = 'Find File' })
-		vim.keymap.set('n', '<leader>fg', function()
-			require('fzf-lua').live_grep()
-		end, { noremap = true, desc = 'Grep content' })
-		vim.keymap.set('n', '<leader>fh', function()
-			require('fzf-lua').help_tags()
-		end, { noremap = true, desc = 'Find Help' })
-		vim.keymap.set('n', '<leader>fo', function()
-			require('fzf-lua').oldfiles()
-		end, { noremap = true, desc = 'Search Old File' })
-		vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custom picker' })
-	else
-		vim.keymap.set('n', '<leader>ff', function()
-			require('telescope.builtin').find_files()
-		end, { noremap = true, desc = 'Find File' })
-		vim.keymap.set('n', '<leader>fg', function()
-			require('telescope.builtin').live_grep()
-		end, { noremap = true, desc = 'Grep content' })
-		vim.keymap.set('n', '<leader>fh', function()
-			require('telescope.builtin').help_tags()
-		end, { noremap = true, desc = 'Find Help' })
-		vim.keymap.set('n', '<leader>fo', function()
-			require('telescope.builtin').oldfiles()
-		end, { noremap = true, desc = 'Search Old File' })
-		vim.keymap.set('n', '<leader>fp', ':Telescope<cr>', { noremap = true, desc = 'Custom picker' })
-	end
-end
+vim.keymap.set('n', '<leader>ff', function()
+	require('fzf-lua').files()
+end, { noremap = true, desc = 'Find File' })
+vim.keymap.set('n', '<leader>fg', function()
+	require('fzf-lua').live_grep()
+end, { noremap = true, desc = 'Grep content' })
+vim.keymap.set('n', '<leader>fh', function()
+	require('fzf-lua').help_tags()
+end, { noremap = true, desc = 'Find Help' })
+vim.keymap.set('n', '<leader>fo', function()
+	require('fzf-lua').oldfiles()
+end, { noremap = true, desc = 'Search Old File' })
+vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custom picker' })
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, desc = 'Close Tab' })
@@ -63,13 +58,9 @@ vim.keymap.set('n', '<leader>th', ':-tabmove<CR>', { noremap = true, desc = '-Mo
 vim.keymap.set('n', '<leader>tl', ':+tabmove<CR>', { noremap = true, desc = '+Move Tab' })
 
 -- misc
-vim.keymap.set(
-	'n',
-	'""',
-	require('registers').show_window({ mode = 'motion' }),
-	{ noremap = true, desc = 'reg floating window' }
-)
-vim.keymap.set('n', '<f5>', ':AsyncRun ', { noremap = true, desc = 'Runner' })
+vim.keymap.set('n', '""', ':Registers<cr>', { noremap = true, desc = 'reg floating window', silent = true })
+-- runner
+vim.keymap.set('n', '<f5>', ':AsyncDo ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.quickfix == 1 then
@@ -105,5 +96,5 @@ end
 vim.keymap.set('n', '<F7>', function()
 	toggle_loclist()
 end, { noremap = true, silent = true })
-
-fuzzy_keymaps()
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)

@@ -1,4 +1,7 @@
 lazy-lock.json
-optional.lua
 tags
 lua/runners/
+snips/*
+*.json
+after/
+.localsession.vim

@@ -9,10 +9,52 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 	end,
 })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-	group = 'yank_highlight',
-	pattern = '*',
+-- Key mappings for 'qf' filetype
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = 'qf',
 	callback = function()
-		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
+		vim.api.nvim_buf_set_keymap(0, 'n', '<,o>', '<cmd>colder<CR>', { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, 'n', '<,i>', '<cmd>cnewer<CR>', { noremap = true, silent = true })
 	end,
+})
+
+local llvm_highlight = vim.api.nvim_create_augroup('llvm-highlight', {})
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+	group = llvm_highlight,
+	pattern = { '*.mlir', '*.xdsl' },
+	callback = function()
+		vim.cmd([[set ft=mlir]])
+	end,
+})
+
+vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
+
+vim.api.nvim_create_autocmd('FileType', {
+	group = llvm_highlight,
+	pattern = { '*.td' },
+	callback = function()
+		vim.cmd([[set ft=tablegen]])
+	end,
+})
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = {
+		'help',
+		'NvimTree',
+		'lazy',
+		'Outline',
+		'terminal',
+		'fzf',
+	},
+	callback = function()
+		vim.b.miniindentscope_disable = true
+	end,
+})
+
+local group = vim.api.nvim_create_augroup('CscopeBuild', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+	pattern = { '*.cpp', '*.h' },
+	callback = function()
+		vim.cmd('Cs db build')
+	end,
+	group = group,
 })
