@@ -1,5 +1,12 @@
 return {
 	{
+		'EdenEast/nightfox.nvim',
+		opts = {},
+	},
+	{
+		'freddiehaddad/feline.nvim',
+	},
+	{
 		'nanozuki/tabby.nvim',
 		dependencies = {
 			'tiagovla/scope.nvim',

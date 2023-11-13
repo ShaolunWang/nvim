@@ -12,5 +12,5 @@ end
 return {
 	'nvim-treesitter/nvim-treesitter',
 	config = treesitter_setup,
-	event = 'BufEnter',
+	event = { "BufReadPre" },
 }

@@ -106,27 +106,31 @@ end
 local fuzzy = {}
 if vim.loop.os_uname().sysname ~= 'Windows_NT' then
 	fuzzy = {
-		'ibhagwan/fzf-lua',
-		-- optional for icon support
-		dependencies = { 'nvim-tree/nvim-web-devicons' },
-		config = function()
-			require('fzf-lua').setup({
-				winopts = {
-					fullscreen = true,
-					border = false,
-					preview = {
-						default = 'bat_native',
-						layout = 'flex',
-            border = 'noborder',
-
-            scrollbar = false,
-            scrollchars    = '',      -- scrollbar chars ({ <full>, <empty> }
+		{
+			'ibhagwan/fzf-lua',
+			-- optional for icon support
+			dependencies = { 'nvim-tree/nvim-web-devicons' },
+			config = function()
+				require('fzf-lua').setup({
+					winopts = {
+						fullscreen = true,
+						border = false,
+						preview = {
+							default = 'bat_native',
+							layout = 'flex',
+							border = 'noborder',
+							scrollbar = false,
+							scrollchars = '', -- scrollbar chars ({ <full>, <empty> }
+						},
 					},
-				},
-			})
-		end,
-		keys = { '<leader>' },
-		cmd = { 'FzfLua' },
+					
+				})
+				require('fzf-lua').register_ui_select()
+			end,
+			keys = { '<leader>' },
+			cmd = { 'FzfLua' },
+			lazy = true,
+		},
 	}
 else
 	fuzzy = {
@@ -144,6 +148,7 @@ else
 			},
 			keys = { '<leader>' },
 			cmd = { 'Telescope' },
+			lazy = true,
 			config = telescope_setup,
 		},
 	}

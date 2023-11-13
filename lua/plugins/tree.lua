@@ -6,6 +6,7 @@ local tree_opts = {
 		update_cwd = false,
 	},
 	on_attach = on_attach,
+	view = { adaptive_size = true },
 	renderer = {
 		full_name = false,
 		group_empty = true,
@@ -44,6 +45,16 @@ local tree_opts = {
 		},
 		remove_file = {
 			close_window = false,
+		},
+	},
+	log = {
+		enable = true,
+		truncate = true,
+		types = {
+			diagnostics = true,
+			git = true,
+			profile = true,
+			watcher = true,
 		},
 	},
 }
