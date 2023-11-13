@@ -51,3 +51,7 @@ if vim.fn.executable('rg') == 1 then
 	vim.opt.grepprg = "rg --no-heading --vimgrep --smart-case --hidden --glob '!.git'"
 	vim.opt.grepformat = '%f:%l:%c:%m'
 end
+vim.cmd([[
+
+  command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+]])
