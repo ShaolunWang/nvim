@@ -3,7 +3,8 @@ local map = vim.api.nvim_set_keymap
 --vim.keymap.set('n', '<c-n>', ':NvimTreeToggle<CR>', { noremap = true })
 --
 vim.keymap.set('n', '<c-n>', function()
-	require('oil').toggle_float('.')
+	local oil = require('oil')
+	oil.toggle_float()
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })

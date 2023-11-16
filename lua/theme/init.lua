@@ -1,6 +1,6 @@
 vim.g.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme carbonfox')
+vim.cmd('colorscheme nightfox')
 require('theme.tabby')
 require('theme.feline')
 -- leap highlight
