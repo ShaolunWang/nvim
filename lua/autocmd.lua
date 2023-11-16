@@ -16,3 +16,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
 	end,
 })
+-- Key mappings for 'qf' filetype
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = 'qf',
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, 'n', '<,o>', '<cmd>colder<CR>', { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, 'n', '<,i>', '<cmd>cnewer<CR>', { noremap = true, silent = true })
+	end,
+})
