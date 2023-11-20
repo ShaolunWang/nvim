@@ -20,6 +20,9 @@ set.termguicolors = true
 
 vim.g.smartindent = 1
 set.conceallevel = 2
+-- Neovim config for the links to show properly
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = "nc"
 
 vim.g.maplocalleader = ','
 set.fillchars = 'vert: ,eob: '
@@ -48,10 +51,9 @@ for type, icon in pairs(signs) do
 end
 
 if vim.fn.executable('rg') == 1 then
-	vim.opt.grepprg = "rg --no-heading --vimgrep --smart-case --hidden --glob '!.git'"
+	vim.opt.grepprg = "rg --no-heading --vimgrep --smart-case --hidden"
 	vim.opt.grepformat = '%f:%l:%c:%m'
 end
 vim.cmd([[
-
   command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 ]])

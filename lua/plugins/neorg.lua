@@ -3,6 +3,14 @@ return {
 	build = ':Neorg sync-parsers',
 	dependencies = { 'nvim-lua/plenary.nvim' },
 	config = function()
+    require("nvim-web-devicons").set_icon({
+      norg = {
+        icon = "",
+        color = "#56949f",
+        cterm_color = "65",
+        name = "Norg",
+      },
+    })
 		require('neorg').setup({
 			load = {
 				['core.defaults'] = {}, -- Loads default behaviour
@@ -34,9 +42,8 @@ return {
 				},
 			},
 		})
-
-		vim.keymap.set('n', '<leader>n', ':Neorg workspace notes', { noremap = true, desc = 'Neorg goto notes' })
 	end,
 	cmd = { 'Neorg' },
 	ft = { 'norg' },
+
 }

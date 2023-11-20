@@ -314,7 +314,7 @@ local c = {
 	},
 	fileinfo = {
 		provider = { name = 'file_info', opts = { type = 'relative' } },
-		hl = { fg = pal.sl.fg, bg = pal.sel.fg },
+		hl = { fg = pal.sl.bg, bg = pal.sel.fg },
 		left_sep = { str = ' ', hl = { fg = pal.sl.bg, bg = pal.sel.fg } },
 		right_sep = { str = ' ', hl = { fg = pal.sl.bg, bg = pal.sel.fg } },
 	},

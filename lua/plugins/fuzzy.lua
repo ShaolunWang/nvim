@@ -130,11 +130,9 @@ if vim.loop.os_uname().sysname ~= 'Windows_NT' then
 						color_icons = false,
 					},
 				})
-				require('fzf-lua').register_ui_select()
 			end,
 			keys = { '<leader>' },
 			cmd = { 'FzfLua' },
-			lazy = true,
 		},
 	}
 else

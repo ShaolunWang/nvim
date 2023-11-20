@@ -6,7 +6,8 @@ vim.keymap.set('n', '<c-n>', function()
 	local oil = require('oil')
 	oil.toggle_float()
 end, { noremap = true, silent = true })
-
+-- neorg
+vim.keymap.set('n', '<leader>n', ':Neorg', { noremap = true, desc = 'Neorg' })
 vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })
 -- leap.nvim mapping
 vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function()
