@@ -1,4 +1,4 @@
-vim.cmd [[
+vim.cmd([[
 " Vim syntax file
 " Language:   mlir
 " Maintainer: The MLIR team, http://github.com/tensorflow/mlir/
@@ -140,4 +140,4 @@ if version >= 508 || !exists("did_c_syn_inits")
 endif
 
 let b:current_syntax = "mlir"
-]]
+]])

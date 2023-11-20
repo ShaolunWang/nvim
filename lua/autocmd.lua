@@ -25,29 +25,26 @@ vim.api.nvim_create_autocmd('FileType', {
 	end,
 })
 
-
 local llvm_highlight = vim.api.nvim_create_augroup('llvm-highlight', {})
-vim.api.nvim_create_autocmd({ 'BufRead','BufNewFile' },
-  {
-    group = llvm_highlight,
-    pattern = { '*.mlir', '*.xdsl'},
-    callback = function()
-      vim.cmd [[set ft=mlir]]
-    end,
-  })
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+	group = llvm_highlight,
+	pattern = { '*.mlir', '*.xdsl' },
+	callback = function()
+		vim.cmd([[set ft=mlir]])
+	end,
+})
 
 vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
 
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = llvm_highlight,
-  pattern = { '*.td' },
-  callback = function()
-    vim.cmd [[set ft=tablegen]]
-  end,
+vim.api.nvim_create_autocmd('FileType', {
+	group = llvm_highlight,
+	pattern = { '*.td' },
+	callback = function()
+		vim.cmd([[set ft=tablegen]])
+	end,
 })
 
-vim.cmd[[
+vim.cmd([[
   function FormatBuffer()
     if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
       let cursor_pos = getpos('.')
@@ -57,4 +54,16 @@ vim.cmd[[
   endfunction
 
   autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
-]]
+]])
+vim.api.nvim_create_autocmd('BufReadPre', {
+	callback = function()
+		require('fzf-lua').register_ui_select()
+	end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+	callback = function()
+    vim.print("Type [:Session here] to reload session")
+	end,
+})
+

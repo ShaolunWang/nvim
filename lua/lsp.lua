@@ -86,34 +86,33 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-
 local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 }
 local c = vim.lsp.protocol.make_client_capabilities()
 c.textDocument.completion.completionItem.snippetSupport = true
 c.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentation',
-        'detail',
-        'additionalTextEdits',
-    },
+	properties = {
+		'documentation',
+		'detail',
+		'additionalTextEdits',
+	},
 }
 local capabilities = coq.lsp_ensure_capabilities(c)
 
 lsp.ocamllsp.setup({
-    cmd = { "ocamllsp" },
-    filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
-    root_dir = lsp.util.root_pattern("*.opam", "esy.json", "package.json", ".git", "dune-project", "dune-workspace"),
-    on_attach = lsp_keymap.on_attach,
-    capabilities = capabilities,
-    handler = handlers
+	cmd = { 'ocamllsp' },
+	filetypes = { 'ocaml', 'ocaml.menhir', 'ocaml.interface', 'ocaml.ocamllex', 'reason', 'dune' },
+	root_dir = lsp.util.root_pattern('*.opam', 'esy.json', 'package.json', '.git', 'dune-project', 'dune-workspace'),
+	on_attach = lsp_keymap.on_attach,
+	capabilities = capabilities,
+	handler = handlers,
 })
 lsp.pyright.setup({
-    on_attach = lsp_keymap.on_attach,
-    capabilities = capabilities,
-    on_attach = lsp_keymap.on_attach,
-    capabilities = capabilities,
-    handler = handlers
+	on_attach = lsp_keymap.on_attach,
+	capabilities = capabilities,
+	on_attach = lsp_keymap.on_attach,
+	capabilities = capabilities,
+	handler = handlers,
 })

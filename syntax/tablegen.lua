@@ -1,4 +1,4 @@
-vim.cmd[[
+vim.cmd([[
 " Vim syntax file
 " Language:   TableGen
 " Maintainer: The LLVM team, http://llvm.org/
@@ -53,4 +53,4 @@ if version >= 508 || !exists("did_c_syn_inits")
 endif
 
 let b:current_syntax = "tablegen"
-]]
+]])
