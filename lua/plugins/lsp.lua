@@ -14,36 +14,91 @@ return {
       sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
       sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
     ]])
-		local coq_opts = require('coq')
 		local lsp = require('lspconfig')
 		local lsp_keymap = require('keymap.lsp_keymaps')
 
 		-- simple example
 		lsp.pyright.setup({
 			on_attach = lsp_keymap.on_attach,
-			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
 			handlers = utils.lsp_handlers,
+			capabilities = utils.c,
+		})
+		lsp.ruff_lsp.setup({
+			on_attach = lsp_keymap.on_attach,
+			handlers = utils.lsp_handlers,
+			capabilities = utils.c,
 		})
 
 		lsp.ocamllsp.setup({
 			on_attach = lsp_keymap.on_attach,
-			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
 			handlers = utils.lsp_handlers,
+			capabilities = utils.c,
 		})
-		--[[ 		lsp.clangd.setup({
+		local clang_handlers = utils.lsp_handlers
+		local no_diagnostic = {
+			['textDocument/publishDiagnostics'] = function() end,
+		}
+		for k, v in pairs(no_diagnostic) do
+			clang_handlers[k] = v
+		end
+		lsp.clangd.setup({
 			on_attach = function(client, bufnr)
 				require('clangd_extensions.inlay_hints').setup_autocmd()
 				require('clangd_extensions.inlay_hints').set_inlay_hints()
 				lsp_keymap.on_attach(client, bufnr)
 			end,
-			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
 			handlers = utils.lsp_handlers,
-		}) ]]
+			capabilities = utils.c,
+		})
+		lsp.lua_ls.setup({
+			on_init = function(client)
+				local path = client.workspace_folders[1].name
+				if not vim.loop.fs_stat(path .. '/.luarc.json') and not vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+					client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+						Lua = {
+							runtime = {
+								-- Tell the language server which version of Lua you're using
+								-- (most likely LuaJIT in the case of Neovim)
+								version = 'LuaJIT',
+							},
+							completion = {
+								callSnippet = 'Replace',
+							},
+							-- Make the server aware of Neovim runtime files
+							workspace = {
+								checkThirdParty = false,
+								library = {
+									vim.env.VIMRUNTIME,
+									-- "${3rd}/luv/library"
+									-- "${3rd}/busted/library",
+								},
+								-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+								-- library = vim.api.nvim_get_runtime_file("", true)
+							},
+						},
+					})
+
+					client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
+				end
+				return true
+			end,
+			on_attach = lsp_keymap.on_attach,
+			handlers = utils.lsp_handlers,
+			capabilities = utils.c,
+		})
+		lsp.marksman.setup({
+			on_attach = lsp_keymap.on_attach,
+			handlers = utils.lsp_handlers,
+			capabilities = utils.c,
+		})
 	end,
 	ft = {
 		-- make sure only adding configured ones here
 		'python',
 		'ocaml',
-		-- 'cpp',
+		'cpp',
+		'md',
+		'ts',
+		'lua',
 	},
 }

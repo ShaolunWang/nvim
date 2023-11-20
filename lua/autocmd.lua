@@ -13,6 +13,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	group = 'yank_highlight',
 	pattern = '*',
 	callback = function()
+		local fidget = require('fidget')
+		fidget.notify('yanking', vim.log.levels.INFO)
 		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
 	end,
 })
@@ -44,25 +46,50 @@ vim.api.nvim_create_autocmd('FileType', {
 	end,
 })
 
-vim.cmd([[
-  function FormatBuffer()
-    if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
-      let cursor_pos = getpos('.')
-      :%!clang-format
-      call setpos('.', cursor_pos)
-    endif
-  endfunction
-
-  autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
-]])
-vim.api.nvim_create_autocmd('BufReadPre', {
+-- vim.cmd([[
+--   function FormatBuffer()
+--     if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+--       let cursor_pos = getpos('.')
+--       :%!clang-format
+--       call setpos('.', cursor_pos)
+--     endif
+--   endfunction
+--
+--   autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
+-- ]])
+--[[ local parsers = {
+	'lua',
+	'cpp',
+	'rust',
+	'vim',
+	'vimdoc',
+	'norg',
+	'norg-meta',
+}
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = vim.fn.join(parsers, ","),
 	callback = function()
-		require('fzf-lua').register_ui_select()
+		vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+		vim.opt_local.foldmethod = "expr"
+	end,
+	desc = "Set fold method for treesitter",
+}) ]]
+vim.api.nvim_create_autocmd('BufReadPost', {
+	pattern = { '*' },
+	callback = function()
+		require('nvim-tree.api').tree.open()
 	end,
 })
-
-vim.api.nvim_create_autocmd('VimEnter', {
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = {
+		'help',
+		'NvimTree',
+		'lazy',
+		'Outline',
+		'terminal',
+		'fzf',
+	},
 	callback = function()
-    vim.print("Type [:Session here] to reload session")
+		vim.b.miniindentscope_disable = true
 	end,
 })

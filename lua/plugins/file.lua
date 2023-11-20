@@ -19,13 +19,12 @@ local tree_opts = {
 				file = true,
 				folder = false,
 				folder_arrow = true,
-				git = false,
+				git = true,
 			},
 		},
 	},
 	update_focused_file = {
 		enable = true,
-		update_root = true,
 		ignore_list = { 'help' },
 	},
 	diagnostics = {
@@ -33,10 +32,6 @@ local tree_opts = {
 		show_on_dirs = true,
 	},
 	actions = {
-		change_dir = {
-			enable = false,
-			restrict_above_cwd = true,
-		},
 		open_file = {
 			resize_window = true,
 			window_picker = {
@@ -58,20 +53,40 @@ local tree_opts = {
 		},
 	},
 }
-
---[[ return {
-	'nvim-tree/nvim-tree.lua',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	config = function()
-		require('nvim-tree').setup(tree_opts)
-	end,
-	cmd = { 'NvimTreeToggle' },
-} ]]
-
 return {
-	'stevearc/oil.nvim',
-	opts = {},
-	-- Optional dependencies
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	cmd = { 'Oil' },
+	{
+		'nvim-tree/nvim-tree.lua',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require('nvim-tree').setup(tree_opts)
+		end,
+		cmd = { 'NvimTreeToggle' },
+	},
+	{
+		'stevearc/oil.nvim',
+		opts = {
+			use_default_keymaps = false,
+			keymaps = {
+				['<CR>'] = 'actions.select',
+				['-'] = 'actions.parent',
+				['_'] = 'actions.open_cwd',
+				['`'] = 'actions.cd',
+				['~'] = 'actions.tcd',
+				['g.'] = 'actions.toggle_hidden',
+				['g?'] = false,
+				['<C-s>'] = false,
+				['<C-h>'] = false,
+				['<C-t>'] = false,
+				['<C-p>'] = false,
+				['<C-c>'] = false,
+				['<C-l>'] = false,
+				['gs'] = false,
+				['gx'] = false,
+				['g\\'] = false,
+			},
+		},
+		-- Optional dependencies
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		cmd = { 'Oil' },
+	},
 }

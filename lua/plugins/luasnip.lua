@@ -1,16 +1,26 @@
 return {
-	'L3MON4D3/LuaSnip',
-	-- follow latest release.
-	version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-	-- install jsregexp (optional!).
-	--	build = "make install_jsregexp",
-	config = function()
-		require('luasnip').config.set_config({ -- Setting LuaSnip config
+	{
+		'L3MON4D3/LuaSnip',
 
-			-- Enable autotriggered snippets
-			enable_autosnippets = true,
-		})
-		require('luasnip.loaders.from_lua').load({ paths = vim.fn.stdpath('config') .. '/snippets/' })
-	end,
-	event = 'InsertEnter',
+		dependencies = { 'rafamadriz/friendly-snippets' },
+		-- follow latest release.
+		version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- build = "make install_jsregexp",
+		config = function()
+			require('luasnip').config.set_config({ -- Setting LuaSnip config
+				-- Enable autotriggered snippets
+				enable_autosnippets = true,
+			})
+			require('luasnip.loaders.from_lua').load({ paths = vim.fn.stdpath('config') .. '/snips/lua_style/' })
+			require('luasnip.loaders.from_vscode').lazy_load({ paths = vim.fn.stdpath('config') .. '/snips/json_style/' })
+		end,
+		event = 'InsertEnter',
+	},
+	{
+		'chrisgrieser/nvim-scissors',
+		opts = {
+			snippetDir = vim.fn.stdpath('config') .. '/snips/json_style/',
+			jsonFormatter = 'jq',
+		},
+	},
 }

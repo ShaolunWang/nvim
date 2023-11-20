@@ -1,25 +1,13 @@
 return {
-  {
-    'myagko/nymph.nvim',
-    config = function()
-    end,
-  },
-	--[[ {
-		'EdenEast/nightfox.nvim',
-		opts = {},
-    lazy = true,
-	}, ]]
 	{
-		'freddiehaddad/feline.nvim',
-    lazy = true,
+		'rebelot/kanagawa.nvim',
+		opts = {
+			compile = true,
+		},
 	},
-	{
-		'EdenEast/nightfox.nvim',
-		opts = {},
-	},
-	{
-		'freddiehaddad/feline.nvim',
-	},
+	{ 'jacoborus/tender.vim' },
+	{ 'EdenEast/nightfox.nvim' },
+	{ 'nyoom-engineering/oxocarbon.nvim' },
 	{
 		'nanozuki/tabby.nvim',
 		dependencies = {
@@ -35,5 +23,10 @@ return {
 			require('scope').setup({})
 			require('tabby').setup({})
 		end,
+	},
+	{ 'rebelot/heirline.nvim', event = 'VeryLazy' },
+	{
+		'yeomfa/jetly',
+		event = 'VeryLazy',
 	},
 }
