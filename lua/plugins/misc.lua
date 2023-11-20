@@ -33,4 +33,19 @@ return {
 			vim.g.asyncrun_open = 10
 		end,
 	},
+	{
+		'jinh0/eyeliner.nvim',
+		opts = {
+			highlight_on_key = true, -- show highlights only after keypress
+			dim = false, -- dim all other characters if set to true (recommended!)
+		},
+	},
+  {
+  "folke/persistence.nvim",
+  event = "BufReadPre", -- this will only start session saving when an actual file was opened
+  opts = {
+    -- add any custom options here
+},
+cmd = {'Session'},
+  }
 }

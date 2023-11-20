@@ -123,13 +123,16 @@ if vim.loop.os_uname().sysname ~= 'Windows_NT' then
 							scrollchars = '', -- scrollbar chars ({ <full>, <empty> }
 						},
 					},
-					
+					files = {
+						prompt = 'Files❯ ',
+						git_icons = false,
+						file_icons = false,
+						color_icons = false,
+					},
 				})
-				require('fzf-lua').register_ui_select()
 			end,
 			keys = { '<leader>' },
 			cmd = { 'FzfLua' },
-			lazy = true,
 		},
 	}
 else

@@ -30,7 +30,7 @@ return {
 			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
 			handlers = utils.lsp_handlers,
 		})
-		lsp.clangd.setup({
+		--[[ 		lsp.clangd.setup({
 			on_attach = function(client, bufnr)
 				require('clangd_extensions.inlay_hints').setup_autocmd()
 				require('clangd_extensions.inlay_hints').set_inlay_hints()
@@ -38,12 +38,12 @@ return {
 			end,
 			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
 			handlers = utils.lsp_handlers,
-		})
+		}) ]]
 	end,
 	ft = {
 		-- make sure only adding configured ones here
 		'python',
 		'ocaml',
-		'cpp',
+		-- 'cpp',
 	},
 }

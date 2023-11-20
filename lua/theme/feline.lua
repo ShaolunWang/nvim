@@ -1,27 +1,3 @@
--- Feline
--- https://github.com/EdenEast/nightfox.nvim/blob/main/mics/feline.lua
---
--- This file is a complete example of creating the feline configuration shown in the readme of
--- nightfox. This configuration generates its own highlight groups from the currently applied
--- colorscheme. These highlight groups are regenreated on colorscheme changes.
---
--- Required plugins:
---    - `feline-nvim/feline.nvim`
---    - `kyazdani42/nvim-web-devicons`
---
--- This file is required to be in your `lua` folder of your config.  Your colorscheme should also
--- be applied before this file is sourced. This file cannot be located `lua/feline.lua` as this
--- would clash with the actual plugin require path.
---
--- # Example:
---
--- ```lua
--- vim.cmd("colorscheme nightfox")
--- require('user.ui.feline')
--- ```
---
--- This assumes that this file is located at `lua/user/ui/feline.lua`
-
 local fmt = string.format
 
 ----------------------------------------------------------------------------------------------------
@@ -338,7 +314,7 @@ local c = {
 	},
 	fileinfo = {
 		provider = { name = 'file_info', opts = { type = 'relative' } },
-		hl = { fg = pal.sl.fg, bg = pal.sel.fg },
+		hl = { fg = pal.sl.bg, bg = pal.sel.fg },
 		left_sep = { str = ' ', hl = { fg = pal.sl.bg, bg = pal.sel.fg } },
 		right_sep = { str = ' ', hl = { fg = pal.sl.bg, bg = pal.sel.fg } },
 	},
@@ -450,7 +426,7 @@ require('feline').setup({
 	highlight_reset_triggers = {},
 	force_inactive = {
 		filetypes = {
---			'NvimTree',
+			'NvimTree',
 			'Lazy',
 			'dap-repl',
 			'LspTrouble',
@@ -460,6 +436,5 @@ require('feline').setup({
 		buftypes = { 'terminal' },
 		bufnames = {},
 	},
-	disable = {
-	},
+	disable = {},
 })

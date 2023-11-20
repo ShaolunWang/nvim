@@ -1,4 +1,18 @@
 return {
+  {
+    'myagko/nymph.nvim',
+    config = function()
+    end,
+  },
+	--[[ {
+		'EdenEast/nightfox.nvim',
+		opts = {},
+    lazy = true,
+	}, ]]
+	{
+		'freddiehaddad/feline.nvim',
+    lazy = true,
+	},
 	{
 		'EdenEast/nightfox.nvim',
 		opts = {},

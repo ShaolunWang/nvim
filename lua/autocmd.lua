@@ -16,6 +16,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
 	end,
 })
+-- Key mappings for 'qf' filetype
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = 'qf',
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, 'n', '<,o>', '<cmd>colder<CR>', { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, 'n', '<,i>', '<cmd>cnewer<CR>', { noremap = true, silent = true })
+	end,
+})
 
 local llvm_highlight = vim.api.nvim_create_augroup('llvm-highlight', {})
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
@@ -47,3 +55,14 @@ vim.cmd([[
 
   autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
 ]])
+vim.api.nvim_create_autocmd('BufReadPre', {
+	callback = function()
+		require('fzf-lua').register_ui_select()
+	end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+	callback = function()
+    vim.print("Type [:Session here] to reload session")
+	end,
+})
