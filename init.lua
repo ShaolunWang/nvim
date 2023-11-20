@@ -32,6 +32,15 @@ require('lazy').setup('plugins', {
 	change_detection = {
 		enabled = false,
 	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				'matchit',
+				'matchparen',
+				'tutor',
+			},
+		},
+	},
 })
 
 require('config')
