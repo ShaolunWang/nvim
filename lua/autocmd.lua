@@ -63,6 +63,6 @@ vim.api.nvim_create_autocmd('BufReadPre', {
 
 vim.api.nvim_create_autocmd('VimEnter', {
 	callback = function()
-    vim.print("Type [:Session here] to reload session")
+		vim.print('Type [:Session here] to reload session')
 	end,
 })

@@ -1,17 +1,12 @@
 return {
-  {
-    'myagko/nymph.nvim',
-    config = function()
-    end,
-  },
-	--[[ {
-		'EdenEast/nightfox.nvim',
-		opts = {},
-    lazy = true,
-	}, ]]
+	{
+		'myagko/nymph',
+		branch = 'Neovim',
+		config = function() end,
+	},
 	{
 		'freddiehaddad/feline.nvim',
-    lazy = true,
+		lazy = true,
 	},
 	{
 		'EdenEast/nightfox.nvim',

@@ -1,6 +1,6 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
-  opts = {
+	opts = {
 		ensure_installed = {
 			'c',
 			'cpp',
@@ -8,11 +8,11 @@ return {
 			'python',
 			'vim',
 		},
-    highlight = { enable = true },
+		highlight = { enable = true },
 	},
 
-  config = function(_, opts)
-   require("nvim-treesitter.configs").setup(opts)
-  end,
+	config = function(_, opts)
+		require('nvim-treesitter.configs').setup(opts)
+	end,
 	event = { 'BufReadPre' },
 }

@@ -70,7 +70,7 @@ vim.keymap.set('n', '<leader>th', ':-tabmove<CR>', { noremap = true, desc = '-Mo
 vim.keymap.set('n', '<leader>tl', ':+tabmove<CR>', { noremap = true, desc = '+Move Tab' })
 
 -- misc
-vim.keymap.set('n', '""', ':Registers', { noremap = true, desc = 'reg floating window', silent = true })
+vim.keymap.set('n', '""', ':Registers<cr>', { noremap = true, desc = 'reg floating window', silent = true })
 vim.keymap.set('n', '<f5>', ':AsyncRun ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
