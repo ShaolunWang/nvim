@@ -5,7 +5,6 @@ return {
 	config = function()
 		local remap = vim.api.nvim_set_keymap
 		local npairs = require('nvim-autopairs')
-
 		npairs.setup({ map_bs = false, map_cr = false })
 
 		-- these mappings are coq recommended mappings unrelated to nvim-autopairs

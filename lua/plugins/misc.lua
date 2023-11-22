@@ -48,4 +48,21 @@ return {
 		},
 		cmd = { 'Session' },
 	},
+	{
+		-- note: this is a modified version of grapple,
+		-- see issue #72
+		'cbochs/grapple.nvim',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		opts = {
+			scope = 'directory',
+			popup_options = {
+				relative = 'editor',
+				width = 60,
+				height = 12,
+				style = 'minimal',
+				focusable = false,
+				border = 'single',
+			},
+		},
+	},
 }

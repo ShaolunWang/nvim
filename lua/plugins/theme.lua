@@ -1,19 +1,7 @@
 return {
 	{
-		'myagko/nymph',
-		branch = 'Neovim',
-		config = function() end,
-	},
-	{
-		'freddiehaddad/feline.nvim',
-		lazy = true,
-	},
-	{
 		'EdenEast/nightfox.nvim',
 		opts = {},
-	},
-	{
-		'freddiehaddad/feline.nvim',
 	},
 	{
 		'nanozuki/tabby.nvim',

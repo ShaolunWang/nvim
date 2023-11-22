@@ -1,7 +1,14 @@
 local map = vim.api.nvim_set_keymap
 
 --vim.keymap.set('n', '<c-n>', ':NvimTreeToggle<CR>', { noremap = true })
---
+
+--grapple
+vim.keymap.set('n', '<leader>gg', function()
+	require('grapple').toggle({ use_cursor = true })
+end, { desc = 'Grappled Toggle' })
+vim.keymap.set('n', '<leader>gp', require('grapple').popup_tags, { desc = 'Grappled Popup' })
+vim.keymap.set('n', '<leader>gr', require('grapple').reset, { desc = 'Grappled Reset' })
+-- oil
 vim.keymap.set('n', '<c-n>', function()
 	local oil = require('oil')
 	oil.toggle_float()

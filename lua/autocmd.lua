@@ -66,3 +66,4 @@ vim.api.nvim_create_autocmd('VimEnter', {
 		vim.print('Type [:Session here] to reload session')
 	end,
 })
+vim.api.nvim_clear_autocmds({ group = 'Grapple', event = 'BufLeave' })
