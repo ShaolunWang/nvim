@@ -8,11 +8,26 @@ vim.keymap.set('n', '<leader>gg', function()
 end, { desc = 'Grappled Toggle' })
 vim.keymap.set('n', '<leader>gp', require('grapple').popup_tags, { desc = 'Grappled Popup' })
 vim.keymap.set('n', '<leader>gr', require('grapple').reset, { desc = 'Grappled Reset' })
--- oil
+
+-- oil & tree
+
 vim.keymap.set('n', '<c-n>', function()
+  local tree = require('nvim-tree.api')
 	local oil = require('oil')
-	oil.toggle_float()
-end, { noremap = true, silent = true })
+
+	if vim.bo.filetype == 'oil' then
+    if tree.tree.is_visible() then
+      tree.tree.toggle({focus = false})
+    end
+		oil.close()
+	else
+    if not tree.tree.is_visible() then
+      tree.tree.toggle({focus = false})
+    end
+		oil.open()
+	end
+end,
+{ desc = 'File navigation' })
 -- neorg
 vim.keymap.set('n', '<leader>n', ':Neorg', { noremap = true, desc = 'Neorg' })
 vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })
