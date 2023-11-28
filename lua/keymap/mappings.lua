@@ -12,24 +12,23 @@ vim.keymap.set('n', '<leader>gr', require('grapple').reset, { desc = 'Grappled R
 -- oil & tree
 
 vim.keymap.set('n', '<c-n>', function()
-  local tree = require('nvim-tree.api')
+	local tree = require('nvim-tree.api')
 	local oil = require('oil')
 
 	if vim.bo.filetype == 'oil' then
-    if tree.tree.is_visible() then
-      tree.tree.toggle({focus = false})
-    end
+		if tree.tree.is_visible() then
+			tree.tree.toggle({ focus = false })
+		end
 		oil.close()
 	else
-    if not tree.tree.is_visible() then
-      tree.tree.toggle({focus = false})
-    end
+		if not tree.tree.is_visible() then
+			tree.tree.toggle({ focus = false })
+		end
 		oil.open()
 	end
-end,
-{ desc = 'File navigation' })
+end, { desc = 'File navigation' })
 -- neorg
-vim.keymap.set('n', '<leader>n', ':Neorg', { noremap = true, desc = 'Neorg' })
+vim.keymap.set('n', '<leader>n', ':Neorg<cr>', { noremap = true, desc = 'Neorg' })
 vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })
 -- leap.nvim mapping
 vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function()

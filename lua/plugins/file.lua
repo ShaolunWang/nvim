@@ -71,7 +71,7 @@ return {
 	{
 		'stevearc/oil.nvim',
 		opts = {
-      use_default_keymaps = false,
+			use_default_keymaps = false,
 			keymaps = {
 				['<CR>'] = 'actions.select',
 				['-'] = 'actions.parent',
@@ -93,7 +93,7 @@ return {
 		},
 		-- Optional dependencies
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
- --   keys = {'<C-n>'}
+		--   keys = {'<C-n>'}
 		cmd = { 'Oil' },
 	},
 }

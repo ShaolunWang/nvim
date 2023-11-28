@@ -49,9 +49,7 @@ return {
 		cmd = { 'Session' },
 	},
 	{
-		-- note: this is a modified version of grapple,
-		-- see issue #72
-		'cbochs/grapple.nvim',
+		'boarg/grapple.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			scope = 'directory',
@@ -64,5 +62,58 @@ return {
 				border = 'single',
 			},
 		},
+		keys = { '<Leader>' },
+	},
+	{
+		'AndrewRadev/bufferize.vim',
+		cmd = { 'Bufferize' },
+	},
+	{
+		'chrisgrieser/nvim-origami',
+		event = 'BufReadPost', -- later or on keypress would prevent saving folds
+		opts = true, -- needed even when using default config
+	},
+	{
+		'echasnovski/mini.hipatterns',
+		version = false,
+		config = function()
+			local hipatterns = require('mini.hipatterns')
+			hipatterns.setup({
+				highlighters = {
+					-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+					fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+					hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+					todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+					note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+
+					-- Highlight hex color strings (`#rrggbb`) using that color
+					hex_color = hipatterns.gen_highlighter.hex_color(),
+				},
+			})
+		end,
+	},
+	{
+		'echasnovski/mini.move',
+		version = false,
+		opts = {
+			mappings = {
+				-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+				left = '<',
+				right = '<',
+				down = ']e',
+				up = '[e',
+
+				-- Move current line in Normal mode
+				line_left = '<',
+				line_right = '>',
+				line_down = ']e',
+				line_up = '[e',
+			},
+			options = {
+				-- Automatically reindent selection during linewise vertical move
+				reindent_linewise = true,
+			},
+		},
+		keys = { '[', ']', '<', '>' },
 	},
 }

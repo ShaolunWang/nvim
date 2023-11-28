@@ -44,6 +44,7 @@ return {
 		-- make sure only adding configured ones here
 		'python',
 		'ocaml',
-		'cpp',
+		--		'cpp',
+		'ts',
 	},
 }

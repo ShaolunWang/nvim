@@ -55,11 +55,6 @@ vim.cmd([[
 
   autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
 ]])
-vim.api.nvim_create_autocmd('BufReadPre', {
-	callback = function()
-		require('fzf-lua').register_ui_select()
-	end,
-})
 
 vim.api.nvim_create_autocmd('VimEnter', {
 	callback = function()

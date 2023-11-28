@@ -42,8 +42,6 @@ return {
 				},
 			},
 		})
-
-		vim.keymap.set('n', '<leader>n', ':Neorg workspace notes', { noremap = true, desc = 'Neorg goto notes' })
 	end,
 	cmd = { 'Neorg' },
 	ft = { 'norg' },

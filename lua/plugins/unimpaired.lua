@@ -39,7 +39,10 @@ return {
 			toggle_relativenumber = false,
 			enable_spell = false,
 			disable_spell = false,
-
+			-- exchange_section_above = {dot_repeat = true},
+			-- exchange_section_below = {dot_repeat = true},
+			-- exchange_above = {dot_repeat = true},
+			-- exchange_below = {dot_repeat = true},
 			enable_background = false,
 			disable_background = false,
 			enable_colorcolumn = false,

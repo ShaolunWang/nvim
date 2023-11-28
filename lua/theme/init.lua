@@ -1,6 +1,6 @@
 vim.g.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme nightfox')
+vim.cmd('colorscheme carbonfox')
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },
 	['@text.emphasis'] = { italic = true },
