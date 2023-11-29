@@ -41,15 +41,9 @@ return {
 		},
 	},
 	{
-		'folke/persistence.nvim',
-		event = 'BufReadPre', -- this will only start session saving when an actual file was opened
-		opts = {
-			-- add any custom options here
-		},
-		cmd = { 'Session' },
-	},
-	{
-		'boarg/grapple.nvim',
+		-- note: this is a modified version of grapple,
+		-- see issue #72
+		'cbochs/grapple.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			scope = 'directory',
@@ -115,5 +109,14 @@ return {
 			},
 		},
 		keys = { '[', ']', '<', '>' },
+	},
+	{
+		'AndrewRadev/bufferize.vim',
+		cmd = { 'Bufferize' },
+	},
+	{
+		'chrisgrieser/nvim-origami',
+		event = 'BufReadPost', -- later or on keypress would prevent saving folds
+		opts = true, -- needed even when using default config
 	},
 }

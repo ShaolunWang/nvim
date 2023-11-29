@@ -31,3 +31,12 @@ vim.cmd([[
     hi BqfPreviewThumb guibg=#3e8e2d ctermbg=71
     hi link BqfPreviewRange Search
 ]])
+local starter = require('mini.starter')
+local my_items = starter.setup({
+	items = {
+		starter.sections.sessions(5, true),
+		{ name = 'Open file manager', action = 'Oil', section = 'File' },
+		{ name = 'fzf', action = 'FzfLua', section = 'Fuzzy' },
+	},
+	footer = '',
+})

@@ -24,6 +24,11 @@ return {
 			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
 			handlers = utils.lsp_handlers,
 		})
+		lsp.ruff_lsp.setup({
+			on_attach = lsp_keymap.on_attach,
+			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
+			handlers = utils.lsp_handlers,
+		})
 
 		lsp.ocamllsp.setup({
 			on_attach = lsp_keymap.on_attach,
