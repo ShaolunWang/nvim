@@ -4,6 +4,7 @@ I'm trying to achieve a setup that makes the default neovim behavior smoother, r
 Features like fzf, leap etc is too useful not to have :)
 
 # Todos
--  [ ] Refactor language specific setups
-- [ ] Make nvim-tree and oil interacts with each other
+- [ ] Refactor language specific setups
+- [x] Make nvim-tree and oil interacts with each other
 - [ ] Remove unused features
+- [ ] Design a bufferized runner that only does 1 run 2 async

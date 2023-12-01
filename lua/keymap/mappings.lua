@@ -27,6 +27,7 @@ vim.keymap.set('n', '<c-n>', function()
 		oil.open()
 	end
 end, { desc = 'File navigation' })
+
 -- neorg
 vim.keymap.set('n', '<leader>n', ':Neorg<cr>', { noremap = true, desc = 'Neorg' })
 vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })
@@ -92,7 +93,8 @@ vim.keymap.set('n', '<leader>tl', ':+tabmove<CR>', { noremap = true, desc = '+Mo
 
 -- misc
 vim.keymap.set('n', '""', ':Registers<cr>', { noremap = true, desc = 'reg floating window', silent = true })
-vim.keymap.set('n', '<f5>', ':AsyncRun ', { noremap = true, desc = 'Runner' })
+-- runner
+vim.keymap.set('n', '<f5>', require('overseer').toggle, { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.quickfix == 1 then

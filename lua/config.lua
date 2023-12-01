@@ -1,9 +1,5 @@
 local set = vim.o
---vim.o.foldcolumn = '0'
---vim.o.foldlevel = 99
---vim.o.foldlevelstart = 99
 set.autoindent = true
-set.timeoutlen = 200
 set.tabstop = 4
 set.shiftwidth = 4
 set.mouse = ''
@@ -27,16 +23,6 @@ vim.opt.concealcursor = 'nc'
 vim.g.maplocalleader = ','
 set.fillchars = 'vert: ,eob: '
 
--- grep
-vim.cmd([[
-  noreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent grep'  : 'grep'
-  cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent lgrep' : 'lgrep'
-  augroup init_quickfix
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost l* lwindow
-  augroup END
-]])
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,
@@ -51,9 +37,19 @@ for type, icon in pairs(signs) do
 end
 
 if vim.fn.executable('rg') == 1 then
-	vim.opt.grepprg = 'rg --no-heading --vimgrep --smart-case --hidden'
+	vim.opt.grepprg = 'rg --no-heading --vimgrep --smart-case --hidden --glob=!.git/'
 	vim.opt.grepformat = '%f:%l:%c:%m'
 end
+
+--command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+--command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+-- grep
 vim.cmd([[
-  command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+  noreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent Grep'  : 'grep'
+  cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent lgrep' : 'lgrep'
+  augroup init_quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l* lwindow
+  augroup END
 ]])

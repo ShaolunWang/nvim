@@ -4,6 +4,12 @@ return {
 		opts = {},
 	},
 	{
+		'neanias/everforest-nvim',
+		config = function()
+			require('everforest').setup({})
+		end,
+	},
+	{
 		'nanozuki/tabby.nvim',
 		dependencies = {
 			'tiagovla/scope.nvim',
@@ -19,4 +25,5 @@ return {
 			require('tabby').setup({})
 		end,
 	},
+	{ 'rebelot/heirline.nvim', event = 'VeryLazy' },
 }

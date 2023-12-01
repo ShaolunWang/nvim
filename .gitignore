@@ -4,3 +4,4 @@ tags
 lua/runners/
 snippets
 after/
+.localsession.vim
