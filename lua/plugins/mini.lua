@@ -74,14 +74,14 @@ return {
 		opts = {
 			mappings = {
 				-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
-				left = '<',
-				right = '<',
+				left = '<e',
+				right = '>e',
 				down = ']e',
 				up = '[e',
 
 				-- Move current line in Normal mode
-				line_left = '<',
-				line_right = '>',
+				line_left = '<e',
+				line_right = '>e',
 				line_down = ']e',
 				line_up = '[e',
 			},
@@ -90,6 +90,12 @@ return {
 				reindent_linewise = true,
 			},
 		},
-		keys = { '[', ']', '<', '>' },
+		keys = { '[', ']', '<e', '>e' },
+	},
+	{
+		'echasnovski/mini.surround',
+		version = false,
+		opts = {},
+		keys = { 's' },
 	},
 }

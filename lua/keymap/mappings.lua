@@ -10,8 +10,14 @@ vim.keymap.set('n', '<leader>gp', require('grapple').popup_tags, { desc = 'Grapp
 vim.keymap.set('n', '<leader>gr', require('grapple').reset, { desc = 'Grappled Reset' })
 
 -- oil & tree
-
 vim.keymap.set('n', '<c-n>', function()
+	if vim.bo.filetype == 'oil' then
+		require('oil').close()
+	else
+		require('oil').open()
+	end
+end, { desc = 'File navigation' })
+--[[ vim.keymap.set('n', '<c-n>', function()
 	local tree = require('nvim-tree.api')
 	local oil = require('oil')
 
@@ -26,21 +32,21 @@ vim.keymap.set('n', '<c-n>', function()
 		end
 		oil.open()
 	end
-end, { desc = 'File navigation' })
+end, { desc = 'File navigation' }) ]]
 
 -- neorg
 vim.keymap.set('n', '<leader>n', ':Neorg<cr>', { noremap = true, desc = 'Neorg' })
 vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })
 -- leap.nvim mapping
-vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function()
+--[[ vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function()
 	local current_window = vim.fn.win_getid()
 	require('leap').leap({ target_windows = { current_window } })
-end, { noremap = true, desc = 'leap' })
+end, { noremap = true, desc = 'leap' }) ]]
 
-vim.keymap.set({ 'n', 'x', 'o' }, 's', function()
+vim.keymap.set({ 'n', 'x', 'o' }, 'x', function()
 	require('leap').leap({ offset = -1, inclusive_op = true })
 end, { silent = true, noremap = true, desc = 'leap forward till' })
-vim.keymap.set({ 'n', 'x', 'o' }, 'S', function()
+vim.keymap.set({ 'n', 'x', 'o' }, 'X', function()
 	require('leap').leap({ backward = true, offset = 2 })
 end, { silent = true, noremap = true, desc = 'leap backward till' })
 

@@ -59,6 +59,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('VimEnter', {
 	callback = function()
 		vim.print('Type [:Session here] to reload session')
+		require('nvim-tree.api').tree.open()
 	end,
 })
 

@@ -8,9 +8,32 @@ local Align = { provider = '%=' }
 local Separator = { provider = ' ' }
 local Space = { provider = ' ' }
 
-local everforest = require('everforest')
-M.colors = require('everforest.colours').generate_palette(everforest.config, vim.o.background)
-require('heirline').load_colors(M.colors)
+--local everforest = require('everforest')
+--M.colors = require('everforest.colours').generate_palette(everforest.config, vim.o.background)
+--require('heirline').load_colors(M.colors)
+require('heirline').load_colors({
+	blue = '#005078',
+	cyan = '#007676',
+	green = '#015825',
+	grey1 = '#0a0b10',
+	grey2 = '#1c1d23',
+	grey3 = '#2c2e33',
+	grey4 = '#4f5258',
+	magenta = '#4c0049',
+	red = '#5e0009',
+	yellow = '#6e5600',
+
+	--[[ blue    = "#9fd8ff"
+cyan    = "#83efef"
+green   = "#aaedb7"
+grey1   = "#ebeef5"
+grey2   = "#d7dae1"
+grey3   = "#c4c6cd"
+grey4   = "#9b9ea4"
+magenta = "#ffc3fa"
+red     = "#ffbcb5"
+yellow  = "#f4d88c" ]]
+})
 -- Instead of `everforest.config`, you can add in your own config here by using
 -- `everforest.setup({ show_eob = false)` before you generate the palette.
 local ViMode = {

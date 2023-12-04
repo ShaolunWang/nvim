@@ -1,6 +1,5 @@
 vim.g.showtabline = 2
 vim.g.termguicolors = true
-require('everforest').load()
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },
 	['@text.emphasis'] = { italic = true },
