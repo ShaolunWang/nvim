@@ -45,25 +45,19 @@ return {
 		keys = { '<leader>', '\\', 'g', ',', '[', ']' },
 	},
 	{
-		'echasnovski/mini.starter',
-		version = false,
-		lazy = true,
-	},
-	{
 		'echasnovski/mini.hipatterns',
 		version = false,
 		config = function()
 			local hipatterns = require('mini.hipatterns')
 			hipatterns.setup({
 				highlighters = {
+					hex_color = hipatterns.gen_highlighter.hex_color(),
 					-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
 					fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-					hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+					deprecated = { pattern = '%f[%w]()DEPRECATE()%f[%W]', group = 'MiniHipatternsFixme' },
+					hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'Deprecation' },
 					todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
 					note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
-
-					-- Highlight hex color strings (`#rrggbb`) using that color
-					hex_color = hipatterns.gen_highlighter.hex_color(),
 				},
 			})
 		end,

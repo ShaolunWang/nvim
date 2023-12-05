@@ -13,6 +13,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	group = 'yank_highlight',
 	pattern = '*',
 	callback = function()
+		local fidget = require('fidget')
+		fidget.notify('yanking')
 		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
 	end,
 })
@@ -55,13 +57,6 @@ vim.api.nvim_create_autocmd('FileType', {
 --
 --   autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
 -- ]])
-
-vim.api.nvim_create_autocmd('VimEnter', {
-	callback = function()
-		vim.print('Type [:Session here] to reload session')
-		require('nvim-tree.api').tree.open()
-	end,
-})
 
 vim.api.nvim_clear_autocmds({ group = 'Grapple', event = 'BufLeave' })
 

@@ -1,5 +1,25 @@
 vim.g.showtabline = 2
 vim.g.termguicolors = true
+vim.cmd([[colorscheme carbonfox]])
+local links = {
+	['@lsp.type.namespace'] = '@namespace',
+	['@lsp.type.type'] = '@type',
+	['@lsp.type.class'] = '@type',
+	['@lsp.type.enum'] = '@type',
+	['@lsp.type.interface'] = '@type',
+	['@lsp.type.struct'] = '@structure',
+	['@lsp.type.parameter'] = '@parameter',
+	['@lsp.type.variable'] = '@variable',
+	['@lsp.type.property'] = '@property',
+	['@lsp.type.enumMember'] = '@constant',
+	['@lsp.type.function'] = '@function',
+	['@lsp.type.method'] = '@method',
+	['@lsp.type.macro'] = '@macro',
+	['@lsp.type.decorator'] = '@function',
+}
+for newgroup, oldgroup in pairs(links) do
+	vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
+end
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },
 	['@text.emphasis'] = { italic = true },
@@ -31,12 +51,3 @@ vim.cmd([[
     hi BqfPreviewThumb guibg=#3e8e2d ctermbg=71
     hi link BqfPreviewRange Search
 ]])
-local starter = require('mini.starter')
-local my_items = starter.setup({
-	items = {
-		starter.sections.sessions(5, true),
-		{ name = 'Open file manager', action = 'Oil', section = 'File' },
-		{ name = 'fzf', action = 'FzfLua', section = 'Fuzzy' },
-	},
-	footer = '',
-})

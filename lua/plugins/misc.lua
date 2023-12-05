@@ -91,4 +91,31 @@ return {
 			require('leap').opts.highlight_unlabeled_phase_one_targets = true
 		end,
 	},
+	{
+		'j-hui/fidget.nvim',
+		config = function()
+			require('fidget').setup({
+				notification = {
+					override_vim_notify = true,
+					configs = {
+						default = {
+							name = '',
+							icon = '',
+							ttl = 5,
+							group_style = 'Title',
+							icon_style = 'Special',
+							annote_style = 'Question',
+							debug_style = 'Comment',
+							warn_style = 'WarningMsg',
+							error_style = 'ErrorMsg',
+							debug_annote = 'DEBUG',
+							info_annote = 'INFO',
+							warn_annote = 'WARN',
+							error_annote = 'ERROR',
+						},
+					},
+				},
+			})
+		end,
+	},
 }
