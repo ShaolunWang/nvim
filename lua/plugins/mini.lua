@@ -1,14 +1,5 @@
 return {
 	{
-		'echasnovski/mini.sessions',
-		opts = {
-
-			autowrite = true,
-			file = '.localsession.vim',
-			verbose = { read = false, write = true, delete = true },
-		},
-	},
-	{
 		'echasnovski/mini.clue',
 		config = function()
 			local miniclue = require('mini.clue')

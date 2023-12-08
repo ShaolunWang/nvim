@@ -1,6 +1,6 @@
-vim.g.showtabline = 2
+vim.g.showtabline = 3
 vim.g.termguicolors = true
-vim.cmd([[colorscheme carbonfox]])
+vim.cmd([[colorscheme retrobox]])
 local links = {
 	['@lsp.type.namespace'] = '@namespace',
 	['@lsp.type.type'] = '@type',

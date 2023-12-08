@@ -59,10 +59,3 @@ vim.api.nvim_create_autocmd('FileType', {
 -- ]])
 
 vim.api.nvim_clear_autocmds({ group = 'Grapple', event = 'BufLeave' })
-
-vim.api.nvim_create_autocmd('VimLeavePre', {
-	callback = function()
-		vim.cmd([[:mksession! .localsession.vim]])
-	end,
-	pattern = '*',
-})

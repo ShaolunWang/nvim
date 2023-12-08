@@ -25,7 +25,7 @@ local tree_opts = {
 	},
 	update_focused_file = {
 		enable = true,
-		update_root = true,
+		--		update_root = true,
 		ignore_list = { 'help' },
 	},
 	diagnostics = {
@@ -33,10 +33,10 @@ local tree_opts = {
 		show_on_dirs = true,
 	},
 	actions = {
-		change_dir = {
+		--[[ 		change_dir = {
 			enable = false,
 			restrict_above_cwd = true,
-		},
+		}, ]]
 		open_file = {
 			resize_window = true,
 			window_picker = {
@@ -59,7 +59,6 @@ local tree_opts = {
 	},
 }
 return {
-
 	{
 		'nvim-tree/nvim-tree.lua',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },

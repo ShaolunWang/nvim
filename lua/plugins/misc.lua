@@ -51,7 +51,7 @@ return {
 	{
 		-- note: this is a modified version of grapple,
 		-- see issue #72
-		'cbochs/grapple.nvim',
+		'boarg/grapple.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			scope = 'directory',
@@ -66,10 +66,7 @@ return {
 		},
 		keys = { '<Leader>' },
 	},
-	{
-		'AndrewRadev/bufferize.vim',
-		cmd = { 'Bufferize' },
-	},
+
 	{
 		'chrisgrieser/nvim-origami',
 		event = 'BufReadPost', -- later or on keypress would prevent saving folds
@@ -117,5 +114,8 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		'hauleth/asyncdo.vim',
 	},
 }

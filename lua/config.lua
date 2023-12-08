@@ -41,11 +41,21 @@ if vim.fn.executable('rg') == 1 then
 	vim.opt.grepformat = '%f:%l:%c:%m'
 end
 
---command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
---command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
 -- grep
+-- command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+--   vim.api.nvim_create_user_command("Grep", function(params)
+-- Insert args at the '$*' in the grepprg
+--
+--[[ ]]
+
 vim.cmd([[
-  noreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent Grep'  : 'grep'
+  command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run(
+              \ <bang>0,
+              \ { 'job': &grepprg, 'errorformat': &grepformat },
+              \ <f-args>) 
+  command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+
+  noreabbrev  <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent Grep'  : 'grep'
   cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent lgrep' : 'lgrep'
   augroup init_quickfix
     autocmd!

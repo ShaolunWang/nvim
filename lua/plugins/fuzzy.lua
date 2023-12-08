@@ -128,7 +128,7 @@ if vim.loop.os_uname().sysname ~= 'Windows_NT' then
 						git_icons = true,
 						file_icons = true,
 						color_icons = true,
-						previewer = 'false',
+						previewer = 'bat',
 						fd_opts = '--color=never --type f --hidden --follow --exclude .git',
 					},
 				})

@@ -1,15 +1,5 @@
 return {
 	{
-		'EdenEast/nightfox.nvim',
-		opts = {},
-	},
-	{
-		'neanias/everforest-nvim',
-		config = function()
-			require('everforest').setup({})
-		end,
-	},
-	{
 		'nanozuki/tabby.nvim',
 		dependencies = {
 			'tiagovla/scope.nvim',
