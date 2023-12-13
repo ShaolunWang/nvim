@@ -1,4 +1,7 @@
 return {
+  {
+    "fynnfluegge/monet.nvim",
+  },
 	{
 		'nanozuki/tabby.nvim',
 		dependencies = {

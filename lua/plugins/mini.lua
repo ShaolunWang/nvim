@@ -20,6 +20,7 @@ return {
 					{ mode = 'n', keys = ',' },
 					{ mode = 'n', keys = '[' },
 					{ mode = 'n', keys = ']' },
+					{ mode = 'n', keys = '<C-w>' },
 				},
 				clues = {
 					{ mode = 'n', keys = '<Leader>f', desc = '+Fuzzy Search...' },
@@ -30,10 +31,15 @@ return {
 					{ mode = 'n', keys = ',', desc = '+unimpaired ...' },
 					{ mode = 'n', keys = '[', desc = '+unimpaired ...' },
 					{ mode = 'n', keys = ']', desc = '+unimpaired ...' },
+					miniclue.gen_clues.windows({
+						--             submode_move = true,
+						--             submode_navigate = true,
+						submode_resize = true,
+					}),
 				},
 			})
 		end,
-		keys = { '<leader>', '\\', 'g', ',', '[', ']' },
+		keys = { '<leader>', '\\', 'g', ',', '[', ']', '<c-w>' },
 	},
 	{
 		'echasnovski/mini.hipatterns',
@@ -76,11 +82,5 @@ return {
 			},
 		},
 		keys = { '[', ']', '<e', '>e' },
-	},
-	{
-		'echasnovski/mini.surround',
-		version = false,
-		opts = {},
-		keys = { 's' },
 	},
 }

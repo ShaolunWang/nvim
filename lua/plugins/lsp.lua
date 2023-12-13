@@ -35,6 +35,13 @@ return {
 			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
 			handlers = utils.lsp_handlers,
 		})
+    local clang_handlers =  utils.lsp_handlers
+    local no_diagnostic =  {
+      ['textDocument/publishDiagnostics'] = function() end
+    }
+    for k, v in pairs(no_diagnostic) do
+      clang_handlers[k] = v
+    end 
 		lsp.clangd.setup({
 			on_attach = function(client, bufnr)
 				require('clangd_extensions.inlay_hints').setup_autocmd()
@@ -42,6 +49,7 @@ return {
 				lsp_keymap.on_attach(client, bufnr)
 			end,
 			capabilities = coq_opts.lsp_ensure_capabilities(utils.c),
+--			handlers = clang_handlers,
 			handlers = utils.lsp_handlers,
 		})
 	end,
@@ -49,7 +57,7 @@ return {
 		-- make sure only adding configured ones here
 		'python',
 		'ocaml',
-		--		'cpp',
+		'cpp',
 		'ts',
 	},
 }

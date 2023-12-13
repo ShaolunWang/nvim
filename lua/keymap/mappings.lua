@@ -43,10 +43,10 @@ vim.keymap.set('n', '  ', ':noh<CR>', { noremap = true })
 	require('leap').leap({ target_windows = { current_window } })
 end, { noremap = true, desc = 'leap' }) ]]
 
-vim.keymap.set({ 'n', 'x', 'o' }, 'x', function()
+vim.keymap.set({ 'n', 'x', 'o' }, 's', function()
 	require('leap').leap({ offset = -1, inclusive_op = true })
 end, { silent = true, noremap = true, desc = 'leap forward till' })
-vim.keymap.set({ 'n', 'x', 'o' }, 'X', function()
+vim.keymap.set({ 'n', 'x', 'o' }, 'S', function()
 	require('leap').leap({ backward = true, offset = 2 })
 end, { silent = true, noremap = true, desc = 'leap backward till' })
 
