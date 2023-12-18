@@ -117,11 +117,10 @@ return {
 	},
 	{
 		'hauleth/asyncdo.vim',
-    cmd = {'AsyncDo'},
 	},
-  {
-    'hedyhli/outline.nvim',
-    opts = {},
-    cmd = { "Outline", "OutlineOpen" },
-  }
+	{
+		'hedyhli/outline.nvim',
+		opts = {},
+		cmd = { 'Outline', 'OutlineOpen' },
+	},
 }

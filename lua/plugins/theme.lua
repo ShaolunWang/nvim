@@ -1,7 +1,8 @@
 return {
-  {
-    "fynnfluegge/monet.nvim",
-  },
+	{
+		'fynnfluegge/monet.nvim',
+	},
+	{ 'projekt0n/github-nvim-theme' },
 	{
 		'nanozuki/tabby.nvim',
 		dependencies = {

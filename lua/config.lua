@@ -15,13 +15,23 @@ set.lazyredraw = true
 set.termguicolors = true
 
 vim.g.smartindent = 1
+vim.g.mapleader = ' '
 set.conceallevel = 2
 -- Neovim config for the links to show properly
 vim.opt.conceallevel = 2
 vim.opt.concealcursor = 'nc'
 
 vim.g.maplocalleader = ','
-set.fillchars = 'vert: ,eob: '
+set.fillchars = 'horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋'
+--[[ set.fillchars = {
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft  = '┫',
+  vertright = '┣',
+  verthoriz = '╋',
+} ]]
 
 vim.diagnostic.config({
 	virtual_text = true,

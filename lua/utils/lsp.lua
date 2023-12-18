@@ -18,6 +18,20 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
+local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+M.c = vim.tbl_deep_extend(
+	'force',
+	{},
+	vim.lsp.protocol.make_client_capabilities(),
+	has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+	{},
+	{
+		textDocument = {
+			foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+		},
+	}
+)
+
 function M.goto_definition(split_cmd)
 	local util = vim.lsp.util
 	local log = require('vim.lsp.log')
@@ -54,8 +68,6 @@ M.lsp_handlers = {
 	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 	['textDocument/definition'] = M.goto_definition('split'),
 }
-
-M.c = vim.lsp.protocol.make_client_capabilities()
 M.c.textDocument.completion.completionItem.snippetSupport = true
 M.c.textDocument.completion.completionItem.resolveSupport = {
 	properties = {
