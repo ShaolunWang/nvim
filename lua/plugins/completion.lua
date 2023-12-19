@@ -33,6 +33,7 @@ local M = {
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-path',
+		'hrsh7th/cmp-cmdline',
 		'rafamadriz/friendly-snippets',
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
@@ -126,8 +127,35 @@ function M.config()
 		view = {
 			entries = 'custom', -- can be "custom", "wildmenu" or "native"
 		},
+		performance = {
+			max_view_entries = 16,
+		},
 	})
-
+	-- `/` cmdline setup.
+	cmp.setup.cmdline('/', {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = {
+			{ name = 'buffer' },
+		},
+	})
+	-- `:` cmdline setup.
+	cmp.setup.cmdline(':', {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = cmp.config.sources({
+			{ name = 'path' },
+		}, {
+			{
+				name = 'cmdline',
+				option = {
+					ignore_cmds = { 'Man', '!', 'w', 'q' },
+				},
+			},
+		}),
+	})
+	cmp.setup.cmdline('@', { enabled = false })
+	cmp.setup.cmdline('>', { enabled = false })
+	cmp.setup.cmdline('-', { enabled = false })
+	cmp.setup.cmdline('=', { enabled = false })
 	-- We need to setup cmp first hence this being after cmp.setup()
 	local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 	cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

@@ -1,7 +1,7 @@
 vim.g.showtabline = 3
 vim.g.termguicolors = true
---vim.cmd('colorscheme github_dark_high_contrast')
-vim.cmd('colorscheme monet')
+vim.cmd('colorscheme github_dark_high_contrast')
+--vim.cmd('colorscheme monet')
 
 -- cmp
 -- gray
