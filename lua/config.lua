@@ -1,75 +1,34 @@
-local set = vim.o
-set.autoindent = true
-set.tabstop = 4
-set.shiftwidth = 4
-set.mouse = ''
-set.backspace = 'indent,eol,start'
-set.cursorline = true
-set.ttyfast = true
-set.number = true
-set.incsearch = true
-set.clipboard = 'unnamedplus'
-set.splitkeep = 'screen'
-set.signcolumn = 'yes'
-set.lazyredraw = true
-set.termguicolors = true
-
-vim.g.smartindent = 1
-vim.g.mapleader = ' '
-set.conceallevel = 2
--- Neovim config for the links to show properly
-vim.opt.conceallevel = 2
-vim.opt.concealcursor = 'nc'
-
-vim.g.maplocalleader = ','
-set.fillchars = 'horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋'
---[[ set.fillchars = {
-  horiz = '━',
-  horizup = '┻',
-  horizdown = '┳',
-  vert = '┃',
-  vertleft  = '┫',
-  vertright = '┣',
-  verthoriz = '╋',
-} ]]
-
-vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	underline = true,
-	update_in_insert = true,
-	severity_sort = true,
-})
-local signs = { Error = '! ', Warn = ' ', Hint = ' ', Info = ' ' }
-for type, icon in pairs(signs) do
-	local hl = 'DiagnosticSign' .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+-- :fennel:1704377106
+vim.opt["autoindent"] = true
+vim.opt["tabstop"] = 4
+vim.opt["shiftwidth"] = 4
+vim.opt["mouse"] = ""
+vim.opt["backspace"] = "indent,eol,start"
+vim.opt["cursorline"] = true
+vim.opt["ttyfast"] = true
+vim.opt["number"] = true
+vim.opt["incsearch"] = true
+vim.opt["clipboard"] = "unnamedplus"
+vim.opt["splitkeep"] = "screen"
+vim.opt["signcolumn"] = "yes"
+vim.opt["lazyredraw"] = true
+vim.opt["termguicolors"] = true
+vim.opt["conceallevel"] = 2
+vim.g["smartindent"] = 1
+vim.g["mapleader"] = " "
+vim.opt["conceallevel"] = 2
+vim.opt["concealcursor"] = "nc"
+vim.g["maplocalleader"] = ","
+vim.opt["fillchars"] =
+	"horiz:\226\148\129,horizup:\226\148\187,horizdown:\226\148\179,vert:\226\148\131,vertleft:\226\148\171,vertright:\226\148\163,verthoriz:\226\149\139"
+if vim.fn.executable then
+	return "rg"
+else
+	vim.opt["grepprg"] = "rg --no-heading --vimgrep --smart-case --hidden --glob=!.git/"
+	if nil then
+		vim.opt["grepformat"] = "%f:%l:%c:%m"
+		return nil
+	else
+		return nil
+	end
 end
-
-if vim.fn.executable('rg') == 1 then
-	vim.opt.grepprg = 'rg --no-heading --vimgrep --smart-case --hidden --glob=!.git/'
-	vim.opt.grepformat = '%f:%l:%c:%m'
-end
-
--- grep
--- command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
---   vim.api.nvim_create_user_command("Grep", function(params)
--- Insert args at the '$*' in the grepprg
---
---[[ ]]
-
-vim.cmd([[
-  command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run(
-              \ <bang>0,
-              \ { 'job': &grepprg, 'errorformat': &grepformat },
-              \ <f-args>) 
-  command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
-
-  noreabbrev  <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent Grep'  : 'grep'
-  cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent lgrep' : 'lgrep'
-  augroup init_quickfix
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost l* lwindow
-  augroup END
-]])

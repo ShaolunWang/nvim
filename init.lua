@@ -12,24 +12,37 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
-vim.opt.rtp:prepend(lazypath)
+-- ~/.config/nvim/plugin/0-tangerine.lua or ~/.config/nvim/init.lua
+-- pick your plugin manager
+local pack = "tangerine" or "lazy"
 
-require('lazy').setup('plugins', {
-	change_detection = {
-		enabled = false,
-	},
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				'matchit',
-				'matchparen',
-				'tutor',
-			},
-		},
-	},
-})
+local function bootstrap(url, ref)
+    local name = url:gsub(".*/", "")
+    local path
 
-require('config')
-require('keymap')
-require('theme')
-require('autocmd')
+    if pack == "lazy" then
+        path = vim.fn.stdpath("data") .. "/lazy/" .. name
+        vim.opt.rtp:prepend(path)
+    else
+        path = vim.fn.stdpath("data") .. "/site/pack/".. pack .. "/start/" .. name
+    end
+
+    if vim.fn.isdirectory(path) == 0 then
+        print(name .. ": installing in data dir...")
+
+        vim.fn.system {"git", "clone", url, path}
+        if ref then
+            vim.fn.system {"git", "-C", path, "checkout", ref}
+        end
+
+        vim.cmd "redraw"
+        print(name .. ": finished installing")
+    end
+end
+
+bootstrap("https://github.com/udayvir-singh/tangerine.nvim")
+bootstrap("https://github.com/udayvir-singh/hibiscus.nvim")
+vim.opt.rtp:prepend({lazypath})
+
+require("tangerine").setup({})
+require('startup')
