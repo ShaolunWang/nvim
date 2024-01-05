@@ -1,8 +1,11 @@
--- :fennel:1704376634
+-- :fennel:1704466032
 require("config")
-require("plugins")
+require("plug")
+require("theme")
+require("keymap")
+require("autocmd")
 if vim.loader then
-	vim.loader.enable()
+  vim.loader.enable()
 else
 end
 vim.g["loader_luv"] = true

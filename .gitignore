@@ -1,5 +1,6 @@
 lazy-lock.json
 optional.lua
+optional.fnl
 tags
 lua/runners/
 snippets
