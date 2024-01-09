@@ -123,4 +123,5 @@ return {
 		opts = {},
 		cmd = { 'Outline', 'OutlineOpen' },
 	},
+	{ 'm-demare/hlargs.nvim', event = 'BufReadPost' },
 }
