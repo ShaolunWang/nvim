@@ -1,4 +1,4 @@
--- :fennel:1704466056
+-- :fennel:1704702217
 local function _1_()
   local utils = require("utils.lsp")
   vim.o.updatetime = 1

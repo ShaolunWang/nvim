@@ -6,6 +6,7 @@
 (require :theme)
 (require :keymap)
 (require :autocmd)
+(require :commands)
 (when vim.loader
   (vim.loader.enable))
 

@@ -1,4 +1,4 @@
--- :fennel:1704466043
+-- :fennel:1704702217
 local kind_icons = {Class = "\243\176\160\177", Color = "\243\176\143\152", Constant = "\243\176\143\191", Constructor = "\239\144\163", Enum = "\239\133\157", EnumMember = "\239\133\157", Event = "\239\131\167", Field = "\243\176\135\189", File = "\243\176\136\153", Folder = "\243\176\137\139", Function = "\243\176\138\149", Interface = "\239\131\168", Keyword = "\243\176\140\139", Method = "\243\176\134\167", Module = "\239\146\135", Operator = "\243\176\134\149", Property = "\243\176\156\162", Reference = "\239\146\129", Snippet = "\239\145\143", Struct = "\239\134\179", Text = "\238\152\146", TypeParameter = "\243\176\133\178", Unit = "\238\136\159", Value = "\243\176\142\160", Variable = "\243\176\130\161"}
 local M = {"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline", "rafamadriz/friendly-snippets", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "delphinus/cmp-ctags"}, event = "InsertEnter", version = false}
 local function has_words_before()

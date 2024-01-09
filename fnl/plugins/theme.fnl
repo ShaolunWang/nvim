@@ -7,4 +7,5 @@
             ((. (require :tabby) :setup) {}))
   :dependencies [:tiagovla/scope.nvim]
   :event :VeryLazy}
- {1 :rebelot/heirline.nvim :event :VeryLazy}]
+ {1 :rebelot/heirline.nvim :event :VeryLazy}
+ {1 :fynnfluegge/monet.nvim}]

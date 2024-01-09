@@ -1,4 +1,4 @@
--- :fennel:1704465977
+-- :fennel:1704795426
 vim.api.nvim_create_augroup("yank_highlight", {})
 local function _1_()
   local mark = vim.api.nvim_buf_get_mark(0, "\"")

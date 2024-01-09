@@ -1,261 +1,90 @@
-local conditions = require('heirline.conditions')
-local utils = require('heirline.utils')
---local TabLine = require("theme.tabline").TabLine
+-- :fennel:1704704357
+local conditions = require("heirline.conditions")
+local utils = require("heirline.utils")
 local M = {}
-local Align = { provider = '%=' }
---Heirline: utils.pick_child_on_condition() is deprecated, please use the fallthrough field instead. To retain the same functionality, replace `init = utils.pick_child_on_condition()` with `fallthrough = false`
-
-local Separator = { provider = ' ' }
-local Space = { provider = ' ' }
-
---local everforest = require('everforest')
---M.colors = require('everforest.colours').generate_palette(everforest.config, vim.o.background)
---require('heirline').load_colors(M.colors)
-require('heirline').load_colors({
-	blue = '#005078',
-	cyan = '#007676',
-	green = '#015825',
-	grey1 = '#0a0b10',
-	grey2 = '#1c1d23',
-	grey3 = '#2c2e33',
-	grey4 = '#4f5258',
-	magenta = '#4c0049',
-	red = '#5e0009',
-	yellow = '#6e5600',
-
-	--[[ blue    = "#9fd8ff"
-cyan    = "#83efef"
-green   = "#aaedb7"
-grey1   = "#ebeef5"
-grey2   = "#d7dae1"
-grey3   = "#c4c6cd"
-grey4   = "#9b9ea4"
-magenta = "#ffc3fa"
-red     = "#ffbcb5"
-yellow  = "#f4d88c" ]]
-})
--- Instead of `everforest.config`, you can add in your own config here by using
--- `everforest.setup({ show_eob = false)` before you generate the palette.
-local ViMode = {
-	-- get vim current mode, this information will be required by the provider
-	-- and the highlight functions, so we compute it only once per component
-	-- evaluation and store it as a component attribute
-	init = function(self)
-		self.mode = vim.fn.mode(1) -- :h mode()
-
-		-- execute this only once, this is required if you want the ViMode
-		-- component to be updated on operator pending mode
-		if not self.once then
-			vim.api.nvim_create_autocmd('ModeChanged', { command = 'redrawstatus' })
-			self.once = true
-		end
-	end,
-	-- Now we define some dictionaries to map the output of mode() to the
-	-- corresponding string and color. We can put these into `static` to compute
-	-- them at initialisation time.
-	static = {
-		mode_names = {
-			-- change the strings if you like it vvvvverbose!
-			n = 'N',
-			no = 'N?',
-			nov = 'N?',
-			noV = 'N?',
-			['no\22'] = 'N?',
-			niI = 'Ni',
-			niR = 'Nr',
-			niV = 'Nv',
-			nt = 'Nt',
-			v = 'V',
-			vs = 'Vs',
-			V = 'V_',
-			Vs = 'Vs',
-			['\22'] = '^V',
-			['\22s'] = '^V',
-			s = 'S',
-			S = 'S_',
-			['\19'] = '^S',
-			i = 'I',
-			ic = 'Ic',
-			ix = 'Ix',
-			R = 'R',
-			Rc = 'Rc',
-			Rx = 'Rx',
-			Rv = 'Rv',
-			Rvc = 'Rv',
-			Rvx = 'Rv',
-			c = 'C',
-			cv = 'Ex',
-			r = '...',
-			rm = 'M',
-			['r?'] = '?',
-			['!'] = '!',
-			t = 'T',
-		},
-		mode_colors = {
-			n = 'green',
-			i = 'green',
-			v = 'cyan',
-			V = 'cyan',
-			['\22'] = 'cyan',
-			c = 'orange',
-			s = 'purple',
-			S = 'purple',
-			['\19'] = 'purple',
-			R = 'orange',
-			r = 'orange',
-			['!'] = 'red',
-			t = 'red',
-		},
-	},
-	-- We can now access the value of mode() that, by now, would have been
-	-- computed by `init()` and use it to index our strings dictionary.
-	-- note how `static` fields become just regular attributes once the
-	-- component is instantiated.
-	-- To be extra meticulous, we can also add some vim statusline syntax to
-	-- control the padding and make sure our string is always at least 2
-	-- characters long. Plus a nice Icon.
-	provider = function(self)
-		return '%2(' .. self.mode_names[self.mode] .. '%)'
-	end,
-	-- Same goes for the highlight. Now the foreground will change according to the current mode.
-	hl = function(self)
-		local mode = self.mode:sub(1, 1) -- get only the first mode character
-		return { fg = self.mode_colors[mode], bold = true }
-	end,
-	-- Re-evaluate the component only on ModeChanged event!
-	-- This is not required in any way, but it's there, and it's a small
-	-- performance improvement.
-	update = 'ModeChanged',
-}
-
-local FileFlags = {
-	{
-		condition = function()
-			return vim.bo.modified
-		end,
-		provider = '[+]',
-		hl = { fg = 'green' },
-	},
-	{
-		condition = function()
-			return not vim.bo.modifiable or vim.bo.readonly
-		end,
-		provider = '',
-		hl = { fg = 'orange' },
-	},
-}
-
--- (vim.fn.haslocaldir(0) == 1 and "l" or "g") .. " " ..
-
-local WorkDir = {
-	provider = function()
-		--        local icon =" "
-		local cwd = vim.fn.expand('%')
-		cwd = vim.fn.fnamemodify(cwd, ':~')
-		--        return icon .. cwd  --.. trail
-		return cwd
-	end,
-	hl = {
-		fg = utils.get_highlight('Directory').bg,
-	},
-}
-
-local DefaultStatusline = {
-	ViMode,
-	Space,
-	Separator,
-	FileFlags,
-	Space,
-	WorkDir,
-	Space,
-}
-
-local InactiveStatusline = {
-	condition = function()
-		return not conditions.is_active()
-	end,
-	Separator,
-	FileName,
-	Align,
-}
-
-local TerminalStatusline = {
-	condition = function()
-		return conditions.buffer_matches({ buftype = { 'terminal' } })
-	end,
-	-- Quickly add a condition to the ViMode to only show it when buffer is active!
-	{ condition = conditions.is_active, ViMode, Separator },
-	TerminalName,
-	Align,
-}
-local Spacer = { provider = ' ' }
-local function rpad(child)
-	return {
-		condition = child.condition,
-		child,
-		Spacer,
-	}
+local Align = {provider = "%="}
+local Separator = {provider = "\238\130\177 "}
+local Space = {provider = " "}
+require("heirline").load_colors({blue = "#005078", cyan = "#007676", green = "#015825", grey1 = "#0a0b10", grey2 = "#1c1d23", grey3 = "#2c2e33", grey4 = "#4f5258", magenta = "#4c0049", red = "#5e0009", yellow = "#6e5600"})
+local Vi_mode
+local function _1_(self)
+  local mode = (self.mode):sub(1, 1)
+  return {bold = true, fg = self.mode_colors[mode]}
 end
-local function OverseerTasksForStatus(status)
-	return {
-		condition = function(self)
-			return self.tasks[status]
-		end,
-		provider = function(self)
-			return string.format('%s%d', self.symbols[status], #self.tasks[status])
-		end,
-		hl = function(self)
-			return {
-				fg = utils.get_highlight(string.format('Overseer%s', status)).fg,
-			}
-		end,
-	}
+local function _2_(self)
+  self.mode = vim.fn.mode(1)
+  if not self.once then
+    vim.api.nvim_create_autocmd("ModeChanged", {command = "redrawstatus"})
+    self.once = true
+    return nil
+  else
+    return nil
+  end
 end
-
-local Overseer = {
-	condition = function()
-		return package.loaded.overseer
-	end,
-	init = function(self)
-		local tasks = require('overseer.task_list').list_tasks({ unique = true })
-		local tasks_by_status = require('overseer.util').tbl_group_by(tasks, 'status')
-		self.tasks = tasks_by_status
-	end,
-	static = {
-		symbols = {
-			['CANCELED'] = ' ',
-			['FAILURE'] = '󰅚 ',
-			['SUCCESS'] = '󰄴 ',
-			['RUNNING'] = '󰑮 ',
-		},
-	},
-
-	rpad(OverseerTasksForStatus('CANCELED')),
-	rpad(OverseerTasksForStatus('RUNNING')),
-	rpad(OverseerTasksForStatus('SUCCESS')),
-	rpad(OverseerTasksForStatus('FAILURE')),
-}
-local SpecialStatusline = {
-	condition = function()
-		return conditions.buffer_matches({
-			buftype = { 'nofile', 'prompt', 'help', 'quickfix' },
-			filetype = { '^git.*', 'fugitive' },
-		})
-	end,
-	Separator,
-	HelpFileName,
-	Align,
-}
-
-local StatusLines = {
-	SpecialStatusline,
-	TerminalStatusline,
-	InactiveStatusline,
-	DefaultStatusline,
-	Overseer,
-	fallthrough = false,
-}
--- overseer
-
-require('heirline').setup({ statusline = StatusLines })
+local function _4_(self)
+  return ("%2(" .. self.mode_names[self.mode] .. "%)")
+end
+Vi_mode = {hl = _1_, init = _2_, provider = _4_, static = {mode_colors = {["\19"] = "purple", ["\22"] = "cyan", ["!"] = "red", R = "orange", S = "purple", V = "cyan", c = "orange", i = "green", n = "green", r = "orange", s = "purple", t = "red", v = "cyan"}, mode_names = {["\19"] = "^S", ["\22"] = "^V", ["\22s"] = "^V", ["!"] = "!", R = "R", Rc = "Rc", Rv = "Rv", Rvc = "Rv", Rvx = "Rv", Rx = "Rx", S = "S_", V = "V_", Vs = "Vs", c = "C", cv = "Ex", i = "I", ic = "Ic", ix = "Ix", n = "N", niI = "Ni", niR = "Nr", niV = "Nv", no = "N?", ["no\22"] = "N?", noV = "N?", nov = "N?", nt = "Nt", r = "...", ["r?"] = "?", rm = "M", s = "S", t = "T", v = "V", vs = "Vs"}}, update = "ModeChanged"}
+local File_name
+local function _5_(self)
+  local filename = vim.fn.fnamemodify(self.filename, ":.")
+  if (filename == "") then
+    return "[No Name]"
+  else
+  end
+  if not conditions.width_percent_below(#filename, 0.25) then
+    filename = vim.fn.pathshorten(filename)
+  else
+  end
+  return filename
+end
+File_name = {hl = {fg = utils.get_highlight("Directory").fg}, provider = _5_}
+local Help_file_name
+local function _8_()
+  return (vim.bo.filetype == "help")
+end
+local function _9_()
+  local filename = vim.api.nvim_buf_get_name(0)
+  return vim.fn.fnamemodify(filename, ":t")
+end
+Help_file_name = {condition = _8_, hl = {fg = "blue"}, provider = _9_}
+local File_flags
+local function _10_()
+  return vim.bo.modified
+end
+local function _11_()
+  return (not vim.bo.modifiable or vim.bo.readonly)
+end
+File_flags = {{condition = _10_, hl = {fg = "green"}, provider = "[+]"}, {condition = _11_, hl = {fg = "orange"}, provider = "\239\128\163"}}
+local Work_dir
+local function _12_()
+  local cwd = vim.fn.expand("%")
+  cwd = vim.fn.fnamemodify(cwd, ":~")
+  return cwd
+end
+Work_dir = {hl = {fg = utils.get_highlight("Directory").bg}, provider = _12_}
+local Default_statusline = {Vi_mode, Space, Separator, File_flags, Space, Work_dir, Space}
+local Inactive_statusline
+local function _13_()
+  return not conditions.is_active()
+end
+Inactive_statusline = {Separator, File_name, Align, condition = _13_}
+local Terminal_name
+local function _14_()
+  local tname, _ = vim.api.nvim_buf_get_name(0):gsub(".*:", "")
+  return ("\239\146\137 " .. tname)
+end
+Terminal_name = {hl = {bold = true, fg = "blue"}, provider = _14_}
+local Terminal_statusline
+local function _15_()
+  return conditions.buffer_matches({buftype = {"terminal"}})
+end
+Terminal_statusline = {{Vi_mode, Separator, condition = conditions.is_active}, Terminal_name, Align, condition = _15_}
+local Special_statusline
+local function _16_()
+  return conditions.buffer_matches({buftype = {"nofile", "prompt", "help", "quickfix"}, filetype = {"^git.*", "fugitive"}})
+end
+Special_statusline = {Separator, Help_file_name, Align, condition = _16_}
+local Status_lines = {Special_statusline, Terminal_statusline, Inactive_statusline, Default_statusline, fallthrough = false}
+require("heirline").setup({statusline = Status_lines})
 return M

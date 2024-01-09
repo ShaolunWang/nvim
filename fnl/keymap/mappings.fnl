@@ -80,6 +80,8 @@
                 {:desc "+Move Tab" :noremap true})
 (vim.keymap.set :n "\"\"" ":Registers<cr>"
                 {:desc "reg floating window" :noremap true :silent true})
+(vim.keymap.set :n ",r" (fn []
+                          ((. (require :replacer) :run))))
 (vim.keymap.set :n :<f5> ":AsyncDo " {:desc :Runner :noremap true})
 (fn toggle-qf []
   (each [_ info (ipairs (vim.fn.getwininfo))]

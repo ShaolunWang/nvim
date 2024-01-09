@@ -18,6 +18,7 @@
   :keys [{1 "\"" :mode [:n :v]}]}
  {1 :kevinhwang91/nvim-bqf
   :ft [:qf]
+  :dependencies [:gabrielpoca/replacer.nvim]
   :opts {:func_enable {:drop :d
                        :openc :o
                        :ptogglemode "z,"
@@ -45,19 +46,18 @@
                   :highlight_unlabeled_phase_one_targets true))}
  {1 :j-hui/fidget.nvim
   :config (fn []
-            ((. (require :fidget) :setup) {:notification {:configs {:default {:annote_style :Question
-                                                                              :debug_annote :DEBUG
-                                                                              :debug_style :Comment
-                                                                              :error_annote :ERROR
-                                                                              :error_style :ErrorMsg
-                                                                              :group_style :Title
-                                                                              :icon ""
-                                                                              :icon_style :Special
-                                                                              :info_annote :INFO
-                                                                              :name ""
-                                                                              :ttl 5
-                                                                              :warn_annote :WARN
-                                                                              :warn_style :WarningMsg}}
-                                                          :override_vim_notify true}}))}
+            ((. (require :fidget) :setup)
+			 	{:notification 
+				{:configs {:default {:annote_style :Question
+				:debug_annote :DEBUG :debug_style :Comment
+				:error_annote :ERROR :error_style :ErrorMsg
+				:group_style :Title
+				:icon "" :icon_style :Special
+				:info_annote :INFO :name "" :ttl 5
+				:warn_annote :WARN :warn_style :WarningMsg}}
+				:override_vim_notify true}}))}
  [:hauleth/asyncdo.vim]
- {1 :hedyhli/outline.nvim :cmd [:Outline :OutlineOpen] :opts {}}]
+ {1 :hedyhli/outline.nvim :cmd [:Outline :OutlineOpen] :opts {}}
+ {1 :lazymaniac/wttr.nvim :dependencies [:nvim-lua/plenary.nvim :MunifTanjim/nui.nvim] :opts {}}
+ {1 :m-demare/hlargs.nvim :event :BufReadPost}
+ ]

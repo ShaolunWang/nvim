@@ -1,9 +1,10 @@
--- :fennel:1704466032
+-- :fennel:1704795547
 require("config")
 require("plug")
 require("theme")
 require("keymap")
 require("autocmd")
+require("commands")
 if vim.loader then
   vim.loader.enable()
 else

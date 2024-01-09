@@ -1,4 +1,4 @@
--- :fennel:1704466062
+-- :fennel:1704702217
 local function _1_()
   local miniclue = require("mini.clue")
   return miniclue.setup({clues = {{desc = "+Fuzzy Search...", keys = "<Leader>f", mode = "n"}, {desc = "+Tab ...", keys = "<Leader>t", mode = "n"}, {desc = "+Grapple ...", keys = "<Leader>g", mode = "n"}, {desc = "+Lsp ...", keys = "\\", mode = "n"}, {desc = "+g ...", keys = "g", mode = "n"}, {desc = "+unimpaired ...", keys = ",", mode = "n"}, {desc = "+unimpaired ...", keys = "[", mode = "n"}, {desc = "+unimpaired ...", keys = "]", mode = "n"}, miniclue.gen_clues.windows({submode_resize = true})}, triggers = {{keys = "g", mode = "n"}, {keys = "<Leader>", mode = "n"}, {keys = "\\", mode = "n"}, {keys = ",", mode = "n"}, {keys = "[", mode = "n"}, {keys = "]", mode = "n"}, {keys = "<C-w>", mode = "n"}}, window = {config = {anchor = "SW", col = "auto", row = "auto", width = "auto"}, delay = 500}})
