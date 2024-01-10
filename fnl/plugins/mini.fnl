@@ -72,4 +72,17 @@
                 	:gen_animation)
                     :none))
                     :delay 0}}))
-	}]
+ }
+ {1 :echasnovski/mini.surround
+          :opts {:mappings {:add :ra
+                            :delete :rd
+                            :find :rf
+                            :find_left :rF
+                            :highlight :rh
+                            :replace :rr
+                            :suffix_last :l
+                            :suffix_next :n
+                            :update_n_lines :rn}}
+          :version false}
+ ]
+
