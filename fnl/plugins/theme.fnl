@@ -8,4 +8,6 @@
   :dependencies [:tiagovla/scope.nvim]
   :event :VeryLazy}
  {1 :rebelot/heirline.nvim :event :VeryLazy}
- {1 :fynnfluegge/monet.nvim}]
+ {1 :fynnfluegge/monet.nvim}
+ {1 :rebelot/kanagawa.nvim}
+ ]

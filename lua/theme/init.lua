@@ -1,7 +1,7 @@
--- :fennel:1704790749
+-- :fennel:1704876140
 vim.g.showtabline = 3
 vim.g.termguicolors = true
-vim.cmd("colorscheme github_dark_high_contrast")
+vim.cmd("colorscheme kanagawa")
 vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", {bg = "NONE", fg = "#808080", strikethrough = true})
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", {bg = "NONE", fg = "#569CD6"})
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", {link = "CmpIntemAbbrMatch"})

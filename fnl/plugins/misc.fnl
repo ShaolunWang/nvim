@@ -57,7 +57,7 @@
 				:warn_annote :WARN :warn_style :WarningMsg}}
 				:override_vim_notify true}}))}
  [:hauleth/asyncdo.vim]
- {1 :hedyhli/outline.nvim :cmd [:Outline :OutlineOpen] :opts {}}
+ {1 :hedyhli/outline.nvim :cmd [:Outline :OutlineOpen] :opts []}
  {1 :lazymaniac/wttr.nvim :dependencies [:nvim-lua/plenary.nvim :MunifTanjim/nui.nvim] :opts {}}
  {1 :m-demare/hlargs.nvim :event :BufReadPost}
  ]

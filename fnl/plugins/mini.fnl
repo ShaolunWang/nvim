@@ -61,4 +61,15 @@
                     :right :>e
                     :up "[e"}
          :options {:reindent_linewise true}}
-  :version false}]
+  :version false}
+ {1 :echasnovski/mini.indentscope
+	:version false 
+	:config (fn []
+
+            		(local miniscope (require :mini.indentscope))
+                  ((. miniscope :setup) 
+				   {:draw {:animation ((. (. miniscope 
+                	:gen_animation)
+                    :none))
+                    :delay 0}}))
+	}]
