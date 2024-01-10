@@ -10,7 +10,7 @@
                        :cmd :Neogit
                        :dependencies [:nvim-lua/plenary.nvim
                                       :sindrets/diffview.nvim
-                                      :nvim-telescope/telescope.nvim]
+                                      ]
                        :opts {:auto_refresh true
                               :disable_builtin_notifications false
                               :integrations {:diffview true}
@@ -45,7 +45,7 @@
                                                                                                   :-i
                                                                                                   :cscope.files]
                                                                               :exec :gtags-cscope
-                                                                              :picker :telescope
+                                                                              :picker :fzf-lua
                                                                               :skip_picker_for_single_result false}})
                                  (vim.cmd "     function FormatBuffer()
        if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
@@ -129,7 +129,7 @@
                                       {:clues [{:desc "+Cscope Find ..."
                                                 :keys :<Leader>c
                                                 :mode :n}]}))
-                       :dependencies [:nvim-telescope/telescope.nvim
+                       :dependencies [
                                       :nvim-tree/nvim-web-devicons]
                        :ft [:cpp :h :hpp]}
 ]
