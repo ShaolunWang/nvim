@@ -3,7 +3,8 @@
                             :remove_file {:close_window false}}
                   :diagnostics {:enable true :show_on_dirs true}
                   :hijack_cursor true
-                  :log {:enable true
+				  :git {:enable false}
+                  :log {:enable false
                         :truncate true
                         :types {:diagnostics true
                                 :git true

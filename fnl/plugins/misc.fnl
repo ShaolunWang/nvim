@@ -55,9 +55,13 @@
 				:icon "" :icon_style :Special
 				:info_annote :INFO :name "" :ttl 5
 				:warn_annote :WARN :warn_style :WarningMsg}}
-				:override_vim_notify true}}))}
+				:override_vim_notify true}
+				:integration {:nvim-tree {:enable false}}
+				}
+				))
+  }
  [:hauleth/asyncdo.vim]
  {1 :hedyhli/outline.nvim :cmd [:Outline :OutlineOpen] :opts []}
- {1 :lazymaniac/wttr.nvim :dependencies [:nvim-lua/plenary.nvim :MunifTanjim/nui.nvim] :opts {}}
+ {1 :lazymaniac/wttr.nvim :dependencies [:nvim-lua/plenary.nvim :MunifTanjim/nui.nvim] :opts {} :lazy true}
  {1 :m-demare/hlargs.nvim :event :BufReadPost}
  ]

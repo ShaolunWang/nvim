@@ -54,7 +54,7 @@
   :keys ["[" "]" :<e :>e]
   :opts {:mappings {:down "]e"
                     :left :<e
-                    :line_down "]e"
+					:line_down "]e"
                     :line_left :<e
                     :line_right :>e
                     :line_up "[e"
@@ -68,10 +68,8 @@
 
             		(local miniscope (require :mini.indentscope))
                   ((. miniscope :setup) 
-				   {:draw {:animation ((. (. miniscope 
-                	:gen_animation)
-                    :none))
-                    :delay 0}}))
+				   {:draw {:delay 5}}
+	   ))
  }
  {1 :echasnovski/mini.surround
           :opts {:mappings {:add :ra
