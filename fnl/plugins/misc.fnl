@@ -64,4 +64,8 @@
  {1 :hedyhli/outline.nvim :cmd [:Outline :OutlineOpen] :opts []}
  {1 :lazymaniac/wttr.nvim :dependencies [:nvim-lua/plenary.nvim :MunifTanjim/nui.nvim] :opts {} :lazy true}
  {1 :m-demare/hlargs.nvim :event :BufReadPost}
- ]
+ {1 :tamton-aquib/duck.nvim
+ 	:lazy true
+  } 
+]
+ 
