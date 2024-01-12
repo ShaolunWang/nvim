@@ -68,7 +68,12 @@
 
             		(local miniscope (require :mini.indentscope))
                   ((. miniscope :setup) 
-				   {:draw {:delay 5}}
+				   {:draw {:delay 5}
+				   :animation {:draw {:animation ((. (. miniscope 
+                	:gen_animation)
+                    :none))
+                    :delay 0}}
+					}
 	   ))
  }
  {1 :echasnovski/mini.surround
@@ -82,5 +87,13 @@
                             :suffix_next :n
                             :update_n_lines :rn}}
           :version false}
+ {1 :echasnovski/mini.animate
+	:config (fn []
+		(local animate (require :mini.animate))
+		(animate.setup {
+		   :cursor {:enable false}
+		   :scroll {:enable false}})	
+		   )
+	:version false }
  ]
 
