@@ -74,12 +74,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	desc = "Set fold method for treesitter",
 }) ]]
-vim.api.nvim_create_autocmd('BufReadPost', {
-	pattern = { '*' },
-	callback = function()
-		require('nvim-tree.api').tree.open()
-	end,
-})
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = {
 		'help',
