@@ -45,35 +45,6 @@ vim.api.nvim_create_autocmd('FileType', {
 		vim.cmd([[set ft=tablegen]])
 	end,
 })
-
--- vim.cmd([[
---   function FormatBuffer()
---     if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
---       let cursor_pos = getpos('.')
---       :%!clang-format
---       call setpos('.', cursor_pos)
---     endif
---   endfunction
---
---   autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
--- ]])
---[[ local parsers = {
-	'lua',
-	'cpp',
-	'rust',
-	'vim',
-	'vimdoc',
-	'norg',
-	'norg-meta',
-}
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = vim.fn.join(parsers, ","),
-	callback = function()
-		vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
-		vim.opt_local.foldmethod = "expr"
-	end,
-	desc = "Set fold method for treesitter",
-}) ]]
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = {
 		'help',
