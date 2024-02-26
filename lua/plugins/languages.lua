@@ -15,7 +15,14 @@ return {
 					handlers = utils.lsp_handlers,
 					settings = {
 						-- rust-analyzer language server configuration
-						['rust-analyzer'] = {},
+						['rust-analyzer'] = {
+							checkOnSave = true,
+							check = {
+								enable = true,
+								command = 'clippy',
+								features = 'all',
+							}
+						},
 					},
 				},
 				-- DAP configuration
@@ -30,5 +37,5 @@ return {
 			require('clangd_extensions').setup()
 		end,
 		ft = { 'cpp', 'h' },
-	},
+	}, 
 }

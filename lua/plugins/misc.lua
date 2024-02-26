@@ -50,8 +50,10 @@ return {
 		event = 'VeryLazy',
 		opts = {
 			label = { rainbow = { enabled = true } },
+
 			jump = {
 				nohlsearch = true,
+
 			},
 			modes = {
 				char = {
@@ -59,12 +61,14 @@ return {
 					multi_line = false,
 					autohide = true,
 					jump_labels = true,
-					jump = { autojump = true },
+					highlight = { backdrop = false },
+--					jump = { autojump = true },
 				},
 			},
 			search = {
 				exclude = {
 					'notify',
+					'terminal',
 					'cmp_menu',
 					'noice',
 					'flash_prompt',
@@ -195,6 +199,7 @@ return {
 		config = function()
 			vim.g.matchup_matchparen_offscreen = { method = 'popup' }
 		end,
+		event = "BufReadPre",
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
@@ -232,5 +237,12 @@ return {
 			use_magit_keybindings = true,
 			disable_builtin_notifications = false,
 		},
+	},
+	{
+		'akinsho/toggleterm.nvim',
+		opts ={
+			  open_mapping = [[<c-\>]],
+		},
+--		config = true,
 	},
 }

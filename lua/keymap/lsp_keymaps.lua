@@ -12,6 +12,7 @@ function M.on_attach(client, bufnr)
 	if client.server_capabilities.documentSymbolProvider then
 		navic.attach(client, bufnr)
 	end
+	vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled())
 
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
