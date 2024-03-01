@@ -58,3 +58,12 @@ vim.api.nvim_create_autocmd('FileType', {
 		vim.b.miniindentscope_disable = true
 	end,
 })
+
+local group = vim.api.nvim_create_augroup('CscopeBuild', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+	pattern = { '*.cpp', '*.h' },
+	callback = function()
+		vim.cmd('Cscope build')
+	end,
+	group = group,
+})

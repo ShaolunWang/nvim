@@ -53,7 +53,6 @@ return {
 
 			jump = {
 				nohlsearch = true,
-
 			},
 			modes = {
 				char = {
@@ -62,7 +61,7 @@ return {
 					autohide = true,
 					jump_labels = true,
 					highlight = { backdrop = false },
---					jump = { autojump = true },
+					--					jump = { autojump = true },
 				},
 			},
 			search = {
@@ -162,44 +161,35 @@ return {
 		lazy = true,
 	},
 	{
-		'ThePrimeagen/harpoon',
-		branch = 'harpoon2',
+		'cbochs/grapple.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
-			local harpoon = require('harpoon')
+			local grapple = require('grapple')
+			grapple.setup()
 
-			-- REQUIRED
-			harpoon:setup()
-			-- REQUIRED
-
-			vim.keymap.set('n', '<leader>gg', function()
-				harpoon:list():append()
-			end, { desc = 'Harpoon Add' })
-			vim.keymap.set('n', '<leader>gr', function()
-				harpoon:list():clear()
-			end, { desc = 'Harpoon Clear' })
-			vim.keymap.set('n', '<leader>gp', function()
-				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end, { desc = 'Harpoon Menu' })
+			vim.keymap.set('n', '<leader>gg', grapple.toggle, { desc = 'Grapple Tag' })
+			vim.keymap.set('n', '<leader>gr', grapple.reset, { desc = 'Grapple Clear' })
+			vim.keymap.set('n', '<leader>gp', grapple.popup_tags, { desc = 'Grapple Menu' })
 			-- Toggle previous & next buffers stored within Harpoon list
 			vim.keymap.set('n', '[g', function()
-				harpoon:list():prev()
+				grapple.cycle_backward()
 				local fidget = require('fidget')
-				fidget.notify('Harpoon Cycle Backward')
-			end, { desc = 'Harpoon Prev' })
+				fidget.notify('Grapple Cycle Backward')
+			end, { desc = 'Grapple Prev' })
 			vim.keymap.set('n', ']g', function()
-				harpoon:list():next()
+				grapple.cycle_foward()
 				local fidget = require('fidget')
-				fidget.notify('Harpoon Cycle Forward')
-			end, { desc = 'Harpoon Next' })
+				fidget.notify('Grapple Cycle Forward')
+			end, { desc = 'Grapple Next' })
 		end,
+		keys = { '<leader>g' },
 	},
 	{
 		'andymass/vim-matchup',
 		config = function()
 			vim.g.matchup_matchparen_offscreen = { method = 'popup' }
 		end,
-		event = "BufReadPre",
+		event = 'BufReadPre',
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
@@ -240,9 +230,9 @@ return {
 	},
 	{
 		'akinsho/toggleterm.nvim',
-		opts ={
-			  open_mapping = [[<c-\>]],
+		opts = {
+			open_mapping = [[<c-\>]],
 		},
---		config = true,
+		--		config = true,
 	},
 }

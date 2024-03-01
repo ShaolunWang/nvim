@@ -122,14 +122,7 @@ local function _3_()
 	return nil
 end
 return {
-	{ 'craigemery/vim-autotag', ft = { 'cpp' } },
 	{ 'bfrg/vim-cpp-modern', config = _1_, ft = { 'c', 'cpp', 'h', 'hpp' } },
-	{
-		'ludovicchabant/vim-gutentags',
-		config = _2_,
-		dependencies = { 'dhananjaylatkar/cscope_maps.nvim' },
-		ft = { 'cpp', 'h', 'hpp' },
-	},
 	{
 		'dhananjaylatkar/cscope_maps.nvim',
 		config = _3_,
