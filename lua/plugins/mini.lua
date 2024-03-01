@@ -26,7 +26,7 @@ return {
 				clues = {
 					{ mode = 'n', keys = '<Leader>f', desc = '+Fuzzy Search...' },
 					{ mode = 'n', keys = '<Leader>t', desc = '+Tab ...' },
-					{ mode = 'n', keys = '<Leader>g', desc = '+Harpoon ...' },
+					{ mode = 'n', keys = '<Leader>g', desc = '+Grapple ...' },
 					{ mode = 'n', keys = '\\', desc = '+Lsp ...' },
 					{ mode = 'n', keys = 'g', desc = '+g ...' },
 					{ mode = 'n', keys = ',', desc = '+unimpaired ...' },
@@ -51,7 +51,7 @@ return {
 					-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
 					fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
 					deprecated = { pattern = '%f[%w]()DEPRECATE()%f[%W]', group = 'MiniHipatternsFixme' },
-					hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'Deprecation' },
+					hack = { pattern = '%f[%w]()WARNING()%f[%W]', group = 'MiniHipatternsFixme' },
 					todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
 					note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
 				},

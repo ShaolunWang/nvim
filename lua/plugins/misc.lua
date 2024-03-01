@@ -170,7 +170,6 @@ return {
 			vim.keymap.set('n', '<leader>gg', grapple.toggle, { desc = 'Grapple Tag' })
 			vim.keymap.set('n', '<leader>gr', grapple.reset, { desc = 'Grapple Clear' })
 			vim.keymap.set('n', '<leader>gp', grapple.popup_tags, { desc = 'Grapple Menu' })
-			-- Toggle previous & next buffers stored within Harpoon list
 			vim.keymap.set('n', '[g', function()
 				grapple.cycle_backward()
 				local fidget = require('fidget')
