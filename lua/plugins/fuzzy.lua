@@ -42,10 +42,12 @@ return {
 				},
 				files = {
 					prompt = 'Files❯ ',
+					cwd_prompt_shorten_len = 10,        -- shorten prompt beyond this length
 					git_icons = true,
 					file_icons = true,
 					color_icons = true,
-					previewer = 'bat',
+--					previewer = 'bat',
+					previewer = false,
 					fd_opts = '--color=never --type f --hidden --follow --exclude .git',
 				},
 			})
