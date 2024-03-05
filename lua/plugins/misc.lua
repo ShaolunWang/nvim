@@ -163,24 +163,7 @@ return {
 	{
 		'cbochs/grapple.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
-		config = function()
-			local grapple = require('grapple')
-			grapple.setup()
-
-			vim.keymap.set('n', '<leader>gg', grapple.toggle, { desc = 'Grapple Tag' })
-			vim.keymap.set('n', '<leader>gr', grapple.reset, { desc = 'Grapple Clear' })
-			vim.keymap.set('n', '<leader>gp', grapple.popup_tags, { desc = 'Grapple Menu' })
-			vim.keymap.set('n', '[g', function()
-				grapple.cycle_backward()
-				local fidget = require('fidget')
-				fidget.notify('Grapple Cycle Backward')
-			end, { desc = 'Grapple Prev' })
-			vim.keymap.set('n', ']g', function()
-				grapple.cycle_foward()
-				local fidget = require('fidget')
-				fidget.notify('Grapple Cycle Forward')
-			end, { desc = 'Grapple Next' })
-		end,
+		opts = {},
 		keys = { '<leader>g' },
 	},
 	{
