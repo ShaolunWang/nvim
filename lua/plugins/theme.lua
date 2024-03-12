@@ -29,4 +29,7 @@ return {
 		'yeomfa/jetly',
 		event = 'VeryLazy',
 	},
+	{
+		'rose-pine/neovim'
+	}
 }

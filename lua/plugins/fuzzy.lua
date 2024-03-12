@@ -51,7 +51,7 @@ return {
 					fd_opts = '--color=never --type f --hidden --follow --exclude .git',
 				},
 			})
-			require('fzf-lua').register_ui_select()
+--			require('fzf-lua').register_ui_select()
 		end,
 		keys = { '<leader>' },
 		cmd = { 'FzfLua' },

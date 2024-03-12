@@ -1,6 +1,6 @@
 vim.g.showtabline = 3
 vim.g.termguicolors = true
-vim.cmd('colorscheme carbonfox')
+vim.cmd('colorscheme rose-pine')
 --
 
 -- cmp
