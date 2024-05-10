@@ -111,6 +111,7 @@ return {
 				},
 			})
 		end,
+		event = { 'BufReadPost', 'InsertEnter' },
 	},
 	{
 		'echasnovski/mini.animate',
@@ -119,6 +120,7 @@ return {
 			animate.setup({ cursor = { enable = false }, scroll = { enable = false } })
 		end,
 		version = false,
+		event = { 'BufReadPost', 'InsertEnter' },
 	},
 	{
 		'echasnovski/mini.surround',
@@ -139,5 +141,6 @@ return {
 			})
 		end,
 		version = false,
+		event = { 'BufReadPre' },
 	},
 }

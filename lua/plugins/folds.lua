@@ -29,7 +29,7 @@ return {
 				opts = true, -- needed even when using default config
 			},
 		},
-		event = 'BufReadPost',
+		event = 'BufReadPre',
 		opts = {
 			provider_selector = function(bufnr, filetype, buftype)
 				return ftMap[filetype]
@@ -65,5 +65,10 @@ return {
 				return newVirtText
 			end,
 		},
+		config = function()
+			vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+			vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+			require('ufo').setup(opts)
+		end,
 	},
 }

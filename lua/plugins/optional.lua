@@ -3,33 +3,20 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_animation_length = 0
 	vim.fn.setcellwidths({ { 0x2002, 0x2002, 2 } })
 	vim.g.neovide_cursor_animate_command_line = false
+	vim.g.neovide_cursor_animate_in_insert_mode = false
+	vim.g.neovide_cursor_trail_size = 0
 end
 local function _1_()
 	return vim.cmd('\9       let g:cpp_attributes_highlight = 1\n\9       let g:cpp_member_highlight = 1\n\9     ')
 end
-local function _2_()
-	vim.g.gutentags_generate_on_new = true
-	vim.g.gutentags_generate_on_missing = true
-	vim.g.gutentags_generate_on_write = true
-	vim.g.gutentags_generate_on_empty_buffer = true
-	vim.g.gutentags_define_advanced_commands = true
-	vim.g.gutentags_add_default_project_roots = false
-	vim.g.gutentags_modules = { 'cscope_maps' }
-	vim.g.gutentags_cscope_build_inverted_index_maps = 1
-	vim.g.gutentags_file_list_command = 'fd -e cpp -e h'
-	vim.g.gutentags_project_root = { '.root' }
-	return nil
-end
+
 local function _3_()
-	vim.g.neovide_cursor_animation_length = 0
-	vim.g.neovide_cursor_animate_in_insert_mode = false
-	vim.g.neovide_cursor_trail_size = 0
 	require('cscope_maps').setup({
 		cscope = {
-			db_build_cmd_args = { '-bqkv', '-i', 'cscope.files' },
+			db_build_cmd_args = { '-bqkv', '-i', 'cscope.files', '-R' },
 			exec = 'gtags-cscope',
 			picker = 'fzf-lua',
-			skip_picker_for_single_result = false,
+			skip_picker_for_single_result = true,
 		},
 	})
 	--	vim.cmd(

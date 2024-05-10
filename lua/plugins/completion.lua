@@ -112,6 +112,7 @@ function M.config()
 			['<Tab>'] = cmp.mapping(tab_mapping, { 'i', 's' }),
 			['<S-Tab>'] = cmp.mapping(reverse_tab_mapping, { 'i', 's' }),
 		}),
+
 		formatting = {
 			format = function(entry, vim_item)
 				-- Kind icons

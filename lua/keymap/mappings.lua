@@ -96,5 +96,11 @@ end
 vim.keymap.set('n', '<F7>', function()
 	toggle_loclist()
 end, { noremap = true, silent = true })
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+vim.keymap.set({ 'i', 's' }, '<c-d>', function()
+	require('luasnip').jump(1)
+end, { silent = true })
+vim.keymap.set({ 'i', 's' }, '<c-u>', function()
+	require('luasnip').jump(-1)
+end, { silent = true })
+--luasnip

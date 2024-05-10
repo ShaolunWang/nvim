@@ -90,6 +90,11 @@ return {
 			handlers = utils.lsp_handlers,
 			capabilities = utils.c,
 		})
+		lsp.typst_lsp.setup({
+			on_attach = lsp_keymap.on_attach,
+			handlers = utils.lsp_handlers,
+			capabilities = utils.c,
+		})
 	end,
 	ft = {
 		-- make sure only adding configured ones here

@@ -185,7 +185,8 @@ local ScrollBar = {
 -- works in multi window, but does not support flexible components (yet ...)
 local Navic = {
 	condition = function()
-		return require('nvim-navic').is_available()
+		--		return require('nvim-navic').is_available()
+		return require('lazy.core.config').plugins['nvim-lspconfig']._.loaded
 	end,
 	static = {
 		-- create a type highlight map

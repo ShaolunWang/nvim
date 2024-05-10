@@ -76,6 +76,7 @@ return {
 				},
 			})
 		end,
+		event = 'BufReadPost',
 	},
 	{
 		'hauleth/asyncdo.vim',
@@ -105,6 +106,7 @@ return {
 			},
 		},
 		main = 'ibl',
+		event = { 'BufReadPost' },
 	},
 	{
 		'hedyhli/outline.nvim',
