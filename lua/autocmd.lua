@@ -42,6 +42,7 @@ vim.api.nvim_create_autocmd('FileType', {
 		'NvimTree',
 		'lazy',
 		'Outline',
+		'Trouble',
 		'terminal',
 		'fzf',
 	},
@@ -54,7 +55,14 @@ local group = vim.api.nvim_create_augroup('CscopeBuild', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
 	pattern = { '*.cpp', '*.h' },
 	callback = function()
-		vim.cmd('Cs db build')
+		vim.cmd('silent AsyncDo make')
 	end,
 	group = group,
+})
+vim.api.nvim_create_autocmd('TextYankPost', {
+	group = 'yank_highlight',
+	pattern = '*',
+	callback = function()
+		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
+	end,
 })

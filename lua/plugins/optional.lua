@@ -13,15 +13,13 @@ end
 local function _3_()
 	require('cscope_maps').setup({
 		cscope = {
-			db_build_cmd_args = { '-bqkv', '-i', 'cscope.files', '-R' },
-			exec = 'gtags-cscope',
+			db_build_cmd_args = { '-bqkv', '-i', './cscope.files' },
+			exec = 'cscope',
 			picker = 'fzf-lua',
 			skip_picker_for_single_result = true,
+		    db_build_cmd_args = { "-bqkv" },
 		},
 	})
-	--	vim.cmd(
-	--		"     function FormatBuffer()\n       if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))\n         let cursor_pos = getpos('.')\n         :%!clang-format\n         call setpos('.', cursor_pos)\n       endif\n     endfunction\n     \n     autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()\n  "
-	--	)
 	local sym_map = {
 		a = 'Assignment',
 		c = 'Functions Calling this',

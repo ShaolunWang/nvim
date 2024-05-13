@@ -1,13 +1,13 @@
 local M = {}
 local border = {
-	{ '🭽', 'FloatBorder' },
-	{ '▔', 'FloatBorder' },
-	{ '🭾', 'FloatBorder' },
-	{ '▕', 'FloatBorder' },
-	{ '🭿', 'FloatBorder' },
-	{ '▁', 'FloatBorder' },
-	{ '🭼', 'FloatBorder' },
-	{ '▏', 'FloatBorder' },
+	{ '┌', 'FloatBorder' },
+	{ '─', 'FloatBorder' },
+	{ '┐', 'FloatBorder' },
+	{ '│', 'FloatBorder' },
+	{ '┘', 'FloatBorder' },
+	{ '─', 'FloatBorder' },
+	{ '└', 'FloatBorder' },
+	{ '│', 'FloatBorder' },
 }
 
 -- To instead override globally

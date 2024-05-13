@@ -23,7 +23,7 @@ return {
 			require('tabby').setup({})
 		end,
 	},
-	{ 'rebelot/heirline.nvim', event = 'VeryLazy' },
+	{ 'rebelot/heirline.nvim',      event = 'VeryLazy' },
 	{
 		'yeomfa/jetly',
 		event = 'VeryLazy',
@@ -34,4 +34,9 @@ return {
 			style = 'night',
 		},
 	},
+	{
+		'AlexvZyl/nordic.nvim',
+		event = 'VeryLazy',
+	},
+	{'pappasam/papercolor-theme-slim'},
 }

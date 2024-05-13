@@ -45,7 +45,7 @@ return {
 		end,
 		keys = { '<leader>', '\\', 'g', ',', '[', ']', '<c-w>', 'r' },
 	},
-	{
+	--[[ {
 		'echasnovski/mini.hipatterns',
 		version = false,
 		config = function()
@@ -62,7 +62,7 @@ return {
 				},
 			})
 		end,
-	},
+	}, ]]
 	{
 		'echasnovski/mini.move',
 		version = false,
@@ -94,6 +94,7 @@ return {
 			vim.g.miniindentscope_disable = {
 				'NvimTree',
 				'Outline',
+				'Trouble',
 				'Tagbar',
 				'lazy',
 			}

@@ -10,5 +10,5 @@ vim.api.nvim_create_user_command('G', function()
 end, {})
 
 vim.api.nvim_create_user_command('T', function()
-	require('nvim-tree.api').tree.toggle()
+	require('tfm').open()
 end, {})

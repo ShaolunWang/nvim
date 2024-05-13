@@ -54,14 +54,14 @@ local tree_opts = {
 	},
 }
 return {
-	{
+	--[[ 	{
 		'nvim-tree/nvim-tree.lua',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
 			require('nvim-tree').setup(tree_opts)
 		end,
 		cmd = { 'NvimTreeToggle' },
-	},
+	}, ]]
 	{
 		'stevearc/oil.nvim',
 		opts = {
@@ -88,5 +88,10 @@ return {
 		-- Optional dependencies
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		cmd = { 'Oil' },
+	},
+	{
+		'rolv-apneseth/tfm.nvim',
+		opts = {},
+		lazy = true,
 	},
 }

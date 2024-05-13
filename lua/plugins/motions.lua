@@ -19,7 +19,6 @@ return {
 				},
 			},
 			search = {
-
 				exclude = {
 					'notify',
 					'terminal',
@@ -36,7 +35,7 @@ return {
 					'NeogitPopup',
 					'NeogitCommitView',
 				},
-				mode = 'fuzzy',
+				mode = 'exact',
 			},
 		},
 
@@ -73,9 +72,27 @@ return {
 	},
 	{
 		'cbochs/grapple.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		opts = {},
-		keys = { '<leader>g' },
+		dependencies = { 'nvim-lua/plenary.nvim', 'j-hui/fidget.nvim' },
+		config = function()
+			local grapple = require('grapple')
+			require('grapple').setup()
+
+			vim.keymap.set('n', '<leader>gg', grapple.toggle, { desc = 'Grapple Tag' })
+			vim.keymap.set('n', '<leader>gr', grapple.reset, { desc = 'Grapple Clear' })
+			vim.keymap.set('n', '<leader>gp', grapple.open_tags, { desc = 'Grapple Menu' })
+			vim.keymap.set('n', '[g', function()
+				grapple.cycle_tags('prev')
+				local fidget = require('fidget')
+				fidget.notify('Grapple Cycle Backward')
+			end, { desc = 'Grapple Prev' })
+			vim.keymap.set('n', ']g', function()
+				grapple.cycle_tags('next')
+				local fidget = require('fidget')
+				fidget.notify('Grapple Cycle Forward')
+			end, { desc = 'Grapple Next' })
+		end,
+
+		keys = { '<leader>g', '[g', ']g' },
 	},
 	{
 		'mrjones2014/smart-splits.nvim',
@@ -90,4 +107,5 @@ return {
 		end,
 		event = 'BufReadPre',
 	},
+	{ 'kwkarlwang/bufjump.nvim', opts = {}, keys = { 'c-o', 'c-i' } },
 }
