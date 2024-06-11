@@ -2,8 +2,7 @@ return {
 	{
 		'numToStr/Comment.nvim',
 		opts = function()
-			local commentstring_avail, commentstring = pcall(require,
-				'ts_context_commentstring.integrations.comment_nvim')
+			local commentstring_avail, commentstring = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
 			return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
 		end,
 		config = function()
@@ -129,89 +128,98 @@ return {
 	},
 	{
 		'folke/todo-comments.nvim',
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			keywords = {
 				FIX = {
-					icon = " ",
-					color = "error",
-					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+					icon = ' ',
+					color = 'error',
+					alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' },
 				},
-				TODO = { icon = " ", color = "info" },
-				HACK = { icon = " ", color = "warning" },
-				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-				NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-				TEST = { icon = "? ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+				TODO = { icon = ' ', color = 'info' },
+				HACK = { icon = ' ', color = 'warning' },
+				WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
+				PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+				NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
+				TEST = { icon = '? ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
 			},
 		},
-		event = "BufReadPost",
+		event = 'BufReadPost',
 	},
 	{
-		"folke/edgy.nvim",
-		event = "VeryLazy",
+		'folke/edgy.nvim',
+		event = 'VeryLazy',
 		keys = {
 			{
-				"<leader>e",
+				'<leader>ee',
 				function()
-					require("edgy").toggle()
-					require('fidget').notify("edgy toggle")
+					require('edgy').toggle()
+					require('fidget').notify('edgy toggle')
 				end,
-				desc = "Edgy Toggle",
+				desc = 'Edgy Toggle',
 			},
 			-- stylua: ignore
-			{ "<leader>s", function() require("edgy").select() end, desc = "Edgy Select Window" },
+			{ "<leader>ei", function() require("edgy").select() end, desc = "Edgy Select Window" },
 		},
 		opts = function()
 			local opts = {
+				keys = {
+					-- increase width
+					['<c-Right>'] = function(win)
+						win:resize('width', 2)
+					end,
+					-- decrease width
+					['<c-Left>'] = function(win)
+						win:resize('width', -2)
+					end,
+					-- increase height
+					['<c-Up>'] = function(win)
+						win:resize('height', 2)
+					end,
+					-- decrease height
+					['<c-Down>'] = function(win)
+						win:resize('height', -2)
+					end,
+				},
 				bottom = {
-
-					"Trouble",
-					{ ft = "qf", title = "QuickFix" },
+					{ ft = 'qf', title = 'QuickFix' },
+				},
+				left = {
 					{
-						ft = "help",
-						size = { height = 20 },
-						-- don't open help files in edgy that we're editing
-						filter = function(buf)
-							return vim.bo[buf].buftype == "help"
+						ft = 'NvimTree',
+						pinned = true,
+						title = 'File Tree',
+						open = 'NvimTreeToggle',
+						size = { width = 0.2, height = 0.5 },
+					},
+					{
+						ft = 'trouble',
+						pinned = true,
+						title = 'Symbol',
+						open = 'Trouble lsp_document_symbols',
+						size = { width = 0.2, height = 0.5 },
+						filter = function(_buf, win)
+							return vim.w[win].trouble.mode == 'lsp_document_symbols'
 						end,
 					},
 				},
-				left = {
-				},
-				keys = {
-					-- increase width
-					["<c-Right>"] = function(win)
-						win:resize("width", 2)
-					end,
-					-- decrease width
-					["<c-Left>"] = function(win)
-						win:resize("width", -2)
-					end,
-					-- increase height
-					["<c-Up>"] = function(win)
-						win:resize("height", 2)
-					end,
-					-- decrease height
-					["<c-Down>"] = function(win)
-						win:resize("height", -2)
-					end,
+				right = {
+					{
+						ft = 'trouble',
+						pinned = true,
+						title = 'Todo',
+						open = 'Trouble todo',
+						size = {
+							width = 0.2,
+							height = 0.5,
+						},
+						filter = function(_buf, win)
+							return vim.w[win].trouble.mode == 'todo'
+						end,
+					},
 				},
 			}
-			for _, pos in ipairs({ "top", "bottom", "left", "right" }) do
-				opts[pos] = opts[pos] or {}
-				table.insert(opts[pos], {
-					ft = "trouble",
-					filter = function(_buf, win)
-						return vim.w[win].trouble
-							and vim.w[win].trouble.position == pos
-							and vim.w[win].trouble.type == "split"
-							and vim.w[win].trouble.relative == "editor"
-							and not vim.w[win].trouble_preview
-					end,
-				})
-			end
 			return opts
 		end,
-	}
+	},
 }

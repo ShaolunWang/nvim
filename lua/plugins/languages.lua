@@ -55,11 +55,11 @@ return {
 		opts = function()
 			local options = {
 				preview = {
-					quit = 'q',               -- optional keymapping for quit preview
-					accept = '<tab>',         -- optional keymapping for accept preview
+					quit = 'q', -- optional keymapping for quit preview
+					accept = '<tab>', -- optional keymapping for accept preview
 				},
-				header_extension = 'h',       -- optional
-				source_extension = 'cpp',     -- optional
+				header_extension = 'h', -- optional
+				source_extension = 'cpp', -- optional
 				custom_define_class_function_commands = { -- optional
 					TSCppImplWrite = {
 						output_handle = require('nt-cpp-tools.output_handlers').get_add_to_cpp(),
@@ -83,13 +83,13 @@ return {
 	{
 		'folke/trouble.nvim',
 		opts = {
-			auto_close = true,
+			auto_close = false,
 			auto_open = false,
+			auto_preview = false, -- automatically open preview when on an item
 			win = {
 				type = 'split',
-				position = 'left',
-				relative = 'win',
-				size = .25,
+				relative = 'editor',
+				size = 0.25,
 			},
 		},
 	},

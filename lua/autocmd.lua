@@ -55,7 +55,7 @@ local group = vim.api.nvim_create_augroup('CscopeBuild', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
 	pattern = { '*.cpp', '*.h' },
 	callback = function()
-		vim.cmd('silent AsyncDo make')
+		vim.cmd('silent AsyncDo! make')
 	end,
 	group = group,
 })

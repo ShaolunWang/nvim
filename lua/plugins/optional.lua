@@ -17,7 +17,7 @@ local function _3_()
 			exec = 'cscope',
 			picker = 'fzf-lua',
 			skip_picker_for_single_result = true,
-		    db_build_cmd_args = { "-bqkv" },
+			db_build_cmd_args = { '-bqkv' },
 		},
 	})
 	local sym_map = {
