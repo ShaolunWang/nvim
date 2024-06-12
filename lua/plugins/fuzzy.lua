@@ -61,8 +61,8 @@ return {
 					previewer = false,
 				},
 			})
-			local utils = require "fzf-lua.utils"
-			require("fzf-lua").register_ui_select(function(ui_opts, items)
+			local utils = require('fzf-lua.utils')
+			require('fzf-lua').register_ui_select(function(ui_opts, items)
 				-- Auto-height
 				local min_h, max_h = 0.15, 0.70
 				local h = (#items + 2) / vim.o.lines
@@ -96,8 +96,8 @@ return {
 						col = 0.5,
 					},
 					fzf_opts = {
-						["--layout"] = "reverse-list",
-						["--info"] = "hidden",
+						['--layout'] = 'reverse-list',
+						['--info'] = 'hidden',
 					},
 				}
 			end)

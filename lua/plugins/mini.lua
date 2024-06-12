@@ -162,5 +162,12 @@ return {
 				trim_right = '>',
 			},
 		},
+		lazy = true,
+		keys = { {
+			'<c-n>',
+			function()
+				require('mini.files').open()
+			end,
+		} },
 	},
 }

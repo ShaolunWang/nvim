@@ -8,9 +8,7 @@ local map = vim.api.nvim_set_keymap
 		require('oil').open()
 	end
 end, { desc = 'File navigation' }) ]]
-vim.keymap.set('n', '<c-n>', ':lua MiniFiles.open()<cr>', { noremap = true, desc = 'files' })
 -- neorg
-vim.keymap.set('n', '<leader>n', ':Neorg<cr>', { noremap = true, desc = 'Neorg' })
 vim.keymap.set('n', '  ', ':noh | Fidget clear<CR>', { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })

@@ -1,6 +1,6 @@
 vim.g.showtabline = 3
 vim.g.termguicolors = true
-vim.cmd('colorscheme tokyonight')
+vim.cmd('colorscheme material-lighter')
 
 -- cmp
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
