@@ -23,7 +23,7 @@ return {
 		},
 		cmd = 'Registers',
 	},
-	{
+	--[[ {
 		'kevinhwang91/nvim-bqf',
 		opts = {
 			preview = {
@@ -40,7 +40,7 @@ return {
 			},
 		},
 		ft = { 'qf' },
-	},
+	}, ]]
 	{
 		'j-hui/fidget.nvim',
 		config = function()
@@ -181,7 +181,19 @@ return {
 					end,
 				},
 				bottom = {
-					{ ft = 'qf', title = 'QuickFix' },
+					--					{ ft = 'qf', title = 'QuickFix' },
+					{
+						ft = 'trouble',
+						title = 'QuickFix',
+						size = { width = 0.2, height = 0.2 },
+						filter = function(_buf, win)
+							if vim.api.nvim_win_get_config(win).relative == '' then
+								return vim.w[win].trouble.mode == 'quickfix' and vim.api.nvim_win_get_config(win).relative == ''
+							else
+								return false
+							end
+						end,
+					},
 				},
 				left = {
 					{
@@ -198,7 +210,11 @@ return {
 						open = 'Trouble lsp_document_symbols',
 						size = { width = 0.2, height = 0.5 },
 						filter = function(_buf, win)
-							return vim.w[win].trouble.mode == 'lsp_document_symbols'
+							if vim.api.nvim_win_get_config(win).relative == '' then
+								return vim.w[win].trouble.mode == 'lsp_document_symbols'
+							else
+								return false
+							end
 						end,
 					},
 				},
@@ -210,10 +226,14 @@ return {
 						open = 'Trouble todo',
 						size = {
 							width = 0.2,
-							height = 0.5,
+							--							height = 0.5,
 						},
 						filter = function(_buf, win)
-							return vim.w[win].trouble.mode == 'todo'
+							if vim.api.nvim_win_get_config(win).relative == '' then
+								return vim.w[win].trouble.mode == 'todo' and vim.api.nvim_win_get_config(win).relative == ''
+							else
+								return false
+							end
 						end,
 					},
 				},

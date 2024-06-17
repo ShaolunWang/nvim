@@ -66,3 +66,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
 	end,
 })
+local init_quickfix = vim.api.nvim_create_augroup('init_quickfix', { clear = true })
+vim.api.nvim_create_autocmd('QuickFixCmdPost', {
+	pattern = { '[^l]*' },
+	callback = function()
+		vim.cmd('Trouble quickfix')
+		-- vim.cmd('cwindow')
+	end,
+	group = init_quickfix,
+})
+vim.api.nvim_create_autocmd('QuickFixCmdPost', {
+	pattern = { 'l*' },
+	callback = function()
+		vim.cmd('Trouble loclist')
+		-- vim.cmd('lwindow')
+	end,
+	group = init_quickfix,
+})

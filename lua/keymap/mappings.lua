@@ -51,23 +51,35 @@ local toggle_qf = function()
 		if info.quickfix == 1 then
 			vim.cmd('cclose')
 			return
+		elseif info.variables['trouble'] ~= nil then
+			vim.print(info.variables['trouble'].mode)
+			if info.variables['trouble'].mode == 'quickfix' then
+				print('what')
+				vim.cmd('Trouble quickfix close')
+				return
+			end
 		end
 	end
 	if next(vim.fn.getqflist()) == nil then
 		vim.print('No Quickfix Entry')
 		return
 	end
-	vim.cmd('copen')
+	vim.cmd('Trouble quickfix')
 end
 vim.keymap.set('n', '<F6>', function()
 	toggle_qf()
 end, noremap_silent)
 
 local toggle_loclist = function()
-	for _, info in ipairs(vim.fn.getwininfo()) do
+	for win, info in ipairs(vim.fn.getwininfo()) do
 		if info.loclist == 1 then
 			vim.cmd('lclose')
 			return
+		elseif info.variables['trouble'] ~= nil then
+			if info.variables['trouble'].mode == 'loclist' then
+				vim.cmd('Trouble loclist close')
+				return
+			end
 		end
 	end
 
@@ -75,7 +87,9 @@ local toggle_loclist = function()
 		vim.print('No Location List Entry')
 		return
 	end
-	vim.cmd('lopen')
+	-- vim.cmd('lopen')
+
+	vim.cmd('Trouble loclist')
 end
 
 vim.keymap.set('n', '<F7>', function()

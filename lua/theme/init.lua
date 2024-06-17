@@ -1,6 +1,6 @@
 vim.g.showtabline = 3
 vim.g.termguicolors = true
-vim.cmd('colorscheme material-lighter')
+vim.cmd('colorscheme tokyonight-night')
 
 -- cmp
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
@@ -43,13 +43,13 @@ end
 require('theme.tabby')
 require('theme.line')
 
-vim.cmd([[
+--[[vim.cmd([[
     hi BqfPreviewBorder guifg=#3e8e2d ctermfg=71
     hi BqfPreviewTitle guifg=#3e8e2d ctermfg=71
     hi BqfPreviewThumb guibg=#3e8e2d ctermbg=71
     hi link BqfPreviewRange Search
-]])
-
+]]
+--)
 local function hl(highlight, fg, bg, link)
 	if fg == nil then
 		fg = 'none'

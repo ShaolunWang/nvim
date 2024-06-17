@@ -42,7 +42,7 @@ return {
 				cursor_line = true, -- Enable darker background for the cursor line
 				lsp_virtual_text = true, -- Enable contrasted background for lsp virtual text
 				non_current_windows = false, -- Enable contrasted background for non-current windows
-				filetypes = {},  -- Specify which filetypes get the contrasted (darker) background
+				filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
 			},
 
 			plugins = { -- Uncomment the plugins that you use to highlight them
@@ -52,36 +52,36 @@ return {
 				-- "dap",
 				-- "dashboard",
 				-- "eyeliner",
-				"fidget",
-				"flash",
+				'fidget',
+				'flash',
 				-- "gitsigns",
 				-- "harpoon",
 				-- "hop",
 				-- "illuminate",
 				-- "indent-blankline",
 				-- "lspsaga",
-				"mini",
-				"neogit",
+				'mini',
+				'neogit',
 				-- "neotest",
 				-- "neo-tree",
 				-- "neorg",
 				-- "noice",
-				"nvim-cmp",
-				"nvim-navic",
-				"nvim-tree",
-				"nvim-web-devicons",
+				'nvim-cmp',
+				'nvim-navic',
+				'nvim-tree',
+				'nvim-web-devicons',
 				-- "rainbow-delimiters",
 				-- "sneak",
 				-- "telescope",
-				"trouble",
+				'trouble',
 				-- "which-key",
 				-- "nvim-notify",
 			},
 
-    high_visibility = {
-        lighter = true, -- Enable higher contrast text for lighter style
-        darker = true-- Enable higher contrast text for darker style
-    },
+			high_visibility = {
+				lighter = true, -- Enable higher contrast text for lighter style
+				darker = true, -- Enable higher contrast text for darker style
+			},
 		},
-	}
+	},
 }
