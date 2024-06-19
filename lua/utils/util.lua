@@ -15,5 +15,6 @@ M.exclude_ft = {
 	'NeogitRebaseTodo',
 	'NeogitPopup',
 	'NeogitCommitView',
+	'undotree',
 }
 return M

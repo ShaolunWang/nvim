@@ -83,3 +83,12 @@ vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	end,
 	group = init_quickfix,
 })
+vim.api.nvim_create_autocmd('VimLeave', {
+	pattern = { '*' },
+	callback = function()
+		local undo_path = vim.fn.stdpath('data') .. '/undo/'
+		local delete_old_undo = 'silent AsyncDo! fd . ' .. undo_path .. ' --changed-before 1week -x rm'
+		vim.cmd(delete_old_undo)
+		vim.print('cleaned undo files older than 1 week...')
+	end,
+})

@@ -6,11 +6,11 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_animate_in_insert_mode = false
 	vim.g.neovide_cursor_trail_size = 0
 end
-local function _1_()
+local function cpp_modern_config()
 	return vim.cmd('\9       let g:cpp_attributes_highlight = 1\n\9       let g:cpp_member_highlight = 1\n\9     ')
 end
 
-local function _3_()
+local function cscope_config()
 	require('cscope_maps').setup({
 		cscope = {
 			db_build_cmd_args = { '-bqkv', '-i', './cscope.files' },
@@ -107,10 +107,10 @@ local function _3_()
 	return nil
 end
 return {
-	{ 'bfrg/vim-cpp-modern', config = _1_, ft = { 'c', 'cpp', 'h', 'hpp' } },
+	{ 'bfrg/vim-cpp-modern', config = cpp_modern_config, ft = { 'c', 'cpp', 'h', 'hpp' } },
 	{
 		'dhananjaylatkar/cscope_maps.nvim',
-		config = _3_,
+		config = cscope_config,
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		ft = { 'cpp', 'h', 'hpp' },
 	},

@@ -68,6 +68,9 @@ return {
 	},
 	{
 		'nanotee/zoxide.vim',
+		config = function()
+			vim.g.zoxide_use_select = 1
+		end,
 		cmd = { 'Z', 'LZ', 'Zi', 'Tz', 'Lzi', 'Tzi' },
 	},
 	{
@@ -99,6 +102,7 @@ return {
 		config = function()
 			require('smart-splits').setup()
 		end,
+		event = { 'WinEnter' },
 	},
 	{
 		'andymass/vim-matchup',
@@ -108,4 +112,18 @@ return {
 		event = 'BufReadPre',
 	},
 	{ 'kwkarlwang/bufjump.nvim', opts = {}, keys = { 'c-o', 'c-i' } },
+	{
+		'haya14busa/vim-asterisk',
+		config = function()
+			vim.keymap.set({ 'n', 'x' }, '*', '<Plug>(asterisk-*)', { silent = true, noremap = true })
+			vim.keymap.set({ 'n', 'x' }, '#', '<Plug>(asterisk-#)', { silent = true, noremap = true })
+			vim.keymap.set({ 'n', 'x' }, '*', '<Plug>(asterisk-*)', { silent = true, noremap = true })
+			vim.keymap.set({ 'n', 'x' }, 'g#', '<Plug>(asterisk-g#)', { silent = true, noremap = true })
+			vim.keymap.set({ 'n', 'x' }, 'z#', '<Plug>(asterisk-z#)', { silent = true, noremap = true })
+			vim.keymap.set({ 'n', 'x' }, 'z*', '<Plug>(asterisk-z*)', { silent = true, noremap = true })
+			vim.keymap.set({ 'n', 'x' }, 'gz*', '<Plug>(asterisk-gz*)', { silent = true, noremap = true })
+			vim.g['asterisk#keeppos'] = 1
+		end,
+		event = { 'BufReadPost' },
+	},
 }

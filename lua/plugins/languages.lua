@@ -44,11 +44,6 @@ return {
 		ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
 	},
 	{
-		'jakemason/ouroboros.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		ft = { 'cpp', 'h', 'hpp' },
-	},
-	{
 		'Badhi/nvim-treesitter-cpp-tools',
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'jakemason/ouroboros.nvim' },
 		-- Optional: Configuration
@@ -92,5 +87,7 @@ return {
 				size = 0.25,
 			},
 		},
+		lazy = true,
+		cmd = { 'Trouble' },
 	},
 }
