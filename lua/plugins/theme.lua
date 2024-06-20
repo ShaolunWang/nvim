@@ -30,4 +30,5 @@ return {
 	{
 		'nyoom-engineering/oxocarbon.nvim',
 	},
+	{ 'Shatur/neovim-ayu' },
 }

@@ -67,13 +67,6 @@ return {
 		},
 	},
 	{
-		'nanotee/zoxide.vim',
-		config = function()
-			vim.g.zoxide_use_select = 1
-		end,
-		cmd = { 'Z', 'LZ', 'Zi', 'Tz', 'Lzi', 'Tzi' },
-	},
-	{
 		'cbochs/grapple.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim', 'j-hui/fidget.nvim' },
 		config = function()

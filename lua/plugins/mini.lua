@@ -97,6 +97,10 @@ return {
 				'Trouble',
 				'Tagbar',
 				'lazy',
+				'terminal',
+				'fzf',
+				'qf',
+				'undotree',
 			}
 			local miniscope = require('mini.indentscope')
 			miniscope.setup({

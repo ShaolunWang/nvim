@@ -4,12 +4,13 @@ return {
 		config = function()
 			vim.g.undotree_DiffCommand = 'difft'
 			vim.g.undotree_WindowLayout = 4
+			vim.g.undotree_DiffAutoOpen = false
 		end,
 		cmd = { 'UndotreeToggle' },
 	},
 	{
 		'kevinhwang91/nvim-fundo',
-		requires = 'kevinhwang91/promise-async',
+		dependencies = { 'kevinhwang91/promise-async' },
 		build = function()
 			require('fundo').install()
 		end,

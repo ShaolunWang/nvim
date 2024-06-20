@@ -63,7 +63,7 @@ return {
 			open = 'Trouble todo',
 			size = {
 				width = 0.2,
-				--							height = 0.5,
+				height = 0.3,
 			},
 			filter = function(_buf, win)
 				if vim.api.nvim_win_get_config(win).relative == '' then
@@ -72,6 +72,24 @@ return {
 					return false
 				end
 			end,
+		},
+		{
+			ft = 'undotree',
+			pinned = true,
+			title = 'Undo Tree',
+			size = {
+				width = 0.2,
+				height = 0.3,
+			},
+			open = 'UndotreeToggle',
+		},
+		{
+			ft = 'diff',
+			title = 'Undotree diff',
+			size = {
+				width = 0.2,
+				height = 0.3,
+			},
 		},
 	},
 }

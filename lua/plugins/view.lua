@@ -96,7 +96,6 @@ return {
 		dependencies = { 'neovim/nvim-lspconfig' },
 		lazy = true,
 	},
-
 	{
 		'lukas-reineke/indent-blankline.nvim',
 		opts = {
@@ -116,6 +115,8 @@ return {
 					'qf',
 					'terminal',
 					'fzf',
+					'Trouble',
+					'UndoTree',
 				},
 			},
 		},

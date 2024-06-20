@@ -36,6 +36,9 @@ local tree_opts = {
 			resize_window = true,
 			window_picker = {
 				chars = 'aoeui',
+				exclude = {
+					filetype = { 'undotree', 'trouble', 'diff' },
+				},
 			},
 		},
 		remove_file = {
@@ -43,7 +46,7 @@ local tree_opts = {
 		},
 	},
 	log = {
-		enable = true,
+		enable = false,
 		truncate = true,
 		types = {
 			diagnostics = true,
