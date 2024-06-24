@@ -43,6 +43,9 @@ end
 -- bqf
 require('theme.tabby')
 require('theme.line')
+local ui = require('theme.ui')
+ui.override_ui_input()
+ui.override_ui_select()
 
 --[[vim.cmd([[
     hi BqfPreviewBorder guifg=#3e8e2d ctermfg=71

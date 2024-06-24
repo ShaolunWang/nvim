@@ -62,7 +62,7 @@ return {
 				},
 			})
 			local utils = require('fzf-lua.utils')
-			require('fzf-lua').register_ui_select(function(ui_opts, items)
+--[[ 			require('fzf-lua').register_ui_select(function(ui_opts, items)
 				-- Auto-height
 				local min_h, max_h = 0.15, 0.70
 				local h = (#items + 2) / vim.o.lines
@@ -100,7 +100,7 @@ return {
 						['--info'] = 'hidden',
 					},
 				}
-			end)
+			end) ]]
 		end,
 		keys = { '<leader>' },
 		cmd = { 'FzfLua' },

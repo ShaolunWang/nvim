@@ -124,4 +124,8 @@ return {
 		event = { 'BufReadPost' },
 	},
 	{ 'tzachar/highlight-undo.nvim', opts = {}, keys = { 'u', '<c-r>' } },
+	{
+		'MunifTanjim/nui.nvim',
+		lazy = true,
+	}
 }
