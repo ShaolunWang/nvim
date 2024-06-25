@@ -127,5 +127,18 @@ return {
 	{
 		'MunifTanjim/nui.nvim',
 		lazy = true,
-	}
+	},
+	{
+		'stevearc/dressing.nvim',
+		opts = {
+			select = {
+				backend = { 'nui', 'fzf_lua', 'builtin' },
+				nui = {
+					buf_options = {
+						filetype = 'nui',
+					},
+				},
+			},
+		},
+	},
 }

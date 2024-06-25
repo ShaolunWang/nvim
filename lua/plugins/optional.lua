@@ -5,6 +5,7 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_animate_command_line = false
 	vim.g.neovide_cursor_animate_in_insert_mode = false
 	vim.g.neovide_cursor_trail_size = 0
+	vim.o.mouse = 'a'
 end
 local function cpp_modern_config()
 	return vim.cmd('\9       let g:cpp_attributes_highlight = 1\n\9       let g:cpp_member_highlight = 1\n\9     ')

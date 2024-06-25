@@ -97,7 +97,7 @@ local nui_au = vim.api.nvim_create_augroup('nui_au', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = { 'nui' },
 	callback = function()
-		vim.keymap.set('n', '<c-n>', '<Down>',{buffer = true})
+		vim.keymap.set('n', '<c-n>', '<Down>', { buffer = true })
 	end,
 	group = nui_au,
 })

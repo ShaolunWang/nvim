@@ -62,45 +62,6 @@ return {
 				},
 			})
 			local utils = require('fzf-lua.utils')
---[[ 			require('fzf-lua').register_ui_select(function(ui_opts, items)
-				-- Auto-height
-				local min_h, max_h = 0.15, 0.70
-				local h = (#items + 2) / vim.o.lines
-				if h < min_h then
-					h = min_h
-				elseif h > max_h then
-					h = max_h
-				end
-
-				local min_w, max_w = 0.05, 0.70
-				local longest = 0
-				for i, e in ipairs(items) do
-					local format_entry = ui_opts.format_item and ui_opts.format_item(e) or tostring(e)
-					local length = tostring(format_entry):len()
-					if length > longest then
-						longest = length
-					end
-				end
-				local w = (longest + 9) / vim.o.columns
-				if w < min_w then
-					w = min_w
-				elseif w > max_w then
-					w = max_w
-				end
-				-- end
-				return {
-					winopts = {
-						height = h,
-						width = w,
-						row = 0.5,
-						col = 0.5,
-					},
-					fzf_opts = {
-						['--layout'] = 'reverse-list',
-						['--info'] = 'hidden',
-					},
-				}
-			end) ]]
 		end,
 		keys = { '<leader>' },
 		cmd = { 'FzfLua' },

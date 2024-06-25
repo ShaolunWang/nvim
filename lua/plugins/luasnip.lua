@@ -22,6 +22,6 @@ return {
 			snippetDir = vim.fn.stdpath('config') .. '/snips/json_style/',
 			jsonFormatter = 'jq',
 		},
-		cmd = {'ScissorsAddNewSnippet', 'ScissorsEditSnippet'},
+		cmd = { 'ScissorsAddNewSnippet', 'ScissorsEditSnippet' },
 	},
 }

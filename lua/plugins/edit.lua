@@ -34,4 +34,22 @@ return {
 		},
 	},
 	{ 'chrisbra/NrrwRgn', cmd = { 'NR' } },
+	{
+		'kylechui/nvim-surround',
+		opts = {
+			keymaps = {
+				insert = '<C-g>s',
+				insert_line = '<C-g>S',
+				normal = 'rs',
+				normal_cur = 'rss',
+				normal_line = 'rS',
+				normal_cur_line = 'rSS',
+				visual = 'rs',
+				visual_line = 'rS',
+				delete = 'drs',
+				change = 'crs',
+				change_line = 'crS',
+			},
+		},
+	},
 }

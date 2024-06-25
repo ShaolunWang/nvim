@@ -45,24 +45,6 @@ return {
 		end,
 		keys = { '<leader>', '\\', 'g', ',', '[', ']', '<c-w>', 'r' },
 	},
-	--[[ {
-		'echasnovski/mini.hipatterns',
-		version = false,
-		config = function()
-			local hipatterns = require('mini.hipatterns')
-			hipatterns.setup({
-				highlighters = {
-					hex_color = hipatterns.gen_highlighter.hex_color(),
-					-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
-					fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-					deprecated = { pattern = '%f[%w]()DEPRECATE()%f[%W]', group = 'MiniHipatternsFixme' },
-					hack = { pattern = '%f[%w]()WARNING()%f[%W]', group = 'MiniHipatternsFixme' },
-					todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
-					note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
-				},
-			})
-		end,
-	}, ]]
 	{
 		'echasnovski/mini.move',
 		version = false,
@@ -126,27 +108,6 @@ return {
 		end,
 		version = false,
 		event = { 'BufReadPost', 'InsertEnter' },
-	},
-	{
-		'echasnovski/mini.surround',
-		config = function()
-			vim.keymap.set({ 'n', 'x' }, 'r', '<Nop>')
-			require('mini.surround').setup({
-				mappings = {
-					add = 'ra',
-					delete = 'rd',
-					find = 'rf',
-					find_left = 'rF',
-					highlight = 'rh',
-					replace = 'rr',
-					suffix_last = 'l',
-					suffix_next = 'n',
-					update_n_lines = 'rn',
-				},
-			})
-		end,
-		version = false,
-		event = { 'BufReadPre' },
 	},
 	{
 		'echasnovski/mini.files',

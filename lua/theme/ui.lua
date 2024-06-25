@@ -1,24 +1,42 @@
 M = {}
 function M.get_prompt_text(prompt, default_prompt)
 	local prompt_text = prompt or default_prompt
-	if prompt_text:sub(-1) == ":" then
-		prompt_text = "[" .. prompt_text:sub(1, -2) .. "]"
+	if prompt_text:sub(-1) == ':' then
+		prompt_text = '[' .. prompt_text:sub(1, -2) .. ']'
 	end
 	return prompt_text
 end
 
-local Input = require("nui.input")
-local event = require("nui.utils.autocmd").event
--- override ui input
+local Input = require('nui.input')
+local event = require('nui.utils.autocmd').event
+local config = {
+	position = '50%',
+	size = nil,
+	relative = 'editor',
+	border = {
+		style = 'rounded',
+	},
+	buf_options = {
+		swapfile = false,
+		filetype = 'DressingSelect',
+	},
+	win_options = {
+		winblend = 0,
+	},
+	max_width = 80,
+	max_height = 40,
+	min_width = 40,
+	min_height = 10,
+}
 function M.override_ui_input()
-	local UIInput = Input:extend("UIInput")
+	local UIInput = Input:extend('UIInput')
 
 	function UIInput:init(opts, on_done)
-		local border_top_text = M.get_prompt_text(opts.prompt, "[Input]")
-		local default_value = tostring(opts.default or "")
+		local border_top_text = get_prompt_text(opts.prompt, '[Input]')
+		local default_value = tostring(opts.default or '')
 
 		UIInput.super.init(self, {
-			relative = "cursor",
+			relative = 'cursor',
 			position = {
 				row = 1,
 				col = 0,
@@ -28,15 +46,14 @@ function M.override_ui_input()
 				width = math.max(20, vim.api.nvim_strwidth(default_value)),
 			},
 			border = {
-				style = "rounded",
+				style = 'rounded',
 				text = {
 					top = border_top_text,
-					top_align = "left",
+					top_align = 'left',
 				},
 			},
-			buf_options = { filetype = 'nui' },
 			win_options = {
-				winhighlight = "NormalFloat:Normal,FloatBorder:Normal",
+				winhighlight = 'NormalFloat:Normal,FloatBorder:Normal',
 			},
 		}, {
 			default_value = default_value,
@@ -54,7 +71,7 @@ function M.override_ui_input()
 		end, { once = true })
 
 		-- cancel operation if <Esc> is pressed
-		self:map("n", "<Esc>", function()
+		self:map('n', '<Esc>', function()
 			on_done(nil)
 		end, { noremap = true, nowait = true })
 	end
@@ -62,11 +79,11 @@ function M.override_ui_input()
 	local input_ui
 
 	vim.ui.input = function(opts, on_confirm)
-		assert(type(on_confirm) == "function", "missing on_confirm function")
+		assert(type(on_confirm) == 'function', 'missing on_confirm function')
 
 		if input_ui then
 			-- ensure single ui.input operation
-			vim.api.nvim_err_writeln("busy: another input is pending!")
+			vim.api.nvim_err_writeln('busy: another input is pending!')
 			return
 		end
 
@@ -85,105 +102,77 @@ function M.override_ui_input()
 	end
 end
 
--- override ui select
-local Menu = require("nui.menu")
-local event = require("nui.utils.autocmd").event
+local Menu = require('nui.menu')
+local event = require('nui.utils.autocmd').event
 
 function M.override_ui_select()
-	local UISelect = Menu:extend("UISelect")
-
-	function UISelect:init(items, opts, on_done)
-		local border_top_text = M.get_prompt_text(opts.prompt, "[Select Item]")
-		local kind = opts.kind or "unknown"
-		local format_item = opts.format_item or function(item)
-			return tostring(item.__raw_item or item)
+	vim.ui.select = function(items, opts, on_choice)
+		opts.format_item = function(line)
+			return string.gsub(tostring(line), '\n', ' ')
+		end
+		local Menu = require('nui.menu')
+		local event = require('nui.utils.autocmd').event
+		local lines = {}
+		local line_width = opts.prompt and vim.api.nvim_strwidth(opts.prompt) or 1
+		for i, item in ipairs(items) do
+			vim.print(item)
+			local line = opts.format_item(item)
+			line_width = math.max(line_width, vim.api.nvim_strwidth(line))
+			table.insert(lines, Menu.item(line, { value = item, idx = i }))
 		end
 
-		local popup_options = {
-			relative = "editor",
-			position = "50%",
-			border = {
-				style = "rounded",
-				text = {
-					top = border_top_text,
-					top_align = "left",
-				},
-			},
-
-			buf_options = { filetype = 'nui' },
-			win_options = {
-				winhighlight = "NormalFloat:Normal,FloatBorder:Normal",
-			},
-			zindex = 999,
-		}
-
-		if kind == "codeaction" then
-			-- change position for codeaction selection
-			popup_options.relative = "cursor"
-			popup_options.position = {
-				row = 1,
-				col = 0,
+		if not config.size then
+			line_width = math.max(line_width, config.min_width)
+			local height = math.max(#lines, config.min_height)
+			config.size = {
+				width = line_width,
+				height = height,
 			}
 		end
 
-		local max_width = popup_options.relative == "editor" and vim.o.columns - 4 or vim.api.nvim_win_get_width(0) - 4
-		local max_height = popup_options.relative == "editor" and math.floor(vim.o.lines * 80 / 100)
-			or vim.api.nvim_win_get_height(0)
-
-		local menu_items = {}
-		for index, item in ipairs(items) do
-			if type(item) ~= "table" then
-				item = { __raw_item = item }
-			end
-			item.index = index
-			local item_text = string.sub(format_item(item), 0, max_width)
-			menu_items[index] = Menu.item(item_text, item)
+		local callback
+		callback = function(...)
+			on_choice(...)
+			-- Prevent double-calls
+			callback = function() end
 		end
 
-		local menu_options = {
-			min_width = vim.api.nvim_strwidth(border_top_text),
-			max_width = max_width,
-			max_height = max_height,
-			lines = menu_items,
+		local border = vim.deepcopy(config.border)
+		border.text = {
+			top = opts.prompt,
+			top_align = 'center',
+		}
+		local menu = Menu({
+			position = config.position,
+			size = config.size,
+			relative = config.relative,
+			border = border,
+			buf_options = config.buf_options,
+			win_options = config.win_options,
+			enter = true,
+		}, {
+			lines = lines,
+			max_width = config.max_width,
+			max_height = config.max_height,
+			keymap = {
+				focus_next = { 'j', '<Down>', '<Tab>' },
+				focus_prev = { 'k', '<Up>', '<S-Tab>' },
+				close = { '<Esc>', '<C-c>' },
+				submit = { '<CR>' },
+			},
 			on_close = function()
-				on_done(nil, nil)
+				vim.schedule(function()
+					callback(nil, nil)
+				end)
 			end,
 			on_submit = function(item)
-				on_done(item.__raw_item or item, item.index)
+				callback(item.value, item.idx)
 			end,
-		}
+		})
 
-		UISelect.super.init(self, popup_options, menu_options)
+		menu:mount()
 
-		-- cancel operation if cursor leaves select
-		self:on(event.BufLeave, function()
-			on_done(nil, nil)
-		end, { once = true })
-	end
-
-	local select_ui = nil
-
-	vim.ui.select = function(items, opts, on_choice)
-		assert(type(on_choice) == "function", "missing on_choice function")
-
-		if select_ui then
-			-- ensure single ui.select operation
-			vim.api.nvim_err_writeln("busy: another select is pending!")
-			return
-		end
-
-		select_ui = UISelect(items, opts, function(item, index)
-			if select_ui then
-				-- if it's still mounted, unmount it
-				select_ui:unmount()
-			end
-			-- pass the select value
-			on_choice(item, index)
-			-- indicate the operation is done
-			select_ui = nil
-		end)
-
-		select_ui:mount()
+		menu:on(event.BufLeave, menu.menu_props.on_close, { once = true })
 	end
 end
 
