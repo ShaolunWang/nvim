@@ -14,6 +14,12 @@ return {
 		'hauleth/asyncdo.vim',
 	},
 	{
+		'stevearc/overseer.nvim',
+		opts = {
+			dap = false,
+		},
+	},
+	{
 		'NeogitOrg/neogit',
 		cmd = 'Neogit',
 		dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim', 'ibhagwan/fzf-lua' },

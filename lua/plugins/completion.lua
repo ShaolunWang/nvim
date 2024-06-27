@@ -92,8 +92,7 @@ function M.config()
 					end,
 				},
 			},
-
-			{ name = 'ray-x/cmp-treesitter' },
+			{ name = 'cmp-treesitter' },
 			{ name = 'luasnip' },
 			{ name = 'path' },
 			{ name = 'rg' },
@@ -152,6 +151,8 @@ function M.config()
 					luasnip = '[LuaSnip]',
 					nvim_lua = '[Lua]',
 					latex_symbols = '[LaTeX]',
+					treesitter = '[TS]',
+					path = '[Path]',
 					ctags = '[Tags]',
 					rg = '[Grep]',
 				})[entry.source.name]

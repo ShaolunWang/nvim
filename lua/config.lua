@@ -11,6 +11,7 @@ set.cursorline = true
 set.ttyfast = true
 set.number = true
 set.incsearch = true
+set.inccommand = 'split'
 set.clipboard = 'unnamedplus'
 set.splitkeep = 'screen'
 set.lazyredraw = true
@@ -58,15 +59,15 @@ end
 --   vim.api.nvim_create_user_command("Grep", function(params)
 -- Insert args at the '$*' in the grepprg
 --
---[[ ]]
+--[[ 
+  command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run(
+            \ <bang>0,
+           \ { 'job': &grepprg, 'errorformat': &grepformat },
+          \ <f-args>)
+--]]
 
 vim.cmd([[
-  command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run(
-              \ <bang>0,
-              \ { 'job': &grepprg, 'errorformat': &grepformat },
-              \ <f-args>)
   command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
-
   noreabbrev  <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent Grep'  : 'grep'
   cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent lgrep' : 'lgrep'
 ]])

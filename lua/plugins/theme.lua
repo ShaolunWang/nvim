@@ -27,8 +27,5 @@ return {
 		},
 	},
 	{ 'pappasam/papercolor-theme-slim' },
-	{
-		'nyoom-engineering/oxocarbon.nvim',
-	},
 	{ 'Shatur/neovim-ayu' },
 }
