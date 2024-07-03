@@ -109,30 +109,4 @@ return {
 		version = false,
 		event = { 'BufReadPost', 'InsertEnter' },
 	},
-	{
-		'echasnovski/mini.files',
-		version = false,
-		opts = {
-			mappings = {
-				close = 'q',
-				go_in = 'l',
-				go_in_plus = '<cr>',
-				go_out = 'h',
-				go_out_plus = 'H',
-				reset = '<BS>',
-				reveal_cwd = '@',
-				show_help = 'g?',
-				synchronize = '=',
-				trim_left = '<',
-				trim_right = '>',
-			},
-		},
-		lazy = true,
-		keys = { {
-			'<c-n>',
-			function()
-				require('mini.files').open()
-			end,
-		} },
-	},
 }

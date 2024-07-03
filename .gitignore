@@ -1,4 +1,5 @@
 lazy-lock.json
+*.zoekt
 tags
 lua/runners/
 snips/*

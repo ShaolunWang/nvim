@@ -18,6 +18,23 @@ return {
 		opts = {
 			dap = false,
 		},
+		config = function()
+			overseer = require('overseer')
+			overseer.setup(opts)
+			-- Add on_output_quickfix component to all "cargo" templates
+			overseer.add_template_hook({ module = '^just$' }, function(task_defn, util)
+				util.add_component(task_defn, { 'on_output_quickfix', open = true })
+			end)
+			-- Remove the on_complete_notify component from "cargo clean" task
+			overseer.add_template_hook({ name = '^just$' }, function(task_defn, util)
+				util.remove_component(task_defn, 'on_complete_notify')
+			end)
+
+			overseer.add_template_hook({ name = '^grep$' }, function(task_defn, util)
+				util.remove_component(task_defn, 'on_complete_notify')
+			end)
+			-- Add an environment variable for all go tasks in a specific dir
+		end,
 	},
 	{
 		'NeogitOrg/neogit',

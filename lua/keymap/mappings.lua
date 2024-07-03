@@ -1,13 +1,13 @@
 local map = vim.api.nvim_set_keymap
 
 -- oil & tree
---[[ vim.keymap.set('n', '<c-n>', function()
+vim.keymap.set('n', '<c-n>', function()
 	if vim.bo.filetype == 'oil' then
 		require('oil').close()
 	else
 		require('oil').open()
 	end
-end, { desc = 'File navigation' }) ]]
+end, { desc = 'File navigation' })
 -- neorg
 vim.keymap.set('n', '  ', ':noh | Fidget clear<CR>', { noremap = true, silent = true })
 
@@ -33,6 +33,7 @@ vim.keymap.set('n', '<leader>fo', function()
 	require('fzf-lua').oldfiles()
 end, { noremap = true, desc = 'Search Old File' })
 vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custom picker' })
+vim.keymap.set('n', '<leader>fb', ':FzfLua buffers<cr>', { noremap = true, desc = 'Buffers' })
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, desc = 'Close Tab' })
@@ -102,4 +103,4 @@ end, { silent = true })
 vim.keymap.set({ 'i', 's' }, '<c-u>', function()
 	require('luasnip').jump(-1)
 end, { silent = true })
---luasnip
+vim.api.nvim_set_keymap('n', ',c', ":lua require('neogen').generate()<CR>", { noremap = true, desc = 'neogen' })

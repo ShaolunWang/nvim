@@ -141,20 +141,4 @@ return {
 			},
 		},
 	},
-	{
-		'j-morano/buffer_manager.nvim',
-		opts = {
-			short_file_name = true,
-			show_indicators = '->',
-		},
-		config = function()
-			vim.keymap.set(
-				'n',
-				'<leader>b',
-				':lua require("buffer_manager.ui").toggle_quick_menu()<cr>',
-				{ noremap = true, desc = 'buffer quick menu' }
-			)
-		end,
-		keys = { '<leader>b' },
-	},
 }

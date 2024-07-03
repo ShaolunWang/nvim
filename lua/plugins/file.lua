@@ -65,7 +65,7 @@ return {
 		end,
 		cmd = { 'NvimTreeToggle' },
 	},
-	--[[ {
+	{
 		'stevearc/oil.nvim',
 		opts = {
 			use_default_keymaps = false,
@@ -91,5 +91,5 @@ return {
 		-- Optional dependencies
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		cmd = { 'Oil' },
-	}, ]]
+	},
 }

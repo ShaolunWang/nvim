@@ -8,6 +8,7 @@ return {
 				hls = { preview_border = 'FzfLuaBorder' },
 				winopts = {
 					fullscreen = false,
+
 					border = 'single',
 					preview = {
 						delay = 0,
@@ -17,6 +18,11 @@ return {
 						scrollbar = false,
 						scrollchars = '', -- scrollbar chars ({ <full>, <empty> }
 					},
+				},
+				fzf_opts = {
+					['--highlight-line'] = true,
+					['--info'] = 'inline-right',
+					['--ansi'] = true,
 				},
 				fzf_colors = {
 					['fg'] = { 'fg', 'CursorLine' },
@@ -59,6 +65,13 @@ return {
 					cwd_only = false, -- buffers for the cwd only
 					cwd = nil, -- buffers list for a given dir
 					previewer = false,
+					winopts = {
+						height = 0.35, -- window height
+						width = 0.30, -- window width
+						row = 0.35, -- window row position (0=top, 1=bottom)
+						col = 0.50, -- window col position (0=left, 1=right)
+						--					previewer = 'bat',
+					},
 				},
 			})
 			local utils = require('fzf-lua.utils')

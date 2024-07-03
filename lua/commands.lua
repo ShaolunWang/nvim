@@ -15,12 +15,14 @@ vim.api.nvim_create_user_command('Grep', function(params)
 		cmd = cmd .. ' ' .. params.args
 	end
 	local task = overseer.new_task({
+		name = 'grep',
 		cmd = vim.fn.expandcmd(cmd),
 		components = {
 			{
 				'on_output_quickfix',
 				errorformat = vim.o.grepformat,
-				open = not params.bang,
+				open = true,
+				set_diagnostics = false,
 				open_height = 8,
 				items_only = true,
 			},

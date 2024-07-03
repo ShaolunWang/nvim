@@ -52,4 +52,8 @@ return {
 			},
 		},
 	},
+	{
+		'danymat/neogen',
+		opts = {},
+	},
 }

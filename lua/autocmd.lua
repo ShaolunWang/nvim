@@ -101,3 +101,18 @@ vim.api.nvim_create_autocmd('FileType', {
 	end,
 	group = nui_au,
 })
+
+vim.api.nvim_create_autocmd('BufRead', {
+	callback = function(ev)
+		local buftype = vim.bo[ev.buf].buftype
+		if buftype == 'quickfix' then
+			vim.schedule(function()
+				vim.cmd([[cclose]])
+				vim.cmd([[Trouble quickfix]])
+			end)
+		elseif buftype == 'loclist' then
+			vim.cmd([[lclose]])
+			vim.cmd([[Trouble loclist]])
+		end
+	end,
+})
