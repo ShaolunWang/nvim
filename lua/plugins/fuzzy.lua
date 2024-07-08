@@ -5,6 +5,7 @@ return {
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
 			require('fzf-lua').setup({
+				defaults = { formatter = 'path.filename_first' },
 				hls = { preview_border = 'FzfLuaBorder' },
 				winopts = {
 					fullscreen = false,
@@ -47,8 +48,8 @@ return {
 					color_icons = true,
 					-- can also be set to 'fzf-tmux'
 					winopts = {
-						height = 0.35, -- window height
-						width = 0.30, -- window width
+						height = 0.5, -- window height
+						width = 0.5, -- window width
 						row = 0.35, -- window row position (0=top, 1=bottom)
 						col = 0.50, -- window col position (0=left, 1=right)
 						--					previewer = 'bat',

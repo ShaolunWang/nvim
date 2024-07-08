@@ -122,4 +122,9 @@ return {
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
 	},
+	{
+		'fei6409/log-highlight.nvim',
+		opts = {},
+		ft = { 'log' },
+	},
 }

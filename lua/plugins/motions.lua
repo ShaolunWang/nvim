@@ -38,7 +38,6 @@ return {
 				mode = 'exact',
 			},
 		},
-
 		keys = {
 			{
 				's',
@@ -105,18 +104,4 @@ return {
 		event = 'BufReadPre',
 	},
 	{ 'kwkarlwang/bufjump.nvim', opts = {}, keys = { 'c-o', 'c-i' } },
-	{
-		'haya14busa/vim-asterisk',
-		config = function()
-			vim.keymap.set({ 'n', 'x' }, '*', '<Plug>(asterisk-*)', { silent = true, noremap = true })
-			vim.keymap.set({ 'n', 'x' }, '#', '<Plug>(asterisk-#)', { silent = true, noremap = true })
-			vim.keymap.set({ 'n', 'x' }, '*', '<Plug>(asterisk-*)', { silent = true, noremap = true })
-			vim.keymap.set({ 'n', 'x' }, 'g#', '<Plug>(asterisk-g#)', { silent = true, noremap = true })
-			vim.keymap.set({ 'n', 'x' }, 'z#', '<Plug>(asterisk-z#)', { silent = true, noremap = true })
-			vim.keymap.set({ 'n', 'x' }, 'z*', '<Plug>(asterisk-z*)', { silent = true, noremap = true })
-			vim.keymap.set({ 'n', 'x' }, 'gz*', '<Plug>(asterisk-gz*)', { silent = true, noremap = true })
-			vim.g['asterisk#keeppos'] = 1
-		end,
-		event = { 'BufReadPost' },
-	},
 }

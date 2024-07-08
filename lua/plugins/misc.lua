@@ -48,4 +48,14 @@ return {
 			disable_builtin_notifications = false,
 		},
 	},
+	{
+		'mihaifm/bufstop',
+		config = function()
+			vim.g.BufstopAutoSpeedToggle = true
+		end,
+		cmd = {
+			'BufstopModeFast',
+			'BufstopPreview',
+		},
+	},
 }

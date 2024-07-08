@@ -1,5 +1,19 @@
 return {
 	{
+		'echasnovski/mini.icons',
+		opts = {},
+		lazy = false,
+		specs = {
+			{ 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
+		},
+		config = function()
+			require('mini.icons').setup({
+				--style = 'ascii'
+			})
+			require('mini.icons').mock_nvim_web_devicons()
+		end,
+	},
+	{
 		'folke/todo-comments.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
