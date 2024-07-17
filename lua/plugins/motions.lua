@@ -43,7 +43,7 @@ return {
 				's',
 				mode = { 'n', 'x', 'o' },
 				function()
-					require('flash').jump()
+					require('utils.jump').two_label()
 				end,
 				desc = 'Flash',
 			},

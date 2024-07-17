@@ -27,5 +27,4 @@ return {
 		},
 	},
 	{ 'pappasam/papercolor-theme-slim' },
-	{ 'Shatur/neovim-ayu' },
 }

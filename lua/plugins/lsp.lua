@@ -39,9 +39,9 @@ return {
 		local no_diagnostic = {
 			['textDocument/publishDiagnostics'] = function() end,
 		}
-		for k, v in pairs(no_diagnostic) do
+		--[[ 		for k, v in pairs(no_diagnostic) do
 			clang_handlers[k] = v
-		end
+		end ]]
 		lsp.clangd.setup({
 			cmd = {
 				'clangd',

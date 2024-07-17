@@ -43,7 +43,7 @@ vim.keymap.set('n', '<leader>th', ':-tabmove<CR>', { noremap = true, desc = '-Mo
 vim.keymap.set('n', '<leader>tl', ':+tabmove<CR>', { noremap = true, desc = '+Move Tab' })
 
 -- misc
-vim.keymap.set('n', '""', ':Registers<cr>', { noremap = true, desc = 'reg floating window', silent = true })
+--vim.keymap.set('n', '""', ':Registers<cr>', { noremap = true, desc = 'reg floating window', silent = true })
 -- runner
 vim.keymap.set('n', '<f5>', ':AsyncDo ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
@@ -103,4 +103,7 @@ vim.keymap.set({ 'i', 's' }, '<c-u>', function()
 	require('luasnip').jump(-1)
 end, { silent = true })
 vim.api.nvim_set_keymap('n', ',c', ":lua require('neogen').generate()<CR>", { noremap = true, desc = 'neogen' })
-vim.api.nvim_set_keymap('n', '<c-s>', ':BufstopModeFast<CR>', { noremap = true, desc = 'quick buf switching' })
+vim.api.nvim_set_keymap('n', '<leader>s', ':BufstopPreview<CR>', { noremap = true, desc = 'quick buf switching' })
+vim.keymap.set({ 'n', 'x' }, '<c-s>', function()
+	require('rip-substitute').sub()
+end, { desc = ' rip substitute' })

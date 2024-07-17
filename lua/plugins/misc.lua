@@ -1,6 +1,6 @@
 return {
 
-	{
+	--[[ {
 		'tversteeg/registers.nvim',
 		config = function()
 			require('registers').setup({ bind_keys = { normal = false, insert = false } })
@@ -9,7 +9,7 @@ return {
 			{ '"', mode = { 'n', 'v' } },
 		},
 		cmd = 'Registers',
-	},
+	}, ]]
 	{
 		'hauleth/asyncdo.vim',
 	},
@@ -56,6 +56,21 @@ return {
 		cmd = {
 			'BufstopModeFast',
 			'BufstopPreview',
+		},
+	},
+	{
+		'folke/which-key.nvim',
+		event = 'VeryLazy',
+		opts = {
+			preset = 'helix',
+			modes = {
+				n = true,
+				i = false,
+				s = false,
+				o = true,
+				t = false,
+				c = true,
+			},
 		},
 	},
 }

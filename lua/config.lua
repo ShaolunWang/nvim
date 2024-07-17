@@ -6,15 +6,16 @@ set.scrolloff = 10
 set.shiftwidth = 4
 set.mouse = ''
 set.cmdheight = 0
+set.synmaxcol = 180
 set.backspace = 'indent,eol,start'
-set.cursorline = true
+set.cursorline = false
 set.ttyfast = true
 set.number = true
 set.incsearch = true
 set.inccommand = 'split'
 set.clipboard = 'unnamedplus'
 set.splitkeep = 'screen'
-set.lazyredraw = true
+set.lazyredraw = false
 set.undofile = true
 set.termguicolors = true
 set.foldcolumn = '1' -- '0' is not bad
@@ -60,8 +61,7 @@ end
 -- Insert args at the '$*' in the grepprg
 --
 --[[ 
-  command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run(
-            \ <bang>0,
+  command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run( \ <bang>0,
            \ { 'job': &grepprg, 'errorformat': &grepformat },
           \ <f-args>)
 --]]

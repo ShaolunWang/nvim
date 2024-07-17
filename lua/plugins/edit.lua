@@ -55,5 +55,22 @@ return {
 	{
 		'danymat/neogen',
 		opts = {},
+		keys = { ',c' },
+	},
+	{
+		'chrisgrieser/nvim-rip-substitute',
+		opts = {
+			-- default settings
+			keymaps = {
+				-- normal & visual mode
+				confirm = '<CR>',
+				abort = 'q',
+				prevSubst = '<c-p>',
+				nextSubst = '<c-n>',
+				insertModeConfirm = '<C-CR>', -- (except this one, obviously)
+			},
+		},
+		cmd = { 'RipSubstitute' },
+		keymaps = { '<c-s>' },
 	},
 }

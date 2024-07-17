@@ -1,51 +1,5 @@
 return {
 	{
-		'echasnovski/mini.clue',
-		config = function()
-			local miniclue = require('mini.clue')
-			miniclue.setup({
-				window = {
-					delay = 500,
-					config = {
-						anchor = 'SW',
-						width = 'auto',
-						row = 'auto',
-						col = 'auto',
-					},
-				},
-				triggers = {
-					{ mode = 'n', keys = 'g' },
-					{ mode = 'n', keys = '<Leader>' },
-					{ mode = 'n', keys = '\\' },
-					{ mode = 'n', keys = ',' },
-					{ mode = 'n', keys = '[' },
-					{ mode = 'n', keys = ']' },
-					{ mode = 'n', keys = '<C-w>' },
-					{ mode = 'n', keys = 'm' },
-					{ mode = 'n', keys = 'r' },
-					{ mode = 'v', keys = 'r' },
-					{ mode = 'o', keys = 'r' },
-					{ mode = 'x', keys = 'r' },
-				},
-				clues = {
-					{ mode = 'n', keys = '<Leader>f', desc = '+Fuzzy Search...' },
-					{ mode = 'n', keys = '<Leader>t', desc = '+Tab ...' },
-					{ mode = 'n', keys = '<Leader>g', desc = '+Grapple ...' },
-					{ mode = 'n', keys = '\\', desc = '+Lsp ...' },
-					{ mode = 'n', keys = 'g', desc = '+g ...' },
-					{ mode = 'n', keys = ',', desc = '+unimpaired ...' },
-					{ mode = 'n', keys = '[', desc = '+unimpaired ...' },
-					{ mode = 'n', keys = ']', desc = '+unimpaired ...' },
-					{ mode = { 'n', 'v', 'o', 'x' }, keys = 'r', desc = '+surround ...' },
-					miniclue.gen_clues.windows({
-						submode_resize = true,
-					}),
-				},
-			})
-		end,
-		keys = { '<leader>', '\\', 'g', ',', '[', ']', '<c-w>', 'r' },
-	},
-	{
 		'echasnovski/mini.move',
 		version = false,
 		opts = {
@@ -68,45 +22,5 @@ return {
 			},
 		},
 		keys = { '[', ']' },
-	},
-	{
-		'echasnovski/mini.indentscope',
-		version = false,
-		config = function()
-			vim.g.miniindentscope_disable = {
-				'NvimTree',
-				'Outline',
-				'Trouble',
-				'Tagbar',
-				'lazy',
-				'terminal',
-				'fzf',
-				'qf',
-				'undotree',
-			}
-			local miniscope = require('mini.indentscope')
-			miniscope.setup({
-				draw = {
-					delay = 0,
-					animation = miniscope.gen_animation.none(),
-				},
-				symbol = '┃',
-				options = {
-					border = 'both',
-					indent_at_cursor = true,
-					try_as_border = false,
-				},
-			})
-		end,
-		event = { 'BufReadPost', 'InsertEnter' },
-	},
-	{
-		'echasnovski/mini.animate',
-		config = function()
-			local animate = require('mini.animate')
-			animate.setup({ cursor = { enable = false }, scroll = { enable = false } })
-		end,
-		version = false,
-		event = { 'BufReadPost', 'InsertEnter' },
 	},
 }
