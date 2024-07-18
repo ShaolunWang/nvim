@@ -1,6 +1,3 @@
-local map = vim.api.nvim_set_keymap
-
--- oil & tree
 vim.keymap.set('n', '<c-n>', function()
 	if vim.bo.filetype == 'oil' then
 		require('oil').close()
@@ -9,7 +6,10 @@ vim.keymap.set('n', '<c-n>', function()
 	end
 end, { desc = 'File navigation' })
 -- neorg
-vim.keymap.set('n', '  ', ':noh | Fidget clear<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '  ', function()
+	vim.cmd('noh')
+	vim.cmd('NoiceDismiss')
+end, { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
 -- moving between splits
@@ -37,10 +37,10 @@ vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custo
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, desc = 'Close Tab' })
 vim.keymap.set('n', '<leader>to', ':tabonly<CR>', { noremap = true, desc = 'Close Other Tabs' })
-vim.keymap.set('n', '<leader>tj', ':tabn<CR>', { noremap = true, desc = 'Next Tab' })
-vim.keymap.set('n', '<leader>tk', ':tabp<CR>', { noremap = true, desc = 'Prev Tab' })
 vim.keymap.set('n', '<leader>th', ':-tabmove<CR>', { noremap = true, desc = '-Move Tab' })
 vim.keymap.set('n', '<leader>tl', ':+tabmove<CR>', { noremap = true, desc = '+Move Tab' })
+vim.keymap.set('n', '[t', ':tabn<CR>', { noremap = true, desc = 'Next Tab' })
+vim.keymap.set('n', ']t', ':tabp<CR>', { noremap = true, desc = 'Prev Tab' })
 
 -- misc
 --vim.keymap.set('n', '""', ':Registers<cr>', { noremap = true, desc = 'reg floating window', silent = true })

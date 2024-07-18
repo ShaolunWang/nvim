@@ -41,7 +41,6 @@ return {
 				'<leader>ee',
 				function()
 					require('edgy').toggle()
-					require('fidget').notify('edgy toggle')
 				end,
 				desc = 'Edgy Toggle',
 			},
@@ -49,43 +48,6 @@ return {
 			{ "<leader>ei", function() require("edgy").select() end, desc = "Edgy Select Window" },
 		},
 		opts = require('utils.edgy'),
-	},
-	{
-		'j-hui/fidget.nvim',
-		config = function()
-			require('fidget').setup({
-				notification = {
-					override_vim_notify = true,
-					configs = {
-						default = {
-							name = '',
-							icon = '',
-							ttl = 5,
-							group_style = 'Title',
-							icon_style = 'Special',
-							annote_style = 'Question',
-							debug_style = 'Comment',
-							warn_style = 'WarningMsg',
-							error_style = 'ErrorMsg',
-							debug_annote = 'DEBUG',
-							info_annote = 'INFO',
-							warn_annote = 'WARN',
-							error_annote = 'ERROR',
-						},
-					},
-					window = {
-						border = 'rounded',
-						normal_hl = '',
-					},
-				},
-				integration = {
-					['nvim-tree'] = {
-						enable = false, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-					},
-				},
-			})
-		end,
-		event = 'BufReadPost',
 	},
 	{
 		'kevinhwang91/nvim-bqf',
@@ -198,16 +160,13 @@ return {
 			notify = {
 				-- NOTE: If you enable messages, then the cmdline is enabled automatically.
 				-- This is a current Neovim limitation.
-				enabled = false, -- enables the Noice messages UI
+				enabled = true, -- enables the Noice messages UI
 			},
 			message = {
-				false,
+				true,
 			},
 			cmdline = {
 				view = 'cmdline_popup',
-			},
-			popupmenu = {
-				backend = 'cmp', -- backend to use to show regular cmdline completions
 			},
 		},
 	},

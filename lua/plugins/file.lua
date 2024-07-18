@@ -23,10 +23,6 @@ local tree_opts = {
 			},
 		},
 	},
-	update_focused_file = {
-		enable = true,
-		ignore_list = { 'help' },
-	},
 	diagnostics = {
 		enable = true,
 		show_on_dirs = true,

@@ -1,1 +1,0 @@
-local qgrep_path

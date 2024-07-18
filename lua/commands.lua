@@ -34,10 +34,20 @@ vim.api.nvim_create_user_command('Grep', function(params)
 	task:start()
 end, { nargs = '*', bang = true, complete = 'file' })
 
-vim.api.nvim_create_user_command('Make', function(in_params)
-	require('overseer').run_template({ name = 'just', params = in_params })
+vim.api.nvim_create_user_command('Make', function(params)
+	-- Insert args at the '$*' in the makeprg
+	local cmd = 'just'
+	cmd = cmd .. ' ' .. params.args
+	local task = require('overseer').new_task({
+		cmd = vim.fn.expandcmd(cmd),
+		components = {
+			--			{ 'on_output_quickfix', open = not params.bang, open_height = 8 },
+			'default',
+		},
+	})
+	task:start()
 end, {
-	desc = 'Make',
+	desc = 'Run your makeprg as an Overseer task',
 	nargs = '*',
 	bang = true,
 })

@@ -67,7 +67,7 @@ return {
 	},
 	{
 		'cbochs/grapple.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim', 'j-hui/fidget.nvim' },
+		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			local grapple = require('grapple')
 			require('grapple').setup()
@@ -77,13 +77,11 @@ return {
 			vim.keymap.set('n', '<leader>gp', grapple.open_tags, { desc = 'Grapple Menu' })
 			vim.keymap.set('n', '[g', function()
 				grapple.cycle_tags('prev')
-				local fidget = require('fidget')
-				fidget.notify('Grapple Cycle Backward')
+				require('noice').redirect('Grapple Cycle Backward')
 			end, { desc = 'Grapple Prev' })
 			vim.keymap.set('n', ']g', function()
 				grapple.cycle_tags('next')
-				local fidget = require('fidget')
-				fidget.notify('Grapple Cycle Forward')
+				require('noice').redirect('Grapple Cycle Forward')
 			end, { desc = 'Grapple Next' })
 		end,
 
