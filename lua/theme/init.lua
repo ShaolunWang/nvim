@@ -1,6 +1,6 @@
-vim.g.showtabline = 3
+vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme tokyonight-night')
+vim.cmd('colorscheme modus')
 
 -- cmp
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
@@ -40,9 +40,6 @@ for group, color in pairs(ts_extra_highlights) do
 end
 
 -- bqf
-require('theme.tabby')
-require('theme.line')
-require('theme.ui')
 --require('theme.ui').override_ui_input()
 --require('theme.ui').override_ui_select()
 --[[vim.cmd([[
@@ -89,3 +86,7 @@ vim.api.nvim_set_hl(0, 'FzfLuaCursorLineNr', { link = 'Float' })
 vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = colors.darkwhite, bg = bg, link = link })
+
+require('theme.tabby')
+require('theme.line')
+require('theme.ui')

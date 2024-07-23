@@ -36,9 +36,7 @@ local M = {
 		'rafamadriz/friendly-snippets',
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
-		'delphinus/cmp-ctags',
 		'lukas-reineke/cmp-rg',
-		'ray-x/cmp-treesitter',
 	},
 }
 

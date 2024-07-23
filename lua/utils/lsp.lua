@@ -24,6 +24,7 @@ M.c = vim.tbl_deep_extend(
 	{},
 	vim.lsp.protocol.make_client_capabilities(),
 	has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+	--	has_cmp and cmp_nvim_lsp.lsp_ensure_capabilities() or {},
 	{},
 	{
 		textDocument = {
