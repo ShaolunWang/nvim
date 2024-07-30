@@ -8,10 +8,10 @@ local function add_desc(opt, description)
 end
 
 function M.on_attach(client, bufnr)
-	local navic = require('nvim-navic')
-	if client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
-	end
+	--	local navic = require('nvim-navic')
+	--	if client.server_capabilities.documentSymbolProvider then
+	--		navic.attach(client, bufnr)
+	--	end
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 
 	-- Enable completion triggered by <c-x><c-o>

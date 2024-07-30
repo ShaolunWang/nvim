@@ -73,4 +73,8 @@ return {
 		cmd = { 'RipSubstitute' },
 		keymaps = { '<c-s>' },
 	},
+	{
+		'chrisgrieser/nvim-various-textobjs',
+		opts = { useDefaultKeymaps = true },
+	},
 }

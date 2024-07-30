@@ -1,7 +1,7 @@
 local lsp_keymap = require('keymap.lsp_keymaps')
 local utils = require('utils.lsp')
 return {
-	{ 'folke/neodev.nvim', opts = {}, ft = { 'lua' } },
+	{ 'folke/lazydev.nvim', opts = {}, ft = { 'lua' } },
 	{
 		'mrcjkb/rustaceanvim',
 		opts = {},
@@ -127,5 +127,13 @@ return {
 		'fei6409/log-highlight.nvim',
 		opts = {},
 		ft = { 'log' },
+	},
+	{
+		'mfussenegger/nvim-lint',
+		config = function()
+			require('lint').linters_by_ft = {
+				markdown = { 'vale' },
+			}
+		end,
 	},
 }

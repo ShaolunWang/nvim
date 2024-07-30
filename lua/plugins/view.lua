@@ -67,11 +67,11 @@ return {
 		},
 		ft = { 'qf' },
 	},
-	{
+	--[[ {
 		'SmiteshP/nvim-navic',
 		dependencies = { 'neovim/nvim-lspconfig' },
 		lazy = true,
-	},
+	}, ]]
 	{
 		'lukas-reineke/indent-blankline.nvim',
 		opts = {
@@ -169,5 +169,16 @@ return {
 				view = 'cmdline_popup',
 			},
 		},
+	},
+	{
+		'sindrets/winshift.nvim',
+		opts = {
+			moving_win_options = {
+				wrap = true,
+				cursorline = false,
+				cursorcolumn = false,
+			},
+		},
+		cmd = { 'WinShift' },
 	},
 }

@@ -183,7 +183,7 @@ local ScrollBar = {
 
 -- Full nerd (with icon colors and clickable elements)!
 -- works in multi window, but does not support flexible components (yet ...)
-local Navic = {
+--[[ local Navic = {
 	condition = function()
 		--		return require('nvim-navic').is_available()
 		return require('lazy.core.config').plugins['nvim-lspconfig']._.loaded
@@ -278,10 +278,10 @@ local Navic = {
 	end,
 	hl = { fg = 'gray' },
 	update = 'CursorMoved',
-}
+} ]]
 
 local Winbars = {
-	Navic,
+	--	Navic,
 }
 -- cmdline
 

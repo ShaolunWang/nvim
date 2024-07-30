@@ -48,29 +48,13 @@ return {
 			disable_builtin_notifications = false,
 		},
 	},
-	{
-		'mihaifm/bufstop',
-		config = function()
-			vim.g.BufstopAutoSpeedToggle = true
-		end,
-		cmd = {
-			'BufstopModeFast',
-			'BufstopPreview',
-		},
-	},
+
 	{
 		'folke/which-key.nvim',
 		event = 'VeryLazy',
 		opts = {
 			preset = 'helix',
-			modes = {
-				n = true,
-				i = false,
-				s = false,
-				o = true,
-				t = false,
-				c = true,
-			},
+			notify = false,
 		},
 	},
 }

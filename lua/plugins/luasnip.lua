@@ -13,6 +13,7 @@ return {
 			})
 			require('luasnip.loaders.from_lua').load({ paths = vim.fn.stdpath('config') .. '/snips/lua_style/' })
 			require('luasnip.loaders.from_vscode').lazy_load({ paths = vim.fn.stdpath('config') .. '/snips/json_style/' })
+			require('luasnip.loaders.from_vscode').lazy_load()
 		end,
 		event = 'InsertEnter',
 	},
