@@ -72,7 +72,7 @@ return {
 		dependencies = { 'neovim/nvim-lspconfig' },
 		lazy = true,
 	}, ]]
-	{
+	--[[ 	{
 		'lukas-reineke/indent-blankline.nvim',
 		opts = {
 			indent = {
@@ -98,7 +98,7 @@ return {
 		},
 		main = 'ibl',
 		event = { 'BufReadPost' },
-	},
+	}, ]]
 	{ 'tzachar/highlight-undo.nvim', opts = {}, keys = { 'u', '<c-r>' } },
 	{
 		'MunifTanjim/nui.nvim',

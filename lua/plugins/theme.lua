@@ -31,7 +31,7 @@ return {
 		'neanias/everforest-nvim',
 		config = function()
 			require('everforest').setup({
-				--				background = 'hard',
+				background = 'hard',
 				transparent_background_level = 0,
 				italics = true,
 				disable_italic_comments = false,
@@ -58,5 +58,8 @@ return {
 				variables = {},
 			},
 		},
+	},
+	{
+		'NTBBloodbath/doom-one.nvim',
 	},
 }
