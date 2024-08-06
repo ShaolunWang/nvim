@@ -6,6 +6,7 @@ return {
 		'mrcjkb/rustaceanvim',
 		opts = {},
 		config = function()
+			vim.lsp.inlay_hint.enable()
 			vim.g.rustaceanvim = {
 				-- Plugin configuration
 				tools = {},
@@ -54,6 +55,14 @@ return {
 	{
 		'mrcjkb/haskell-tools.nvim',
 		version = '^3', -- Recommended
+		config = function()
+			vim.g.haskell_tools = {
+				hls = {
+					on_attach = lsp_keymap.on_attach,
+				},
+			}
+		end,
+		lazy = false,
 		ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
 	},
 	{

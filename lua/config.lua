@@ -18,6 +18,7 @@ set.splitkeep = 'screen'
 set.lazyredraw = false
 set.undofile = true
 set.termguicolors = true
+
 set.foldcolumn = '1' -- '0' is not bad
 set.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 set.foldlevelstart = 99

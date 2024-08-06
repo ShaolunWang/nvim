@@ -1,5 +1,6 @@
 return {
 	'neovim/nvim-lspconfig',
+	opts = {},
 	config = function()
 		local utils = require('utils.lsp')
 		vim.lsp.log.set_level(vim.log.levels.OFF)

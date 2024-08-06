@@ -10,7 +10,6 @@ return {
 		event = 'BufReadPost', -- later or on keypress would prevent saving folds
 		opts = true, -- needed even when using default config
 	},
-
 	{
 		'kevinhwang91/nvim-ufo',
 		dependencies = {
@@ -32,6 +31,7 @@ return {
 		},
 		event = 'BufReadPre',
 		opts = {
+			close_fold_kinds_on_ft = { 'imports', 'comment' },
 			provider_selector = function(bufnr, filetype, buftype)
 				return ftMap[filetype]
 			end,
