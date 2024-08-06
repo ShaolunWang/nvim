@@ -11,15 +11,12 @@ return {
 		cmd = 'Registers',
 	}, ]]
 	{
-		'hauleth/asyncdo.vim',
-	},
-	{
 		'stevearc/overseer.nvim',
 		opts = {
 			dap = false,
 		},
 		config = function()
-			overseer = require('overseer')
+			local overseer = require('overseer')
 			overseer.setup(opts)
 			-- Add on_output_quickfix component to all "cargo" templates
 			overseer.add_template_hook({ module = '^just$' }, function(task_defn, util)
@@ -34,6 +31,24 @@ return {
 				util.remove_component(task_defn, 'on_complete_notify')
 			end)
 			-- Add an environment variable for all go tasks in a specific dir
+			local cmd = {
+				'OverseerOpen',
+				'OverseerClose',
+				--				'OverseerToggle',
+				'OverseerSaveBundle',
+				'OverseerLoadBundle',
+				'OverseerDeleteBundle',
+				'OverseerRunCmd',
+				'OverseerRun',
+				--				'OverseerInfo',
+				'OverseerBuild',
+				'OverseerQuickAction',
+				'OverseerTaskAction',
+				--				'OverseerClearCache',
+			}
+			for _, iter in pairs(cmd) do
+				vim.api.nvim_del_user_command(iter)
+			end
 		end,
 	},
 	{
@@ -55,6 +70,7 @@ return {
 		opts = {
 			preset = 'helix',
 			notify = false,
+			show_keypress = false,
 		},
 	},
 }

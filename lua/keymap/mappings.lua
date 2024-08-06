@@ -45,7 +45,7 @@ vim.keymap.set('n', ']t', ':tabp<CR>', { noremap = true, desc = 'Prev Tab' })
 -- misc
 --vim.keymap.set('n', '""', ':Registers<cr>', { noremap = true, desc = 'reg floating window', silent = true })
 -- runner
-vim.keymap.set('n', '<f5>', ':AsyncDo ', { noremap = true, desc = 'Runner' })
+vim.keymap.set('n', '<f5>', ':Make ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.quickfix == 1 then

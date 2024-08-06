@@ -99,11 +99,6 @@ return {
 			handlers = utils.lsp_handlers,
 			capabilities = utils.c,
 		})
-		lsp.marksman.setup({
-			on_attach = lsp_keymap.on_attach,
-			handlers = utils.lsp_handlers,
-			capabilities = utils.c,
-		})
 		lsp.typst_lsp.setup({
 			on_attach = lsp_keymap.on_attach,
 			handlers = utils.lsp_handlers,
@@ -115,7 +110,7 @@ return {
 		'python',
 		'ocaml',
 		'cpp',
-		'md',
+		'typst',
 		'ts',
 		'lua',
 	},

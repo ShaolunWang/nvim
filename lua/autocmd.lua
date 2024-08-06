@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd('VimLeave', {
 	pattern = { '*' },
 	callback = function()
 		local undo_path = vim.fn.stdpath('data') .. '/undo/'
-		local delete_old_undo = 'silent AsyncDo! fd . ' .. undo_path .. ' --changed-before 1week -x rm'
+		local delete_old_undo = 'silent Make fd . ' .. undo_path .. ' --changed-before 1week -x rm'
 		vim.cmd(delete_old_undo)
 		vim.print('cleaned undo files older than 1 week...')
 	end,
@@ -114,15 +114,5 @@ vim.api.nvim_create_autocmd('BufRead', {
 			vim.cmd([[lclose]])
 			vim.cmd([[Trouble loclist]])
 		end
-	end,
-})
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-	callback = function()
-		-- try_lint without arguments runs the linters defined in `linters_by_ft`
-		-- for the current filetype
-		require('lint').try_lint()
-
-		-- You can call `try_lint` with a linter name or a list of names to always
-		-- run specific linters, independent of the `linters_by_ft` configuration
 	end,
 })

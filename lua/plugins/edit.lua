@@ -51,6 +51,8 @@ return {
 				change_line = 'crS',
 			},
 		},
+		keys = { 'r' },
+		events = { 'BufReadPost' },
 	},
 	{
 		'danymat/neogen',

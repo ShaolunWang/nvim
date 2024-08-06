@@ -34,7 +34,20 @@ return {
 	{
 		'p00f/clangd_extensions.nvim',
 		config = function()
-			require('clangd_extensions').setup()
+			require('clangd_extensions').setup({
+				cmd = {
+					'clangd',
+					'-j=4',
+					'--background-index',
+					'--clang-tidy',
+					'--fallback-style=llvm',
+					'--all-scopes-completion',
+					'--completion-style=detailed',
+					'--header-insertion=iwyu',
+					'--header-insertion-decorators',
+					'--pch-storage=memory',
+				},
+			})
 		end,
 		ft = { 'cpp', 'h' },
 	},
@@ -127,13 +140,5 @@ return {
 		'fei6409/log-highlight.nvim',
 		opts = {},
 		ft = { 'log' },
-	},
-	{
-		'mfussenegger/nvim-lint',
-		config = function()
-			require('lint').linters_by_ft = {
-				markdown = { 'vale' },
-			}
-		end,
 	},
 }
