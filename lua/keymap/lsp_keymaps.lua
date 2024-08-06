@@ -32,8 +32,6 @@ function M.on_attach(client, bufnr)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, add_desc(bufopts, 'Show Impl'))
 	vim.keymap.set('n', 'gK', vim.diagnostic.open_float, add_desc(bufopts, 'Line Diag'))
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, add_desc(bufopts, 'Show References'))
-	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, add_desc(opts, 'Prev Diag'))
-	vim.keymap.set('n', ']d', vim.diagnostic.goto_next, add_desc(opts, 'Next Diag'))
 end
 
 return M
