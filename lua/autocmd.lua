@@ -13,8 +13,8 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = 'qf',
 	callback = function()
-		vim.api.nvim_buf_set_keymap(0, 'n', '<,o>', '<cmd>colder<CR>', { noremap = true, silent = true })
-		vim.api.nvim_buf_set_keymap(0, 'n', '<,i>', '<cmd>cnewer<CR>', { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, 'n', '<c-o>', '<cmd>colder<CR>', { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, 'n', '<c-i>', '<cmd>cnewer<CR>', { noremap = true, silent = true })
 	end,
 })
 
@@ -70,16 +70,16 @@ local init_quickfix = vim.api.nvim_create_augroup('init_quickfix', { clear = tru
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	pattern = { '[^l]*' },
 	callback = function()
-		vim.cmd('Trouble quickfix')
-		-- vim.cmd('cwindow')
+		--vim.cmd('Trouble quickfix')
+		vim.cmd('cwindow')
 	end,
 	group = init_quickfix,
 })
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	pattern = { 'l*' },
 	callback = function()
-		vim.cmd('Trouble loclist')
-		-- vim.cmd('lwindow')
+		--vim.cmd('Trouble loclist')
+		vim.cmd('lwindow')
 	end,
 	group = init_quickfix,
 })
@@ -102,17 +102,17 @@ vim.api.nvim_create_autocmd('FileType', {
 	group = nui_au,
 })
 
-vim.api.nvim_create_autocmd('BufRead', {
-	callback = function(ev)
-		local buftype = vim.bo[ev.buf].buftype
-		if buftype == 'quickfix' then
-			vim.schedule(function()
-				vim.cmd([[cclose]])
-				vim.cmd([[Trouble quickfix]])
-			end)
-		elseif buftype == 'loclist' then
-			vim.cmd([[lclose]])
-			vim.cmd([[Trouble loclist]])
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd('BufRead', {
+-- 	callback = function(ev)
+-- 		local buftype = vim.bo[ev.buf].buftype
+-- 		if buftype == 'quickfix' then
+-- 			vim.schedule(function()
+-- 				vim.cmd([[cclose]])
+-- 				vim.cmd([[Trouble quickfix]])
+-- 			end)
+-- 		elseif buftype == 'loclist' then
+-- 			vim.cmd([[lclose]])
+-- 			vim.cmd([[Trouble loclist]])
+-- 		end
+-- 	end,
+-- })

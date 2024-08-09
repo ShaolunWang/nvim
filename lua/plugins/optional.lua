@@ -13,10 +13,9 @@ local function cscope_config()
 	require('cscope_maps').setup({
 		cscope = {
 			db_build_cmd_args = { '-bqkv', '-i', './cscope.files' },
-			exec = 'cscope',
+			exec = 'gtags-cscope',
 			picker = 'fzf-lua',
 			skip_picker_for_single_result = true,
-			db_build_cmd_args = { '-bqkv' },
 		},
 	})
 	local sym_map = {

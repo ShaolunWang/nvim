@@ -65,11 +65,12 @@ local toggle_qf = function()
 		vim.print('No Quickfix Entry')
 		return
 	end
-	vim.cmd('Trouble quickfix')
+	--vim.cmd('Trouble quickfix')
+	vim.cmd('copen')
 end
 vim.keymap.set('n', '<F6>', function()
 	toggle_qf()
-end, noremap_silent)
+end, { noremap = true, silent = true })
 
 local toggle_loclist = function()
 	for win, info in ipairs(vim.fn.getwininfo()) do
@@ -88,9 +89,9 @@ local toggle_loclist = function()
 		vim.print('No Location List Entry')
 		return
 	end
-	-- vim.cmd('lopen')
+	vim.cmd('lopen')
 
-	vim.cmd('Trouble loclist')
+	--	vim.cmd('Trouble loclist')
 end
 
 vim.keymap.set('n', '<F7>', function()

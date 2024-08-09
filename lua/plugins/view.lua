@@ -50,20 +50,11 @@ return {
 		opts = require('utils.edgy'),
 	},
 	{
-		'kevinhwang91/nvim-bqf',
+		'stevearc/quicker.nvim',
 		opts = {
-			preview = {
-				win_height = 999,
-				win_vheight = 999,
-			},
-			func_enable = {
-				drop = 'd',
-				openc = 'o',
-				split = '<C-v>',
-				tabdrop = '<C-t>',
-				tabc = '',
-				ptogglemode = 'z,',
-			},
+			max_filename_width = function()
+				return math.floor(math.min(45, vim.o.columns / 2))
+			end,
 		},
 		ft = { 'qf' },
 	},

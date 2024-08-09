@@ -51,8 +51,7 @@ return {
 				change_line = 'crS',
 			},
 		},
-		keys = { 'r' },
-		events = { 'BufReadPost' },
+		events = { 'BufReadsost' },
 	},
 	{
 		'danymat/neogen',
@@ -75,8 +74,8 @@ return {
 		cmd = { 'RipSubstitute' },
 		keymaps = { '<c-s>' },
 	},
-	{
+	--[[ {
 		'chrisgrieser/nvim-various-textobjs',
 		opts = { useDefaultKeymaps = true },
-	},
+	}, ]]
 }

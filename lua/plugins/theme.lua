@@ -42,4 +42,7 @@ return {
 	{
 		'NTBBloodbath/doom-one.nvim',
 	},
+	{
+		'alexvzyl/nordic.nvim',
+	},
 }

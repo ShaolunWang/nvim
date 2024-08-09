@@ -67,10 +67,12 @@ return {
 	{
 		'folke/which-key.nvim',
 		event = 'VeryLazy',
-		opts = {
-			preset = 'helix',
-			notify = false,
-			show_keypress = false,
-		},
+		config = function()
+			require('which-key').setup({
+				preset = 'helix',
+				notify = false,
+				show_keypress = false,
+			})
+		end,
 	},
 }
