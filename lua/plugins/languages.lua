@@ -162,4 +162,5 @@ return {
 		opts = {},
 		ft = { 'log' },
 	},
+	{ 'Bekaboo/dropbar.nvim', opts = { { general = { enable = false } } } },
 }

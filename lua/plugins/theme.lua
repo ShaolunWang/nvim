@@ -15,7 +15,11 @@ return {
 			require('tabby').setup({})
 		end,
 	},
-	{ 'rebelot/heirline.nvim', event = 'VeryLazy' },
+	{
+		'rebelot/heirline.nvim',
+		dependencies = {},
+		event = 'VeryLazy',
+	},
 	{
 		'yeomfa/jetly',
 		event = 'VeryLazy',
@@ -42,7 +46,8 @@ return {
 	{
 		'NTBBloodbath/doom-one.nvim',
 	},
+	-- Lazy
 	{
-		'alexvzyl/nordic.nvim',
+		'tanvirtin/monokai.nvim',
 	},
 }

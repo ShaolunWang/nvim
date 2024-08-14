@@ -108,7 +108,7 @@ return {
 			},
 		},
 	},
-	{
+	--[[ 	{
 		'folke/noice.nvim',
 		event = 'VeryLazy',
 		dependencies = {
@@ -157,7 +157,7 @@ return {
 				view = 'cmdline_popup',
 			},
 		},
-	},
+	}, ]]
 	{
 		'sindrets/winshift.nvim',
 		opts = {
@@ -168,5 +168,11 @@ return {
 			},
 		},
 		cmd = { 'WinShift' },
+	},
+	{
+		'j-morano/buffer_manager.nvim',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		opts = {},
+		keymap = { '<leader>b' },
 	},
 }

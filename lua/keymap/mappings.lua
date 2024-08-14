@@ -8,7 +8,7 @@ end, { desc = 'File navigation' })
 -- neorg
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
-	vim.cmd('NoiceDismiss')
+	--	vim.cmd('NoiceDismiss')
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
@@ -106,3 +106,10 @@ vim.keymap.set({ 'i', 's' }, '<c-u>', function()
 end, { silent = true })
 vim.api.nvim_set_keymap('n', ',c', ":lua require('neogen').generate()<CR>", { noremap = true, desc = 'neogen' })
 vim.keymap.set({ 'n', 'x' }, '<c-s>', ':RipSubstitute<cr>', { desc = ' rip substitute' })
+
+vim.keymap.set(
+	{ 'n' },
+	'<leader>b',
+	':lua require("buffer_manager.ui").toggle_quick_menu()<cr>',
+	{ desc = 'buffer manager', noremap = true }
+)
