@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
-vim.loader.enable() -- cache lua modules (https://github.com/neovim/neovim/pull/22668)
+vim.loader.enable()
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-
+-- put this after lazy setup
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		'git',

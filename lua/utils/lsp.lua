@@ -18,12 +18,13 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+local p = vim.lsp.protocol.make_client_capabilities()
+local has_cmp, cmp_nvim_lsp = pcall(require, 'bink.cmp')
 M.c = vim.tbl_deep_extend(
 	'force',
 	{},
-	vim.lsp.protocol.make_client_capabilities(),
-	has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+	p,
+	has_cmp and cmp_nvim_lsp.get_lsp_capabilities(p) or {},
 	--	has_cmp and cmp_nvim_lsp.lsp_ensure_capabilities() or {},
 	{},
 	{
@@ -86,4 +87,5 @@ M.c.workspace = {
 		dynamicRegistration = true,
 	},
 }
+
 return M

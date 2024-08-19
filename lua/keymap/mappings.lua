@@ -1,11 +1,18 @@
-vim.keymap.set('n', '<c-n>', function()
+--vim.keymap.set('n', '<leader>bb',  ':ls<CR>:b<space>', {noremap = true, desc = 'buffers'})
+--vim.keymap.set('n', '<leader>bd',  ':ls<CR>:bd <space>', {noremap = true, desc = 'buffers'})
+--vim.keymap.set('n', '<leader>b',  ':BufExplorer<cr>', {noremap = true, desc = 'buffers'})
+
+--[[ vim.keymap.set('n', '<c-n>', function()
 	if vim.bo.filetype == 'oil' then
 		require('oil').close()
 	else
 		require('oil').open()
 	end
-end, { desc = 'File navigation' })
+end, { desc = 'File navigation' }) ]]
 -- neorg
+vim.keymap.set('n', '<c-n>', function()
+	vim.cmd([[Fern -drawer -stay -toggle -reveal=% .]])
+end, { noremap = true, desc = 'Fern' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
 	--	vim.cmd('NoiceDismiss')
@@ -13,10 +20,12 @@ end, { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
 -- moving between splits
-vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
-vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
-vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
-vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left, { noremap = true })
+vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down, { noremap = true })
+vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up, { noremap = true })
+vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right, { noremap = true })
+vim.keymap.set('n', '<C-p>', require('smart-splits').move_cursor_previous, { noremap = true })
+
 -- grapple
 
 -- Telescope
@@ -50,12 +59,12 @@ vim.keymap.set('n', '<f5>', ':Make ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.quickfix == 1 then
-			vim.cmd('cclose')
+			--vim.cmd('cclose')
+			require('quicker').close()
 			return
 		elseif info.variables['trouble'] ~= nil then
 			vim.print(info.variables['trouble'].mode)
 			if info.variables['trouble'].mode == 'quickfix' then
-				print('what')
 				vim.cmd('Trouble quickfix close')
 				return
 			end
@@ -66,7 +75,8 @@ local toggle_qf = function()
 		return
 	end
 	--vim.cmd('Trouble quickfix')
-	vim.cmd('copen')
+	require('quicker').open()
+	--vim.cmd('copen')
 end
 vim.keymap.set('n', '<F6>', function()
 	toggle_qf()
@@ -106,10 +116,3 @@ vim.keymap.set({ 'i', 's' }, '<c-u>', function()
 end, { silent = true })
 vim.api.nvim_set_keymap('n', ',c', ":lua require('neogen').generate()<CR>", { noremap = true, desc = 'neogen' })
 vim.keymap.set({ 'n', 'x' }, '<c-s>', ':RipSubstitute<cr>', { desc = ' rip substitute' })
-
-vim.keymap.set(
-	{ 'n' },
-	'<leader>b',
-	':lua require("buffer_manager.ui").toggle_quick_menu()<cr>',
-	{ desc = 'buffer manager', noremap = true }
-)

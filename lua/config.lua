@@ -18,7 +18,7 @@ set.splitkeep = 'screen'
 set.lazyredraw = false
 set.undofile = true
 set.termguicolors = true
-
+set.cursorline = true
 set.foldcolumn = '1' -- '0' is not bad
 set.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 set.foldlevelstart = 99
@@ -76,7 +76,7 @@ end
 --   vim.api.nvim_create_user_command("Grep", function(params)
 -- Insert args at the '$*' in the grepprg
 --
---[[ 
+--[[
   command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run( \ <bang>0,
            \ { 'job': &grepprg, 'errorformat': &grepformat },
           \ <f-args>)

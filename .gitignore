@@ -4,5 +4,4 @@ tags
 lua/runners/
 snips/*
 *.json
-after/
 .localsession.vim

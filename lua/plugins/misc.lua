@@ -39,8 +39,8 @@ return {
 				'OverseerLoadBundle',
 				'OverseerDeleteBundle',
 				'OverseerRunCmd',
-				'OverseerRun',
-				--				'OverseerInfo',
+				-- 'OverseerRun',
+				'OverseerInfo',
 				'OverseerBuild',
 				'OverseerQuickAction',
 				'OverseerTaskAction',
@@ -54,8 +54,20 @@ return {
 	{
 		'NeogitOrg/neogit',
 		cmd = 'Neogit',
-		dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim', 'ibhagwan/fzf-lua' },
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'sindrets/diffview.nvim',
+			'ibhagwan/fzf-lua',
+			{
+				{
+					'akinsho/git-conflict.nvim',
+					version = '*',
+					config = true,
+				},
+			},
+		},
 		opts = {
+			graph_style = 'kitty',
 			auto_refresh = true,
 			integrations = { diffview = true },
 			kind = 'tab',
@@ -66,7 +78,7 @@ return {
 
 	{
 		'folke/which-key.nvim',
-		event = 'VeryLazy',
+		--		event = 'VeryLazy',
 		config = function()
 			require('which-key').setup({
 				preset = 'helix',
@@ -75,4 +87,36 @@ return {
 			})
 		end,
 	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*", -- recommended, use latest release instead of latest commit
+		lazy = true,
+		ft = "markdown",
+		dependencies = {
+			-- Required.
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			completion = {
+				-- Set to false to disable completion.
+				nvim_cmp = false,
+			},
+			workspaces = {
+				{
+					name = "no-vault",
+					path = function()
+						return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
+					end,
+					overrides = {
+						notes_subdir = vim.NIL, -- have to use 'vim.NIL' instead of 'nil'
+						new_notes_location = "current_dir",
+						templates = {
+							folder = vim.NIL,
+						},
+						disable_frontmatter = true,
+					},
+				},
+			},
+		},
+	}
 }

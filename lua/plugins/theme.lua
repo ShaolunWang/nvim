@@ -30,24 +30,42 @@ return {
 			style = 'night',
 		},
 	},
-	{ 'pappasam/papercolor-theme-slim' },
-	--[[ {
+	{ 'yorik1984/newpaper.nvim' },
+	{
+		'catppuccin/nvim',
+		name = 'catppuccin',
+		priority = 1000,
+	},
+	{
+		'hiphish/rainbow-delimiters.nvim',
+		event = 'BufReadPre',
+	},
+	{
 		'neanias/everforest-nvim',
+		event = 'VeryLazy',
+	},
+	{
+		'projekt0n/github-nvim-theme',
+		event = 'VeryLazy',
+	},
+	{
+		'Mofiqul/vscode.nvim',
+		event = 'VeryLazy',
+	},
+	{
+		'miikanissi/modus-themes.nvim',
+		event = 'VeryLazy',
+	},
+
+	{
+		'olivercederborg/poimandres.nvim',
+	},
+	{
+		'rose-pine/neovim',
+		name = 'rose-pine',
 		config = function()
-			require('everforest').setup({
-				background = 'hard',
-				transparent_background_level = 0,
-				italics = true,
-				disable_italic_comments = false,
-				ui_contract = 'high',
+			require('rose-pine').setup({
 			})
 		end,
-	}, ]]
-	{
-		'NTBBloodbath/doom-one.nvim',
-	},
-	-- Lazy
-	{
-		'tanvirtin/monokai.nvim',
 	},
 }

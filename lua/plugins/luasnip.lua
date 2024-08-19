@@ -2,7 +2,9 @@ return {
 	{
 		'L3MON4D3/LuaSnip',
 
-		dependencies = { 'rafamadriz/friendly-snippets' },
+		dependencies = {
+			'rafamadriz/friendly-snippets',
+		},
 		-- follow latest release.
 		version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 		-- build = "make install_jsregexp",
@@ -24,5 +26,17 @@ return {
 			jsonFormatter = 'jq',
 		},
 		cmd = { 'ScissorsAddNewSnippet', 'ScissorsEditSnippet' },
+	},
+	{
+		'iurimateus/luasnip-latex-snippets.nvim',
+		-- vimtex isn't required if using treesitter
+		requires = { 'L3MON4D3/LuaSnip', 'lervag/vimtex' },
+		build = 'make install_jsregexp',
+		config = function()
+			require('luasnip-latex-snippets').setup()
+			-- or setup({ use_treesitter = true })
+			require('luasnip').config.setup({ enable_autosnippets = true })
+		end,
+		event = 'InsertEnter',
 	},
 }

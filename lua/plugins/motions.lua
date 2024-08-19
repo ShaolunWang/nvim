@@ -77,11 +77,9 @@ return {
 			vim.keymap.set('n', '<leader>gp', grapple.open_tags, { desc = 'Grapple Menu' })
 			vim.keymap.set('n', '[g', function()
 				grapple.cycle_tags('prev')
-				require('noice').redirect('Grapple Cycle Backward')
 			end, { desc = 'Grapple Prev' })
 			vim.keymap.set('n', ']g', function()
 				grapple.cycle_tags('next')
-				require('noice').redirect('Grapple Cycle Forward')
 			end, { desc = 'Grapple Next' })
 		end,
 
@@ -90,16 +88,13 @@ return {
 	{
 		'mrjones2014/smart-splits.nvim',
 		config = function()
-			require('smart-splits').setup()
+			require('smart-splits').setup({
+				ignored_buftypes = {
+					'prompt',
+				},
+			})
 		end,
 		event = { 'WinEnter' },
-	},
-	{
-		'andymass/vim-matchup',
-		config = function()
-			vim.g.matchup_matchparen_offscreen = { method = 'popup' }
-		end,
-		event = 'BufReadPre',
 	},
 	{ 'kwkarlwang/bufjump.nvim', opts = {}, keys = { 'c-o', 'c-i' } },
 }

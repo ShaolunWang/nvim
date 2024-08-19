@@ -26,21 +26,128 @@ local kind_icons = {
 	TypeParameter = '󰅲',
 }
 local M = {
-	'hrsh7th/nvim-cmp',
-	version = false,
-	event = 'InsertEnter',
-	dependencies = {
-		'hrsh7th/cmp-nvim-lsp',
-		'hrsh7th/cmp-buffer',
-		'hrsh7th/cmp-path',
-		'rafamadriz/friendly-snippets',
-		'L3MON4D3/LuaSnip',
-		'saadparwaiz1/cmp_luasnip',
-		'lukas-reineke/cmp-rg',
+	{
+		'saghen/blink.cmp',
+		-- optional: provides snippets for the snippet source
+		lazy = false,
+		dependencies = {
+			{ 'rafamadriz/friendly-snippets' },
+			{ 'saadparwaiz1/cmp_luasnip' },
+			{ 'lukas-reineke/cmp-rg' },
+			{
+				'saghen/blink.compat',
+				opts = {
+					-- lazydev.nvim only registers the completion source when nvim-cmp is
+					-- loaded, so pretend that we are nvim-cmp, and that nvim-cmp is loaded.
+					-- this option only has effect when using lazy.nvim
+					-- this should not be required in most cases
+					impersontate_nvim_cmp = true,
+				}
+			},
+		},
+
+		-- use a release tag to download pre-built binaries
+	--	build = 'cargo build --release',
+version = "*",
+		-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- On musl libc based systems you need to add this flag
+		-- build = 'RUSTFLAGS="-C target-feature=-crt-static" cargo build --release',
+
+		opts = {
+			window = { autocomplete = { selection = 'manual' } },
+			keymap = {
+				['<c-m>'] = { 'show' },
+				['<c-h>'] = { 'hide' },
+				['<Tab>'] = { 'select_and_accept', 'fallback'},
+				['<cr>'] = { 'select_and_accept','fallback' },
+				['<C-p>'] = { 'select_prev' },
+				['<C-n>'] = { 'select_next' },
+				['<c-d>'] = { 'snippet_forward' },
+				['<c-u>'] = { 'snippet_backward ' },
+			},
+			highlight = {
+				-- sets the fallback highlight groups to nvim-cmp's highlight groups
+				-- useful for when your theme doesn't support blink.cmp
+				-- will be removed in a future release, assuming themes add support
+				use_nvim_cmp_as_default = true,
+			},
+			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- adjusts spacing to ensure icons are aligned
+			nerd_font_variant = 'normal',
+
+			-- experimental auto-brackets support
+			-- accept = { auto_brackets = { enabled = true } }
+
+			-- experimental signature help support
+			-- trigger = { signature_help = { enabled = true } }
+			sources = {
+				completion = {
+					enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'rg', 'luasnip' },
+				},
+				providers = {
+					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true },
+					path = { module = 'blink.cmp.sources.path', name = 'Path', enabled = true, score_offset = 3 },
+					buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, fallback_for = { 'LSP' } },
+					snippets = {
+						module = 'blink.cmp.sources.snippets',
+						name = 'scissor',
+						enabled = true,
+						opts = {
+							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
+						},
+					},
+					luasnip = { module = 'blink.compat.source', name = 'luasnip', enabled = true },
+					rg = { module = 'blink.compat.source', name = 'rg', enabled = true }
+				},
+			},
+		},
 	},
+	--[[ {
+		"ms-jpq/coq_nvim",
+		lazy = false,
+		branch = "coq",
+		dependencies = {
+			{ "ms-jpq/coq.artifacts",   branch = "artifacts" },
+			{ 'ms-jpq/coq.thirdparty',  branch = "3p" },
+			{ 'mendes-davi/coq_luasnip' }
+		},
+		init = function()
+			vim.g.coq_settings = {
+				auto_start = true,
+			}
+		end,
+		config = function()
+			vim.g.coq_settings = {
+				keymap = {
+					jump_to_mark = "", -- no jump_to_mark mapping
+				},
+				clients = {
+					snippets = { enabled = false }, -- disable coq snippets
+				},
+			}
+			require('utils.completion').coq_rg()
+		end,
+	}, ]]
+	--[[ {
+		"iguanacucumber/magazine.nvim",
+		name = 'nvim-cmp',
+		version = false,
+		event = 'InsertEnter',
+		dependencies = {
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-path',
+			'rafamadriz/friendly-snippets',
+			'L3MON4D3/LuaSnip',
+			'saadparwaiz1/cmp_luasnip',
+			'lukas-reineke/cmp-rg',
+		}
+	}, ]]
 }
 
-function M.config()
+-- function M.config()
+local function config()
 	local luasnip = require('luasnip')
 	local cmp = require('cmp')
 
@@ -74,6 +181,19 @@ function M.config()
 				-- For `luasnip` user.
 				luasnip.lsp_expand(args.body)
 			end,
+		},
+		---@diagnostic disable-next-line: missing-fields
+		sorting = {
+			comparators = {
+				cmp.config.compare.offset,
+				cmp.config.compare.exact,
+				cmp.config.compare.recently_used,
+				require('clangd_extensions.cmp_scores'),
+				cmp.config.compare.kind,
+				cmp.config.compare.sort_text,
+				cmp.config.compare.length,
+				cmp.config.compare.order,
+			},
 		},
 		mapping = cmp.mapping.preset.insert({
 			['<C-d>'] = cmp.mapping.scroll_docs(-4),

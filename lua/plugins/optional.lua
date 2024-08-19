@@ -122,4 +122,83 @@ return {
 		},
 		cmd = { 'Twilight' },
 	},
+	{
+		'MunifTanjim/nui.nvim',
+		lazy = true,
+	},
+	--[[ {
+		'folke/noice.nvim',
+		event = 'VeryLazy',
+		dependencies = {
+			'MunifTanjim/nui.nvim',
+		},
+		opts = {
+			-- add any options here
+			views = {
+				cmdline_popup = {
+					position = {
+						row = '97%',
+						col = '50%',
+					},
+					size = {
+						width = 60,
+						height = 1,
+					},
+					border = {
+						style = 'none',
+						padding = { 0, 0 },
+					},
+				},
+			},
+			lsp = {
+				override = {
+					['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+					['vim.lsp.util.stylize_markdown'] = true,
+					['cmp.entry.get_documentation'] = true,
+				},
+			},
+			-- you can enable a preset for easier configuration
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+				inc_rename = false,
+				lsp_doc_border = true,
+			},
+			notify = {
+				enabled = true, -- enables the Noice messages UI
+			},
+			message = {
+				true,
+			},
+			cmdline = {
+				view = 'cmdline_popup',
+			},
+		},
+	}, ]]
+	--[[ {
+		'nvimdev/guard.nvim',
+		dependencies = {
+			"nvimdev/guard-collection",
+		},
+		config = function()
+			local ft = require('guard.filetype')
+			ft('cpp'):fmt('clang-format')
+				:lint('clang-tidy')
+			ft('h'):fmt('clang-format')
+				:lint('clang-tidy')
+		end,
+		ft = { "cpp", "h" },
+	} ]]
+	{
+		'folke/zen-mode.nvim',
+		opts = {},
+		cmd = { "ZenMode" }
+	},
+	{
+		'jlanzarotta/bufexplorer',
+		config = function()
+			vim.g.bufExplorerDisableDefaultKeyMapping = 1
+		end,
+	}
 }

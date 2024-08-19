@@ -1,10 +1,24 @@
 vim.api.nvim_create_user_command('G', function()
 	require('neogit').open()
 end, {})
+vim.api.nvim_create_user_command('B', function()
+	vim.cmd[[BufExplorer]]
+end, {})
+
+vim.api.nvim_create_user_command('Sg', function()
+	vim.cmd([[:lua require('grug-far').open({ engine = 'astgrep' }) ]])
+end, {})
+vim.api.nvim_create_user_command('Rg', function()
+	vim.cmd([[:lua require('grug-far').open({ engine = 'ripgrep' }) ]])
+end, {})
+vim.api.nvim_create_user_command('UndotreeToggle', function()
+	vim.cmd([[:lua require('undotree').toggle()]])
+end, {})
 
 vim.api.nvim_create_user_command('T', function()
-	--	require('nvim-tree.api').tree.toggle()
-	vim.cmd([[:lua MiniFiles.open()]])
+	-- require('nvim-tree.api').tree.toggle()
+	--	vim.cmd([[:lua MiniFiles.open()]])
+	vim.cmd([[Fern -drawer -stay -toggle -reveal=% .]])
 end, {})
 
 vim.api.nvim_create_user_command('Grep', function(params)
@@ -47,7 +61,44 @@ vim.api.nvim_create_user_command('Make', function(params)
 	})
 	task:start()
 end, {
-	desc = 'Run your makeprg as an Overseer task',
+	desc = 'make, with quickfix list',
 	nargs = '*',
 	bang = true,
 })
+vim.api.nvim_create_user_command('Build', function(params)
+	-- Insert args at the '$*' in the makeprg
+	local cmd = 'just'
+	cmd = cmd .. ' ' .. params.args
+	local task = require('overseer').new_task({
+		cmd = vim.fn.expandcmd(cmd),
+		components = {
+			'default',
+		},
+	})
+	task:start()
+end, {
+	desc = 'Build, no quickfix list',
+	nargs = '*',
+	bang = true,
+})
+
+--[[ local function qftree(location)
+	local entries
+	local list_name
+	local path
+	if location == true then
+		entries = vim.fn.getloclist(0)
+		list_name = 'Location'
+	else
+		entries = vim.fn.getqflist(0)
+		list_name = 'Quickfix'
+	end
+	if next(entries) == nil then
+		vim.print(list_name + 'list is empty')
+		return
+	else
+		for e in entries do
+			vim.fn.fnamemodify(vim.api.nvim_buf_get_name(enties['bufnr']), ':p:.')
+		end
+	end
+end ]]

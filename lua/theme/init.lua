@@ -1,6 +1,6 @@
 vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme monokai_ristretto')
+vim.cmd('colorscheme catppuccin')
 
 -- cmp
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
@@ -78,11 +78,11 @@ local colors = {
 	purple = '#A988B0',
 	ash = '#BBB6B6',
 }
-vim.api.nvim_set_hl(0, 'FzfLuaBorder', { link = 'Directory' })
-vim.api.nvim_set_hl(0, 'FzfLuaTitle', { link = 'Float' })
-vim.api.nvim_set_hl(0, 'FzfLuaCursor', { link = 'Float' })
-vim.api.nvim_set_hl(0, 'FzfLuaCursorLine', { link = 'Float' })
-vim.api.nvim_set_hl(0, 'FzfLuaCursorLineNr', { link = 'Float' })
+-- vim.api.nvim_set_hl(0, 'FzfLuaBorder', { link = 'Directory' })
+-- vim.api.nvim_set_hl(0, 'FzfLuaTitle', { link = 'Float' })
+-- vim.api.nvim_set_hl(0, 'FzfLuaCursor', { link = 'Float' })
+-- vim.api.nvim_set_hl(0, 'FzfLuaCursorLine', { link = 'Float' })
+-- vim.api.nvim_set_hl(0, 'FzfLuaCursorLineNr', { link = 'Float' })
 vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = colors.darkwhite, bg = bg, link = link })
