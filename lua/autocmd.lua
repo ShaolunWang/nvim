@@ -55,7 +55,7 @@ local group = vim.api.nvim_create_augroup('CscopeBuild', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
 	pattern = { '*.cpp', '*.h' },
 	callback = function()
-		vim.cmd('silent Make')
+		vim.cmd('silent Build')
 	end,
 	group = group,
 })
@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd('VimLeave', {
 	pattern = { '*' },
 	callback = function()
 		local undo_path = vim.fn.stdpath('data') .. '/undo/'
-		local delete_old_undo = 'silent Make fd . ' .. undo_path .. ' --changed-before 1week -x rm'
+		local delete_old_undo = 'silent  !fd . ' .. undo_path .. ' --changed-before 1week -x rm'
 		vim.cmd(delete_old_undo)
 		vim.print('cleaned undo files older than 1 week...')
 	end,

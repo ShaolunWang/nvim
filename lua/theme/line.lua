@@ -2,7 +2,7 @@ local conditions = require('heirline.conditions')
 local utils = require('heirline.utils')
 --local TabLine = require("theme.tabline").TabLine
 local M = {}
-local dropbar = require('dropbar')
+local dropbar = require('dropbar.utils')
 local Align = { provider = '%=' }
 --Heirline: utils.pick_child_on_condition() is deprecated, please use the fallthrough field instead. To retain the same functionality, replace `init = utils.pick_child_on_condition()` with `fallthrough = false`
 --
@@ -282,7 +282,7 @@ local ScrollBar = {
 } ]]
 local Dropbar = {
 	condition = function(self)
-		self.data = vim.tbl_get(dropbar.bars or {}, vim.api.nvim_get_current_buf(), vim.api.nvim_get_current_win())
+		self.data = vim.tbl_get(dropbar.bar.get() or {}, vim.api.nvim_get_current_buf(), vim.api.nvim_get_current_win())
 		return self.data
 	end,
 	static = { dropbar_on_click_string = 'v:lua.dropbar.callbacks.buf%s.win%s.fn%s' },

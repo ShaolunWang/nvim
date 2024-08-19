@@ -50,4 +50,7 @@ return {
 	{
 		'tanvirtin/monokai.nvim',
 	},
+	{
+		'sainnhe/sonokai',
+	},
 }
