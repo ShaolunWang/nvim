@@ -8,7 +8,7 @@ end, { desc = 'File navigation' })
 -- neorg
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
-	--	vim.cmd('NoiceDismiss')
+	vim.cmd('NoiceDismiss')
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
@@ -50,12 +50,12 @@ vim.keymap.set('n', '<f5>', ':Make ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.quickfix == 1 then
-			vim.cmd('cclose')
+			--			vim.cmd('cclose')
+			require('quicker').close()
 			return
 		elseif info.variables['trouble'] ~= nil then
 			vim.print(info.variables['trouble'].mode)
 			if info.variables['trouble'].mode == 'quickfix' then
-				print('what')
 				vim.cmd('Trouble quickfix close')
 				return
 			end
@@ -66,7 +66,8 @@ local toggle_qf = function()
 		return
 	end
 	--vim.cmd('Trouble quickfix')
-	vim.cmd('copen')
+	require('quicker').open()
+	--	vim.cmd('copen')
 end
 vim.keymap.set('n', '<F6>', function()
 	toggle_qf()

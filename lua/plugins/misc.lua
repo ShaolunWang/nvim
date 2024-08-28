@@ -54,7 +54,12 @@ return {
 	{
 		'NeogitOrg/neogit',
 		cmd = 'Neogit',
-		dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim', 'ibhagwan/fzf-lua' },
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'sindrets/diffview.nvim',
+			'ibhagwan/fzf-lua',
+			{ 'akinsho/git-conflict.nvim', config = true },
+		},
 		opts = {
 			auto_refresh = true,
 			integrations = { diffview = true },
@@ -66,7 +71,7 @@ return {
 
 	{
 		'folke/which-key.nvim',
-		event = 'VeryLazy',
+		--		event = 'VeryLazy',
 		config = function()
 			require('which-key').setup({
 				preset = 'helix',

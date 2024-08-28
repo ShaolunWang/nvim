@@ -122,4 +122,55 @@ return {
 		},
 		cmd = { 'Twilight' },
 	},
+	{
+		'folke/noice.nvim',
+		event = 'VeryLazy',
+		dependencies = {
+			'MunifTanjim/nui.nvim',
+		},
+		opts = {
+			-- add any options here
+			views = {
+				cmdline_popup = {
+					position = {
+						row = '97%',
+						col = '50%',
+					},
+					size = {
+						width = 60,
+						height = 1,
+					},
+					border = {
+						style = 'none',
+						padding = { 0, 0 },
+					},
+				},
+			},
+			lsp = {
+				override = {
+					['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+					['vim.lsp.util.stylize_markdown'] = true,
+					['cmp.entry.get_documentation'] = true,
+				},
+			},
+			-- you can enable a preset for easier configuration
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+				inc_rename = false,
+				lsp_doc_border = true,
+			},
+			notify = {
+				enabled = true, -- enables the Noice messages UI
+			},
+			message = {
+				true,
+			},
+			cmdline = {
+				view = 'cmdline_popup',
+			},
+		},
+	},
 }
+
