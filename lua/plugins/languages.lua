@@ -1,7 +1,7 @@
 local lsp_keymap = require('keymap.lsp_keymaps')
 local utils = require('utils.lsp')
 return {
-	{ 'folke/lazydev.nvim',   opts = {},  ft = { 'lua' } },
+	{ 'folke/lazydev.nvim', opts = {}, ft = { 'lua' } },
 	{
 		'folke/lazydev.nvim',
 		ft = 'lua', -- only load on lua files
@@ -84,11 +84,11 @@ return {
 		opts = function()
 			local options = {
 				preview = {
-					quit = 'q',               -- optional keymapping for quit preview
-					accept = '<tab>',         -- optional keymapping for accept preview
+					quit = 'q', -- optional keymapping for quit preview
+					accept = '<tab>', -- optional keymapping for accept preview
 				},
-				header_extension = 'h',       -- optional
-				source_extension = 'cpp',     -- optional
+				header_extension = 'h', -- optional
+				source_extension = 'cpp', -- optional
 				custom_define_class_function_commands = { -- optional
 					TSCppImplWrite = {
 						output_handle = require('nt-cpp-tools.output_handlers').get_add_to_cpp(),
@@ -163,4 +163,16 @@ return {
 		ft = { 'log' },
 	},
 	{ 'Bekaboo/dropbar.nvim', opts = { { general = { enable = false } } } },
+	{
+		'lervag/vimtex',
+		dependencies = {},
+		lazy = false, -- we don't want to lazy load VimTeX
+		-- tag = "v2.15", -- uncomment to pin to a specific release
+		init = function()
+			-- VimTeX configuration goes here, e.g.
+			vim.g.vimtex_view_general_viewer = 'okular'
+			vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
+			vim.g.vimtex_compiler_method = 'tectonic'
+		end,
+	},
 }
