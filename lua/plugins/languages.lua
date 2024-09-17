@@ -148,7 +148,7 @@ return {
 				cpp = { 'clang-format' },
 			},
 			-- Set up format-on-save
-			format_on_save = { timeout_ms = 500, lsp_format = 'fallback' },
+			--			format_on_save = { timeout_ms = 500, lsp_format = 'fallback' },
 			-- Customize formatters
 		},
 		init = function()
