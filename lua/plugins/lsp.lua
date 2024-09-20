@@ -3,7 +3,7 @@ return {
 	opts = {},
 	config = function()
 		local utils = require('utils.lsp')
-		vim.lsp.log.set_level(vim.log.levels.OFF)
+		vim.lsp.log.set_level(vim.log.levels.ERROR)
 		vim.o.updatetime = 1
 		vim.cmd([[
 		  highlight DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
@@ -48,6 +48,18 @@ return {
 				usePlaceholders = true,
 				completeUnimported = true,
 				clangdFileStatus = true,
+			},
+			cmd = {
+				'clangd',
+				'-j=4',
+				'--background-index',
+--				'--clang-tidy',
+				'--fallback-style=llvm',
+				'--all-scopes-completion',
+				'--completion-style=detailed',
+				'--header-insertion=iwyu',
+				'--header-insertion-decorators',
+				'--pch-storage=memory',
 			},
 			on_attach = function(client, bufnr)
 				lsp_keymap.on_attach(client, bufnr)

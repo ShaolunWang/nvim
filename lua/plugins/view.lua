@@ -71,6 +71,6 @@ return {
 		'j-morano/buffer_manager.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {},
-		keymap = { '<leader>b' },
+		keys = { '<leader>b' },
 	},
 }

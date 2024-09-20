@@ -114,9 +114,6 @@ vim.keymap.set(
 	':lua require("buffer_manager.ui").toggle_quick_menu()<cr>',
 	{ desc = 'buffer manager', noremap = true }
 )
-vim.keymap.set('n', '<leader>s', '<cmd>lua require("spectre").toggle()<CR>', {
-	desc = 'Toggle Spectre',
-})
 
 -- vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
 -- 	desc = 'Search current word',
