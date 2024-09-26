@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- 		end
 -- 	end,
 -- })
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 	pattern = { '*.h', '*.cpp' },
 	callback = function()
 		-- try_lint without arguments runs the linters defined in `linters_by_ft`

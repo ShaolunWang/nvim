@@ -1,11 +1,8 @@
 return {
 	{
-		'mbbill/undotree',
-		config = function()
-			vim.g.undotree_DiffCommand = 'difft'
-			vim.g.undotree_WindowLayout = 4
-			vim.g.undotree_DiffAutoOpen = false
-		end,
+		'jiaoshijie/undotree',
+		dependencies = 'nvim-lua/plenary.nvim',
+		config = true,
 		cmd = { 'UndotreeToggle' },
 	},
 	{
@@ -73,6 +70,17 @@ return {
 		},
 		cmd = { 'RipSubstitute' },
 		keymaps = { '<c-s>' },
+	},
+
+	{
+		'MagicDuck/grug-far.nvim',
+		config = function()
+			require('grug-far').setup({
+				-- options, see Configuration section below
+				-- there are no required options atm
+				-- engine = 'ripgrep' is default, but 'astgrep' can be specified
+			})
+		end,
 	},
 	--[[ {
 		'chrisgrieser/nvim-various-textobjs',

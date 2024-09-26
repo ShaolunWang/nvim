@@ -6,5 +6,4 @@ return {
 		end,
 		cmd = { 'VBox' },
 	},
-
 }

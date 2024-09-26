@@ -53,7 +53,7 @@ return {
 				'clangd',
 				'-j=4',
 				'--background-index',
---				'--clang-tidy',
+				--				'--clang-tidy',
 				'--fallback-style=llvm',
 				'--all-scopes-completion',
 				'--completion-style=detailed',
