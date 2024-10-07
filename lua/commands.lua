@@ -13,8 +13,8 @@ vim.api.nvim_create_user_command('UndotreeToggle', function()
 end, {})
 
 vim.api.nvim_create_user_command('T', function()
-	--	require('nvim-tree.api').tree.toggle()
-	vim.cmd([[:lua MiniFiles.open()]])
+	require('nvim-tree.api').tree.toggle()
+--	vim.cmd([[:lua MiniFiles.open()]])
 end, {})
 
 vim.api.nvim_create_user_command('Grep', function(params)

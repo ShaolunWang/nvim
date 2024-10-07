@@ -26,7 +26,9 @@ local kind_icons = {
 	TypeParameter = '󰅲',
 }
 local M = {
-	'hrsh7th/nvim-cmp',
+	"iguanacucumber/magazine.nvim",
+	name = 'nvim-cmp',
+	--	'hrsh7th/nvim-cmp',
 	version = false,
 	event = 'InsertEnter',
 	dependencies = {
@@ -75,6 +77,7 @@ function M.config()
 				luasnip.lsp_expand(args.body)
 			end,
 		},
+		---@diagnostic disable-next-line: missing-fields
 		sorting = {
 			comparators = {
 				cmp.config.compare.offset,

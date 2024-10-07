@@ -30,7 +30,7 @@ return {
 			style = 'night',
 		},
 	},
-	{ 'pappasam/papercolor-theme-slim' },
+	{ 'yorik1984/newpaper.nvim' },
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
@@ -39,4 +39,7 @@ return {
 	{
 		'hiphish/rainbow-delimiters.nvim',
 	},
+	{
+		"neanias/everforest-nvim"
+	}
 }

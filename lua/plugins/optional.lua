@@ -105,7 +105,7 @@ local function cscope_config()
 	return nil
 end
 return {
-	{ 'bfrg/vim-cpp-modern', config = cpp_modern_config, ft = { 'c', 'cpp', 'h', 'hpp' } },
+	{ 'bfrg/vim-cpp-modern',  config = cpp_modern_config, ft = { 'c', 'cpp', 'h', 'hpp' } },
 	{
 		'dhananjaylatkar/cscope_maps.nvim',
 		config = cscope_config,
