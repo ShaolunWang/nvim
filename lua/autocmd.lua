@@ -70,18 +70,18 @@ local init_quickfix = vim.api.nvim_create_augroup('init_quickfix', { clear = tru
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	pattern = { '[^l]*' },
 	callback = function()
-		require('quicker').open()
+--		require('quicker').open()
 		--vim.cmd('Trouble quickfix')
-		--		vim.cmd('cwindow')
+		vim.cmd('cwindow')
 	end,
 	group = init_quickfix,
 })
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	pattern = { 'l*' },
 	callback = function()
-		require('quicker').open({ loclist = true })
+		-- require('quicker').open({ loclist = true })
 		--vim.cmd('Trouble loclist')
-		--		vim.cmd('lwindow')
+		vim.cmd('lwindow')
 	end,
 	group = init_quickfix,
 })
@@ -128,3 +128,10 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 		-- run specific linters, independent of the `linters_by_ft` configuration
 	end,
 })
+vim.api.nvim_create_autocmd({ "InsertLeave", "InsertEnter" },
+	{
+		pattern = "*",
+		callback = function()
+			if vim.api.nvim_buf_line_count(0) > 10000 then vim.cmd("TSToggle highlight") end
+		end
+	})

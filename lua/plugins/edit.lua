@@ -82,6 +82,7 @@ return {
 				-- engine = 'ripgrep' is default, but 'astgrep' can be specified
 			})
 		end,
+		cmd = {'Rg', 'Sg'},
 	},
 	--[[ {
 		'chrisgrieser/nvim-various-textobjs',

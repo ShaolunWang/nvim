@@ -39,7 +39,16 @@ return {
 			max_filename_width = function()
 				return math.floor(math.min(45, vim.o.columns / 2))
 			end,
+			highlight = {
+				-- Use treesitter highlighting
+				treesitter = true,
+				-- Use LSP semantic token highlighting
+				lsp = true,
+				-- Load the referenced buffers to apply more accurate highlights (may be slow)
+				load_buffers = false,
+			},
 		},
+
 		event = 'FileType qf',
 	},
 	{ 'tzachar/highlight-undo.nvim', opts = {}, keys = { 'u', '<c-r>' } },
@@ -66,11 +75,5 @@ return {
 			},
 		},
 		cmd = { 'WinShift' },
-	},
-	{
-		'j-morano/buffer_manager.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		opts = {},
-		events = "BufReadPost"
 	},
 }

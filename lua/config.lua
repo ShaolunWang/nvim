@@ -20,7 +20,7 @@ set.undofile = true
 set.termguicolors = true
 set.cursorline = true
 set.foldcolumn = '1' -- '0' is not bad
-set.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+set.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 set.foldlevelstart = 99
 set.foldenable = true
 set.ignorecase = true
@@ -34,7 +34,8 @@ set.concealcursor = 'nc'
 if vim.uv.os_uname().sysname == 'Windows_NT' then
 	local powershell_options = {
 		shell = vim.fn.executable('pwsh') == 1 and 'pwsh' or 'powershell',
-		shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;',
+		shellcmdflag =
+		'-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;',
 		shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait',
 		shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode',
 		shellquote = '',
@@ -49,7 +50,7 @@ end
 
 vim.g.maplocalleader = ','
 set.fillchars =
-	[[horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,foldopen:▼,foldclose:>,fold: ,eob: ]]
+[[horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,foldopen:▼,foldclose:>,fold: ,eob: ]]
 
 -- This works but don't abuse status column :)
 --vim.o.statuscolumn = '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼ " : "> ") : "  " }%*'
@@ -76,7 +77,7 @@ end
 --   vim.api.nvim_create_user_command("Grep", function(params)
 -- Insert args at the '$*' in the grepprg
 --
---[[ 
+--[[
   command! -bang -nargs=* -complete=file_in_path -bar Grep call asyncdo#run( \ <bang>0,
            \ { 'job': &grepprg, 'errorformat': &grepformat },
           \ <f-args>)

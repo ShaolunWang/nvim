@@ -8,7 +8,7 @@ end, { desc = 'File navigation' })
 -- neorg
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
-	vim.cmd('NoiceDismiss')
+	--	vim.cmd('NoiceDismiss')
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
@@ -50,7 +50,7 @@ vim.keymap.set('n', '<f5>', ':Make ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.quickfix == 1 then
-			--			vim.cmd('cclose')
+			--vim.cmd('cclose')
 			require('quicker').close()
 			return
 		elseif info.variables['trouble'] ~= nil then
@@ -67,7 +67,7 @@ local toggle_qf = function()
 	end
 	--vim.cmd('Trouble quickfix')
 	require('quicker').open()
-	--	vim.cmd('copen')
+	--vim.cmd('copen')
 end
 vim.keymap.set('n', '<F6>', function()
 	toggle_qf()
@@ -107,17 +107,3 @@ vim.keymap.set({ 'i', 's' }, '<c-u>', function()
 end, { silent = true })
 vim.api.nvim_set_keymap('n', ',c', ":lua require('neogen').generate()<CR>", { noremap = true, desc = 'neogen' })
 vim.keymap.set({ 'n', 'x' }, '<c-s>', ':RipSubstitute<cr>', { desc = ' rip substitute' })
-
-vim.keymap.set(
-	{ 'n' },
-	'<leader>b',
-	':lua require("buffer_manager.ui").toggle_quick_menu()<cr>',
-	{ desc = 'buffer manager', noremap = true }
-)
-
--- vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
--- 	desc = 'Search current word',
--- })
--- vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
--- 	desc = 'Search on current file',
--- })

@@ -38,8 +38,26 @@ return {
 	},
 	{
 		'hiphish/rainbow-delimiters.nvim',
+		event = 'BufReadPre',
 	},
 	{
-		"neanias/everforest-nvim"
+		"neanias/everforest-nvim",
+		event = 'VeryLazy',
+	},
+	{
+		'projekt0n/github-nvim-theme',
+		event = 'VeryLazy',
+	},
+	{
+		'Mofiqul/vscode.nvim',
+		event = 'VeryLazy',
+	},
+	{
+		'miikanissi/modus-themes.nvim',
+		event = 'VeryLazy',
+	},
+	{
+		'ronisbr/nano-theme.nvim',
+		event = 'VeryLazy',
 	}
 }
