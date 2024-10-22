@@ -1,11 +1,12 @@
-vim.keymap.set('n', '<c-n>', function()
+--[[ vim.keymap.set('n', '<c-n>', function()
 	if vim.bo.filetype == 'oil' then
 		require('oil').close()
 	else
 		require('oil').open()
 	end
-end, { desc = 'File navigation' })
+end, { desc = 'File navigation' }) ]]
 -- neorg
+vim.keymap.set('n', '<c-n>', function() vim.cmd [[Fern -drawer -stay -toggle -reveal=% .]] end, { noremap = true, desc = 'Fern' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
 	--	vim.cmd('NoiceDismiss')

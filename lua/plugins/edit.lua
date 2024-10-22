@@ -3,7 +3,7 @@ return {
 		'jiaoshijie/undotree',
 		dependencies = 'nvim-lua/plenary.nvim',
 		opts = {},
-		events = { "BufReadPost" },
+		events = { 'BufReadPost' },
 	},
 	{
 		'kevinhwang91/nvim-fundo',
@@ -82,7 +82,7 @@ return {
 				-- engine = 'ripgrep' is default, but 'astgrep' can be specified
 			})
 		end,
-		cmd = {'Rg', 'Sg'},
+		cmd = { 'Rg', 'Sg' },
 	},
 	--[[ {
 		'chrisgrieser/nvim-various-textobjs',

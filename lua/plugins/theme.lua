@@ -41,7 +41,7 @@ return {
 		event = 'BufReadPre',
 	},
 	{
-		"neanias/everforest-nvim",
+		'neanias/everforest-nvim',
 		event = 'VeryLazy',
 	},
 	{
@@ -56,8 +56,8 @@ return {
 		'miikanissi/modus-themes.nvim',
 		event = 'VeryLazy',
 	},
+
 	{
-		'ronisbr/nano-theme.nvim',
-		event = 'VeryLazy',
-	}
+		'olivercederborg/poimandres.nvim',
+	},
 }

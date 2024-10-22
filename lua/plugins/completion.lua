@@ -28,12 +28,12 @@ local kind_icons = {
 local M = {
 	{
 		'saghen/blink.cmp',
-		lazy = false, -- lazy loading handled internally
+		--		lazy = false, -- lazy loading handled internally
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			{ 'rafamadriz/friendly-snippets' },
-			{'saadparwaiz1/cmp_luasnip'},
-			{'lukas-reineke/cmp-rg'},
+			{ 'saadparwaiz1/cmp_luasnip' },
+			{ 'lukas-reineke/cmp-rg' },
 			{
 				"benlubas/cmp2lsp",
 				config = vim.schedule_wrap(function()
@@ -78,9 +78,9 @@ local M = {
 			-- trigger = { signature_help = { enabled = true } }
 			sources = {
 				providers = {
-					{ "blink.cmp.sources.lsp",      name = "LSP" },
-					{ "blink.cmp.sources.path",     name = "Path",     score_offset = 3 },
-					{ "blink.cmp.sources.buffer",   name = "Buffer",   fallback_for = { "LSP" } },
+					{ "blink.cmp.sources.lsp",    name = "LSP" },
+					{ "blink.cmp.sources.path",   name = "Path",   score_offset = 3 },
+					{ "blink.cmp.sources.buffer", name = "Buffer", fallback_for = { "LSP" } },
 					{
 						"blink.cmp.sources.snippets",
 						name = 'scissor',
