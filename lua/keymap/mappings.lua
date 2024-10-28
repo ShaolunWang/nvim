@@ -6,7 +6,9 @@
 	end
 end, { desc = 'File navigation' }) ]]
 -- neorg
-vim.keymap.set('n', '<c-n>', function() vim.cmd [[Fern -drawer -stay -toggle -reveal=% .]] end, { noremap = true, desc = 'Fern' })
+vim.keymap.set('n', '<c-n>', function()
+	vim.cmd([[Fern -drawer -stay -toggle -reveal=% .]])
+end, { noremap = true, desc = 'Fern' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
 	--	vim.cmd('NoiceDismiss')
@@ -14,10 +16,12 @@ end, { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
 -- moving between splits
-vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
-vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
-vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
-vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left, { noremap = true })
+vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down, { noremap = true })
+vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up, { noremap = true })
+vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right, { noremap = true })
+vim.keymap.set('n', '<C-p>', require('smart-splits').move_cursor_previous, { noremap = true })
+
 -- grapple
 
 -- Telescope

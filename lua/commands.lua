@@ -3,18 +3,19 @@ vim.api.nvim_create_user_command('G', function()
 end, {})
 
 vim.api.nvim_create_user_command('Sg', function()
-	vim.cmd[[:lua require('grug-far').open({ engine = 'astgrep' }) ]]
+	vim.cmd([[:lua require('grug-far').open({ engine = 'astgrep' }) ]])
 end, {})
 vim.api.nvim_create_user_command('Rg', function()
-	vim.cmd [[:lua require('grug-far').open({ engine = 'ripgrep' }) ]]
+	vim.cmd([[:lua require('grug-far').open({ engine = 'ripgrep' }) ]])
 end, {})
 vim.api.nvim_create_user_command('UndotreeToggle', function()
-	vim.cmd [[:lua require('undotree').toggle()]]
+	vim.cmd([[:lua require('undotree').toggle()]])
 end, {})
 
 vim.api.nvim_create_user_command('T', function()
-	require('nvim-tree.api').tree.toggle()
+	-- require('nvim-tree.api').tree.toggle()
 	--	vim.cmd([[:lua MiniFiles.open()]])
+	vim.cmd([[Fern -drawer -stay -toggle -reveal=% .]])
 end, {})
 
 vim.api.nvim_create_user_command('Grep', function(params)

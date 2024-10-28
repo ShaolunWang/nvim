@@ -58,9 +58,16 @@ return {
 			'nvim-lua/plenary.nvim',
 			'sindrets/diffview.nvim',
 			'ibhagwan/fzf-lua',
-			{ 'akinsho/git-conflict.nvim', config = true },
+			{
+				{
+					'akinsho/git-conflict.nvim',
+					version = "*",
+					config = true,
+				},
+			},
 		},
 		opts = {
+			graph_style = "kitty",
 			auto_refresh = true,
 			integrations = { diffview = true },
 			kind = 'tab',

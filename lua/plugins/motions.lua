@@ -88,7 +88,11 @@ return {
 	{
 		'mrjones2014/smart-splits.nvim',
 		config = function()
-			require('smart-splits').setup()
+			require('smart-splits').setup({
+				ignored_buftypes = {
+					'prompt',
+				},
+			})
 		end,
 		event = { 'WinEnter' },
 	},

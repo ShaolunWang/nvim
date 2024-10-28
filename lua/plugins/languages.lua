@@ -96,9 +96,14 @@ return {
 		-- End configuration
 		--		config = true,
 	},
-	{
+	--[[ {
 		'mfussenegger/nvim-lint',
-	},
+		config = function()
+			require('lint').linters_by_ft = {
+				cpp = { 'clang-tidy', }
+			}
+		end,
+	}, ]]
 	{
 		'folke/trouble.nvim',
 		opts = {
@@ -161,7 +166,13 @@ return {
 			-- VimTeX configuration goes here, e.g.
 			vim.g.vimtex_view_general_viewer = 'okular'
 			vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
-			vim.g.vimtex_compiler_method = 'tectonic'
+			--			vim.g.vimtex_compiler_method = 'tectonic'
+			vim.cmd([[
+			  let g:vimtex_compiler_method = 'generic'
+			  let g:vimtex_compiler_generic = {
+					\ 'command': 'ls *.tex | entr -c tectonic /_ --synctex --keep-logs',
+					\}
+			]])
 		end,
 	},
 }

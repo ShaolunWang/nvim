@@ -55,6 +55,7 @@ return {
 	{
 		'stevearc/dressing.nvim',
 		opts = {
+			input = { enabled = true },
 			select = {
 				backend = { 'nui', 'fzf_lua', 'builtin' },
 				nui = {

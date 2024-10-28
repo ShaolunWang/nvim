@@ -28,18 +28,18 @@ local kind_icons = {
 local M = {
 	{
 		'saghen/blink.cmp',
-		--		lazy = false, -- lazy loading handled internally
 		-- optional: provides snippets for the snippet source
+		lazy = false,
 		dependencies = {
 			{ 'rafamadriz/friendly-snippets' },
 			{ 'saadparwaiz1/cmp_luasnip' },
 			{ 'lukas-reineke/cmp-rg' },
 			{
-				"benlubas/cmp2lsp",
+				'benlubas/cmp2lsp',
 				config = vim.schedule_wrap(function()
 					require('cmp2lsp').setup({})
-				end)
-			}
+				end),
+			},
 		},
 
 		-- use a release tag to download pre-built binaries
@@ -77,21 +77,24 @@ local M = {
 			-- experimental signature help support
 			-- trigger = { signature_help = { enabled = true } }
 			sources = {
+				completion = {
+					enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
+				},
 				providers = {
-					{ "blink.cmp.sources.lsp",    name = "LSP" },
-					{ "blink.cmp.sources.path",   name = "Path",   score_offset = 3 },
-					{ "blink.cmp.sources.buffer", name = "Buffer", fallback_for = { "LSP" } },
-					{
-						"blink.cmp.sources.snippets",
+					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true },
+					path = { module = 'blink.cmp.sources.path', name = 'Path', enabled = true, score_offset = 3 },
+					buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, fallback_for = { 'LSP' } },
+					snippets = {
+						module = 'blink.cmp.sources.snippets',
 						name = 'scissor',
+						enabled = true,
 						opts = {
 							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
 						},
-					}
-				}
-			}
+					},
+				},
+			},
 		},
-		events = { 'InsertEnter' }
 	},
 	--[[ {
 		"ms-jpq/coq_nvim",

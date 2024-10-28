@@ -70,7 +70,7 @@ local init_quickfix = vim.api.nvim_create_augroup('init_quickfix', { clear = tru
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	pattern = { '[^l]*' },
 	callback = function()
---		require('quicker').open()
+		--		require('quicker').open()
 		--vim.cmd('Trouble quickfix')
 		vim.cmd('cwindow')
 	end,
@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- 		end
 -- 	end,
 -- })
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+--[[ im.api.nvim_create_autocmd({ 'BufWritePost' }, {
 	pattern = { '*.h', '*.cpp' },
 	callback = function()
 		-- try_lint without arguments runs the linters defined in `linters_by_ft`
@@ -127,11 +127,47 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 		-- You can call `try_lint` with a linter name or a list of names to always
 		-- run specific linters, independent of the `linters_by_ft` configuration
 	end,
-})
-vim.api.nvim_create_autocmd({ "InsertLeave", "InsertEnter" },
-	{
-		pattern = "*",
-		callback = function()
-			if vim.api.nvim_buf_line_count(0) > 10000 then vim.cmd("TSToggle highlight") end
+}) ]]
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'InsertEnter' }, {
+	pattern = '*',
+	callback = function()
+		if vim.api.nvim_buf_line_count(0) > 10000 then
+			vim.cmd('TSToggle highlight')
 		end
-	})
+	end,
+})
+vim.cmd([[
+function! s:init_fern() abort
+ nmap <buffer><expr>
+      \ <Plug>(fern-my-expand-or-collapse)
+      \ fern#smart#leaf(
+      \   "\<Plug>(fern-action-collapse)",
+      \   "\<Plug>(fern-action-expand)",
+      \   "\<Plug>(fern-action-collapse)",
+      \ )
+
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-or-enter)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-enter)",
+        \ )  
+  nmap <buffer><nowait> <Tab> <Plug>(fern-my-expand-or-collapse)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> r <Plug>(fern-action-rename)
+  nmap <buffer> h <Plug>(fern-action-hidden-toggle)
+  nmap <buffer> R <Plug>(fern-action-reload)
+  nmap <buffer> ; <Plug>(fern-action-mark-toggle)
+  nmap <buffer> <c-x> <Plug>(fern-action-open:split)
+  nmap <buffer> <c-v> <Plug>(fern-action-open:vsplit)
+  nmap <buffer><nowait> - <Plug>(fern-action-leave)
+  nmap <buffer><nowait> <cr> <Plug>(fern-my-open-or-enter)
+endfunction
+
+augroup my-fern-preview
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+]])
