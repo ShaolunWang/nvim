@@ -61,13 +61,13 @@ return {
 			{
 				{
 					'akinsho/git-conflict.nvim',
-					version = "*",
+					version = '*',
 					config = true,
 				},
 			},
 		},
 		opts = {
-			graph_style = "kitty",
+			graph_style = 'kitty',
 			auto_refresh = true,
 			integrations = { diffview = true },
 			kind = 'tab',

@@ -50,16 +50,36 @@ local M = {
 		-- build = 'RUSTFLAGS="-C target-feature=-crt-static" cargo build --release',
 
 		opts = {
+			window = { autocomplete = { selection = "manual" } },
 			keymap = {
-				show = '<c-m>',
-				hide = '<c-h>',
-				accept = '<Tab>',
-				select_and_accept = '<cr>',
-				select_prev = { '<Up>', '<C-p>' },
-				select_next = { '<Down>', '<C-n>' },
-
-				snippet_forward = '<Tab>',
-				snippet_backward = '<S-Tab>',
+				['<c-m>'] = { 'show' },
+				['<c-h>'] = { 'hide' },
+				['<Tab>'] = {
+					function(cmp)
+						if cmp.is_in_snippet() then
+							return cmp.accept()
+						else
+							return cmp.select_and_accept()
+						end
+					end,
+					'snippet_forward',
+					'fallback'
+				},
+				--		['<cr>'] = { 'select_and_accept' },
+				['<cr>'] = {
+					function(cmp)
+						if cmp.is_in_snippet() then
+							return cmp.accept()
+						else
+							return cmp.select_and_accept()
+						end
+					end,
+					'snippet_forward',
+					'fallback'
+				},
+				['<C-p>'] = { 'select_prev' },
+				['<C-n>'] = { 'select_next' },
+				['<S-Tab>'] = { 'snippet_backward ' },
 			},
 			highlight = {
 				-- sets the fallback highlight groups to nvim-cmp's highlight groups
