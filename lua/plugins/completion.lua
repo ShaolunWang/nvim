@@ -54,32 +54,12 @@ local M = {
 			keymap = {
 				['<c-m>'] = { 'show' },
 				['<c-h>'] = { 'hide' },
-				['<Tab>'] = {
-					function(cmp)
-						if cmp.is_in_snippet() then
-							return cmp.accept()
-						else
-							return cmp.select_and_accept()
-						end
-					end,
-					'snippet_forward',
-					'fallback'
-				},
-				--		['<cr>'] = { 'select_and_accept' },
-				['<cr>'] = {
-					function(cmp)
-						if cmp.is_in_snippet() then
-							return cmp.accept()
-						else
-							return cmp.select_and_accept()
-						end
-					end,
-					'snippet_forward',
-					'fallback'
-				},
+				['<Tab>'] = { 'select_and_accept', },
+				['<cr>'] = { 'select_and_accept' },
 				['<C-p>'] = { 'select_prev' },
 				['<C-n>'] = { 'select_next' },
-				['<S-Tab>'] = { 'snippet_backward ' },
+				['<c-d>'] = { 'snippet_forward' },
+				['<c-u>'] = { 'snippet_backward ' },
 			},
 			highlight = {
 				-- sets the fallback highlight groups to nvim-cmp's highlight groups
