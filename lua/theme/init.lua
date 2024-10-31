@@ -1,6 +1,6 @@
 vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme rose-pine')
+vim.cmd('colorscheme nvchad')
 
 -- cmp
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
@@ -87,6 +87,6 @@ vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = colors.darkwhite, bg = bg, l
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = colors.darkwhite, bg = bg, link = link })
 
-require('theme.tabby')
-require('theme.line')
-require('theme.ui')
+--require('theme.tabby')
+--require('theme.line')
+--require('theme.ui')
