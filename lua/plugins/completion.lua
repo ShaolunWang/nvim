@@ -35,10 +35,14 @@ local M = {
 			{ 'saadparwaiz1/cmp_luasnip' },
 			{ 'lukas-reineke/cmp-rg' },
 			{
-				'benlubas/cmp2lsp',
-				config = vim.schedule_wrap(function()
-					require('cmp2lsp').setup({})
-				end),
+				'saghen/blink.compat',
+				opts = {
+					-- lazydev.nvim only registers the completion source when nvim-cmp is
+					-- loaded, so pretend that we are nvim-cmp, and that nvim-cmp is loaded.
+					-- this option only has effect when using lazy.nvim
+					-- this should not be required in most cases
+					impersontate_nvim_cmp = true,
+				}
 			},
 		},
 
@@ -50,7 +54,7 @@ local M = {
 		-- build = 'RUSTFLAGS="-C target-feature=-crt-static" cargo build --release',
 
 		opts = {
-			window = { autocomplete = { selection = "manual" } },
+			window = { autocomplete = { selection = 'manual' } },
 			keymap = {
 				['<c-m>'] = { 'show' },
 				['<c-h>'] = { 'hide' },
@@ -78,7 +82,7 @@ local M = {
 			-- trigger = { signature_help = { enabled = true } }
 			sources = {
 				completion = {
-					enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
+					enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'rg', 'luasnip' },
 				},
 				providers = {
 					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true },
@@ -92,6 +96,8 @@ local M = {
 							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
 						},
 					},
+					luasnip = { module = 'blink.compat.source', name = 'luasnip', enabled = true },
+					rg = { module = 'blink.compat.source', name = 'rg', enabled = true }
 				},
 			},
 		},
