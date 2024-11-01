@@ -43,7 +43,8 @@ local M = {
 		},
 
 		-- use a release tag to download pre-built binaries
-		build = 'cargo build --release',
+	--	build = 'cargo build --release',
+version = "*",
 		-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
 		-- On musl libc based systems you need to add this flag
@@ -54,8 +55,8 @@ local M = {
 			keymap = {
 				['<c-m>'] = { 'show' },
 				['<c-h>'] = { 'hide' },
-				['<Tab>'] = { 'select_and_accept', },
-				['<cr>'] = { 'select_and_accept' },
+				['<Tab>'] = { 'select_and_accept', 'fallback'},
+				['<cr>'] = { 'select_and_accept','fallback' },
 				['<C-p>'] = { 'select_prev' },
 				['<C-n>'] = { 'select_next' },
 				['<c-d>'] = { 'snippet_forward' },
