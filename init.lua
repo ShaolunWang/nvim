@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
+vim.g.base46_cache = vim.fn.stdpath('data') .. '/base46_cache/'
 vim.loader.enable()
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 -- put this after lazy setup
@@ -37,5 +37,6 @@ require('theme')
 require('autocmd')
 require('commands')
 
+dofile(vim.g.base46_cache .. "syntax")
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
