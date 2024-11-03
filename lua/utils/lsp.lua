@@ -18,12 +18,12 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-local has_cmp, cmp_nvim_lsp = pcall(require, 'coq')
+local has_cmp, cmp_nvim_lsp = pcall(require, 'bink.cmp')
 M.c = vim.tbl_deep_extend(
 	'force',
 	{},
 	vim.lsp.protocol.make_client_capabilities(),
-	has_cmp and cmp_nvim_lsp.lsp_ensure_capabilities() or {},
+	has_cmp and cmp_nvim_lsp.get_lsp_capabilities() or {},
 	--	has_cmp and cmp_nvim_lsp.lsp_ensure_capabilities() or {},
 	{},
 	{
