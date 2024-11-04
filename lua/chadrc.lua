@@ -1,13 +1,13 @@
 local options = {
 
 	base46 = {
-		theme = 'onedark', -- default theme
+		theme = 'aquarium', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
 		changed_themes = {},
 		transparency = false,
-		theme_toggle = { 'ondark', 'one_light' },
+		theme_toggle = { 'aquarium', 'one_light' },
 	},
 
 	ui = {
