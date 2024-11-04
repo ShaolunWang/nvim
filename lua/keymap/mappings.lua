@@ -1,3 +1,7 @@
+--vim.keymap.set('n', '<leader>bb',  ':ls<CR>:b<space>', {noremap = true, desc = 'buffers'})
+--vim.keymap.set('n', '<leader>bd',  ':ls<CR>:bd <space>', {noremap = true, desc = 'buffers'})
+--vim.keymap.set('n', '<leader>b',  ':BufExplorer<cr>', {noremap = true, desc = 'buffers'})
+
 --[[ vim.keymap.set('n', '<c-n>', function()
 	if vim.bo.filetype == 'oil' then
 		require('oil').close()

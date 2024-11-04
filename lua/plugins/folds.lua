@@ -5,7 +5,11 @@ local ftMap = {
 	git = '',
 }
 return {
-
+	{
+		'chrisgrieser/nvim-origami',
+		event = 'BufReadPost', -- later or on keypress would prevent saving folds
+		opts = true, -- needed even when using default config
+	},
 	{
 		'kevinhwang91/nvim-ufo',
 		dependencies = {
@@ -17,20 +21,15 @@ return {
 					require('statuscol').setup({
 						relculright = true,
 						segments = {
-							{ text = { builtin.foldfunc },      click = 'v:lua.ScFa' },
-							{ text = { '%s' },                  click = 'v:lua.ScSa' },
+							{ text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
+							{ text = { '%s' }, click = 'v:lua.ScSa' },
 							{ text = { builtin.lnumfunc, ' ' }, click = 'v:lua.ScLa' },
 						},
 					})
 				end,
 			},
-			{
-				'chrisgrieser/nvim-origami',
---				event = 'BufReadPost', -- later or on keypress would prevent saving folds
-				opts = true, -- needed even when using default config
-			},
 		},
-		event = 'BufRead',
+		event = 'BufReadPre',
 		opts = {
 			close_fold_kinds_on_ft = { 'imports', 'comment' },
 			provider_selector = function(bufnr, filetype, buftype)

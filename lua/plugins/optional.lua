@@ -190,5 +190,15 @@ return {
 		end,
 		ft = { "cpp", "h" },
 	} ]]
-	{ 'folke/zen-mode.nvim', opts = {} },
+	{
+		'folke/zen-mode.nvim',
+		opts = {},
+		cmd = { "ZenMode" }
+	},
+	{
+		'jlanzarotta/bufexplorer',
+		config = function()
+			vim.g.bufExplorerDisableDefaultKeyMapping = 1
+		end,
+	}
 }
