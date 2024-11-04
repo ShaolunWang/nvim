@@ -190,4 +190,5 @@ return {
 		end,
 		ft = { "cpp", "h" },
 	} ]]
+	{ 'folke/zen-mode.nvim', opts = {} },
 }
