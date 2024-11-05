@@ -85,8 +85,7 @@ return {
 		cmd = { 'Rg', 'Sg' },
 	},
 	{
-		"monaqa/dial.nvim",
-		desc = "Increment and decrement numbers, dates, and more",
+		'monaqa/dial.nvim',
 		-- stylua: ignore
 		opts = function()
 			local augend = require("dial.augend")
@@ -162,26 +161,13 @@ return {
 			})
 
 			return {
-				dials_by_ft = {
-					css = "css",
-					javascript = "typescript",
-					javascriptreact = "typescript",
-					json = "json",
-					lua = "lua",
-					markdown = "markdown",
-					python = "python",
-					sass = "css",
-					scss = "css",
-					typescript = "typescript",
-					typescriptreact = "typescript",
-					yaml = "yaml",
-				},
 				groups = {
 					default = {
 						augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
 						augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
 						augend.date.alias["%Y/%m/%d"], -- date (2022/02/19, etc.)
 						ordinal_numbers,
+   						augend.constant.alias.bool,    -- boolean value (true <-> false)
 						weekdays,
 						months,
 					},
@@ -206,16 +192,20 @@ return {
 			}
 		end,
 		config = function(_, opts)
-			require("dial.config").augends:register_group(opts.groups)
-			vim.g.dials_by_ft = opts.dials_by_ft
+			require('dial.config').augends:register_group(opts.groups)
+			vim.cmd [[
+				nmap  <C-a>  <Plug>(dial-increment)
+				nmap  <C-x>  <Plug>(dial-decrement)
+				nmap g<C-a> g<Plug>(dial-increment)
+				nmap g<C-x> g<Plug>(dial-decrement)
+				vmap  <C-a>  <Plug>(dial-increment)
+				vmap  <C-x>  <Plug>(dial-decrement)
+				vmap g<C-a> g<Plug>(dial-increment)
+				vmap g<C-x> g<Plug>(dial-decrement)
+			]]
 		end,
-		keys = {
-			{ "<C-a>",  function() return M.dial(true) end,        expr = true, desc = "Increment", mode = { "n", "v" } },
-			{ "<C-x>",  function() return M.dial(false) end,       expr = true, desc = "Decrement", mode = { "n", "v" } },
-			{ "g<C-a>", function() return M.dial(true, true) end,  expr = true, desc = "Increment", mode = { "n", "v" } },
-			{ "g<C-x>", function() return M.dial(false, true) end, expr = true, desc = "Decrement", mode = { "n", "v" } },
-		},
-	}
+		keys = { '<C-a>', '<C-x>', 'g<C-a>', 'g<C-x>', },
+	},
 	--[[ {
 		'chrisgrieser/nvim-various-textobjs',
 		opts = { useDefaultKeymaps = true },
