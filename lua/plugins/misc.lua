@@ -34,7 +34,7 @@ return {
 			local cmd = {
 				'OverseerOpen',
 				'OverseerClose',
-				--				'OverseerToggle',
+				'OverseerToggle',
 				'OverseerSaveBundle',
 				'OverseerLoadBundle',
 				'OverseerDeleteBundle',
@@ -44,7 +44,7 @@ return {
 				'OverseerBuild',
 				'OverseerQuickAction',
 				'OverseerTaskAction',
-				--				'OverseerClearCache',
+				'OverseerClearCache',
 			}
 			for _, iter in pairs(cmd) do
 				vim.api.nvim_del_user_command(iter)

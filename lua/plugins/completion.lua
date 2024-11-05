@@ -47,8 +47,8 @@ local M = {
 		},
 
 		-- use a release tag to download pre-built binaries
-	--	build = 'cargo build --release',
-version = "*",
+		--	build = 'cargo build --release',
+		version = "*",
 		-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
 		-- On musl libc based systems you need to add this flag
@@ -59,8 +59,8 @@ version = "*",
 			keymap = {
 				['<c-m>'] = { 'show' },
 				['<c-h>'] = { 'hide' },
-				['<Tab>'] = { 'select_and_accept', 'fallback'},
-				['<cr>'] = { 'select_and_accept','fallback' },
+				['<Tab>'] = { 'select_and_accept', 'fallback' },
+				['<cr>'] = { 'select_and_accept', 'fallback' },
 				['<C-p>'] = { 'select_prev' },
 				['<C-n>'] = { 'select_next' },
 				['<c-d>'] = { 'snippet_forward' },
@@ -97,8 +97,37 @@ version = "*",
 							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
 						},
 					},
-					luasnip = { module = 'blink.compat.source', name = 'luasnip', enabled = true },
-					rg = { module = 'blink.compat.source', name = 'rg', enabled = true }
+					luasnip = {
+						module = 'blink.compat.source',
+						name = 'luasnip',
+						enabled = true,
+						transform_items = function(ctx, items)
+							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+							local kind = require("blink.cmp.types").CompletionItemKind.Text
+
+							for i = 1, #items do
+								items[i].kind = kind
+							end
+
+							return items
+						end,
+					},
+					rg = {
+						module = 'blink.compat.source',
+						name = 'rg',
+						enabled = true,
+						transform_items = function(ctx, items)
+							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+							local kind = require("blink.cmp.types").CompletionItemKind.Text
+
+							for i = 1, #items do
+								items[i].kind = kind
+							end
+
+							return items
+						end,
+
+					}
 				},
 			},
 		},
