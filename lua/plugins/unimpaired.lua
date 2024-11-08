@@ -13,11 +13,7 @@ return {
 				description = 'Toggle background light/dark',
 				dot_repeat = true,
 			},
-			toggle_diff = {
-				mapping = ',d',
-				description = 'Toggle diff',
-				dot_repeat = true,
-			},
+			toggle_diff = false,
 			enable_cursorline = false,
 			disable_cursorline = false,
 			toggle_cursorline = false,

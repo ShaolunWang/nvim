@@ -118,5 +118,55 @@ return {
 				},
 			},
 		},
+	},
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			bigfile = { enabled = true },
+			notifier = {
+				enabled = false,
+			},
+			quickfile = { enabled = true },
+			statuscolumn = { enabled = true },
+			words = { enabled = false},
+			styles = {
+				notification = {
+					wo = { wrap = true } -- Wrap notifications
+				}
+			}
+		},
+		keys = {
+			--		{ "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
+			{ ",d",  function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
+			--			{ "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
+			{ "\\r", function() Snacks.rename() end,                  desc = "Rename File" },
+			{ "]]",  function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
+			{ "[[",  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "VeryLazy",
+				callback = function()
+					-- Setup some globals for debugging (lazy-loaded)
+					_G.dd = function(...)
+						Snacks.debug.inspect(...)
+					end
+					_G.bt = function()
+						Snacks.debug.backtrace()
+					end
+					vim.print = _G.dd -- Override print to use snacks for `:=` command
+
+					-- Create some toggle mappings
+					Snacks.toggle.diagnostics():map(",d")
+					Snacks.toggle.option("conceallevel",
+						{ off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(",c")
+					Snacks.toggle.treesitter():map(",t")
+					Snacks.toggle.inlay_hints():map(",h")
+				end,
+			})
+		end,
 	}
 }
