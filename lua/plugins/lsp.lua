@@ -25,7 +25,7 @@ return {
 			handlers = utils.lsp_handlers,
 			capabilities = utils.c,
 		})
-		lsp.ruff_lsp.setup({
+		lsp.ruff.setup({
 			on_attach = lsp_keymap.on_attach,
 			handlers = utils.lsp_handlers,
 			capabilities = utils.c,

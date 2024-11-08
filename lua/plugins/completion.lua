@@ -42,13 +42,13 @@ local M = {
 					-- this option only has effect when using lazy.nvim
 					-- this should not be required in most cases
 					impersontate_nvim_cmp = true,
-				}
+				},
 			},
 		},
 
 		-- use a release tag to download pre-built binaries
 		--	build = 'cargo build --release',
-		version = "*",
+		version = '*',
 		-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
 		-- On musl libc based systems you need to add this flag
@@ -83,7 +83,12 @@ local M = {
 			-- trigger = { signature_help = { enabled = true } }
 			sources = {
 				completion = {
-					enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'rg', 'luasnip' },
+					enabled_providers = {
+						'lsp',
+						'path',
+						'snippets',
+						'buffer', --[[ 'rg', 'luasnip' ]]
+					},
 				},
 				providers = {
 					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true },
@@ -103,7 +108,7 @@ local M = {
 						enabled = true,
 						transform_items = function(ctx, items)
 							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-							local kind = require("blink.cmp.types").CompletionItemKind.Text
+							local kind = require('blink.cmp.types').CompletionItemKind.Text
 
 							for i = 1, #items do
 								items[i].kind = kind
@@ -118,7 +123,7 @@ local M = {
 						enabled = true,
 						transform_items = function(ctx, items)
 							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-							local kind = require("blink.cmp.types").CompletionItemKind.Text
+							local kind = require('blink.cmp.types').CompletionItemKind.Text
 
 							for i = 1, #items do
 								items[i].kind = kind
@@ -126,8 +131,7 @@ local M = {
 
 							return items
 						end,
-
-					}
+					},
 				},
 			},
 		},

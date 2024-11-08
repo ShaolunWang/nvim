@@ -2,7 +2,7 @@ vim.api.nvim_create_user_command('G', function()
 	require('neogit').open()
 end, {})
 vim.api.nvim_create_user_command('B', function()
-	vim.cmd[[BufExplorer]]
+	vim.cmd([[BufExplorer]])
 end, {})
 
 vim.api.nvim_create_user_command('Sg', function()
