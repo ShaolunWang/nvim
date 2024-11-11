@@ -13,8 +13,8 @@ local function cscope_config()
 	require('cscope_maps').setup({
 		cscope = {
 			db_build_cmd_args = { '-bqkv', '-i', './cscope.files' },
-			exec = 'gtags-cscope',
-			picker = 'fzf-lua',
+			exec = 'cscope',
+			picker = 'quickfix',
 			skip_picker_for_single_result = true,
 		},
 	})
@@ -193,12 +193,12 @@ return {
 	{
 		'folke/zen-mode.nvim',
 		opts = {},
-		cmd = { "ZenMode" }
+		cmd = { 'ZenMode' },
 	},
 	{
 		'jlanzarotta/bufexplorer',
 		config = function()
 			vim.g.bufExplorerDisableDefaultKeyMapping = 1
 		end,
-	}
+	},
 }

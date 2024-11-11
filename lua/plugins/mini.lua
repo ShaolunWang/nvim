@@ -24,7 +24,7 @@ return {
 		keys = { '[', ']' },
 	},
 	{
-		'echasnovski/mini.nvim',
+		'echasnovski/mini.pick',
 		version = false,
 		opts = {
 			-- No need to copy this inside `setup()`. Will be used automatically.
@@ -113,7 +113,8 @@ return {
 		},
 		config = function()
 			require('mini.pick').setup(opts)
+  			vim.ui.select = MiniPick.ui_select
 		end,
-		cmd = { 'Pick' },
+		events = "VeryLazy",
 	},
 }

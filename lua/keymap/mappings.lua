@@ -30,7 +30,7 @@ vim.keymap.set('n', '<C-p>', require('smart-splits').move_cursor_previous, { nor
 
 -- Telescope
 vim.keymap.set('n', '<leader>ff', function()
-	require('fzf-lua').files()
+	vim.cmd([[Pick files]])
 end, { noremap = true, desc = 'Find File' })
 vim.keymap.set('n', '<leader>fg', function()
 	require('fzf-lua').live_grep()

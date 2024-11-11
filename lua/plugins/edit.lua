@@ -19,8 +19,7 @@ return {
 	{
 		'numToStr/Comment.nvim',
 		opts = function()
-			local commentstring_avail, commentstring = pcall(require,
-				'ts_context_commentstring.integrations.comment_nvim')
+			local commentstring_avail, commentstring = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
 			return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
 		end,
 		config = function()
@@ -193,7 +192,7 @@ return {
 		end,
 		config = function(_, opts)
 			require('dial.config').augends:register_group(opts.groups)
-			vim.cmd [[
+			vim.cmd([[
 				nmap  <C-a>  <Plug>(dial-increment)
 				nmap  <C-x>  <Plug>(dial-decrement)
 				nmap g<C-a> g<Plug>(dial-increment)
@@ -202,9 +201,9 @@ return {
 				vmap  <C-x>  <Plug>(dial-decrement)
 				vmap g<C-a> g<Plug>(dial-increment)
 				vmap g<C-x> g<Plug>(dial-decrement)
-			]]
+			]])
 		end,
-		keys = { '<C-a>', '<C-x>', 'g<C-a>', 'g<C-x>', },
+		keys = { '<C-a>', '<C-x>', 'g<C-a>', 'g<C-x>' },
 	},
 	--[[ {
 		'chrisgrieser/nvim-various-textobjs',

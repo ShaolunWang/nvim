@@ -125,6 +125,7 @@ local ViMode = {
 	update = 'ModeChanged',
 }
 
+
 local FileFlags = {
 	{
 		condition = function()

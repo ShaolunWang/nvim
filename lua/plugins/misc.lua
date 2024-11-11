@@ -88,13 +88,13 @@ return {
 		end,
 	},
 	{
-		"epwalsh/obsidian.nvim",
-		version = "*", -- recommended, use latest release instead of latest commit
+		'epwalsh/obsidian.nvim',
+		version = '*', -- recommended, use latest release instead of latest commit
 		lazy = true,
-		ft = "markdown",
+		ft = 'markdown',
 		dependencies = {
 			-- Required.
-			"nvim-lua/plenary.nvim",
+			'nvim-lua/plenary.nvim',
 		},
 		opts = {
 			completion = {
@@ -103,13 +103,13 @@ return {
 			},
 			workspaces = {
 				{
-					name = "no-vault",
+					name = 'no-vault',
 					path = function()
 						return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
 					end,
 					overrides = {
 						notes_subdir = vim.NIL, -- have to use 'vim.NIL' instead of 'nil'
-						new_notes_location = "current_dir",
+						new_notes_location = 'current_dir',
 						templates = {
 							folder = vim.NIL,
 						},
@@ -120,7 +120,7 @@ return {
 		},
 	},
 	{
-		"folke/snacks.nvim",
+		'folke/snacks.nvim',
 		priority = 1000,
 		lazy = false,
 		---@type snacks.Config
@@ -131,24 +131,23 @@ return {
 			},
 			quickfile = { enabled = true },
 			statuscolumn = { enabled = true },
-			words = { enabled = false},
+			words = { enabled = false },
 			styles = {
 				notification = {
-					wo = { wrap = true } -- Wrap notifications
-				}
-			}
+					wo = { wrap = true }, -- Wrap notifications
+				},
+			},
 		},
 		keys = {
 			--		{ "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
-			{ ",d",  function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
+			{ ',x', function() Snacks.bufdelete() end,               desc = 'Delete Buffer', },
 			--			{ "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
-			{ "\\r", function() Snacks.rename() end,                  desc = "Rename File" },
-			{ "]]",  function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
-			{ "[[",  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+			{ ']]', function() Snacks.words.jump(vim.v.count1) end,  desc = 'Next Reference', },
+			{ '[[', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Prev Reference', },
 		},
 		init = function()
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "VeryLazy",
+			vim.api.nvim_create_autocmd('User', {
+				pattern = 'VeryLazy',
 				callback = function()
 					-- Setup some globals for debugging (lazy-loaded)
 					_G.dd = function(...)
@@ -160,13 +159,14 @@ return {
 					vim.print = _G.dd -- Override print to use snacks for `:=` command
 
 					-- Create some toggle mappings
-					Snacks.toggle.diagnostics():map(",d")
-					Snacks.toggle.option("conceallevel",
-						{ off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(",c")
-					Snacks.toggle.treesitter():map(",t")
-					Snacks.toggle.inlay_hints():map(",h")
+					Snacks.toggle.diagnostics():map(',d')
+					Snacks.toggle
+						.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+						:map(',c')
+					Snacks.toggle.treesitter():map(',t')
+					Snacks.toggle.inlay_hints():map(',h')
 				end,
 			})
 		end,
-	}
+	},
 }

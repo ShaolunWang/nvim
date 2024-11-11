@@ -175,7 +175,7 @@ return {
 		end,
 		config = function(_, opts)
 			require('fzf-lua').setup(opts)
-			require('fzf-lua').register_ui_select(opts.ui_select or nil)
+--			require('fzf-lua').register_ui_select(opts.ui_select or nil)
 		end,
 		-- 		config = function()
 		-- 			require('fzf-lua').setup({

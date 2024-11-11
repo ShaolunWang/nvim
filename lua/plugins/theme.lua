@@ -30,7 +30,6 @@ return {
 			style = 'night',
 		},
 	},
-	{ 'yorik1984/newpaper.nvim' },
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
@@ -41,14 +40,6 @@ return {
 		event = 'BufReadPre',
 	},
 	{
-		'neanias/everforest-nvim',
-		event = 'VeryLazy',
-	},
-	{
-		'projekt0n/github-nvim-theme',
-		event = 'VeryLazy',
-	},
-	{
 		'Mofiqul/vscode.nvim',
 		event = 'VeryLazy',
 	},
@@ -56,16 +47,7 @@ return {
 		'miikanissi/modus-themes.nvim',
 		event = 'VeryLazy',
 	},
-
 	{
 		'olivercederborg/poimandres.nvim',
-	},
-	{
-		'rose-pine/neovim',
-		name = 'rose-pine',
-		config = function()
-			require('rose-pine').setup({
-			})
-		end,
 	},
 }
