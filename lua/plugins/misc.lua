@@ -166,7 +166,7 @@ return {
 			},
 			quickfile = { enabled = true },
 			statuscolumn = { enabled = true },
-			words = { enabled = false},
+			words = { enabled = false },
 			styles = {
 				notification = {
 					wo = { wrap = true } -- Wrap notifications
@@ -177,9 +177,9 @@ return {
 			--		{ "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
 			{ ",",  function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
 			--			{ "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
---			{ "\\r", function() Snacks.rename() end,                  desc = "Rename File" },
-			{ "]]",  function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
-			{ "[[",  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+			--			{ "\\r", function() Snacks.rename() end,                  desc = "Rename File" },
+			{ "]]", function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
+			{ "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 		},
 		init = function()
 			vim.api.nvim_create_autocmd("User", {
@@ -203,5 +203,5 @@ return {
 				end,
 			})
 		end,
-	}
+	},
 }
