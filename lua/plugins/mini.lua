@@ -24,7 +24,17 @@ return {
 		keys = { '[', ']' },
 	},
 	{
+		'echasnovski/mini.extra',
+		version = false,
+		config = function()
+			require('mini.extra').setup()
+		end,
+		lazy = true
+	},
+	{
 		'echasnovski/mini.pick',
+
+		dependencies = { 'echasnovski/mini.extra', version = false },
 		version = false,
 		opts = {
 			-- No need to copy this inside `setup()`. Will be used automatically.
@@ -113,8 +123,20 @@ return {
 		},
 		config = function()
 			require('mini.pick').setup(opts)
-  			vim.ui.select = MiniPick.ui_select
+			vim.ui.select = MiniPick.ui_select
 		end,
-		events = "VeryLazy",
+		cmd = { 'Pick' },
+	},
+	{
+		'echasnovski/mini.ai',
+		dependencies = {
+			'echasnovski/mini.extra',
+			version = false,
+		},
+		config = function()
+			require("mini.ai").setup()
+		end,
+		version = false,
+		events = { 'BufReadPost' },
 	},
 }

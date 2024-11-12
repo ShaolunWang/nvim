@@ -88,38 +88,6 @@ return {
 		end,
 	},
 	{
-		'epwalsh/obsidian.nvim',
-		version = '*', -- recommended, use latest release instead of latest commit
-		lazy = true,
-		ft = 'markdown',
-		dependencies = {
-			-- Required.
-			'nvim-lua/plenary.nvim',
-		},
-		opts = {
-			completion = {
-				-- Set to false to disable completion.
-				nvim_cmp = false,
-			},
-			workspaces = {
-				{
-					name = 'no-vault',
-					path = function()
-						return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
-					end,
-					overrides = {
-						notes_subdir = vim.NIL, -- have to use 'vim.NIL' instead of 'nil'
-						new_notes_location = 'current_dir',
-						templates = {
-							folder = vim.NIL,
-						},
-						disable_frontmatter = true,
-					},
-				},
-			},
-		},
-	},
-	{
 		'folke/snacks.nvim',
 		priority = 1000,
 		lazy = false,
@@ -140,10 +108,28 @@ return {
 		},
 		keys = {
 			--		{ "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
-			{ ',x', function() Snacks.bufdelete() end,               desc = 'Delete Buffer', },
+			{
+				',x',
+				function()
+					Snacks.bufdelete()
+				end,
+				desc = 'Delete Buffer',
+			},
 			--			{ "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
-			{ ']]', function() Snacks.words.jump(vim.v.count1) end,  desc = 'Next Reference', },
-			{ '[[', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Prev Reference', },
+			{
+				']]',
+				function()
+					Snacks.words.jump(vim.v.count1)
+				end,
+				desc = 'Next Reference',
+			},
+			{
+				'[[',
+				function()
+					Snacks.words.jump(-vim.v.count1)
+				end,
+				desc = 'Prev Reference',
+			},
 		},
 		init = function()
 			vim.api.nvim_create_autocmd('User', {

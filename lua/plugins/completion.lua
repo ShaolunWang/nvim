@@ -83,11 +83,28 @@ local M = {
 			-- trigger = { signature_help = { enabled = true } }
 			sources = {
 				completion = {
-					enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', --[[ 'rg', 'luasnip' ]] },
+					enabled_providers = {
+						'lsp',
+						'path',
+						'snippets',
+						'buffer', --[[ 'rg', 'luasnip' ]]
+					},
 				},
 				providers = {
 					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true },
-					path = { module = 'blink.cmp.sources.path', name = 'Path', enabled = true, score_offset = 3 },
+					path = {
+						name = 'Path',
+						module = 'blink.cmp.sources.path',
+						score_offset = 3,
+						opts = {
+							trailing_slash = false,
+							label_trailing_slash = true,
+							get_cwd = function(context)
+								return vim.fn.expand(('#%d:p:h'):format(context.bufnr))
+							end,
+							show_hidden_files_by_default = false,
+						},
+					},
 					buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, fallback_for = { 'LSP' } },
 					snippets = {
 						module = 'blink.cmp.sources.snippets',
@@ -97,7 +114,7 @@ local M = {
 							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
 						},
 					},
---[[ 					luasnip = {
+					--[[ 					luasnip = {
 						module = 'blink.compat.source',
 						name = 'luasnip',
 						enabled = true,
@@ -112,7 +129,7 @@ local M = {
 							return items
 						end,
 					}, ]]
---[[ 					rg = {
+					--[[ 					rg = {
 						module = 'blink.compat.source',
 						name = 'rg',
 						enabled = true,

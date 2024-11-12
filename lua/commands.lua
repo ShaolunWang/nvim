@@ -5,11 +5,6 @@ vim.api.nvim_create_user_command('B', function()
 	vim.cmd([[BufExplorer]])
 end, {})
 
-vim.api.nvim_create_user_command('C', function()
-	vim.cmd([[
-		:lua require('mini.colors').interactive()
-	]])
-end, {})
 vim.api.nvim_create_user_command('Sg', function()
 	vim.cmd([[:lua require('grug-far').open({ engine = 'astgrep' }) ]])
 end, {})

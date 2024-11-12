@@ -3,7 +3,7 @@ return {
 		'jiaoshijie/undotree',
 		dependencies = 'nvim-lua/plenary.nvim',
 		opts = {},
-		events = { 'BufReadPost' },
+		cmd = { 'UndotreeToggle' },
 	},
 	{
 		'kevinhwang91/nvim-fundo',

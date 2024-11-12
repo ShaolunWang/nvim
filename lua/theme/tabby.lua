@@ -34,7 +34,7 @@ require('tabby.tabline').set(function(line)
 			}
 		end),
 		{
-			{ '  ', hl = 'TablLineFill' },
+--			{ '  ', hl = 'TablLineFill' },
 		},
 		hl = 'TablineFill',
 	}
