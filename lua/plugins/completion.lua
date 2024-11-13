@@ -91,11 +91,11 @@ local M = {
 					},
 				},
 				providers = {
-					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true },
+					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true, score_offset = -1 },
 					path = {
 						name = 'Path',
 						module = 'blink.cmp.sources.path',
-						score_offset = 3,
+						score_offset = 0,
 						opts = {
 							trailing_slash = false,
 							label_trailing_slash = true,
@@ -110,14 +110,16 @@ local M = {
 						module = 'blink.cmp.sources.snippets',
 						name = 'scissor',
 						enabled = true,
+						score_offset = 3,
 						opts = {
 							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
 						},
 					},
-					--[[ 					luasnip = {
+					luasnip = {
 						module = 'blink.compat.source',
 						name = 'luasnip',
 						enabled = true,
+						fallback_for = { 'scissor' },
 						transform_items = function(ctx, items)
 							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
 							local kind = require('blink.cmp.types').CompletionItemKind.Text
@@ -128,11 +130,12 @@ local M = {
 
 							return items
 						end,
-					}, ]]
-					--[[ 					rg = {
+					},
+					rg = {
 						module = 'blink.compat.source',
 						name = 'rg',
 						enabled = true,
+						fallback_for = { 'Buffer' },
 						transform_items = function(ctx, items)
 							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
 							local kind = require('blink.cmp.types').CompletionItemKind.Text
@@ -143,7 +146,7 @@ local M = {
 
 							return items
 						end,
-					}, ]]
+					},
 				},
 			},
 		},
