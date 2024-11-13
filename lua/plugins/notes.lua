@@ -8,10 +8,10 @@ return {
 	},
 	{
 		'OXY2DEV/markview.nvim',
-		ft = "markdown",
+		ft = 'markdown',
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons"
-		}
-	}
+			'nvim-treesitter/nvim-treesitter',
+			'nvim-tree/nvim-web-devicons',
+		},
+	},
 }

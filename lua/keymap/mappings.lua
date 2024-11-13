@@ -15,6 +15,7 @@ vim.keymap.set('n', '<c-n>', function()
 end, { noremap = true, desc = 'Fern' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
+	vim.cmd('Fidget clear')
 	--	vim.cmd('NoiceDismiss')
 end, { noremap = true, silent = true })
 

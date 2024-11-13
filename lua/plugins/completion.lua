@@ -33,7 +33,7 @@ local M = {
 		dependencies = {
 			{ 'rafamadriz/friendly-snippets' },
 			{ 'saadparwaiz1/cmp_luasnip' },
-			{ 'lukas-reineke/cmp-rg' },
+			-- { 'lukas-reineke/cmp-rg' },
 			{
 				'saghen/blink.compat',
 				opts = {
@@ -91,13 +91,26 @@ local M = {
 					},
 				},
 				providers = {
-					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true },
-					path = { module = 'blink.cmp.sources.path', name = 'Path', enabled = true, score_offset = 3 },
+					lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true, score_offset = -1 },
+					path = {
+						name = 'Path',
+						module = 'blink.cmp.sources.path',
+						score_offset = 0,
+						opts = {
+							trailing_slash = false,
+							label_trailing_slash = true,
+							get_cwd = function(context)
+								return vim.fn.expand(('#%d:p:h'):format(context.bufnr))
+							end,
+							show_hidden_files_by_default = false,
+						},
+					},
 					buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, fallback_for = { 'LSP' } },
 					snippets = {
 						module = 'blink.cmp.sources.snippets',
 						name = 'scissor',
 						enabled = true,
+						score_offset = 3,
 						opts = {
 							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
 						},
@@ -106,6 +119,7 @@ local M = {
 						module = 'blink.compat.source',
 						name = 'luasnip',
 						enabled = true,
+						fallback_for = { 'scissor' },
 						transform_items = function(ctx, items)
 							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
 							local kind = require('blink.cmp.types').CompletionItemKind.Text
@@ -121,6 +135,7 @@ local M = {
 						module = 'blink.compat.source',
 						name = 'rg',
 						enabled = true,
+						fallback_for = { 'Buffer' },
 						transform_items = function(ctx, items)
 							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
 							local kind = require('blink.cmp.types').CompletionItemKind.Text

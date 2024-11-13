@@ -88,75 +88,7 @@ return {
 		end,
 	},
 	{
-		'NeogitOrg/neogit',
-		cmd = 'Neogit',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'sindrets/diffview.nvim',
-			'ibhagwan/fzf-lua',
-			{
-				{
-					'akinsho/git-conflict.nvim',
-					version = '*',
-					config = true,
-				},
-			},
-		},
-		opts = {
-			graph_style = 'kitty',
-			auto_refresh = true,
-			integrations = { diffview = true },
-			kind = 'tab',
-			use_magit_keybindings = true,
-			disable_builtin_notifications = false,
-		},
-	},
-
-	{
-		'folke/which-key.nvim',
-		--		event = 'VeryLazy',
-		config = function()
-			require('which-key').setup({
-				preset = 'helix',
-				notify = false,
-				show_keypress = false,
-			})
-		end,
-	},
-	{
-		'epwalsh/obsidian.nvim',
-		version = '*', -- recommended, use latest release instead of latest commit
-		lazy = true,
-		ft = 'markdown',
-		dependencies = {
-			-- Required.
-			'nvim-lua/plenary.nvim',
-		},
-		opts = {
-			completion = {
-				-- Set to false to disable completion.
-				nvim_cmp = false,
-			},
-			workspaces = {
-				{
-					name = 'no-vault',
-					path = function()
-						return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
-					end,
-					overrides = {
-						notes_subdir = vim.NIL, -- have to use 'vim.NIL' instead of 'nil'
-						new_notes_location = 'current_dir',
-						templates = {
-							folder = vim.NIL,
-						},
-						disable_frontmatter = true,
-					},
-				},
-			},
-		},
-	},
-	{
-		"folke/snacks.nvim",
+		'folke/snacks.nvim',
 		priority = 1000,
 		lazy = false,
 		opts = {
@@ -169,21 +101,38 @@ return {
 			words = { enabled = false },
 			styles = {
 				notification = {
-					wo = { wrap = true } -- Wrap notifications
-				}
-			}
+					wo = { wrap = true }, -- Wrap notifications
+				},
+			},
 		},
 		keys = {
 			--		{ "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
-			{ ",",  function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
+			{
+				',x',
+				function()
+					Snacks.bufdelete()
+				end,
+				desc = 'Delete Buffer',
+			},
 			--			{ "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
-			--			{ "\\r", function() Snacks.rename() end,                  desc = "Rename File" },
-			{ "]]", function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
-			{ "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+			{
+				']]',
+				function()
+					Snacks.words.jump(vim.v.count1)
+				end,
+				desc = 'Next Reference',
+			},
+			{
+				'[[',
+				function()
+					Snacks.words.jump(-vim.v.count1)
+				end,
+				desc = 'Prev Reference',
+			},
 		},
 		init = function()
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "VeryLazy",
+			vim.api.nvim_create_autocmd('User', {
+				pattern = 'VeryLazy',
 				callback = function()
 					-- Setup some globals for debugging (lazy-loaded)
 					_G.dd = function(...)
@@ -195,11 +144,12 @@ return {
 					vim.print = _G.dd -- Override print to use snacks for `:=` command
 
 					-- Create some toggle mappings
-					Snacks.toggle.diagnostics():map(",d")
-					Snacks.toggle.option("conceallevel",
-						{ off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(",c")
-					Snacks.toggle.treesitter():map(",t")
-					Snacks.toggle.inlay_hints():map(",h")
+					Snacks.toggle.diagnostics():map(',d')
+					Snacks.toggle
+						.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+						:map(',c')
+					Snacks.toggle.treesitter():map(',t')
+					Snacks.toggle.inlay_hints():map(',h')
 				end,
 			})
 		end,
