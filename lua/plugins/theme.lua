@@ -50,4 +50,8 @@ return {
 	{
 		'olivercederborg/poimandres.nvim',
 	},
+	{
+		'echasnovski/mini.base16',
+		lazy = true,
+	}
 }

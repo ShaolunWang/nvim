@@ -60,8 +60,8 @@ vim.keymap.set('n', '<f5>', ':Make ', { noremap = true, desc = 'Runner' })
 local toggle_qf = function()
 	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.quickfix == 1 then
-			--vim.cmd('cclose')
-			require('quicker').close()
+			vim.cmd('cclose')
+			-- require('quicker').close()
 			return
 		elseif info.variables['trouble'] ~= nil then
 			vim.print(info.variables['trouble'].mode)
@@ -76,8 +76,8 @@ local toggle_qf = function()
 		return
 	end
 	--vim.cmd('Trouble quickfix')
-	require('quicker').open()
-	--vim.cmd('copen')
+	-- require('quicker').open()
+	vim.cmd('copen')
 end
 vim.keymap.set('n', '<F6>', function()
 	toggle_qf()
