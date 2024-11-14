@@ -1,13 +1,13 @@
 local options = {
 
 	base46 = {
-		theme = 'doomchad', -- default theme
+		theme = 'vscode_dark', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
 		changed_themes = {},
 		transparency = false,
-		theme_toggle = { 'doomchad' },
+--		theme_toggle = { 'doomchad' },
 	},
 
 	ui = {
