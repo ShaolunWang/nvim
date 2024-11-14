@@ -85,7 +85,7 @@ vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	end,
 	group = init_quickfix,
 })
-vim.api.nvim_create_autocmd('VimLeave', {
+--[[ vim.api.nvim_create_autocmd('VimLeave', {
 	pattern = { '*' },
 	callback = function()
 		local undo_path = vim.fn.stdpath('data') .. '/undo/'
@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd('VimLeave', {
 		vim.cmd(delete_old_undo)
 		vim.print('cleaned undo files older than 1 week...')
 	end,
-})
+}) ]]
 
 local nui_au = vim.api.nvim_create_augroup('nui_au', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
@@ -151,7 +151,7 @@ function! s:init_fern() abort
         \ fern#smart#leaf(
         \   "\<Plug>(fern-action-open:select)",
         \   "\<Plug>(fern-action-enter)",
-        \ )  
+        \ )
   nmap <buffer><nowait> <Tab> <Plug>(fern-my-expand-or-collapse)
   nmap <buffer> n <Plug>(fern-action-new-path)
   nmap <buffer> d <Plug>(fern-action-remove)
