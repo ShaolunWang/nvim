@@ -73,6 +73,10 @@ return {
 	-- or just use Telescope themes
 	{
 		'echasnovski/mini.base16',
+		dependencies = {
+			'echasnovski/mini.colors',
+			'echasnovski/mini.hues'
+		},
 		lazy = true,
 	}
 }
