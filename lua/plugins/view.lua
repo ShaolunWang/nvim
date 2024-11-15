@@ -33,7 +33,7 @@ return {
 		},
 		event = 'BufReadPost',
 	},
-	--[[ {
+	{
 		'stevearc/quicker.nvim',
 		opts = {
 			max_filename_width = function()
@@ -50,14 +50,14 @@ return {
 		},
 
 		event = 'FileType qf',
-	} ]]
-	{
+	},
+	--[[ {
 		'kevinhwang91/nvim-bqf',
 		opts = {
 			preview = { auto_preview = false },
 		},
 		ft = { 'qf' },
-	},
+	}, ]]
 	{ 'tzachar/highlight-undo.nvim', opts = {}, keys = { 'u', '<c-r>' } },
 	{
 		'stevearc/dressing.nvim',
