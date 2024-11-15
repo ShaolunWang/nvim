@@ -70,18 +70,18 @@ local init_quickfix = vim.api.nvim_create_augroup('init_quickfix', { clear = tru
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	pattern = { '[^l]*' },
 	callback = function()
-		--		require('quicker').open()
+				require('quicker').open()
 		--vim.cmd('Trouble quickfix')
-		vim.cmd('cwindow')
+		-- vim.cmd('cwindow')
 	end,
 	group = init_quickfix,
 })
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 	pattern = { 'l*' },
 	callback = function()
-		-- require('quicker').open({ loclist = true })
+		require('quicker').open({ loclist = true })
 		--vim.cmd('Trouble loclist')
-		vim.cmd('lwindow')
+		-- vim.cmd('lwindow')
 	end,
 	group = init_quickfix,
 })
