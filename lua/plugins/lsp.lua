@@ -119,6 +119,7 @@ return {
 		'python',
 		'ocaml',
 		'cpp',
+		'c',
 		'typst',
 		'ts',
 		'lua',
