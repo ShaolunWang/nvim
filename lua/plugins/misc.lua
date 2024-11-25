@@ -57,6 +57,16 @@ return {
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			'sindrets/diffview.nvim',
+			{
+				"FabijanZulj/blame.nvim",
+				lazy = true,
+				config = function()
+					require('blame').setup {}
+				end,
+				opts = {
+					blame_options = { '-w' },
+				},
+			},
 			'ibhagwan/fzf-lua',
 			{
 				{

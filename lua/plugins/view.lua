@@ -84,11 +84,11 @@ return {
 		},
 		cmd = { 'WinShift' },
 	},
-	{
-		'j-hui/fidget.nvim',
-		opts = {
-			-- options
-		},
-		events = 'VeryLazy',
-	},
+	-- {
+	-- 	'j-hui/fidget.nvim',
+	-- 	opts = {
+	-- 		-- options
+	-- 	},
+	-- 	events = 'VeryLazy',
+	-- },
 }

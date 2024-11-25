@@ -1,8 +1,30 @@
 return {
-	{
-		'echasnovski/mini.move',
-		version = false,
-		opts = {
+	'echasnovski/mini.nvim',
+	config = function()
+		require('mini.ai').setup()
+		require('mini.pick').setup()
+		require('mini.indentscope').setup({
+			draw = {
+				animation = function()
+					return 1
+				end,
+			},
+			symbol = '│',
+		})
+		--		require('mini.comment').setup()
+		require('mini.animate').setup({
+			scroll = { enable = false },
+			cursor = { enable = false },
+		})
+		local win_config = function()
+			local has_statusline = vim.o.laststatus > 0
+			local pad = vim.o.cmdheight + (has_statusline and 1 or 0)
+			return { anchor = 'SE', col = vim.o.columns, row = vim.o.lines - pad }
+		end
+		require('mini.notify').setup({ window = { config = win_config } })
+		require('mini.extra').setup()
+		require('mini.cursorword').setup()
+		require('mini.move').setup({
 			mappings = {
 				-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
 				left = '',
@@ -20,123 +42,24 @@ return {
 				-- Automatically reindent selection during linewise vertical move
 				reindent_linewise = true,
 			},
-		},
-		keys = { '[', ']' },
-	},
-	{
-		'echasnovski/mini.extra',
-		version = false,
-		config = function()
-			require('mini.extra').setup()
-		end,
-		lazy = true
-	},
-	{
-		'echasnovski/mini.pick',
+		})
+		vim.ui.select = MiniPick.ui_select
 
-		dependencies = { 'echasnovski/mini.extra', version = false },
-		version = false,
-		opts = {
-			-- No need to copy this inside `setup()`. Will be used automatically.
-			-- Delays (in ms; should be at least 1)
-			delay = {
-				-- Delay between forcing asynchronous behavior
-				async = 5,
-
-				-- Delay between computation start and visual feedback about it
-				busy = 50,
-			},
-
-			-- Keys for performing actions. See `:h MiniPick-actions`.
+		require('mini.jump2d').setup()
+		require('mini.surround').setup({
 			mappings = {
-				caret_left = '<Left>',
-				caret_right = '<Right>',
+				add = 'sa', -- Add surrounding in Normal and Visual modes
+				delete = 'sd', -- Delete surrounding
+				find = 'sf', -- Find surrounding (to the right)
+				find_left = 'sF', -- Find surrounding (to the left)
+				highlight = 'sh', -- Highlight surrounding
+				replace = 'sr', -- Replace surrounding
+				update_n_lines = 'sn', -- Update `n_lines`
 
-				choose = '<CR>',
-				choose_in_split = '<C-s>',
-				choose_in_tabpage = '<C-t>',
-				choose_in_vsplit = '<C-v>',
-				choose_marked = '<M-CR>',
-
-				delete_char = '<BS>',
-				delete_char_right = '<Del>',
-				delete_left = '<C-u>',
-				delete_word = '<C-w>',
-
-				mark = '<C-x>',
-				mark_all = '<C-a>',
-
-				move_down = '<C-n>',
-				move_start = '<C-g>',
-				move_up = '<C-p>',
-
-				paste = '<C-r>',
-
-				refine = '<C-Space>',
-				refine_marked = '<M-Space>',
-
-				scroll_down = '<C-f>',
-				scroll_left = '<C-h>',
-				scroll_right = '<C-l>',
-				scroll_up = '<C-b>',
-
-				stop = '<Esc>',
-
-				toggle_info = '<S-Tab>',
-				toggle_preview = '<Tab>',
+				suffix_last = 'l', -- Suffix to search with "prev" method
+				suffix_next = 'n', -- Suffix to search with "next" method
 			},
-
-			-- General options
-			options = {
-				-- Whether to show content from bottom to top
-				content_from_bottom = false,
-
-				-- Whether to cache matches (more speed and memory on repeated prompts)
-				use_cache = true,
-			},
-
-			-- Source definition. See `:h MiniPick-source`.
-			source = {
-				items = nil,
-				name = nil,
-				cwd = nil,
-
-				match = nil,
-				show = nil,
-				preview = nil,
-
-				choose = nil,
-				choose_marked = nil,
-			},
-
-			-- Window related options
-			window = {
-				-- Float window config (table or callable returning it)
-				config = nil,
-
-				-- String to use as cursor in prompt
-				prompt_cursor = '▏',
-
-				-- String to use as prefix in prompt
-				prompt_prefix = '> ',
-			},
-		},
-		config = function()
-			require('mini.pick').setup(opts)
-			vim.ui.select = MiniPick.ui_select
-		end,
-		cmd = { 'Pick' },
-	},
-	{
-		'echasnovski/mini.ai',
-		dependencies = {
-			'echasnovski/mini.extra',
-			version = false,
-		},
-		config = function()
-			require("mini.ai").setup()
-		end,
-		version = false,
-		events = { 'BufReadPost' },
-	},
+		})
+	end,
+	events = 'VeryLazy',
 }

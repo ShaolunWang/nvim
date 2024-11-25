@@ -1,70 +1,70 @@
 return {
-	{
-		'folke/flash.nvim',
-		opts = {
-
-			label = { rainbow = { enabled = true } },
-
-			jump = {
-				nohlsearch = true,
-			},
-			modes = {
-				char = {
-					enabled = true,
-					multi_line = false,
-					autohide = true,
-					jump_labels = true,
-					highlight = { backdrop = false },
-					--					jump = { autojump = true },
-				},
-			},
-			search = {
-				exclude = {
-					'notify',
-					'terminal',
-					'cmp_menu',
-					'noice',
-					'flash_prompt',
-					'NeogitStatus',
-					'NeogitConsole',
-					'NeogitStatusNew',
-					'NeogitGitCommandHistory',
-					'NeogitCommitSelectView',
-					'NeogitLogView',
-					'NeogitRebaseTodo',
-					'NeogitPopup',
-					'NeogitCommitView',
-				},
-				mode = 'exact',
-			},
-		},
-		keys = {
-			{
-				's',
-				mode = { 'n', 'x', 'o' },
-				function()
-					require('utils.jump').two_label()
-				end,
-				desc = 'Flash',
-			},
-			{
-				'S',
-				mode = { 'n', 'x', 'o' },
-				function()
-					require('flash').treesitter()
-				end,
-				desc = 'Flash Treesitter',
-			},
-			{
-				'gs',
-				mode = 'o',
-				function()
-					require('flash').remote()
-				end,
-				desc = 'Remote Flash',
-			},
-		},
-	},
+	-- {
+	-- 	'folke/flash.nvim',
+	-- 	opts = {
+	--
+	-- 		label = { rainbow = { enabled = true } },
+	--
+	-- 		jump = {
+	-- 			nohlsearch = true,
+	-- 		},
+	-- 		modes = {
+	-- 			char = {
+	-- 				enabled = true,
+	-- 				multi_line = false,
+	-- 				autohide = true,
+	-- 				jump_labels = true,
+	-- 				highlight = { backdrop = false },
+	-- 				--					jump = { autojump = true },
+	-- 			},
+	-- 		},
+	-- 		search = {
+	-- 			exclude = {
+	-- 				'notify',
+	-- 				'terminal',
+	-- 				'cmp_menu',
+	-- 				'noice',
+	-- 				'flash_prompt',
+	-- 				'NeogitStatus',
+	-- 				'NeogitConsole',
+	-- 				'NeogitStatusNew',
+	-- 				'NeogitGitCommandHistory',
+	-- 				'NeogitCommitSelectView',
+	-- 				'NeogitLogView',
+	-- 				'NeogitRebaseTodo',
+	-- 				'NeogitPopup',
+	-- 				'NeogitCommitView',
+	-- 			},
+	-- 			mode = 'exact',
+	-- 		},
+	-- 	},
+	-- 	keys = {
+	-- 		{
+	-- 			's',
+	-- 			mode = { 'n', 'x', 'o' },
+	-- 			function()
+	-- 				require('utils.jump').two_label()
+	-- 			end,
+	-- 			desc = 'Flash',
+	-- 		},
+	-- 		{
+	-- 			'S',
+	-- 			mode = { 'n', 'x', 'o' },
+	-- 			function()
+	-- 				require('flash').treesitter()
+	-- 			end,
+	-- 			desc = 'Flash Treesitter',
+	-- 		},
+	-- 		{
+	-- 			'gs',
+	-- 			mode = 'o',
+	-- 			function()
+	-- 				require('flash').remote()
+	-- 			end,
+	-- 			desc = 'Remote Flash',
+	-- 		},
+	-- 	},
+	-- },
 	{
 		'cbochs/grapple.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },

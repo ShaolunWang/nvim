@@ -29,27 +29,27 @@ return {
 			{ 'gc', mode = { 'n', 'v' }, desc = 'Comment toggle linewise' },
 			{ 'gb', mode = { 'n', 'v' }, desc = 'Comment toggle blockwise' },
 		},
-	},
+	}, 
 	{ 'chrisbra/NrrwRgn', cmd = { 'NR' } },
-	{
-		'kylechui/nvim-surround',
-		opts = {
-			keymaps = {
-				insert = '<C-g>s',
-				insert_line = '<C-g>S',
-				normal = 'rs',
-				normal_cur = 'rss',
-				normal_line = 'rS',
-				normal_cur_line = 'rSS',
-				visual = 'rs',
-				visual_line = 'rS',
-				delete = 'drs',
-				change = 'crs',
-				change_line = 'crS',
-			},
-		},
-		events = { 'BufReadPost' },
-	},
+	-- {
+	-- 	'kylechui/nvim-surround',
+	-- 	opts = {
+	-- 		keymaps = {
+	-- 			insert = '<C-g>s',
+	-- 			insert_line = '<C-g>S',
+	-- 			normal = 'rs',
+	-- 			normal_cur = 'rss',
+	-- 			normal_line = 'rS',
+	-- 			normal_cur_line = 'rSS',
+	-- 			visual = 'rs',
+	-- 			visual_line = 'rS',
+	-- 			delete = 'drs',
+	-- 			change = 'crs',
+	-- 			change_line = 'crS',
+	-- 		},
+	-- 	},
+	-- 	events = { 'BufReadPost' },
+	-- },
 	{
 		'danymat/neogen',
 		opts = {},
@@ -166,7 +166,7 @@ return {
 						augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
 						augend.date.alias["%Y/%m/%d"], -- date (2022/02/19, etc.)
 						ordinal_numbers,
-   						augend.constant.alias.bool,    -- boolean value (true <-> false)
+						augend.constant.alias.bool, -- boolean value (true <-> false)
 						weekdays,
 						months,
 					},
