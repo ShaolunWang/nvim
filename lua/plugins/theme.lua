@@ -54,8 +54,16 @@ return {
 		'echasnovski/mini.base16',
 		dependencies = {
 			'echasnovski/mini.colors',
-			'echasnovski/mini.hues'
+			'echasnovski/mini.hues',
 		},
 		lazy = true,
-	}
+	},
+	{
+		'neanias/everforest-nvim',
+		config = function()
+			require('everforest').setup({
+				background = 'hard',
+			})
+		end,
+	},
 }

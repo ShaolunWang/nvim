@@ -49,7 +49,7 @@ return {
 		config = function()
 			require('clangd_extensions').setup({})
 		end,
-		ft = { 'cpp', 'h', 'c'},
+		ft = { 'cpp', 'h', 'c' },
 	},
 	{
 		'mrcjkb/haskell-tools.nvim',

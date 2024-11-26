@@ -29,7 +29,7 @@ return {
 			{ 'gc', mode = { 'n', 'v' }, desc = 'Comment toggle linewise' },
 			{ 'gb', mode = { 'n', 'v' }, desc = 'Comment toggle blockwise' },
 		},
-	}, 
+	},
 	{ 'chrisbra/NrrwRgn', cmd = { 'NR' } },
 	-- {
 	-- 	'kylechui/nvim-surround',

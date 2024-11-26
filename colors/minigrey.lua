@@ -12,11 +12,11 @@ local fg = is_dark and '#d3d4d5' or '#2d2e2f'
 -- retaining usability
 local hues = require('mini.hues')
 local p = hues.make_palette({
-  background = bg,
-  foreground = fg,
-  -- Make it "less colors"
-  saturation = is_dark and 'lowmedium' or 'mediumhigh',
-  accent = 'bg',
+	background = bg,
+	foreground = fg,
+	-- Make it "less colors"
+	saturation = is_dark and 'lowmedium' or 'mediumhigh',
+	accent = 'bg',
 })
 
 local less_p = vim.deepcopy(p)
@@ -27,7 +27,9 @@ hues.apply_palette(less_p)
 vim.g.colors_name = 'minigrey'
 
 -- Tweak highlight groups for general usability (acounting for removed colors)
-local hi = function(group, data) vim.api.nvim_set_hl(0, group, data) end
+local hi = function(group, data)
+	vim.api.nvim_set_hl(0, group, data)
+end
 
 hi('DiagnosticInfo', { fg = less_p.azure })
 hi('DiagnosticUnderlineInfo', { sp = less_p.azure, underline = true })

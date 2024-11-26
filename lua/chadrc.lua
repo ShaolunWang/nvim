@@ -1,14 +1,14 @@
 local options = {
 
-  base46 = {
-    theme = "aquarium", -- default theme
-    hl_add = {},
-    hl_override = {},
-    integrations = {},
-    changed_themes = {},
-    transparency = false,
-    theme_toggle = { "aquarium", "one_light" },
-  },
+	base46 = {
+		theme = 'aquarium', -- default theme
+		hl_add = {},
+		hl_override = {},
+		integrations = {},
+		changed_themes = {},
+		transparency = false,
+		theme_toggle = { 'aquarium', 'one_light' },
+	},
 
 	ui = {
 		cmp = {
