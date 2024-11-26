@@ -58,10 +58,10 @@ return {
 			'nvim-lua/plenary.nvim',
 			'sindrets/diffview.nvim',
 			{
-				"FabijanZulj/blame.nvim",
+				'FabijanZulj/blame.nvim',
 				lazy = true,
 				config = function()
-					require('blame').setup {}
+					require('blame').setup({})
 				end,
 				opts = {
 					blame_options = { '-w' },

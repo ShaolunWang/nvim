@@ -1,6 +1,6 @@
 vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme minigrey')
+vim.cmd('colorscheme everforest')
 
 -- cmp
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })

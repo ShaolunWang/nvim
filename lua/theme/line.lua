@@ -6,9 +6,20 @@ local dropbar = require('dropbar.utils')
 local Align = { provider = '%=' }
 --Heirline: utils.pick_child_on_condition() is deprecated, please use the fallthrough field instead. To retain the same functionality, replace `init = utils.pick_child_on_condition()` with `fallthrough = false`
 --
+local left_slant = ''
+local right_slant = ''
+local function empty(s)
+	return type(s) ~= 'string' or string.len(s) == 0
+end
 
-local Separator = { provider = ' ' }
-local Space = { provider = ' ' }
+local Separator = {
+	provider = ' ',
+	hl = { fg = 'fg', bg = 'bg' },
+}
+local Space = {
+	provider = ' ',
+	hl = { fg = 'fg', bg = 'bg' },
+}
 
 local colors = {
 	bright_bg = utils.get_highlight('Folded').bg,
@@ -124,7 +135,46 @@ local ViMode = {
 	-- performance improvement.
 	update = 'ModeChanged',
 }
+local FileName = {
+	init = function(self)
+		self.filename = vim.api.nvim_buf_get_name(0)
+	end,
+	hl = { fg = 'bg', bg = 'fg' },
 
+	-- file name
+	{
+		provider = left_slant,
+		hl = { fg = 'fg', bg = 'bg' },
+	},
+	{
+		provider = ' %t ',
+	},
+	{
+		provider = function(self)
+			self.filename = vim.api.nvim_buf_get_name(0)
+
+			if empty(self.filename) then
+				return ''
+			end
+			local modifiable = vim.api.nvim_get_option_value('modifiable', { buf = 0 })
+			local readonly = vim.api.nvim_get_option_value('readonly', { buf = 0 })
+			if not modifiable or readonly then
+				return '[!] '
+			end
+			local modified = vim.api.nvim_get_option_value('modified', { buf = 0 })
+			if modified then
+				return '[+] '
+			end
+			return ''
+		end,
+		update = { 'OptionSet', 'BufWritePost', 'BufEnter', 'WinEnter' },
+	},
+	-- file size
+	{
+		provider = right_slant,
+		hl = { fg = 'fg', bg = 'bg' },
+	},
+}
 local FileFlags = {
 	{
 		condition = function()
@@ -162,7 +212,15 @@ local Ruler = {
 	-- %L = number of lines in the buffer
 	-- %c = column number
 	-- %P = percentage through file of displayed window
-	provider = '%7(%l/%3L%):%2c %P',
+	{
+		provider = left_slant,
+		hl = { fg = 'bg', bg = 'bg' },
+	},
+	{
+
+		provider = '%7(%l/%3L%):%2c %P',
+		hl = { fg = 'fg', bg = 'bg' },
+	},
 }
 -- I take no credits for this! :lion:
 local ScrollBar = {
@@ -375,9 +433,9 @@ ViMode = utils.surround({ '', '' }, 'None', { MacroRec, ViMode, Snippets, ShowCm
 local DefaultStatusline = {
 	ViMode,
 	Space,
+	FileName,
 	ShowCmd,
 	Separator,
-	TSContext,
 	Align, -- .., .., align would put on the left
 	Align,
 	Ruler,
@@ -430,6 +488,7 @@ local StatusLines = {
 	InactiveStatusline,
 	DefaultStatusline,
 	fallthrough = true,
+	hl = { fg = 'fg', bg = 'bg' },
 }
 --local ts_utils = require('nvim-treesitter.utils')
 require('heirline').setup({

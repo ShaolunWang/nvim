@@ -43,6 +43,7 @@ return {
 				reindent_linewise = true,
 			},
 		})
+		require('mini.visits').setup()
 		vim.ui.select = MiniPick.ui_select
 
 		require('mini.jump2d').setup()
