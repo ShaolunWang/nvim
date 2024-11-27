@@ -176,20 +176,6 @@ return {
 			},
 		},
 	}, ]]
-	--[[ {
-		'nvimdev/guard.nvim',
-		dependencies = {
-			"nvimdev/guard-collection",
-		},
-		config = function()
-			local ft = require('guard.filetype')
-			ft('cpp'):fmt('clang-format')
-				:lint('clang-tidy')
-			ft('h'):fmt('clang-format')
-				:lint('clang-tidy')
-		end,
-		ft = { "cpp", "h" },
-	} ]]
 	{
 		'folke/zen-mode.nvim',
 		opts = {},
@@ -200,5 +186,6 @@ return {
 		config = function()
 			vim.g.bufExplorerDisableDefaultKeyMapping = 1
 		end,
+
 	},
 }
