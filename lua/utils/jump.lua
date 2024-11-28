@@ -1,23 +1,23 @@
 M = {}
 function M.two_label()
-	local Flash = require('flash')
+	local flash = require("flash")
 
-	---@param opts Flash.Format
+	---@param opts flash.Format
 	local function format(opts)
 		-- always show first and second label
 		return {
-			{ opts.match.label1, 'FlashMatch' },
-			{ opts.match.label2, 'FlashLabel' },
+			{ opts.match.label1, "flashMatch" },
+			{ opts.match.label2, "flashLabel" },
 		}
 	end
 
-	Flash.jump({
-		search = { mode = 'search' },
+	flash.jump({
+		search = { mode = "search" },
 		label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
 		pattern = [[\<]],
 		action = function(match, state)
 			state:hide()
-			Flash.jump({
+			flash.jump({
 				search = { max_length = 0 },
 				highlight = { matches = false },
 				label = { format = format },

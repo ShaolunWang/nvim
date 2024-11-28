@@ -1,6 +1,6 @@
 vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme everforest')
+vim.cmd('colorscheme modus')
 
 -- cmp
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
@@ -86,6 +86,9 @@ local colors = {
 vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = colors.darkwhite, bg = bg, link = link })
+vim.api.nvim_set_hl(0, 'MiniCursorword', { underline =true })
+vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { underline =true })
+
 
 require('theme.tabby')
 require('theme.line')

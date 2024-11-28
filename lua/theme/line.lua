@@ -7,7 +7,9 @@ local Align = { provider = '%=' }
 --Heirline: utils.pick_child_on_condition() is deprecated, please use the fallthrough field instead. To retain the same functionality, replace `init = utils.pick_child_on_condition()` with `fallthrough = false`
 --
 local left_slant = ''
-local right_slant = ''
+--local right_slant = ''
+--
+local right_slant = ''
 local function empty(s)
 	return type(s) ~= 'string' or string.len(s) == 0
 end

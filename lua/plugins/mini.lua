@@ -46,7 +46,6 @@ return {
 		require('mini.visits').setup()
 		vim.ui.select = MiniPick.ui_select
 
-		require('mini.jump2d').setup()
 		require('mini.surround').setup({
 			mappings = {
 				add = 'sa', -- Add surrounding in Normal and Visual modes
