@@ -34,6 +34,7 @@ local M = {
 			{ 'rafamadriz/friendly-snippets' },
 			{ 'saadparwaiz1/cmp_luasnip' },
 			-- { 'lukas-reineke/cmp-rg' },
+			--
 			{
 				'saghen/blink.compat',
 				opts = {
@@ -66,6 +67,17 @@ local M = {
 				['<c-d>'] = { 'snippet_forward' },
 				['<c-u>'] = { 'snippet_backward ' },
 			},
+
+			snippets = {
+				expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
+				active = function(filter)
+					if filter and filter.direction then
+						return require('luasnip').jumpable(filter.direction)
+					end
+					return require('luasnip').in_snippet()
+				end,
+				jump = function(direction) require('luasnip').jump(direction) end,
+			},
 			highlight = {
 				-- sets the fallback highlight groups to nvim-cmp's highlight groups
 				-- useful for when your theme doesn't support blink.cmp
@@ -87,7 +99,7 @@ local M = {
 						'lsp',
 						'path',
 						'snippets',
-						'buffer', --[[ 'rg', 'luasnip' ]]
+						--[[ 'buffer', 'rg', 'luasnip' ]]
 					},
 				},
 				providers = {
@@ -106,35 +118,22 @@ local M = {
 						},
 					},
 					buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, fallback_for = { 'LSP' } },
-					snippets = {
-						module = 'blink.cmp.sources.snippets',
-						name = 'scissor',
-						enabled = true,
-						score_offset = 3,
-						opts = {
-							search_paths = { vim.fn.stdpath('config') .. '/snips/json_style/' },
-						},
-					},
 					luasnip = {
-						module = 'blink.compat.source',
 						name = 'luasnip',
-						enabled = true,
-						fallback_for = { 'scissor' },
-						transform_items = function(ctx, items)
-							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-							local kind = require('blink.cmp.types').CompletionItemKind.Text
+						module = 'blink.compat.source',
 
-							for i = 1, #items do
-								items[i].kind = kind
-							end
+						score_offset = -3,
 
-							return items
-						end,
+						opts = {
+							use_show_condition = false,
+							show_autosnippets = true,
+						},
 					},
 					rg = {
 						module = 'blink.compat.source',
 						name = 'rg',
 						enabled = true,
+						score_offset = -3,
 						fallback_for = { 'Buffer' },
 						transform_items = function(ctx, items)
 							-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622

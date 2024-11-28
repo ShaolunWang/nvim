@@ -166,7 +166,7 @@ return {
 			-- VimTeX configuration goes here, e.g.
 			--			vim.g.vimtex_view_general_viewer = 'okular'
 			--			vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
-			vim.g.vimtex_latex_viewer = 'skim'
+			vim.g.vimtex_latex_viewer = 'sioyek'
 			vim.g.vimtex_compiler_method = 'latexmk'
 			-- vim.cmd([[
 			--   let g:vimtex_compiler_method = 'generic'

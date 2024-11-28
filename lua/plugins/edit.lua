@@ -53,7 +53,7 @@ return {
 	{
 		'danymat/neogen',
 		opts = {},
-		keys = { ',c' },
+		keys = { ',g' },
 	},
 	{
 		'chrisgrieser/nvim-rip-substitute',
