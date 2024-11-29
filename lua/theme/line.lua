@@ -495,8 +495,8 @@ local StatusLines = {
 --local ts_utils = require('nvim-treesitter.utils')
 require('heirline').setup({
 	statusline = StatusLines,
-	winbar = Winbars,
-	--	statuscolumn = {},
+	--winbar = Winbars,
+	--statuscolumn = {},
 	opts = {
 		-- if the callback returns true, the winbar will be disabled for that window
 		-- the args parameter corresponds to the table argument passed to autocommand callbacks. :h nvim_lua_create_autocmd()
