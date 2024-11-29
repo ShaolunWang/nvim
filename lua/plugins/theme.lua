@@ -1,5 +1,5 @@
 return {
-	{
+	--[[ {
 		'nanozuki/tabby.nvim',
 		dependencies = {
 			'tiagovla/scope.nvim',
@@ -14,7 +14,7 @@ return {
 			require('scope').setup({})
 			require('tabby').setup({})
 		end,
-	},
+	}, ]]
 	{
 		'rebelot/heirline.nvim',
 		dependencies = {},
