@@ -58,18 +58,24 @@ return {
 		},
 		ft = { 'qf' },
 	}, ]]
-	{ 'tzachar/highlight-undo.nvim', opts = {}, keys = { 'u', '<c-r>' } },
+	{
+		'aileot/emission.nvim',
+		events = 'VeryLazy',
+		opts = {},
+	},
 	{
 		'stevearc/dressing.nvim',
 		opts = {
 			input = { enabled = true },
 			select = {
-				backend = { 'nui', 'fzf_lua', 'builtin' },
-				nui = {
+				enabled = false,
+				--[[
+				backend = { 'pick', 'nui', 'fzf_lua', 'builtin' },
+ 				nui = {
 					buf_options = {
 						filetype = 'nui',
 					},
-				},
+				}, ]]
 			},
 		},
 	},

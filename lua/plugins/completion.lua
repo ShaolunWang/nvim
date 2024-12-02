@@ -18,21 +18,21 @@ return {
 			},
 		},
 	},
-
 	opts = {
 		completion = {
 			ghost_text = { enabled = true },
-			list = { selection = 'auto_insert' },
+			list = { selection = '' },
 			trigger = {
-				show_on_insert_on_trigger_character = false,
-			}
+				show_on_keyword = false,
+				show_on_trigger_character = false,
+			},
 		},
 
 		keymap = {
 			['<c-m>'] = { 'show' },
 			['<c-h>'] = { 'hide' },
 			['<Tab>'] = { 'select_and_accept', 'fallback' },
-			['<cr>']  = { 'select_and_accept', 'fallback' },
+			['<cr>'] = { 'select_and_accept', 'fallback' },
 			['<C-p>'] = { 'select_prev' },
 			['<C-n>'] = { 'select_next' },
 			['<c-d>'] = { 'snippet_forward' },
@@ -68,7 +68,7 @@ return {
 				path = {
 					name = 'Path',
 					module = 'blink.cmp.sources.path',
-					score_offset = 0,
+					score_offset = -3,
 					opts = {
 						trailing_slash = false,
 						label_trailing_slash = true,
