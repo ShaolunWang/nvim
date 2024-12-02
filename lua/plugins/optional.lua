@@ -110,7 +110,7 @@ return {
 		'dhananjaylatkar/cscope_maps.nvim',
 		config = cscope_config,
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
-		ft = { 'cpp', 'h', 'hpp' },
+		ft = { 'cpp', 'h', 'hpp', 'c' },
 	},
 	-- Lua
 	{
@@ -189,4 +189,9 @@ return {
 			]])
 		end,
 	},
+	{
+		"marcussimonsen/let-it-snow.nvim",
+		cmd = "LetItSnow", -- Wait with loading until command is run
+		opts = {},
+	}
 }

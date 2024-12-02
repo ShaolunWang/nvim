@@ -38,30 +38,15 @@ return {
 				mode = 'exact',
 			},
 		},
+		lazy = true,
 		keys = {
 			{
-				's',
-				mode = { 'n', 'x', 'o' },
+				'<c-q>',
+				mode = 'n',
 				function()
 					require('utils.jump').two_label()
 				end,
-				desc = 'Flash',
-			},
-			{
-				'S',
-				mode = { 'n', 'x', 'o' },
-				function()
-					require('flash').treesitter()
-				end,
-				desc = 'Flash Treesitter',
-			},
-			{
-				'gs',
-				mode = 'o',
-				function()
-					require('flash').remote()
-				end,
-				desc = 'Remote Flash',
+				desc = 'Jump 2c',
 			},
 		},
 	},
@@ -97,4 +82,5 @@ return {
 		event = { 'WinEnter' },
 	},
 	{ 'kwkarlwang/bufjump.nvim', opts = {}, keys = { 'c-o', 'c-i' } },
+	{ 'chentoast/marks.nvim', opts = {} },
 }

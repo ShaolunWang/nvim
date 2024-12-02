@@ -1,5 +1,5 @@
 return {
-	{
+	--[[ {
 		'nanozuki/tabby.nvim',
 		dependencies = {
 			'tiagovla/scope.nvim',
@@ -14,7 +14,7 @@ return {
 			require('scope').setup({})
 			require('tabby').setup({})
 		end,
-	},
+	}, ]]
 	{
 		'rebelot/heirline.nvim',
 		dependencies = {},
@@ -75,8 +75,16 @@ return {
 		'echasnovski/mini.base16',
 		dependencies = {
 			'echasnovski/mini.colors',
-			'echasnovski/mini.hues'
+			'echasnovski/mini.hues',
 		},
 		lazy = true,
-	}
+	},
+	{
+		'neanias/everforest-nvim',
+		config = function()
+			require('everforest').setup({
+				background = 'hard',
+			})
+		end,
+	},
 }

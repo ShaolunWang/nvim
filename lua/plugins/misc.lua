@@ -57,7 +57,16 @@ return {
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			'sindrets/diffview.nvim',
-			'ibhagwan/fzf-lua',
+			{
+				'FabijanZulj/blame.nvim',
+				lazy = true,
+				config = function()
+					require('blame').setup({})
+				end,
+				opts = {
+					blame_options = { '-w' },
+				},
+			},
 			{
 				{
 					'akinsho/git-conflict.nvim',
@@ -67,10 +76,10 @@ return {
 			},
 		},
 		opts = {
-			graph_style = 'kitty',
+			graph_style = 'unicode',
 			auto_refresh = true,
 			integrations = { diffview = true },
-			kind = 'tab',
+			kind = 'floating',
 			use_magit_keybindings = true,
 			disable_builtin_notifications = false,
 		},
