@@ -186,6 +186,10 @@ return {
 		config = function()
 			vim.g.bufExplorerDisableDefaultKeyMapping = 1
 		end,
-
 	},
+	{
+		"marcussimonsen/let-it-snow.nvim",
+		cmd = "LetItSnow", -- Wait with loading until command is run
+		opts = {},
+	}
 }

@@ -40,8 +40,15 @@ return {
 		},
 		lazy = true,
 		keys = {
-			{ '<c-q>', mode = 'n', function() require('utils.jump').two_label() end, desc = 'Jump 2c' }
-		}
+			{
+				'<c-q>',
+				mode = 'n',
+				function()
+					require('utils.jump').two_label()
+				end,
+				desc = 'Jump 2c',
+			},
+		},
 	},
 	{
 		'cbochs/grapple.nvim',
@@ -75,5 +82,5 @@ return {
 		event = { 'WinEnter' },
 	},
 	{ 'kwkarlwang/bufjump.nvim', opts = {}, keys = { 'c-o', 'c-i' } },
-	{ 'chentoast/marks.nvim',    opts = {} }
+	{ 'chentoast/marks.nvim', opts = {} },
 }

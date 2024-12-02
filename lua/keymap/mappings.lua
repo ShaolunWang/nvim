@@ -31,19 +31,36 @@ vim.keymap.set('n', '<C-p>', require('smart-splits').move_cursor_previous, { nor
 -- grapple
 
 -- Telescope
+-- vim.keymap.set('n', '<leader>ff', function()
+-- 	vim.cmd([[Pick files]])
+-- end, { noremap = true, desc = 'Find File' })
+-- vim.keymap.set('n', '<leader>fg', function()
+-- 	require('fzf-lua').live_grep()
+-- end, { noremap = true, desc = 'Grep content' })
+-- vim.keymap.set('n', '<leader>fh', function()
+-- 	require('fzf-lua').help_tags()
+-- end, { noremap = true, desc = 'Find Help' })
+-- vim.keymap.set('n', '<leader>fo', function()
+-- 	require('fzf-lua').oldfiles()
+-- end, { noremap = true, desc = 'Search Old File' })
+--
+
 vim.keymap.set('n', '<leader>ff', function()
 	vim.cmd([[Pick files]])
 end, { noremap = true, desc = 'Find File' })
 vim.keymap.set('n', '<leader>fg', function()
-	require('fzf-lua').live_grep()
+	vim.cmd([[Pick grep_live]])
 end, { noremap = true, desc = 'Grep content' })
 vim.keymap.set('n', '<leader>fh', function()
-	require('fzf-lua').help_tags()
+	--	require('fzf-lua').help_tags()
+	vim.cmd([[Pick help]])
 end, { noremap = true, desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fo', function()
-	require('fzf-lua').oldfiles()
+	--	require('fzf-lua').oldfiles()
+	vim.cmd([[Pick oldfiles]])
 end, { noremap = true, desc = 'Search Old File' })
-vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custom picker' })
+
+--vim.keymap.set('n', '<leader>fp', ':FzfLua<cr>', { noremap = true, desc = 'Custom picker' })
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, desc = 'Close Tab' })

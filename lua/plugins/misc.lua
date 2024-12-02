@@ -67,7 +67,6 @@ return {
 					blame_options = { '-w' },
 				},
 			},
-			'ibhagwan/fzf-lua',
 			{
 				{
 					'akinsho/git-conflict.nvim',
@@ -77,10 +76,10 @@ return {
 			},
 		},
 		opts = {
-			graph_style = 'kitty',
+			graph_style = 'unicode',
 			auto_refresh = true,
 			integrations = { diffview = true },
-			kind = 'tab',
+			kind = 'floating',
 			use_magit_keybindings = true,
 			disable_builtin_notifications = false,
 		},

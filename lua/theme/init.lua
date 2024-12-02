@@ -64,7 +64,6 @@ vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = colors.darkwhite, bg = bg
 vim.api.nvim_set_hl(0, 'MiniCursorword', { underline = true })
 vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { underline = true })
 
-
 --require('theme.tabby')
 require('theme.line')
 require('theme.ui')
