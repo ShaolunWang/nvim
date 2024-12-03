@@ -59,9 +59,8 @@ return {
 		ft = { 'qf' },
 	}, ]]
 	{
-		'aileot/emission.nvim',
-		events = 'VeryLazy',
-		opts = {},
+		'tzachar/highlight-undo.nvim',
+		keys = { { 'u' }, { '<C-r>' } },
 	},
 	{
 		'stevearc/dressing.nvim',
