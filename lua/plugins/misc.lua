@@ -68,11 +68,9 @@ return {
 				},
 			},
 			{
-				{
-					'akinsho/git-conflict.nvim',
-					version = '*',
-					config = true,
-				},
+				'akinsho/git-conflict.nvim',
+				version = '*',
+				config = true,
 			},
 		},
 		opts = {
@@ -102,6 +100,7 @@ return {
 		lazy = false,
 		---@type snacks.Config
 		opts = {
+			-- Toggle the profiler
 			bigfile = { enabled = true },
 			notifier = {
 				enabled = false,

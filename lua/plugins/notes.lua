@@ -14,4 +14,12 @@ return {
 			'nvim-tree/nvim-web-devicons',
 		},
 	},
+	{
+		'atiladefreitas/dooing',
+		config = function()
+			require('dooing').setup({
+				-- your custom config here (optional)
+			})
+		end,
+	},
 }
