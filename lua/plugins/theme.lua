@@ -66,4 +66,7 @@ return {
 			})
 		end,
 	},
+	{
+		'NTBBloodbath/doom-one.nvim',
+	}
 }
