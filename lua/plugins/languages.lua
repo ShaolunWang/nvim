@@ -176,4 +176,34 @@ return {
 			-- ]])
 		end,
 	},
+	{
+		'ThePrimeagen/refactoring.nvim',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-treesitter/nvim-treesitter',
+		},
+		config = function()
+			require('refactoring').setup({
+				prompt_func_return_type = {
+					go = false,
+					java = false,
+					cpp = true,
+					c = false,
+					h = true,
+					hpp = false,
+					cxx = true,
+				},
+				prompt_func_param_type = {
+					go = false,
+					java = false,
+					cpp = true,
+					c = true,
+					h = false,
+					hpp = false,
+					cxx = true,
+				},
+			})
+		end,
+		cmd = { 'Refactor' },
+	},
 }

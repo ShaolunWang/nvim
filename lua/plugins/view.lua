@@ -59,9 +59,14 @@ return {
 		ft = { 'qf' },
 	}, ]]
 	{
+<<<<<<< HEAD
 		'aileot/emission.nvim',
 		events = 'VeryLazy',
 		opts = {},
+=======
+		'tzachar/highlight-undo.nvim',
+		keys = { { 'u' }, { '<C-r>' } },
+>>>>>>> main
 	},
 	{
 		'stevearc/dressing.nvim',
