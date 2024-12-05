@@ -2,6 +2,7 @@ local M = {}
 
 M.exclude_ft = {
 	'notify',
+	'TelescopePrompt',
 	'cmp_menu',
 	'qf',
 	'noice',

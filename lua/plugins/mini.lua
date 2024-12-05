@@ -2,7 +2,7 @@ return {
 	'echasnovski/mini.nvim',
 	config = function()
 		require('mini.ai').setup()
-		require('mini.pick').setup()
+		--		require('mini.pick').setup()
 		require('mini.indentscope').setup({
 			draw = {
 				animation = function()
@@ -44,7 +44,7 @@ return {
 			},
 		})
 		require('mini.visits').setup()
-		vim.ui.select = MiniPick.ui_select
+		--		vim.ui.select = MiniPick.ui_select
 
 		require('mini.surround').setup({
 			mappings = {

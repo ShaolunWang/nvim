@@ -18,11 +18,12 @@ require('lazy').setup('plugins', {
 	change_detection = {
 		enabled = false,
 	},
-	rocks = { enalbed = false, hererocks = false },
+	rocks = { enabled = false },
 	performance = {
 		rtp = {
 			disabled_plugins = {
 				'matchit',
+				'netrw',
 				'matchparen',
 				'tutor',
 			},

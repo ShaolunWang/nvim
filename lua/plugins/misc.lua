@@ -61,7 +61,7 @@ return {
 				'FabijanZulj/blame.nvim',
 				lazy = true,
 				config = function()
-					require('blame').setup({})
+					require('blame').setup()
 				end,
 				opts = {
 					blame_options = { '-w' },
