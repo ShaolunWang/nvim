@@ -16,6 +16,12 @@ return {
 		end,
 	}, ]]
 	{
+		'tiagovla/scope.nvim',
+		config = function()
+			require('scope').setup()
+		end,
+	},
+	{
 		'rebelot/heirline.nvim',
 		dependencies = {},
 		event = 'VeryLazy',
@@ -89,5 +95,5 @@ return {
 	},
 	{
 		'NTBBloodbath/doom-one.nvim',
-	}
+	},
 }

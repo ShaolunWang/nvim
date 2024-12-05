@@ -304,4 +304,51 @@ return {
 		end,
 		cmd = { 'Z', 'LZ', 'Zi', 'Tz', 'Lzi', 'Tzi' },
 	},
+	{
+		'nvim-telescope/telescope.nvim',
+		dependencies = {
+			'natecraddock/telescope-zf-native.nvim',
+			'nvim-telescope/telescope-ui-select.nvim',
+		},
+		opts = {
+			-- set default picker theme to ivy for all pickers
+		},
+		config = function()
+			require('telescope').setup({
+				extensions = {
+					['ui-select'] = {},
+				},
+				defaults = require('telescope.themes').get_ivy({
+					ripgrep_arguments = {
+						'rg',
+						'--color=never',
+						'--no-heading',
+						'--with-filename',
+						'--line-number',
+						'--column',
+						'--smart-case',
+						'--no-require-git',
+					},
+
+					layout_config = { height = 0.30 },
+					prompt_prefix = '  ',
+					selection_caret = '❯ ',
+					entry_prefix = '  ',
+					initial_mode = 'insert',
+					selection_strategy = 'reset',
+					preview = {
+						hide_on_startup = true, -- hide previewer when picker starts
+					},
+				}),
+				pickers = {
+					find_files = {
+						find_command = { 'fd', '--type', 'f', '--color', 'never', '--no-require-git' },
+					},
+				},
+			})
+			require('telescope').load_extension('zf-native')
+			require('telescope').load_extension('scope')
+			require('telescope').load_extension('ui-select')
+		end,
+	},
 }
