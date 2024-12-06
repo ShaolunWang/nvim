@@ -187,6 +187,8 @@ return {
 			vim.cmd([[
 				let g:bufExplorerDisableDefaultKeyMapping = 1
 			]])
+		config = function()
+			vim.g.bufExplorerDisableDefaultKeyMapping = 1
 		end,
 	},
 	{
