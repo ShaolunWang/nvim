@@ -1,5 +1,6 @@
 local set = vim.o
 set.autoindent = true
+set.shada = "'50,<1000,s100,:50"
 set.tabstop = 4
 set.laststatus = 3
 set.scrolloff = 10

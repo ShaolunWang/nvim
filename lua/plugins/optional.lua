@@ -183,8 +183,8 @@ return {
 	},
 	{
 		'jlanzarotta/bufexplorer',
-		config = function()
-			vim.g.bufExplorerDisableDefaultKeyMapping = 1
+		init = function()
+			vim.cmd [[let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.]]
 		end,
 	},
 	{
