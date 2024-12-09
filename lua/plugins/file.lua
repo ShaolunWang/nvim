@@ -60,7 +60,7 @@ return {
 			require('nvim-tree').setup(tree_opts)
 		end,
 		cmd = { 'NvimTreeToggle' },
-	},
+	},]]
 	{
 		'stevearc/oil.nvim',
 		opts = {
@@ -87,7 +87,7 @@ return {
 		-- Optional dependencies
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		cmd = { 'Oil' },
-	}, ]]
+	},
 	--[[ {
 		'mikavilpas/yazi.nvim',
 		keys = {
