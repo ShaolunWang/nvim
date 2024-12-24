@@ -36,7 +36,7 @@ return {
 			['<C-p>'] = { 'select_prev' },
 			['<C-n>'] = { 'select_next' },
 			['<c-d>'] = { 'snippet_forward' },
-			['<c-u>'] = { 'snippet_backward ' },
+			['<c-u>'] = { 'snippet_backward' },
 		},
 
 		snippets = {
@@ -54,17 +54,21 @@ return {
 			end,
 		},
 		sources = {
-			completion = {
-				enabled_providers = {
-					'lsp',
-					'path',
-					'snippets',
-					'luasnip',
-					--[[ 'buffer', 'rg', 'luasnip' ]]
-				},
+			default = {
+				'lsp',
+				'path',
+				'snippets',
+				'luasnip',
+				--[[ 'buffer', 'rg', 'luasnip' ]]
 			},
 			providers = {
-				lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', enabled = true, score_offset = -1 },
+				lsp = {
+					module = 'blink.cmp.sources.lsp',
+					name = 'LSP',
+					enabled = true,
+					score_offset = -1,
+					fallbacks= { 'Buffer' },
+				},
 				path = {
 					name = 'Path',
 					module = 'blink.cmp.sources.path',
@@ -78,7 +82,7 @@ return {
 						show_hidden_files_by_default = false,
 					},
 				},
-				buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, fallback_for = { 'LSP' } },
+				buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, },
 				luasnip = {
 					name = 'luasnip',
 					module = 'blink.compat.source',
