@@ -26,6 +26,7 @@ return {
 				--show_on_keyword = false,
 				show_on_trigger_character = false,
 			},
+			menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end }
 		},
 
 		keymap = {
@@ -37,6 +38,9 @@ return {
 			['<C-n>'] = { 'select_next' },
 			['<c-d>'] = { 'snippet_forward' },
 			['<c-u>'] = { 'snippet_backward' },
+			cmdline = {
+				preset = 'none',
+			}
 		},
 
 		snippets = {
@@ -67,7 +71,7 @@ return {
 					name = 'LSP',
 					enabled = true,
 					score_offset = -1,
-					fallbacks= { 'Buffer' },
+					fallbacks = { 'Buffer' },
 				},
 				path = {
 					name = 'Path',
