@@ -184,12 +184,29 @@ return {
 	{
 		'jlanzarotta/bufexplorer',
 		init = function()
-			vim.cmd [[let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.]]
+			vim.cmd([[let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.]])
 		end,
 	},
 	{
 		'marcussimonsen/let-it-snow.nvim',
 		cmd = 'LetItSnow', -- Wait with loading until command is run
 		opts = {},
+	},
+	{
+		'michaelrommel/nvim-silicon',
+		cmd = 'Silicon',
+		opts = {
+			disable_defaults = true,
+			to_clipboard = true,
+		},
+		keys = {
+			{
+				'<leader>sc',
+				function()
+					require('nvim-silicon').clip()
+				end,
+				desc = 'Copy code screenshot to clipboard',
+			},
+		},
 	},
 }

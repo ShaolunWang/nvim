@@ -64,6 +64,7 @@ return {
 	{
 		'stevearc/oil.nvim',
 		opts = {
+			default_file_explorer = true,
 			use_default_keymaps = false,
 			keymaps = {
 				['<CR>'] = 'actions.select',

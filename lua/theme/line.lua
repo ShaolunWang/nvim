@@ -14,14 +14,7 @@ local function empty(s)
 	return type(s) ~= 'string' or string.len(s) == 0
 end
 
-local Separator = {
-	provider = ' ',
-	hl = { fg = 'fg', bg = 'bg' },
-}
-local Space = {
-	provider = ' ',
-	hl = { fg = 'fg', bg = 'bg' },
-}
+
 
 local colors = {
 	bright_bg = utils.get_highlight('Folded').bg,
@@ -34,19 +27,25 @@ local colors = {
 	orange = utils.get_highlight('Constant').fg,
 	purple = utils.get_highlight('Statement').fg,
 	cyan = utils.get_highlight('Special').fg,
-	diag_warn = utils.get_highlight('DiagnosticWarn').fg,
-	diag_error = utils.get_highlight('DiagnosticError').fg,
-	diag_hint = utils.get_highlight('DiagnosticHint').fg,
-	diag_info = utils.get_highlight('DiagnosticInfo').fg,
-	git_del = utils.get_highlight('diffDeleted').fg,
-	git_add = utils.get_highlight('diffAdded').fg,
-	git_change = utils.get_highlight('diffChanged').fg,
+	--diag_warn = utils.get_highlight('DiagnosticWarn').fg,
+	--	diag_error = utils.get_highlight('DiagnosticError').fg,
+	--	diag_hint = utils.get_highlight('DiagnosticHint').fg,
+	--diag_info = utils.get_highlight('DiagnosticInfo').fg,
+	--git_del = utils.get_highlight('diffDeleted').fg,
+	--git_add = utils.get_highlight('diffAdded').fg,
+	--git_change = utils.get_highlight('diffChanged').fg,
 }
-
 require('heirline').load_colors(colors)
 -- Instead of `everforest.config`, you can add in your own config here by using
 -- `everforest.setup({ show_eob = false)` before you generate the palette.
-
+local Separator = {
+	provider = ' ',
+	hl = { fg = 'fg', bg = 'bg' },
+}
+local Space = {
+	provider = ' ',
+	hl = { fg = 'fg', bg = 'bg' },
+}
 local ViMode = {
 	-- get vim current mode, this information will be required by the provider
 	-- and the highlight functions, so we compute it only once per component

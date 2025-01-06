@@ -1,6 +1,9 @@
 return {
 	{
 		'nvim-treesitter/nvim-treesitter',
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter-textobjects',
+		},
 		opts = {
 			ensure_installed = {
 				'c',
@@ -12,6 +15,15 @@ return {
 			},
 			highlight = { enable = true },
 			matchup = { enable = true },
+			textobjects = {
+				select = {
+
+					enable = true,
+					keymaps = {
+						['iv'] = { query = '@parameter.inner', desc = 'inner parameter' },
+					},
+				},
+			},
 		},
 
 		config = function(_, opts)
@@ -26,20 +38,8 @@ return {
 		opts = { keymaps = { useDefault = true } },
 	},
 	{
-
-		'Wansmer/sibling-swap.nvim',
-		requires = { 'nvim-treesitter' },
-		config = function()
-			---@diagnostic disable-next-line: missing-fields
-			require('sibling-swap').setup({
-				keymaps = {
-					[',a'] = 'swap_with_right',
-					[',A'] = 'swap_with_left',
-					[',s'] = 'swap_with_right_with_opp',
-					[',S'] = 'swap_with_left_with_opp',
-				},
-			})
-		end,
-		keys = { ',a', ',A' },
-	},
+		'mizlan/iswap.nvim',
+		opts = {},
+		event = "VeryLazy"
+	}
 }
