@@ -144,3 +144,4 @@ vim.keymap.set({ 'n', 'x' }, '<c-s>', ':RipSubstitute<cr>', { desc = ' rip su
 vim.keymap.set({ 'n', 'x' }, '<leader>a', function()
 	require('refactoring').select_refactor()
 end)
+vim.keymap.set({ 'n' }, '\\s', ':ISwapWith<cr>', { desc = 'swap cursor node with' })

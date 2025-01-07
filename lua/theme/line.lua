@@ -14,8 +14,6 @@ local function empty(s)
 	return type(s) ~= 'string' or string.len(s) == 0
 end
 
-
-
 local colors = {
 	bright_bg = utils.get_highlight('Folded').bg,
 	bright_fg = utils.get_highlight('Folded').fg,

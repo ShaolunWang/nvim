@@ -1,20 +1,4 @@
 return {
-	--[[ {
-		'nanozuki/tabby.nvim',
-		dependencies = {
-			'tiagovla/scope.nvim',
-		},
-		event = 'VeryLazy',
-		config = function()
-			vim.opt.sessionoptions = { -- required
-				'buffers',
-				'tabpages',
-				'globals',
-			}
-			require('scope').setup({})
-			require('tabby').setup({})
-		end,
-	}, ]]
 	{
 		'tiagovla/scope.nvim',
 		config = function()
@@ -50,8 +34,7 @@ return {
 		event = 'VeryLazy',
 	},
 	{
-		'miikanissi/modus-themes.nvim',
-		event = 'VeryLazy',
+		'rebelot/kanagawa.nvim',
 	},
 	{
 		'olivercederborg/poimandres.nvim',
