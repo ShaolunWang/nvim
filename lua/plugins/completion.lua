@@ -26,7 +26,11 @@ return {
 				--show_on_keyword = false,
 				show_on_trigger_character = false,
 			},
-			menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end }
+			menu = {
+				auto_show = function(ctx)
+					return ctx.mode ~= 'cmdline'
+				end,
+			},
 		},
 
 		keymap = {
@@ -40,7 +44,7 @@ return {
 			['<c-u>'] = { 'snippet_backward' },
 			cmdline = {
 				preset = 'none',
-			}
+			},
 		},
 
 		snippets = {
@@ -86,7 +90,7 @@ return {
 						show_hidden_files_by_default = false,
 					},
 				},
-				buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true, },
+				buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true },
 				luasnip = {
 					name = 'luasnip',
 					module = 'blink.compat.source',

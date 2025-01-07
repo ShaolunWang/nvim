@@ -40,6 +40,6 @@ return {
 	{
 		'mizlan/iswap.nvim',
 		opts = {},
-		event = "VeryLazy"
-	}
+		event = 'VeryLazy',
+	},
 }
