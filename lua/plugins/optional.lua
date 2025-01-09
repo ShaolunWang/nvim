@@ -13,7 +13,7 @@ local function cscope_config()
 	require('cscope_maps').setup({
 		cscope = {
 			db_build_cmd_args = { '-bqkv', '-i', './cscope.files' },
-			exec = 'cscope',
+			exec = 'gtags-cscope',
 			picker = 'quickfix',
 			skip_picker_for_single_result = true,
 		},
@@ -186,11 +186,6 @@ return {
 		init = function()
 			vim.cmd([[let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.]])
 		end,
-	},
-	{
-		'marcussimonsen/let-it-snow.nvim',
-		cmd = 'LetItSnow', -- Wait with loading until command is run
-		opts = {},
 	},
 	{
 		'michaelrommel/nvim-silicon',

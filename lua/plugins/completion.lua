@@ -1,12 +1,13 @@
 return {
 	'saghen/blink.cmp',
 	-- optional: provides snippets for the snippet source
-	lazy = false,
+	event = "InsertEnter",
 	version = 'v0.*',
 	dependencies = {
 		{ 'rafamadriz/friendly-snippets' },
-		{ 'saadparwaiz1/cmp_luasnip' },
+		--		{ 'saadparwaiz1/cmp_luasnip' },
 		-- { 'lukas-reineke/cmp-rg' },
+		'mikavilpas/blink-ripgrep.nvim',
 		{
 			'saghen/blink.compat',
 			opts = {
@@ -47,27 +48,13 @@ return {
 			},
 		},
 
-		snippets = {
-			expand = function(snippet)
-				require('luasnip').lsp_expand(snippet)
-			end,
-			active = function(filter)
-				if filter and filter.direction then
-					return require('luasnip').jumpable(filter.direction)
-				end
-				return require('luasnip').in_snippet()
-			end,
-			jump = function(direction)
-				require('luasnip').jump(direction)
-			end,
-		},
+		snippets = { preset = 'luasnip' },
 		sources = {
 			default = {
 				'lsp',
 				'path',
 				'snippets',
-				'luasnip',
-				--[[ 'buffer', 'rg', 'luasnip' ]]
+				"ripgrep",
 			},
 			providers = {
 				lsp = {
@@ -91,35 +78,32 @@ return {
 					},
 				},
 				buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true },
-				luasnip = {
-					name = 'luasnip',
-					module = 'blink.compat.source',
-
-					score_offset = -3,
-
+				ripgrep = {
+					module = "blink-ripgrep",
+					name = "Ripgrep",
 					opts = {
-						use_show_condition = false,
-						show_autosnippets = true,
+						prefix_min_len = 3,
+
+						context_size = 5,
+
+						max_filesize = "1M",
+						project_root_marker = { ".git", '.rgignore' },
+
+						-- The casing to use for the search in a format that ripgrep
+						-- accepts. Defaults to "--ignore-case". See `rg --help` for all the
+						-- available options ripgrep supports, but you can try
+						-- "--case-sensitive" or "--smart-case".
+						search_casing = "--smart-case",
+						additional_rg_options = { '--hidden', '--vimgrep', '--no-heading' },
+
+						fallback_to_regex_highlighting = true,
+
+						debug = false,
 					},
 				},
-				--[[ 				rg = {
-					module = 'blink.compat.source',
-					name = 'rg',
-					enabled = true,
-					score_offset = -3,
-					fallback_for = { 'Buffer' },
-					transform_items = function(ctx, items)
-						-- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-						local kind = require('blink.cmp.types').CompletionItemKind.Text
-
-						for i = 1, #items do
-							items[i].kind = kind
-						end
-
-						return items
-					end,
-				}, ]]
 			},
 		},
+
 	},
+
 }
