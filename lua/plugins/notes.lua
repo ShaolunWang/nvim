@@ -8,7 +8,7 @@ return {
 	},
 	{
 		'OXY2DEV/markview.nvim',
-		ft = 'markdown',
+		ft = 'md',
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter',
 			'nvim-tree/nvim-web-devicons',
@@ -21,5 +21,6 @@ return {
 				-- your custom config here (optional)
 			})
 		end,
+		cmd = {'Dooing'}
 	},
 }

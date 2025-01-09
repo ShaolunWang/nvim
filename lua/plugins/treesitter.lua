@@ -41,6 +41,6 @@ return {
 	{
 		'mizlan/iswap.nvim',
 		opts = {},
-		event = 'VeryLazy',
+		keys={'\\s'}
 	},
 }

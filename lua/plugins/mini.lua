@@ -45,7 +45,7 @@ return {
 		})
 		require('mini.visits').setup()
 		--		vim.ui.select = MiniPick.ui_select
-
+		-- xxx cterm=underline gui=underline
 		require('mini.surround').setup({
 			mappings = {
 				add = 'sa', -- Add surrounding in Normal and Visual modes
