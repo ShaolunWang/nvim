@@ -61,5 +61,5 @@ return {
 			},
 		})
 	end,
-	events = 'VeryLazy',
+	events = 'BufReadPost',
 }

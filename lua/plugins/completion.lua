@@ -1,7 +1,7 @@
 return {
 	'saghen/blink.cmp',
 	-- optional: provides snippets for the snippet source
-	event = "InsertEnter",
+	event = 'InsertEnter',
 	version = 'v0.*',
 	dependencies = {
 		{ 'rafamadriz/friendly-snippets' },
@@ -54,7 +54,7 @@ return {
 				'lsp',
 				'path',
 				'snippets',
-				"ripgrep",
+				'ripgrep',
 			},
 			providers = {
 				lsp = {
@@ -79,21 +79,21 @@ return {
 				},
 				buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true },
 				ripgrep = {
-					module = "blink-ripgrep",
-					name = "Ripgrep",
+					module = 'blink-ripgrep',
+					name = 'Ripgrep',
 					opts = {
 						prefix_min_len = 3,
 
 						context_size = 5,
 
-						max_filesize = "1M",
-						project_root_marker = { ".git", '.rgignore' },
+						max_filesize = '1M',
+						project_root_marker = { '.git', '.rgignore' },
 
 						-- The casing to use for the search in a format that ripgrep
 						-- accepts. Defaults to "--ignore-case". See `rg --help` for all the
 						-- available options ripgrep supports, but you can try
 						-- "--case-sensitive" or "--smart-case".
-						search_casing = "--smart-case",
+						search_casing = '--smart-case',
 						additional_rg_options = { '--hidden', '--vimgrep', '--no-heading' },
 
 						fallback_to_regex_highlighting = true,
@@ -103,7 +103,5 @@ return {
 				},
 			},
 		},
-
 	},
-
 }

@@ -350,6 +350,6 @@ return {
 			require('telescope').load_extension('scope')
 			require('telescope').load_extension('ui-select')
 		end,
-		keys = {'<leader>f'}
+		cmd = { 'Telescope' },
 	},
 }

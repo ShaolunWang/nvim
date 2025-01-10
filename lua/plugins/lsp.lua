@@ -51,15 +51,12 @@ return {
 			},
 			cmd = {
 				'clangd',
-				'-j=4',
 				'--background-index',
-				--				'--clang-tidy',
-				'--fallback-style=llvm',
-				'--all-scopes-completion',
-				'--completion-style=detailed',
+				'--clang-tidy',
 				'--header-insertion=iwyu',
-				'--header-insertion-decorators',
-				'--pch-storage=memory',
+				'--completion-style=detailed',
+				'--function-arg-placeholders',
+				'--fallback-style=llvm',
 			},
 			on_attach = function(client, bufnr)
 				lsp_keymap.on_attach(client, bufnr)

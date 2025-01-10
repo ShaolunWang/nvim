@@ -186,6 +186,7 @@ return {
 		init = function()
 			vim.cmd([[let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.]])
 		end,
+		cmd = { 'BufExplorer' },
 	},
 	{
 		'michaelrommel/nvim-silicon',
