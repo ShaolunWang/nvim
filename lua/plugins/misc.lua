@@ -50,6 +50,8 @@ return {
 				vim.api.nvim_del_user_command(iter)
 			end
 		end,
+		cmd = { 'OverseerRun' },
+		keys = { '<F5>' },
 	},
 	{
 		'NeogitOrg/neogit',

@@ -21,6 +21,6 @@ return {
 				-- your custom config here (optional)
 			})
 		end,
-		cmd = {'Dooing'}
+		cmd = { 'Dooing' },
 	},
 }

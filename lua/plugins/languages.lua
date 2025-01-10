@@ -46,10 +46,33 @@ return {
 	},
 	{
 		'p00f/clangd_extensions.nvim',
-		config = function()
-			require('clangd_extensions').setup({})
-		end,
-		ft = { 'cpp', 'h', 'c' },
+		lazy = true,
+		config = function() end,
+		opts = {
+			inlay_hints = {
+				inline = false,
+			},
+			ast = {
+				--These require codicons (https://github.com/microsoft/vscode-codicons)
+				role_icons = {
+					type = '',
+					declaration = '',
+					expression = '',
+					specifier = '',
+					statment = '',
+					['template argument'] = '',
+				},
+				kind_icons = {
+					Compound = '',
+					Recovery = '',
+					TranslationUnit = '',
+					PackExpansion = '',
+					TemplateTypeParm = '',
+					TemplateTemplateParm = '',
+					TemplateParamObject = '',
+				},
+			},
+		},
 	},
 	{
 		'mrcjkb/haskell-tools.nvim',
@@ -61,7 +84,6 @@ return {
 				},
 			}
 		end,
-		lazy = false,
 		ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
 	},
 	{
@@ -156,11 +178,10 @@ return {
 		opts = {},
 		ft = { 'log' },
 	},
-	{ 'Bekaboo/dropbar.nvim', opts = { { general = { enable = false } } }, events = 'VeryLazy' },
+	{ 'Bekaboo/dropbar.nvim', opts = { { general = { enable = false } } }, events = 'bufRead' },
 	{
 		'lervag/vimtex',
 		dependencies = {},
-		lazy = false, -- we don't want to lazy load VimTeX
 		-- tag = "v2.15", -- uncomment to pin to a specific release
 		init = function()
 			-- VimTeX configuration goes here, e.g.
@@ -175,6 +196,7 @@ return {
 			-- 		\}
 			-- ]])
 		end,
+		ft = { 'tex' },
 	},
 	{
 		'ThePrimeagen/refactoring.nvim',
