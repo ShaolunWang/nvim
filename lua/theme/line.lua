@@ -127,7 +127,7 @@ local ViMode = {
 	end,
 	hl = function(self)
 		local color = self:mode_color() -- here!
-		return { fg = color, bold = true }
+		return { fg = 'none', bg = 'bg', bold = true }
 	end,
 	-- Re-evaluate the component only on ModeChanged event!
 	-- This is not required in any way, but it's there, and it's a small
@@ -406,7 +406,7 @@ local MacroRec = {
 		return vim.fn.reg_recording() ~= '' and vim.o.cmdheight == 0
 	end,
 	provider = ' ',
-	hl = { fg = 'orange', bold = true },
+	hl = { fg = 'none', bg = 'bg', bold = true },
 	utils.surround({ '[', ']' }, nil, {
 		provider = function()
 			return vim.fn.reg_recording()
