@@ -1,6 +1,6 @@
 --vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme kanagawa-dragon')
+vim.cmd('colorscheme naysayer')
 
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },

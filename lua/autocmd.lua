@@ -94,7 +94,7 @@ vim.api.nvim_create_autocmd('QuickFixCmdPost', {
 		vim.print('cleaned undo files older than 1 week...')
 	end,
 }) ]]
---[[ 
+--[[
 local nui_au = vim.api.nvim_create_augroup('nui_au', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = { 'nui' },
@@ -136,41 +136,7 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'InsertEnter' }, {
 		end
 	end,
 })
-vim.cmd([[
-function! s:init_fern() abort
- nmap <buffer><expr>
-      \ <Plug>(fern-my-expand-or-collapse)
-      \ fern#smart#leaf(
-      \   "\<Plug>(fern-action-collapse)",
-      \   "\<Plug>(fern-action-expand)",
-      \   "\<Plug>(fern-action-collapse)",
-      \ )
 
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-open-or-enter)
-        \ fern#smart#leaf(
-        \   "\<Plug>(fern-action-open:select)",
-        \   "\<Plug>(fern-action-enter)",
-        \ )
-  nmap <buffer><nowait> <Tab> <Plug>(fern-my-expand-or-collapse)
-  nmap <buffer> n <Plug>(fern-action-new-path)
-  nmap <buffer> d <Plug>(fern-action-remove)
-  nmap <buffer> m <Plug>(fern-action-move)
-  nmap <buffer> r <Plug>(fern-action-rename)
-  nmap <buffer> h <Plug>(fern-action-hidden-toggle)
-  nmap <buffer> R <Plug>(fern-action-reload)
-  nmap <buffer> ; <Plug>(fern-action-mark-toggle)
-  nmap <buffer> <c-x> <Plug>(fern-action-open:split)
-  nmap <buffer> <c-v> <Plug>(fern-action-open:vsplit)
-  nmap <buffer><nowait> - <Plug>(fern-action-leave)
-  nmap <buffer><nowait> <cr> <Plug>(fern-my-open-or-enter)
-endfunction
-
-augroup my-fern-preview
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
-]])
 vim.api.nvim_create_augroup('Heirline', { clear = true })
 vim.api.nvim_create_autocmd('ColorScheme', {
 	callback = function()
