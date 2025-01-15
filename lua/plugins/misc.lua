@@ -115,6 +115,12 @@ return {
 					wo = { wrap = true }, -- Wrap notifications
 				},
 			},
+			picker = {
+				layout = {
+					preset = 'ivy',
+				},
+			},
+
 		},
 		keys = {
 			--		{ "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
