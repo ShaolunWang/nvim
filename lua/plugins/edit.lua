@@ -19,7 +19,8 @@ return {
 	{
 		'numToStr/Comment.nvim',
 		opts = function()
-			local commentstring_avail, commentstring = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
+			local commentstring_avail, commentstring = pcall(require,
+				'ts_context_commentstring.integrations.comment_nvim')
 			return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
 		end,
 		config = function()
@@ -205,8 +206,29 @@ return {
 		end,
 		keys = { '<C-a>', '<C-x>', 'g<C-a>', 'g<C-x>' },
 	},
-	--[[ {
-		'chrisgrieser/nvim-various-textobjs',
-		opts = { useDefaultKeymaps = true },
-	}, ]]
+	{
+		"brenton-leighton/multiple-cursors.nvim",
+		version = "*", -- Use the latest tagged version
+		opts = {
+			pre_hook = function()
+				vim.g.minipairs_disable = true
+				require('nvim-autopairs').disable()
+			end,
+			post_hook = function()
+				vim.g.minipairs_disable = false
+				require('nvim-autopairs').enable()
+			end,
+
+		}, -- This causes the plugin setup function to be called
+		keys = {
+			{ "<C-\\>j", "<Cmd>MultipleCursorsAddDown<CR>",          mode = { "n", 'i', "x" }, desc = "Add cursor and move down" },
+			{ "<C-\\>k", "<Cmd>MultipleCursorsAddUp<CR>",            mode = { "n", 'i', "x" }, desc = "Add cursor and move up" },
+			{ "<c-\\>d", "<Cmd>MultipleCursorsMouseAddDelete<CR>",   mode = { "n", "i", 'x' }, desc = "Add or remove cursor" },
+			{ "<c-\\>m", "<Cmd>MultipleCursorsAddMatches<CR>",       mode = { "n", "x" },      desc = "Add cursors to cword" },
+			{ "<c-\\>v", "<Cmd>MultipleCursorsAddMatchesV<CR>",      mode = { "n", "x" },      desc = "Add cursors to cword in previous area" },
+			{ "<c-\\>n", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>", mode = { "n", "x" },      desc = "Add cursor and jump to next cword" },
+			{ "<c-\\>g", "<Cmd>MultipleCursorsJumpNextMatch<CR>",    mode = { "n", "x" },      desc = "Jump to next cword" },
+			{ "<c-\\>l", "<Cmd>MultipleCursorsLock<CR>",             mode = { "n", "x" },      desc = "Lock virtual cursors" },
+		},
+	},
 }
