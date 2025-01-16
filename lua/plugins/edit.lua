@@ -63,8 +63,8 @@ return {
 				-- normal & visual mode
 				confirm = '<CR>',
 				abort = 'q',
-				prevSubst = '<c-p>',
-				nextSubst = '<c-n>',
+				prevSubstutionInHistory = '<c-p>',
+				nextSubstutionInHistory = '<c-n>',
 				insertModeConfirm = '<C-CR>', -- (except this one, obviously)
 			},
 		},

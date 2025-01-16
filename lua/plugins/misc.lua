@@ -104,9 +104,6 @@ return {
 		opts = {
 			-- Toggle the profiler
 			bigfile = { enabled = true },
-			notifier = {
-				enabled = false,
-			},
 			quickfile = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = false },
@@ -120,10 +117,13 @@ return {
 					preset = 'ivy',
 				},
 			},
-
+			dashboard = { enabled = false },
+			indent = { enabled = false },
+			input = { enabled = true },
+			notifier = { enabled = false },
+			scroll = { enabled = false },
 		},
 		keys = {
-			--		{ "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
 			{
 				',x',
 				function()
@@ -131,7 +131,6 @@ return {
 				end,
 				desc = 'Delete Buffer',
 			},
-			--			{ "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
 			{
 				']]',
 				function()
