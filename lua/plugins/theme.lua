@@ -41,4 +41,13 @@ return {
 		priority = 1000,
 		lazy = false,
 	},
+	{
+		'MikeWelsh801/eye-cancer.nvim',
+		priority = 1000,
+		dependencies = { 'rebelot/kanagawa.nvim' },
+	},
+	{
+		'cdmill/neomodern.nvim'
+	}
+
 }

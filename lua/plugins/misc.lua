@@ -113,6 +113,11 @@ return {
 				},
 			},
 			picker = {
+				formatters = {
+					file = {
+						filename_first = true,
+					}
+				},
 				layout = {
 					preset = 'ivy',
 				},

@@ -40,7 +40,6 @@ return {
 	{
 		'mizlan/iswap.nvim',
 		opts = {},
-		keys = { '\\s' },
-		cmd = { 'ISwapWith', 'IMove', 'ISwap' }
+		cmd = { 'ISwapWith', 'IMove', 'ISwap' },
 	},
 }
