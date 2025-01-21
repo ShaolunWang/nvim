@@ -181,18 +181,7 @@ return {
 		opts = {},
 		cmd = { 'ZenMode' },
 	},
-	{
-		'jlanzarotta/bufexplorer',
-		init = function()
-			vim.cmd([[
-				let g:bufExplorerDisableDefaultKeyMapping = 1
-			]])
-		config = function()
-			vim.g.bufExplorerDisableDefaultKeyMapping = 1
-			vim.cmd([[let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.]])
-		end,
-		cmd = { 'BufExplorer' },
-	},
+
 	{
 		'michaelrommel/nvim-silicon',
 		cmd = 'Silicon',
