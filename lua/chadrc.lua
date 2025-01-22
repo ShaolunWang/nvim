@@ -7,7 +7,7 @@ local options = {
 		integrations = {},
 		changed_themes = {},
 		transparency = false,
---		theme_toggle = { 'doomchad' },
+		--		theme_toggle = { 'doomchad' },
 	},
 
 	ui = {

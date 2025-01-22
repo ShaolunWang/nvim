@@ -115,7 +115,7 @@ return {
 				formatters = {
 					file = {
 						filename_first = true,
-					}
+					},
 				},
 				layout = {
 					preset = 'ivy',
