@@ -19,7 +19,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 local p = vim.lsp.protocol.make_client_capabilities()
-local has_cmp, cmp_nvim_lsp = pcall(require, 'bink.cmp')
+local has_cmp, cmp_nvim_lsp = pcall(require, 'blink.cmp')
 M.c = vim.tbl_deep_extend(
 	'force',
 	{},
