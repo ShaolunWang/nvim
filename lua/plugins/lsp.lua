@@ -3,6 +3,7 @@ return {
 	opts = {},
 	config = function()
 		local utils = require('utils.lsp')
+		local c = require('blink.cmp').get_lsp_capabilities(utils.c)
 		vim.lsp.log.set_level(vim.log.levels.ERROR)
 		vim.o.updatetime = 1
 		vim.cmd([[
@@ -23,18 +24,18 @@ return {
 		lsp.pyright.setup({
 			on_attach = lsp_keymap.on_attach,
 			handlers = utils.lsp_handlers,
-			capabilities = utils.c,
+			capabilities = c,
 		})
 		lsp.ruff.setup({
 			on_attach = lsp_keymap.on_attach,
 			handlers = utils.lsp_handlers,
-			capabilities = utils.c,
+			capabilities = c,
 		})
 
 		lsp.ocamllsp.setup({
 			on_attach = lsp_keymap.on_attach,
 			handlers = utils.lsp_handlers,
-			capabilities = utils.c,
+			capabilities = c,
 		})
 		local clang_handlers = utils.lsp_handlers
 		local no_diagnostic = {
@@ -62,7 +63,7 @@ return {
 				lsp_keymap.on_attach(client, bufnr)
 			end,
 			handlers = utils.lsp_handlers,
-			capabilities = utils.c,
+			capabilities = c,
 		})
 		lsp.lua_ls.setup({
 			on_init = function(client)
@@ -98,12 +99,12 @@ return {
 			end,
 			on_attach = lsp_keymap.on_attach,
 			handlers = utils.lsp_handlers,
-			capabilities = utils.c,
+			capabilities = c,
 		})
 		lsp.zls.setup({
 			on_attach = lsp_keymap.on_attach,
 			handlers = utils.lsp_handlers,
-			capabilities = utils.c,
+			capabilities = c,
 		})
 	end,
 	ft = {

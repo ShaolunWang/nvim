@@ -39,7 +39,6 @@ return {
 	{
 		'p0209p/naysayer.vim',
 		priority = 1000,
-		lazy = false,
 	},
 	{
 		'MikeWelsh801/eye-cancer.nvim',
@@ -47,7 +46,6 @@ return {
 		dependencies = { 'rebelot/kanagawa.nvim' },
 	},
 	{
-		'cdmill/neomodern.nvim'
-	}
-
+		'AlexvZyl/nordic.nvim',
+	},
 }

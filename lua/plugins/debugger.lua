@@ -3,15 +3,13 @@ return {
 	dependencies = {
 		'igorlfs/nvim-dap-view',
 	},
-	opts = {
-
-	},
+	opts = {},
 	config = function()
 		local dap = require('dap')
 		dap.adapters.lldb = {
 			type = 'executable',
 			command = 'lldb-dap', -- TODO: adjust as needed, must be absolute path
-			name = 'lldb'
+			name = 'lldb',
 		}
 		dap.configurations.cpp = {
 			{
@@ -37,7 +35,8 @@ return {
 				-- But you should be aware of the implications:
 				-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
 				-- runInTerminal = false,
-			}, }
+			},
+		}
 	end,
-	cmd ={'DapViewToggle'}
+	cmd = { 'DapViewToggle' },
 }

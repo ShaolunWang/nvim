@@ -82,5 +82,5 @@ return {
 		event = { 'WinEnter' },
 	},
 	{ 'kwkarlwang/bufjump.nvim', opts = {}, keys = { 'c-o', 'c-i' } },
-	{ 'chentoast/marks.nvim', opts = {} },
+	{ 'chentoast/marks.nvim', opts = {}, keys = { 'm' } },
 }

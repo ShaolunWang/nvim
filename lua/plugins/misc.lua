@@ -105,9 +105,10 @@ return {
 			-- Toggle the profiler
 			bigfile = { enabled = true },
 			quickfile = { enabled = true },
-			statuscolumn = { enabled = true },
+			statuscolumn = { enabled = false },
 			words = { enabled = false },
 			styles = {
+				---@diagnostic disable-next-line: missing-fields
 				notification = {
 					wo = { wrap = true }, -- Wrap notifications
 				},
@@ -116,7 +117,7 @@ return {
 				formatters = {
 					file = {
 						filename_first = true,
-					}
+					},
 				},
 				layout = {
 					preset = 'ivy',

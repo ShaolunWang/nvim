@@ -19,20 +19,11 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 local p = vim.lsp.protocol.make_client_capabilities()
-local has_cmp, cmp_nvim_lsp = pcall(require, 'blink.cmp')
-M.c = vim.tbl_deep_extend(
-	'force',
-	{},
-	p,
-	has_cmp and cmp_nvim_lsp.get_lsp_capabilities(p) or {},
-	--	has_cmp and cmp_nvim_lsp.lsp_ensure_capabilities() or {},
-	{},
-	{
-		textDocument = {
-			foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
-		},
-	}
-)
+M.c = vim.tbl_deep_extend('force', {}, p, {}, {
+	textDocument = {
+		foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+	},
+})
 
 function M.goto_definition(split_cmd)
 	local util = vim.lsp.util
