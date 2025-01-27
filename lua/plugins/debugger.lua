@@ -38,5 +38,5 @@ return {
 			},
 		}
 	end,
-	cmd = { 'DapViewToggle' },
+	enable = false,
 }

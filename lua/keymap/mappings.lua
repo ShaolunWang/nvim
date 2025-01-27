@@ -21,11 +21,10 @@ end, { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<c-v>', { desc = 'visual select' })
 -- moving between splits
-vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left, { noremap = true })
-vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down, { noremap = true })
-vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up, { noremap = true })
-vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right, { noremap = true })
-vim.keymap.set('n', '<C-p>', require('smart-splits').move_cursor_previous, { noremap = true })
+vim.keymap.set('n', '<C-h>', ':SmartCursorMoveLeft<cr>', { noremap = true })
+vim.keymap.set('n', '<C-j>', ':SmartCursorMoveDown<cr>', { noremap = true })
+vim.keymap.set('n', '<C-k>', ':SmartCursorMoveUp<cr>', { noremap = true })
+vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 
 -- grapple
 

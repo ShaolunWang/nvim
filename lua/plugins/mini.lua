@@ -2,7 +2,6 @@ return {
 	'echasnovski/mini.nvim',
 	config = function()
 		require('mini.ai').setup()
-		--		require('mini.pick').setup()
 		require('mini.indentscope').setup({
 			draw = {
 				animation = function()
@@ -11,7 +10,6 @@ return {
 			},
 			symbol = '│',
 		})
-		--		require('mini.comment').setup()
 		require('mini.animate').setup({
 			scroll = { enable = false },
 			cursor = { enable = false },
@@ -44,8 +42,6 @@ return {
 			},
 		})
 		require('mini.visits').setup()
-		--		vim.ui.select = MiniPick.ui_select
-		-- xxx cterm=underline gui=underline
 		require('mini.surround').setup({
 			mappings = {
 				add = 'sa', -- Add surrounding in Normal and Visual modes
@@ -60,6 +56,7 @@ return {
 				suffix_next = 'n', -- Suffix to search with "next" method
 			},
 		})
+		require('mini.deps').setup()
 	end,
 	events = 'BufReadPost',
 }
