@@ -4,26 +4,30 @@ return {
 		config = function()
 			require('scope').setup()
 		end,
+		lazy = true,
 	},
 	{
 		'rebelot/heirline.nvim',
 		dependencies = {},
 		event = 'VeryLazy',
+		lazy = true,
 	},
 	{
 		'yeomfa/jetly',
-		event = 'VeryLazy',
+		lazy = true,
 	},
 	{
 		'folke/tokyonight.nvim',
 		opts = {
 			style = 'night',
 		},
+		lazy = true,
 	},
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
 		priority = 1000,
+		lazy = true,
 	},
 	{
 		'hiphish/rainbow-delimiters.nvim',
@@ -31,21 +35,14 @@ return {
 	},
 	{
 		'Mofiqul/vscode.nvim',
-		event = 'VeryLazy',
+		lazy = true,
 	},
 	{
 		'rebelot/kanagawa.nvim',
-	},
-	{
-		'p0209p/naysayer.vim',
-		priority = 1000,
-	},
-	{
-		'MikeWelsh801/eye-cancer.nvim',
-		priority = 1000,
-		dependencies = { 'rebelot/kanagawa.nvim' },
+		lazy = true,
 	},
 	{
 		'AlexvZyl/nordic.nvim',
+		lazy = true,
 	},
 }
