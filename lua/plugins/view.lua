@@ -1,100 +1,108 @@
-return {
-	{
-		'echasnovski/mini.icons',
-		opts = {},
-		lazy = false,
-		specs = {
-			{ 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
-		},
-		config = function()
-			require('mini.icons').setup({
-				--style = 'ascii'
-			})
-			require('mini.icons').mock_nvim_web_devicons()
-		end,
-	},
-	{
-		'folke/todo-comments.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		opts = {
-			keywords = {
-				FIX = {
-					icon = ' ',
-					color = 'error',
-					alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' },
-				},
-				TODO = { icon = ' ', color = 'info' },
-				HACK = { icon = ' ', color = 'warning' },
-				WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
-				PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
-				NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
-				TEST = { icon = '? ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
-			},
-		},
-		event = 'BufReadPost',
-	},
-	{
-		'stevearc/quicker.nvim',
-		opts = {
-			max_filename_width = function()
-				return math.floor(math.min(45, vim.o.columns / 2))
-			end,
-			follow = { enabled = true },
-			highlight = {
-				-- Use treesitter highlighting
-				treesitter = true,
-				-- Use LSP semantic token highlighting
-				lsp = true,
-				-- Load the referenced buffers to apply more accurate highlights (may be slow)
-				load_buffers = false,
-			},
-		},
+local M = {}
+M.plugins = {
+	{ 'echasnovski/mini.icons' },
+	{ 'folke/todo-comments.nvim', opt = true },
+	{ 'stevearc/quicker.nvim', opt = true },
+	{ 'tzachar/highlight-undo.nvim', opt = true },
+	{ 'stevearc/dressing.nvim', opt = true },
+	{ 'sindrets/winshift.nvim', opt = true },
+}
+function M.load()
+	require('lze').load({
 
-		event = 'FileType qf',
-	},
-	--[[ {
+		{ 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
+		{
+			'mini.icons',
+			after = function()
+				require('mini.icons').setup({})
+				require('mini.icons').mock_nvim_web_devicons()
+			end,
+		},
+		{
+			'todo-comments.nvim',
+			after = function()
+				require('todo-comments').setup({
+					keywords = {
+						FIX = {
+							icon = ' ',
+							color = 'error',
+							alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' },
+						},
+						TODO = { icon = ' ', color = 'info' },
+						HACK = { icon = ' ', color = 'warning' },
+						WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
+						PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+						NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
+						TEST = { icon = '? ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
+					},
+				})
+			end,
+			event = 'BufReadPost',
+		},
+		{
+			'quicker.nvim',
+			after = function()
+				require('quicker').setup({
+					max_filename_width = function()
+						return math.floor(math.min(45, vim.o.columns / 2))
+					end,
+					follow = { enabled = true },
+					highlight = {
+						-- Use treesitter highlighting
+						treesitter = true,
+						-- Use LSP semantic token highlighting
+						lsp = true,
+						-- Load the referenced buffers to apply more accurate highlights (may be slow)
+						load_buffers = false,
+					},
+				})
+			end,
+			event = 'FileType qf',
+		},
+		--[[ {
 		'kevinhwang91/nvim-bqf',
 		opts = {
 			preview = { auto_preview = false },
 		},
 		ft = { 'qf' },
 	}, ]]
-	{
-		'tzachar/highlight-undo.nvim',
-		keys = { { 'u' }, { '<C-r>' } },
-	},
-	{
-		'stevearc/dressing.nvim',
-		opts = {
-			input = { enabled = true },
-			select = {
-				enabled = false,
-				--[[
+		{
+			'highlight-undo.nvim',
+			keys = { { 'u' }, { '<C-r>' } },
+		},
+		{
+			'dressing.nvim',
+			after = function()
+				require('dressing').setup({
+					input = { enabled = true },
+					select = {
+						enabled = false,
+						--[[
 				backend = { 'pick', 'nui', 'fzf_lua', 'builtin' },
  				nui = {
 					buf_options = {
 						filetype = 'nui',
 					},
 				}, ]]
-			},
+					},
+				})
+			end,
+			event = 'UIEnter',
 		},
-	},
-	{
-		'sindrets/winshift.nvim',
-		opts = {
-			moving_win_options = {
-				wrap = true,
-				cursorline = false,
-				cursorcolumn = false,
-			},
+		{
+			'winshift.nvim',
+			after = function()
+				require('winshift').setup({
+					moving_win_options = {
+						wrap = true,
+						cursorline = false,
+						cursorcolumn = false,
+					},
+				})
+			end,
+			cmd = { 'WinShift' },
 		},
-		cmd = { 'WinShift' },
-	},
-	-- {
-	-- 	'j-hui/fidget.nvim',
-	-- 	opts = {
-	-- 		-- options
-	-- 	},
-	-- 	events = 'VeryLazy',
-	-- },
-}
+	})
+end
+
+return M

@@ -104,98 +104,31 @@ local function cscope_config()
 	vim.b.miniclue_config = { clues = { { desc = '+Cscope Find ...', keys = '<Leader>c', mode = 'n' } } }
 	return nil
 end
-return {
-	{ 'bfrg/vim-cpp-modern', config = cpp_modern_config, ft = { 'c', 'cpp', 'h', 'hpp' } },
-	{
-		'dhananjaylatkar/cscope_maps.nvim',
-		config = cscope_config,
-		dependencies = { 'nvim-tree/nvim-web-devicons' },
-		ft = { 'cpp', 'h', 'hpp', 'c' },
-	},
-	-- Lua
-	{
-		'folke/twilight.nvim',
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		cmd = { 'Twilight' },
-	},
-	{
-		'MunifTanjim/nui.nvim',
-		lazy = true,
-	},
-	--[[ {
-		'folke/noice.nvim',
-		event = 'VeryLazy',
-		dependencies = {
-			'MunifTanjim/nui.nvim',
-		},
-		opts = {
-			-- add any options here
-			views = {
-				cmdline_popup = {
-					position = {
-						row = '97%',
-						col = '50%',
-					},
-					size = {
-						width = 60,
-						height = 1,
-					},
-					border = {
-						style = 'none',
-						padding = { 0, 0 },
-					},
-				},
-			},
-			lsp = {
-				override = {
-					['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-					['vim.lsp.util.stylize_markdown'] = true,
-					['cmp.entry.get_documentation'] = true,
-				},
-			},
-			-- you can enable a preset for easier configuration
-			presets = {
-				bottom_search = true,
-				command_palette = true,
-				long_message_to_split = true,
-				inc_rename = false,
-				lsp_doc_border = true,
-			},
-			notify = {
-				enabled = true, -- enables the Noice messages UI
-			},
-			message = {
-				true,
-			},
-			cmdline = {
-				view = 'cmdline_popup',
-			},
-		},
-	}, ]]
-	{
-		'folke/zen-mode.nvim',
-		opts = {},
-		cmd = { 'ZenMode' },
-	},
-	{
-		'michaelrommel/nvim-silicon',
-		cmd = 'Silicon',
-		opts = {
-			disable_defaults = true,
-			to_clipboard = true,
-		},
-		keys = {
-			{
-				'<leader>sc',
-				function()
-					require('nvim-silicon').clip()
-				end,
-				desc = 'Copy code screenshot to clipboard',
-			},
-		},
-	},
+
+local M = {}
+M.plugins = {
+	{ 'dhananjaylatkar/cscope_maps.nvim', opt = true },
+	{ 'folke/twilight.nvim', opt = true },
 }
+function M.load()
+	require('lze').load({
+		{
+			'cscope_maps.nvim',
+			after = cscope_config,
+			ft = { 'cpp', 'h', 'hpp', 'c' },
+		},
+		{
+			'twilight.nvim',
+			after = function()
+				require('twilight').setup({
+					-- your configuration comes here
+					-- or leave it empty to use the default settings
+					-- refer to the configuration section below
+				})
+			end,
+			cmd = { 'Twilight' },
+		},
+	})
+end
+
+return M
