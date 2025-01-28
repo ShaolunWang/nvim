@@ -1,5 +1,5 @@
 vim.api.nvim_create_user_command('G', function()
-	vim.cmd[[Neogit]]
+	vim.cmd([[Neogit]])
 end, {})
 vim.api.nvim_create_user_command('Sg', function()
 	vim.cmd([[:lua require('grug-far').open({ engine = 'astgrep' }) ]])

@@ -1,12 +1,12 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/overseer.nvim',    opt = true },
-	{ 'NeogitOrg/neogit',          opt = true },
-	{ 'folke/which-key.nvim',      opt = true },
-	{ 'folke/snacks.nvim',         opt = true },
-	{ 'sindrets/diffview.nvim',    opt = true },
-	{ 'FabijanZulj/blame.nvim',    opt = true },
-	{ 'akinsho/git-conflict.nvim', opt = true, },
+	{ 'stevearc/overseer.nvim', opt = true },
+	{ 'NeogitOrg/neogit', opt = true },
+	{ 'folke/which-key.nvim', opt = true },
+	{ 'folke/snacks.nvim', opt = true },
+	{ 'sindrets/diffview.nvim', opt = true },
+	{ 'FabijanZulj/blame.nvim', opt = true },
+	{ 'akinsho/git-conflict.nvim', opt = true },
 }
 
 function M.load()
@@ -67,7 +67,7 @@ function M.load()
 			'git-conflict.nvim',
 			after = function()
 				require('git-conflict').setup()
-			end
+			end,
 		},
 		{
 			'neogit',

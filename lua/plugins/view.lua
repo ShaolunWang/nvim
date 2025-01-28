@@ -1,11 +1,11 @@
 local M = {}
 M.plugins = {
 	{ 'echasnovski/mini.icons' },
-	{ 'folke/todo-comments.nvim',    opt = true },
-	{ 'stevearc/quicker.nvim',       opt = true },
+	{ 'folke/todo-comments.nvim', opt = true },
+	{ 'stevearc/quicker.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
-	{ 'stevearc/dressing.nvim',      opt = true },
-	{ 'sindrets/winshift.nvim',      opt = true },
+	{ 'stevearc/dressing.nvim', opt = true },
+	{ 'sindrets/winshift.nvim', opt = true },
 }
 function M.load()
 	require('lze').load({
@@ -92,18 +92,16 @@ function M.load()
 		{
 			'winshift.nvim',
 			after = function()
-				require('winshift').setup(
-					{
-						moving_win_options = {
-							wrap = true,
-							cursorline = false,
-							cursorcolumn = false,
-						},
-					})
+				require('winshift').setup({
+					moving_win_options = {
+						wrap = true,
+						cursorline = false,
+						cursorcolumn = false,
+					},
+				})
 			end,
 			cmd = { 'WinShift' },
 		},
-
 	})
 end
 

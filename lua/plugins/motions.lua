@@ -1,9 +1,9 @@
 local M = {}
 M.plugins = {
-	{ 'folke/flash.nvim',              opt = true },
-	{ 'kwkarlwang/bufjump.nvim',       opt = true },
-	{ 'chentoast/marks.nvim',          opt = true },
-	{ 'cbochs/grapple.nvim',           opt = true },
+	{ 'folke/flash.nvim', opt = true },
+	{ 'kwkarlwang/bufjump.nvim', opt = true },
+	{ 'chentoast/marks.nvim', opt = true },
+	{ 'cbochs/grapple.nvim', opt = true },
 	{ 'mrjones2014/smart-splits.nvim', opt = true },
 }
 function M.load()
@@ -96,14 +96,14 @@ function M.load()
 			after = function()
 				require('bufjump').setup()
 			end,
-			keys = { 'c-o', 'c-i' }
+			keys = { 'c-o', 'c-i' },
 		},
 		{
 			'marks.nvim',
 			after = function()
 				require('marks').setup()
 			end,
-			keys = { 'm' }
+			keys = { 'm' },
 		},
 	})
 end

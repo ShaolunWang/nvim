@@ -1,7 +1,7 @@
 local M = {}
 M.plugins = {
 
-	{'tummetott/unimpaired.nvim', opt=true},
+	{ 'tummetott/unimpaired.nvim', opt = true },
 }
 function M.load()
 	require('lze').load({
@@ -71,11 +71,10 @@ function M.load()
 						disable_cursorcross = false,
 						toggle_cursorcross = false,
 					},
-				}
-				)
+				})
 			end,
 			keys = { ',', '[', ']' },
-		}
+		},
 	})
 end
 

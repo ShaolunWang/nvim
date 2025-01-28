@@ -21,6 +21,8 @@ local function bootstrap_paq(packages)
 	end
 
 	-- Read and install packages
+	paq:setup({ verbose = false })
+
 	paq(packages)
 	paq.install()
 end
@@ -29,7 +31,6 @@ end
 
 local plugins = require('loader')
 bootstrap_paq(plugins)
-
 
 require('config')
 require('keymap')

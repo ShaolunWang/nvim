@@ -1,10 +1,10 @@
 local M = {}
 M.plugins = {
-	{ 'nvim-treesitter/nvim-treesitter',             opt = true },
+	{ 'nvim-treesitter/nvim-treesitter', opt = true },
 	{ 'nvim-treesitter/nvim-treesitter-textobjects', opt = true },
-	{ 'mizlan/iswap.nvim',                           opt = true },
-	{ 'chrisgrieser/nvim-various-textobjs',          opt = true },
-	{ 'Badhi/nvim-treesitter-cpp-tools',             opt = true },
+	{ 'mizlan/iswap.nvim', opt = true },
+	{ 'chrisgrieser/nvim-various-textobjs', opt = true },
+	{ 'Badhi/nvim-treesitter-cpp-tools', opt = true },
 }
 function M.load()
 	require('lze').load({
@@ -50,19 +50,18 @@ function M.load()
 			'nvim-treesitter-cpp-tools',
 			-- no need of dep_of, it's already loaded at this stage
 			after = function()
-				local opts = function()
-					local options = {
-						preview = {
-							quit = 'q',         -- optional keymapping for quit preview
-							accept = '<tab>',   -- optional keymapping for accept preview
+				require('nt-cpp-tools').setup({
+					preview = {
+						quit = 'q', -- optional keymapping for quit preview
+						accept = '<tab>', -- optional keymapping for accept preview
+					},
+					header_extension = 'h', -- optional
+					source_extension = 'cpp', -- optional
+					custom_define_class_function_commands = { -- optional
+						TSCppImplWrite = {
+							output_handle = require('nt-cpp-tools.output_handlers').get_add_to_cpp(),
 						},
-						header_extension = 'h', -- optional
-						source_extension = 'cpp', -- optional
-						custom_define_class_function_commands = { -- optional
-							TSCppImplWrite = {
-								output_handle = require('nt-cpp-tools.output_handlers').get_add_to_cpp(),
-							},
-							--[[
+						--[[
                 <your impl function custom command name> = {
                     output_handle = function (str, context)
                         -- string contains the class implementation
@@ -70,11 +69,8 @@ function M.load()
                     end
                 }
                 ]]
-						},
-					}
-					return options
-				end
-				require('nvim-treesitter-cpp-tools').setup(opts)
+					},
+				})
 			end,
 			ft = { 'cpp', 'h' },
 		},

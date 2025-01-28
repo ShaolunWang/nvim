@@ -1,15 +1,15 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/oil.nvim',           opt = true },
-	{ 'nvim-lua/plenary.nvim',       opt = true },
+	{ 'stevearc/oil.nvim', opt = true },
+	{ 'nvim-lua/plenary.nvim', opt = true },
 	{ 'nvim-neo-tree/neo-tree.nvim', opt = true },
-	{ 'MunifTanjim/nui.nvim',        opt = true },
+	{ 'MunifTanjim/nui.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
 		{ 'plenary.nvim', dep_of = { 'oil.nvim', 'neo-tree.nvim' }, on_require = 'plenary' },
-		{ 'nui.nvim',     dep_of = { 'neo-tree.nvim' },             on_require = 'nui' },
+		{ 'nui.nvim', dep_of = { 'neo-tree.nvim' }, on_require = 'nui' },
 		{
 			'oil.nvim',
 

@@ -1,7 +1,6 @@
 local M = {}
 M.plugins = {
 	{ 'akinsho/toggleterm.nvim', opt = true },
-
 }
 function M.load()
 	require('lze').load({

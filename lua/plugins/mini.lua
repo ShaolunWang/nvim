@@ -16,7 +16,6 @@ function M.load()
 						animation = function()
 							return 1
 						end,
-
 					},
 					symbol = '│',
 				})
@@ -52,7 +51,6 @@ function M.load()
 						-- Automatically reindent selection during linewise vertical move
 						reindent_linewise = true,
 					},
-
 				})
 				require('mini.visits').setup()
 
@@ -73,8 +71,8 @@ function M.load()
 						suffix_next = 'n', -- Suffix to search with "next" method
 					},
 				})
-			end
-		}
+			end,
+		},
 	})
 end
 
