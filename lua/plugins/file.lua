@@ -8,8 +8,8 @@ M.plugins = {
 
 function M.load()
 	require('lze').load({
-		{ 'plenary.nvim', dep_of = { 'oil.nvim', 'neo-tree.nvim', 'neogit', 'todo-comments.nvim' } },
-		{ 'nui.nvim',     dep_of = { 'neo-tree.nvim' } },
+		{ 'plenary.nvim', dep_of = { 'oil.nvim', 'neo-tree.nvim' }, on_require = 'plenary' },
+		{ 'nui.nvim',     dep_of = { 'neo-tree.nvim' },             on_require = 'nui' },
 		{
 			'oil.nvim',
 

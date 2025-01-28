@@ -13,6 +13,7 @@ function M.load()
 	require('lze').load({
 		{
 			'overseer.nvim',
+			on_require = { 'overseer' },
 			after = function()
 				local overseer = require('overseer')
 				overseer.setup({

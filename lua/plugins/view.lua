@@ -13,8 +13,6 @@ function M.load()
 		{ 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
 		{
 			'mini.icons',
-			before = {
-			},
 			after = function()
 				require('mini.icons').setup({})
 				require('mini.icons').mock_nvim_web_devicons()

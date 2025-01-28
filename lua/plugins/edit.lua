@@ -7,14 +7,14 @@ M.plugins = {
 			require('fundo').install()
 		end,
 	},
-	{ 'numToStr/Comment.nvim', opt = true },
-	{ 'chrisbra/NrrwRgn', opt = true },
-	{ 'danymat/neogen', opt = true },
-	{ 'chrisgrieser/nvim-rip-substitute', opt = true },
-	{ 'MagicDuck/grug-far.nvim', opt = true },
-	{ 'monaqa/dial.nvim', opt = true },
+	{ 'numToStr/Comment.nvim',                  opt = true },
+	{ 'chrisbra/NrrwRgn',                       opt = true },
+	{ 'danymat/neogen',                         opt = true },
+	{ 'chrisgrieser/nvim-rip-substitute',       opt = true },
+	{ 'MagicDuck/grug-far.nvim',                opt = true },
+	{ 'monaqa/dial.nvim',                       opt = true },
 	{ 'brenton-leighton/multiple-cursors.nvim', branch = 'main', opt = true },
-	{ 'kevinhwang91/promise-async', opt = true },
+	{ 'kevinhwang91/promise-async',             opt = true },
 }
 function M.load()
 	require('lze').load({
@@ -94,8 +94,10 @@ function M.load()
 			after = function()
 				local opts =
 					function()
-						local commentstring_avail, commentstring = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
-						return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
+						local commentstring_avail, commentstring = pcall(require,
+							'ts_context_commentstring.integrations.comment_nvim')
+						return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or
+						{}
 					end, require('Comment').setup(opts)
 			end,
 			keys = {
@@ -229,7 +231,7 @@ function M.load()
 		},
 
 		{ 'NrrwRgn', cmd = { 'NR' } },
-		{ 'neogen', keys = { ',g' } },
+		{ 'neogen',  keys = { ',g' } },
 		{
 			'nvim-rip-substitute',
 			after = function()
@@ -249,6 +251,7 @@ function M.load()
 		},
 		{
 			'grug-far.nvim',
+			on_require = { 'grug-far' },
 			after = function()
 				require('grug-far').setup({})
 			end,

@@ -4,8 +4,6 @@ M.plugins = {
 	{ 'rafamadriz/friendly-snippets', opt = true },
 	{
 		'L3MON4D3/LuaSnip',
-		-- follow latest release.
-		branch = 'v2.3.0',
 		opt = true,
 	},
 	{

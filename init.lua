@@ -28,7 +28,6 @@ end
 -- Call helper function
 
 local plugins = require('loader')
-vim.print(plugins)
 bootstrap_paq(plugins)
 
 

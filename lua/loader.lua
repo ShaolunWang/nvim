@@ -38,8 +38,6 @@ end
 -- paq_plugins = merge(paq_plugins, misc)
 --
 for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/plugins', [[v:val =~ '\.lua$']])) do
-	vim.print('a')
-	vim.print('plugins.' .. file:gsub('%.lua$', ''))
 	local plugins_table = require('plugins.' .. file:gsub('%.lua$', '')).plugins
 	paq_plugins = merge( paq_plugins, plugins_table)
 end
