@@ -27,12 +27,13 @@ end
 
 -- Call helper function
 
-local plugins = require('plugins')
+local plugins = require('loader')
+vim.print(plugins)
 bootstrap_paq(plugins)
 
-require('loader')
+
 require('config')
---require('keymap')
---require('theme')
---require('autocmd')
---require('commands')
+require('keymap')
+require('theme')
+require('autocmd')
+require('commands')

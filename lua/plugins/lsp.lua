@@ -1,12 +1,12 @@
 local M = {}
 M.plugins = {
-	{'neovim/nvim-lspconfig', opt = true},
+	{ 'neovim/nvim-lspconfig', opt = true },
 }
 
 function M.load()
 	require('lze').load({
 		{
-			'lspconfig',
+			'nvim-lspconfig',
 			after = function()
 				local utils = require('utils.lsp')
 				local c = require('blink.cmp').get_lsp_capabilities(utils.c)

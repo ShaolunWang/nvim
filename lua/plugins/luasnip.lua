@@ -17,7 +17,7 @@ M.plugins = {
 function M.load()
 	require('lze').load({
 		{
-			'luasnip',
+			'LuaSnip',
 			dep_of = { 'luasnip-latex-snippets', 'scissors', 'blink.cmp' },
 			after = function()
 				require('luasnip').config.set_config({ -- Setting LuaSnip config

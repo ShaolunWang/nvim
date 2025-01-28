@@ -1,27 +1,40 @@
-return {
+local M = {}
+M.plugins = {
+
+	{ 'atiladefreitas/dooing', opt = true },
+	{ 'OXY2DEV/markview.nvim', opt = true },
+	{ 'jbyuki/venn.nvim',      opt = true },
+	{ 'wurli/contextindent.nvim', opt = true }
+	,
+}
+function M.load()
+
+	require('lze').load( {
 	{
-		'jbyuki/venn.nvim',
-		config = function()
+		'venn.nvim',
+		before = function()
 			vim.o.virtualedit = 'all'
 		end,
 		cmd = { 'VBox' },
 	},
 	{
-		'OXY2DEV/markview.nvim',
+		'markview.nvim',
 		ft = 'markdown',
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter',
-			'nvim-tree/nvim-web-devicons',
-			'wurli/contextindent.nvim',
-		},
 	},
 	{
-		'atiladefreitas/dooing',
-		config = function()
+		'dooing',
+		after = function()
 			require('dooing').setup({
 				-- your custom config here (optional)
 			})
 		end,
 		cmd = { 'Dooing' },
 	},
+	{
+		'contextindent.nvim',
+		ft = { 'markdown' }
+	}
 }
+	)
+end
+return M

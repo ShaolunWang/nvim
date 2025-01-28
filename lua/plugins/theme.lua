@@ -1,48 +1,50 @@
-return {
-	{
-		'tiagovla/scope.nvim',
-		config = function()
+local M = {}
+M.plugins = {
+	{ 'folke/tokyonight.nvim', opt = true },
+	{ 'catppuccin/nvim',       opt = true },
+	{ 'Mofiqul/vscode.nvim',   opt = true },
+	{ 'rebelot/kanagawa.nvim', opt = true },
+	{ 'AlexvZyl/nordic.nvim',  opt = true },
+	{ 'tiagovla/scope.nvim',   opt = true },
+	{ 'rebelot/heirline.nvim', opt = true },
+}
+
+function M.load()
+	require('lze').load({
+		{
+			'tokyonight.nvim',
+			colorscheme = 'tokyonight',
+		},
+		{
+			'catppuccin',
+			colorscheme = 'catppuccin',
+		},
+		{
+			'vscode.nvim',
+			colorscheme = 'vscode',
+		},
+		{
+			'kanagawa',
+			colorscheme = 'kanagawa',
+		},
+
+		{
+			'nordic.nvim',
+			colorscheme = 'nordic',
+		},
+
+
+	})
+	require('lze').load({ {
+		'scope.nvim',
+		after = function()
 			require('scope').setup()
 		end,
-		lazy = true,
 	},
-	{
-		'rebelot/heirline.nvim',
-		dependencies = {},
-		event = 'VeryLazy',
-		lazy = true,
-	},
-	{
-		'yeomfa/jetly',
-		lazy = true,
-	},
-	{
-		'folke/tokyonight.nvim',
-		opts = {
-			style = 'night',
+		{
+			'heirline.nvim',
 		},
-		lazy = true,
-	},
-	{
-		'catppuccin/nvim',
-		name = 'catppuccin',
-		priority = 1000,
-		lazy = true,
-	},
-	{
-		'hiphish/rainbow-delimiters.nvim',
-		event = 'BufReadPre',
-	},
-	{
-		'Mofiqul/vscode.nvim',
-		lazy = true,
-	},
-	{
-		'rebelot/kanagawa.nvim',
-		lazy = true,
-	},
-	{
-		'AlexvZyl/nordic.nvim',
-		lazy = true,
-	},
-}
+	}, {lazy = false})
+end
+
+return M

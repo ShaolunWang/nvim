@@ -1,17 +1,17 @@
 local M = {}
 M.plugins = {
 	{ 'saghen/blink.cmp', opt = true, branch = 'v0.11.0' },
-	--	{ 'mikavilpas/blink-ripgrep.nvim', opt = true },
+	{ 'mikavilpas/blink-ripgrep.nvim', opt = true },
 	{ 'saghen/blink.compat', opt = true },
 }
 
 function M.load()
 	require('lze').load({
-		--		{ 'mikavilpas/blink-ripgrep.nvim', dep_of = { 'blink.cmp' }, },
+		{ 'blink-ripgrep.nvim', dep_of = { 'blink.cmp' } },
 		{ 'blink.compat', dep_of = { 'blink.cmp' } },
 		{
 			'blink.cmp',
-			dep_of = {'lspconfig'},
+			dep_of = { 'nvim-lspconfig' },
 			after = function()
 				require('blink.cmp').setup({
 					completion = {
@@ -72,29 +72,29 @@ function M.load()
 								},
 							},
 							buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true },
-							-- ripgrep = {
-							-- 	module = 'blink-ripgrep',
-							-- 	name = 'Ripgrep',
-							-- 	opts = {
-							-- 		prefix_min_len = 3,
-							--
-							-- 		context_size = 5,
-							--
-							-- 		max_filesize = '1M',
-							-- 		project_root_marker = { '.git', '.rgignore' },
-							--
-							-- 		-- The casing to use for the search in a format that ripgrep
-							-- 		-- accepts. Defaults to "--ignore-case". See `rg --help` for all the
-							-- 		-- available options ripgrep supports, but you can try
-							-- 		-- "--case-sensitive" or "--smart-case".
-							-- 		search_casing = '--smart-case',
-							-- 		additional_rg_options = { '--hidden', '--vimgrep', '--no-heading' },
-							--
-							-- 		fallback_to_regex_highlighting = true,
-							--
-							-- 		debug = false,
-							-- 	},
-							-- },
+							ripgrep = {
+								module = 'blink-ripgrep',
+								name = 'Ripgrep',
+								opts = {
+									prefix_min_len = 3,
+
+									context_size = 5,
+
+									max_filesize = '1M',
+									project_root_marker = { '.git', '.rgignore' },
+
+									-- The casing to use for the search in a format that ripgrep
+									-- accepts. Defaults to "--ignore-case". See `rg --help` for all the
+									-- available options ripgrep supports, but you can try
+									-- "--case-sensitive" or "--smart-case".
+									search_casing = '--smart-case',
+									additional_rg_options = { '--hidden', '--vimgrep', '--no-heading' },
+
+									fallback_to_regex_highlighting = true,
+
+									debug = false,
+								},
+							},
 						},
 					},
 				})
