@@ -95,6 +95,10 @@ function M.load()
 			end,
 		},
 		{
+			'diffview.nvim',
+			cmd = { 'DiffviewOpen' },
+		},
+		{
 			'snacks.nvim',
 			priority = 1000,
 			lazy = false,

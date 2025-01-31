@@ -1,6 +1,6 @@
 --vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme onehalfdark')
+vim.cmd('colorscheme tokyodark')
 
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },
@@ -64,6 +64,5 @@ vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = colors.darkwhite, bg = bg
 vim.api.nvim_set_hl(0, 'MiniCursorword', { underline = true })
 vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { underline = true })
 
---require('theme.tabby')
 require('theme.line')
 require('theme.ui')

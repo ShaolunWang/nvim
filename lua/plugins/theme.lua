@@ -3,11 +3,10 @@ M.plugins = {
 	{ 'folke/tokyonight.nvim', opt = true },
 	{ 'catppuccin/nvim', opt = true, as = 'catppuccin' },
 	{ 'Mofiqul/vscode.nvim', opt = true },
-	{ 'rebelot/kanagawa.nvim', opt = true },
-	{ 'AlexvZyl/nordic.nvim', opt = true },
 	{ 'tiagovla/scope.nvim', opt = true },
 	{ 'rebelot/heirline.nvim', opt = true },
-	{ 'ClearAspect/onehalf', opt = true, as = 'onehalf' },
+	{ 'navarasu/onedark.nvim', opt = true },
+	{ 'tiagovla/tokyodark.nvim', opt = true, as = 'tokyodark' },
 }
 
 function M.load()
@@ -25,17 +24,17 @@ function M.load()
 			colorscheme = 'vscode',
 		},
 		{
-			'kanagawa',
-			colorscheme = 'kanagawa',
-		},
-
-		{
-			'nordic.nvim',
-			colorscheme = 'nordic',
+			'tokyodark',
+			colorscheme = 'tokyodark',
 		},
 		{
-			'onehalf',
-			colorscheme = { 'onehalfdark', 'onehalflight' },
+			'onedark.nvim',
+			colorscheme = 'onedark',
+			after = function()
+				require('onedark').setup({
+					style = 'cool',
+				})
+			end,
 		},
 	})
 	require('lze').load({
