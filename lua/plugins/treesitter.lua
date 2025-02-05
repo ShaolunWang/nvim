@@ -1,17 +1,19 @@
 local M = {}
 M.plugins = {
 	{ 'nvim-treesitter/nvim-treesitter', opt = true },
-	{ 'nvim-treesitter/nvim-treesitter-textobjects', opt = true },
+	{ 'nvim-treesitter/nvim-treesitter-textobjects', opt = true, as = 'nvim-treesitter-textobjects' },
+	{ 'andymass/vim-matchup', opt = true },
 	{ 'mizlan/iswap.nvim', opt = true },
-	{ 'chrisgrieser/nvim-various-textobjs', opt = true },
+	--	{ 'chrisgrieser/nvim-various-textobjs',          opt = true },
 	{ 'Badhi/nvim-treesitter-cpp-tools', opt = true },
 }
 function M.load()
 	require('lze').load({
 		{
 			'nvim-treesitter',
-			dep_of = { 'markview.nvim' },
+			dep_of = { 'markview.nvim', 'nvim-treesitter' },
 			after = function()
+				require('lze').load({ 'nvim-treesitter-textobjects' })
 				local opts = {
 					ensure_installed = {
 						'c',
@@ -25,7 +27,6 @@ function M.load()
 					matchup = { enable = true },
 					textobjects = {
 						select = {
-
 							enable = true,
 							keymaps = {
 								['iv'] = { query = '@parameter.inner', desc = 'inner parameter' },
@@ -36,12 +37,13 @@ function M.load()
 				require('nvim-treesitter.configs').setup(opts)
 				require('nvim-treesitter.install').compilers = { 'gcc' }
 			end,
-			event = { 'BufReadPre' },
+			event = { 'BufRead' },
 		},
-		{
+		--[[ {
 			'nvim-various-textobjs',
 			event = 'BufReadPre',
-		},
+		}, ]]
+		{ 'vim-matchup', dep_of = 'nvim-treesitter' },
 		{
 			'iswap.nvim',
 			cmd = { 'ISwapWith', 'IMove', 'ISwap' },

@@ -1,7 +1,7 @@
 local ftMap = {
 	vim = 'indent',
 	python = { 'indent' },
-	cpp = { 'treesitter' },
+	--	cpp = { 'treesitter' },
 	git = '',
 }
 

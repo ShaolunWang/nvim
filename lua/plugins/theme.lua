@@ -7,6 +7,7 @@ M.plugins = {
 	{ 'rebelot/heirline.nvim', opt = true },
 	{ 'navarasu/onedark.nvim', opt = true },
 	{ 'tiagovla/tokyodark.nvim', opt = true, as = 'tokyodark' },
+	{ 'WTFox/jellybeans.nvim', opt = true, as = 'jellybeans' },
 }
 
 function M.load()
@@ -14,6 +15,13 @@ function M.load()
 		{
 			'tokyonight.nvim',
 			colorscheme = 'tokyonight',
+		},
+		{
+			'jellybeans',
+			after = function()
+				require('jellybeans').setup()
+			end,
+			colorscheme = 'jellybeans',
 		},
 		{
 			'catppuccin',

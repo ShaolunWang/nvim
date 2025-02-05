@@ -19,7 +19,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 local p = vim.lsp.protocol.make_client_capabilities()
-M.c = vim.tbl_deep_extend('force', {}, p, {}, {
+M.c = vim.tbl_deep_extend('force', p, {
 	textDocument = {
 		foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
 	},
@@ -69,10 +69,7 @@ M.c.textDocument.completion.completionItem.resolveSupport = {
 		'additionalTextEdits',
 	},
 }
-M.c.textDocument.foldingRange = {
-	dynamicRegistration = false,
-	lineFoldingOnly = true,
-}
+
 M.c.workspace = {
 	didChangeWatchedFiles = {
 		dynamicRegistration = true,

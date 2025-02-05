@@ -154,3 +154,4 @@ vim.api.nvim_create_autocmd('User', {
 		end
 	end),
 })
+--vim.cmd[[autocmd! TermClose <buffer=abuf> if !v:event.status | exec 'bd! '..expand('<abuf>') | endif | checktime]]

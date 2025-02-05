@@ -52,6 +52,7 @@ vim.api.nvim_create_user_command('Make', function(params)
 		cmd = vim.fn.expandcmd(cmd),
 		components = {
 			{ 'on_output_quickfix', open = not params.bang, open_height = 8 },
+			{ 'on_complete_dispose', timeout = 1 },
 			'default',
 		},
 	})
@@ -68,6 +69,7 @@ vim.api.nvim_create_user_command('Build', function(params)
 	local task = require('overseer').new_task({
 		cmd = vim.fn.expandcmd(cmd),
 		components = {
+			{ 'on_complete_dispose', timeout = 1 },
 			'default',
 		},
 	})
