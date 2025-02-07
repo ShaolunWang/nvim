@@ -9,6 +9,7 @@ M.plugins = {
 	{ 'nickkadutskyi/jb.nvim', opt = true, as = 'jb' },
 	{ 'WTFox/jellybeans.nvim', opt = true, as = 'jellybeans' },
 	{ 'olimorris/onedarkpro.nvim', opt = true, as = 'onedarkpro' },
+	{ 'oonamo/ef-themes.nvim', opt = true, as = 'ef' },
 }
 
 function M.load()
@@ -52,6 +53,45 @@ function M.load()
 					style = 'cool',
 				})
 			end,
+		},
+		{
+			'ef',
+			colorscheme = {
+				'ef-arbutus',
+				'ef-autumn',
+				'ef-bio',
+				'ef-cherie',
+				'ef-cyprus',
+				'ef-dark',
+				'ef-day',
+				'ef-deuteranopia-dark',
+				'ef-deuteranopia-light',
+				'ef-dream',
+				'ef-duo-dark',
+				'ef-duo-light',
+				'ef-eagle',
+				'ef-elea-dark',
+				'ef-elea-light',
+				'ef-frost',
+				'ef-kassio',
+				'ef-light',
+				'ef-maris-dark',
+				'ef-maris-light',
+				'ef-melissa-dark',
+				'ef-melissa-light',
+				'ef-night',
+				'ef-owl',
+				'ef-reverie',
+				'ef-rosa',
+				'ef-spring',
+				'ef-summer',
+				'ef-symbiosis',
+				'ef-trio-dark',
+				'ef-trio-light',
+				'ef-tritanopia-dark',
+				'ef-tritanopia-light',
+				'ef-winter',
+			},
 		},
 	})
 	require('lze').load({

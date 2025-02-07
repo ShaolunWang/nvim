@@ -45,6 +45,9 @@ end, { desc = 'Picker: help tags' })
 vim.keymap.set('n', '<leader>fp', function()
 	Snacks.picker()
 end, { desc = 'Picker: help tags' })
+vim.keymap.set('n', '<leader>fl', function()
+	Snacks.picker.lsp_symbols({ layout = { preset = 'vscode', preview = 'main' } })
+end, { desc = 'Picker: lsp symbols' })
 --
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
