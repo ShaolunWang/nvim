@@ -185,12 +185,11 @@ function M.load()
 						lua = { 'stylua' },
 						python = { 'isort', 'black' },
 						cpp = { 'clang-format' },
+						format_on_save = { async = true },
 					},
-					-- Set up format-on-save
-					--			format_on_save = { timeout_ms = 500, lsp_format = 'fallback' },
-					-- Customize formatters
 				})
 			end,
+			on_require = { 'conform' },
 			before = function()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

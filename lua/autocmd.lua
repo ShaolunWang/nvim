@@ -154,4 +154,10 @@ vim.api.nvim_create_autocmd('User', {
 		end
 	end),
 })
+vim.api.nvim_create_autocmd('BufWritePre', {
+	pattern = '*',
+	callback = vim.schedule_wrap(function(args)
+		require('conform').format({ async = true, lsp_format = 'fallback' })
+	end),
+})
 --vim.cmd[[autocmd! TermClose <buffer=abuf> if !v:event.status | exec 'bd! '..expand('<abuf>') | endif | checktime]]

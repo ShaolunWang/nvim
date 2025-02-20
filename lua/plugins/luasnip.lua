@@ -28,7 +28,7 @@ function M.load()
 			end,
 		},
 		{
-			'scissors',
+			'nvim-scissors',
 			after = function()
 				require('scissors').setup({
 					snippetDir = vim.fn.stdpath('config') .. '/snips/json_style/',
@@ -38,7 +38,7 @@ function M.load()
 			cmd = { 'ScissorsAddNewSnippet', 'ScissorsEditSnippet' },
 		},
 		{
-			'iurimateus/luasnip-latex-snippets.nvim',
+			'luasnip-latex-snippets.nvim',
 			-- vimtex isn't required if using treesitter
 			build = 'make install_jsregexp',
 			after = function()

@@ -6,7 +6,6 @@ M.plugins = {
 	{ 'tiagovla/scope.nvim', opt = true },
 	{ 'rebelot/heirline.nvim', opt = true },
 	{ 'tiagovla/tokyodark.nvim', opt = true, as = 'tokyodark' },
-	{ 'nickkadutskyi/jb.nvim', opt = true, as = 'jb' },
 	{ 'WTFox/jellybeans.nvim', opt = true, as = 'jellybeans' },
 	{ 'olimorris/onedarkpro.nvim', opt = true, as = 'onedarkpro' },
 	{ 'oonamo/ef-themes.nvim', opt = true, as = 'ef' },
@@ -17,10 +16,6 @@ function M.load()
 		{
 			'onedarkpro',
 			colorscheme = { 'onedark', 'onelight', 'onedark_dark', 'onedark_vivid' },
-		},
-		{
-			'jb',
-			colorscheme = 'jb',
 		},
 		{
 			'tokyonight.nvim',
@@ -54,9 +49,11 @@ function M.load()
 				})
 			end,
 		},
+
 		{
 			'ef',
 			colorscheme = {
+				'ef-theme',
 				'ef-arbutus',
 				'ef-autumn',
 				'ef-bio',

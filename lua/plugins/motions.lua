@@ -5,6 +5,7 @@ M.plugins = {
 	{ 'chentoast/marks.nvim', opt = true },
 	{ 'cbochs/grapple.nvim', opt = true },
 	{ 'mrjones2014/smart-splits.nvim', opt = true },
+	-- { 'luiscassih/AniMotion.nvim', opt = true, as = 'animotion' },
 }
 function M.load()
 	require('lze').load({
@@ -105,6 +106,17 @@ function M.load()
 			end,
 			keys = { 'm' },
 		},
+		--[[ {
+			'animotion',
+			after = function()
+				require('AniMotion').setup({
+					mode = 'helix',
+					clear_keys = { '<C-c>' },
+					color = 'Visual',
+				})
+			end,
+			events = 'BufRead',
+		}, ]]
 	})
 end
 
