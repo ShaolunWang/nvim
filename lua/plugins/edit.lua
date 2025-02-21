@@ -248,7 +248,14 @@ function M.load()
 		},
 
 		{ 'NrrwRgn', cmd = { 'NR' } },
-		{ 'neogen', keys = { ',g' } },
+		{
+			'neogen',
+			after = function()
+				require('neogen').setup({})
+			end,
+			keys = { ',g' },
+			cmd = { 'Neogen' },
+		},
 		{
 			'nvim-rip-substitute',
 			after = function()

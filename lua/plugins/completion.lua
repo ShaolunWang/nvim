@@ -30,9 +30,7 @@ function M.load()
 							show_on_trigger_character = false,
 						},
 						menu = {
-							auto_show = function(ctx)
-								return ctx.mode ~= 'cmdline'
-							end,
+
 							draw = {
 								-- We don't need label_description now because label and label_description are already
 								-- combined together in label by colorful-menu.nvim.
@@ -63,6 +61,7 @@ function M.load()
 					},
 					cmdline = {
 						keymap = { preset = 'none' },
+						enabled = false,
 					},
 
 					snippets = { preset = 'luasnip' },
