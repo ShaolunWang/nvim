@@ -7,6 +7,7 @@ function M.load()
 	require('lze').load({
 		{
 			'nvim-lspconfig',
+			on_require = { 'lspconfig' },
 			after = function()
 				local utils = require('utils.lsp')
 				local c = require('blink.cmp').get_lsp_capabilities(utils.c)
@@ -112,9 +113,20 @@ function M.load()
 					handlers = utils.lsp_handlers,
 					capabilities = c,
 				})
+				lsp.tinymist.setup({
+					settings = {
+						formatterMode = 'typstyle',
+						exportPdf = 'onType',
+						semanticTokens = 'disable',
+					},
+					on_attach = lsp_keymap.on_attach,
+					handlers = utils.lsp_handlers,
+					capabilities = c,
+				})
 			end,
 			ft = {
 				-- make sure only adding configured ones here
+				'typst',
 				'python',
 				'ocaml',
 				'cpp',

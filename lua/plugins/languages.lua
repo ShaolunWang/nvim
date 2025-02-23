@@ -16,6 +16,7 @@ M.plugins = {
 
 function M.load()
 	require('lze').load({
+
 		{
 			'lazydev.nvim',
 			ft = 'lua', -- only load on lua files
@@ -111,6 +112,7 @@ function M.load()
 			'refactoring.nvim',
 			cmd = { 'Refactor' },
 			-- fundo and ufo requires plenary and promise async before this
+			keys = {'<leader>r'},
 			after = function()
 				require('refactoring').setup({
 					prompt_func_return_type = {
