@@ -4,6 +4,7 @@ end, {})
 vim.api.nvim_create_user_command('Sg', function()
 	vim.cmd([[:lua require('grug-far').open({ engine = 'astgrep' }) ]])
 end, {})
+
 vim.api.nvim_create_user_command('Rg', function()
 	vim.cmd([[:lua require('grug-far').open({ engine = 'ripgrep' }) ]])
 end, {})
@@ -121,4 +122,8 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 		-- replace open with your preferred pdf viewer
 		-- os.execute("zathura " .. vim.fn.shellescape(filepath:gsub("%.typ$", ".pdf")))
 	end
+end, {})
+
+vim.api.nvim_create_user_command('B', function()
+	require('buvvers').toggle()
 end, {})
