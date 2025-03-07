@@ -125,5 +125,5 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 end, {})
 
 vim.api.nvim_create_user_command('B', function()
-	require('buvvers').toggle()
+	vim.cmd[[:lua require('buvvers').toggle()]]
 end, {})
