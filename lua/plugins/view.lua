@@ -108,7 +108,6 @@ function M.load()
 			after = function()
 				require('buvvers').setup()
 			end,
-			cmd = { 'B' },
 			on_require = { 'buvvers' },
 		},
 	})
