@@ -41,7 +41,7 @@ function M.goto_definition(split_cmd)
 		end
 
 		if vim.islist(result) then
-			util.jump_to_location(result[1])
+			util.show_document(result[1])
 
 			if #result > 1 then
 				util.set_qflist(util.locations_to_items(result))
@@ -49,7 +49,7 @@ function M.goto_definition(split_cmd)
 				api.nvim_command('wincmd p')
 			end
 		else
-			util.jump_to_location(result)
+			util.show_document(result)
 		end
 	end
 
@@ -57,7 +57,10 @@ function M.goto_definition(split_cmd)
 end
 
 M.lsp_handlers = {
-	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	['textDocument/hover'] = vim.lsp.with(
+		vim.lsp.handlers.hover,
+		{ border = border, contentFormat = { 'plaintext' }, dynamicRegistration = true }
+	),
 	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 	['textDocument/definition'] = M.goto_definition('split'),
 }

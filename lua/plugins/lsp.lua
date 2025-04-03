@@ -28,7 +28,14 @@ function M.load()
 				local lsp_keymap = require('keymap.lsp_keymaps')
 
 				-- simple example
-				lsp.pyright.setup({
+				lsp.basedpyright.setup({
+					settings = {
+						basedpyright = {
+							analysis = {
+								diagnosticMode = 'openFilesOnly',
+							},
+						},
+					},
 					on_attach = lsp_keymap.on_attach,
 					handlers = utils.lsp_handlers,
 					capabilities = c,

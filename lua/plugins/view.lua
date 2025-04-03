@@ -5,7 +5,7 @@ M.plugins = {
 	{ 'stevearc/quicker.nvim', opt = true },
 	{ 'aidancz/buvvers.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
-	{ 'stevearc/dressing.nvim', opt = true },
+	-- { 'stevearc/dressing.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
 }
 function M.load()
@@ -71,25 +71,25 @@ function M.load()
 			'highlight-undo.nvim',
 			keys = { { 'u' }, { '<C-r>' } },
 		},
-		{
-			'dressing.nvim',
-			after = function()
-				require('dressing').setup({
-					input = { enabled = true },
-					select = {
-						enabled = false,
-						--[[
-				backend = { 'pick', 'nui', 'fzf_lua', 'builtin' },
- 				nui = {
-					buf_options = {
-						filetype = 'nui',
-					},
-				}, ]]
-					},
-				})
-			end,
-			event = 'UIEnter',
-		},
+		-- {
+		-- 	'dressing.nvim',
+		-- 	after = function()
+		-- 		require('dressing').setup({
+		-- 			input = { enabled = true },
+		-- 			select = {
+		-- 				enabled = false,
+		-- 				--[[
+		-- 		backend = { 'pick', 'nui', 'fzf_lua', 'builtin' },
+		-- 			nui = {
+		-- 			buf_options = {
+		-- 				filetype = 'nui',
+		-- 			},
+		-- 		}, ]]
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- 	event = 'UIEnter',
+		-- },
 		{
 			'winshift.nvim',
 			after = function()
