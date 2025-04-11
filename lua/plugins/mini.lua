@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'echasnovski/mini.nvim', opt = true },
+	{ 'echasnovski/mini.nvim', branch = 'main', opt = true },
 }
 
 function M.load()
@@ -8,8 +8,10 @@ function M.load()
 		{
 			'mini.nvim',
 			event = 'BufReadPost',
+			on_require = { 'mini.pick' },
+			cmd = { 'Pick' },
 			after = function()
-				require('mini.pick').setup()
+				-- require('mini.pick').setup()
 				require('mini.ai').setup()
 				require('mini.indentscope').setup({
 					draw = {

@@ -31,13 +31,13 @@ vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 -- grapple
 
 vim.keymap.set('n', '<leader>ff', function()
-	--Snacks.picker.files()
-	MiniPick.builtin.files()
+	Snacks.picker.files()
+	-- MiniPick.builtin.files()
 end, { desc = 'Picker: find files' })
 vim.keymap.set('n', '<leader>fg', function()
-	--	Snacks.picker.grep()
+	Snacks.picker.grep()
 
-	MiniPick.live_grep()
+	-- MiniPick.builtin.grep_live()
 end, { desc = 'Picker: live grep' })
 vim.keymap.set('n', '<leader>fo', function()
 	Snacks.picker.recent()

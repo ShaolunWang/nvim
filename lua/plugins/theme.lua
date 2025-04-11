@@ -9,10 +9,22 @@ M.plugins = {
 	{ 'WTFox/jellybeans.nvim', opt = true, as = 'jellybeans' },
 	{ 'olimorris/onedarkpro.nvim', opt = true, as = 'onedarkpro' },
 	{ 'oonamo/ef-themes.nvim', opt = true, as = 'ef' },
+	{ 'Shatur/neovim-ayu', opt = true, as = 'ayu' },
 }
 
 function M.load()
 	require('lze').load({
+		{
+			'ayu',
+			after = function()
+				require('ayu').setup({
+					mirage = true, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
+					terminal = true, -- Set to `false` to let terminal manage its own colors.
+					overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
+				})
+			end,
+			colorscheme = { 'ayu', 'ayu-light', 'ayu-mirage', 'ayu-dark' },
+		},
 		{
 			'onedarkpro',
 			colorscheme = { 'onedark', 'onelight', 'onedark_dark', 'onedark_vivid' },
