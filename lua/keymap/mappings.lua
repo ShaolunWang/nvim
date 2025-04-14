@@ -1,21 +1,10 @@
---vim.keymap.set('n', '<leader>bb',  ':ls<CR>:b<space>', {noremap = true, desc = 'buffers'})
---vim.keymap.set('n', '<leader>bd',  ':ls<CR>:bd <space>', {noremap = true, desc = 'buffers'})
-
---[[ vim.keymap.set('n', '<c-n>', function()
-	if vim.bo.filetype == 'oil' then
-		require('oil').close()
-	else
-		require('oil').open()
-	end
-end, { desc = 'File navigation' }) ]]
--- neorg
 vim.keymap.set('n', '<c-n>', function()
 	vim.cmd([[Neotree toggle]])
 end, { noremap = true, desc = 'neotree' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
 	vim.cmd([[lua MiniNotify.clear()]])
-	require('close_buffers').wipe({ type = 'hidden', force = true }) -- Delete all non-visible buffers
+	--	require('close_buffers').wipe({ type = 'hidden', force = true }) -- Delete all non-visible buffers
 	require('close_buffers').wipe({ type = 'nameless' }) -- Delete all buffers without name
 	--	vim.cmd('Fidget clear')
 	--	vim.cmd('NoiceDismiss')
@@ -32,19 +21,28 @@ vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 
 vim.keymap.set('n', '<leader>ff', function()
 	Snacks.picker.files()
+	-- MiniPick.builtin.files()
 end, { desc = 'Picker: find files' })
 vim.keymap.set('n', '<leader>fg', function()
 	Snacks.picker.grep()
+
+	-- MiniPick.builtin.grep_live()
 end, { desc = 'Picker: live grep' })
 vim.keymap.set('n', '<leader>fo', function()
-	Snacks.picker.recent()
+	require('pickme').pick('oldfiles', { title = 'recent files' })
+	-- Snacks.picker.recent()
 end, { desc = 'Picker: oldfiles' })
 vim.keymap.set('n', '<leader>fh', function()
-	Snacks.picker.help()
+	require('pickme').pick('help', { title = 'help' })
+	-- Snacks.picker.help()
 end, { desc = 'Picker: help tags' })
 vim.keymap.set('n', '<leader>fp', function()
-	Snacks.picker()
-end, { desc = 'Picker: help tags' })
+	require('pickme').pick('pickers')
+	-- Snacks.picker()
+end, { desc = 'Picker: pickers' })
+vim.keymap.set('n', '<leader>fl', function()
+	Snacks.picker.lsp_symbols({ layout = { preset = 'vscode', preview = 'main' } })
+end, { desc = 'Picker: lsp symbols' })
 --
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
@@ -87,7 +85,7 @@ vim.keymap.set('n', '<F6>', function()
 end, { noremap = true, silent = true })
 
 local toggle_loclist = function()
-	for win, info in ipairs(vim.fn.getwininfo()) do
+	for _, info in ipairs(vim.fn.getwininfo()) do
 		if info.loclist == 1 then
 			vim.cmd('lclose')
 			return
@@ -124,4 +122,7 @@ end, { noremap = true, desc = 'neogen' })
 vim.keymap.set({ 'n', 'x' }, '<leader>r', function()
 	require('refactoring').select_refactor()
 end)
-vim.keymap.set({ 'n' }, '\\s', ':ISwapWith<cr>', { desc = 'swap cursor node with' })
+vim.keymap.set({ 'n' }, '\\s', ':ISwapNode<cr>', { desc = 'swap cursor node with' })
+vim.keymap.set({ 'n', 'v' }, '<leader>i', function()
+	require('utils.lsp').code_actions()
+end, { desc = 'vscode like action' })

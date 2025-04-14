@@ -137,14 +137,6 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'InsertEnter' }, {
 	end,
 })
 
-vim.api.nvim_create_augroup('Heirline', { clear = true })
-vim.api.nvim_create_autocmd('ColorScheme', {
-	callback = function()
-		require('heirline.utils').on_colorscheme(setup_colors)
-	end,
-	group = 'Heirline',
-})
-
 vim.api.nvim_create_autocmd('User', {
 	pattern = 'OilEnter',
 	callback = vim.schedule_wrap(function(args)
