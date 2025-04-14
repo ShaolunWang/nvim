@@ -16,6 +16,7 @@ M.plugins = {
 
 function M.load()
 	require('lze').load({
+
 		{
 			'lazydev.nvim',
 			ft = 'lua', -- only load on lua files
@@ -111,6 +112,7 @@ function M.load()
 			'refactoring.nvim',
 			cmd = { 'Refactor' },
 			-- fundo and ufo requires plenary and promise async before this
+			keys = {'<leader>r'},
 			after = function()
 				require('refactoring').setup({
 					prompt_func_return_type = {
@@ -185,12 +187,11 @@ function M.load()
 						lua = { 'stylua' },
 						python = { 'isort', 'black' },
 						cpp = { 'clang-format' },
+						format_on_save = { async = true },
 					},
-					-- Set up format-on-save
-					--			format_on_save = { timeout_ms = 500, lsp_format = 'fallback' },
-					-- Customize formatters
 				})
 			end,
+			on_require = { 'conform' },
 			before = function()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

@@ -15,6 +15,8 @@ end, { noremap = true, desc = 'neotree' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
 	vim.cmd([[lua MiniNotify.clear()]])
+	require('close_buffers').wipe({ type = 'hidden', force = true }) -- Delete all non-visible buffers
+	require('close_buffers').wipe({ type = 'nameless' }) -- Delete all buffers without name
 	--	vim.cmd('Fidget clear')
 	--	vim.cmd('NoiceDismiss')
 end, { noremap = true, silent = true })

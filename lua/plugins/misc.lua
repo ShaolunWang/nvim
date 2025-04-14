@@ -1,11 +1,11 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/overseer.nvim', opt = true },
-	{ 'NeogitOrg/neogit', opt = true },
-	{ 'folke/which-key.nvim', opt = true },
-	{ 'folke/snacks.nvim', opt = true },
-	{ 'sindrets/diffview.nvim', opt = true },
-	{ 'FabijanZulj/blame.nvim', opt = true },
+	{ 'stevearc/overseer.nvim',    opt = true },
+	{ 'NeogitOrg/neogit',          opt = true },
+	{ 'folke/which-key.nvim',      opt = true },
+	{ 'folke/snacks.nvim',         opt = true },
+	{ 'sindrets/diffview.nvim',    opt = true },
+	{ 'FabijanZulj/blame.nvim',    opt = true },
 	{ 'akinsho/git-conflict.nvim', opt = true },
 }
 
@@ -18,6 +18,7 @@ function M.load()
 				local overseer = require('overseer')
 				overseer.setup({
 					dap = false,
+					strategy = 'jobstart',
 				})
 				-- Add on_output_quickfix component to all "cargo" templates
 				overseer.add_template_hook({ module = '^just$' }, function(task_defn, util)
@@ -102,7 +103,6 @@ function M.load()
 			'snacks.nvim',
 			priority = 1000,
 			lazy = false,
-			---@type snacks.Config
 			after = function()
 				require('snacks').setup({
 					-- Toggle the profiler
@@ -132,6 +132,11 @@ function M.load()
 					notifier = { enabled = false },
 					scroll = { enabled = false },
 				})
+				Snacks.toggle.diagnostics():map(',d')
+				Snacks.toggle
+				    .option('conceallevel',
+					    { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+				    :map(',c')
 			end,
 			keys = {
 				{

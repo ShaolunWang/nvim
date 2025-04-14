@@ -5,15 +5,32 @@ M.plugins = {
 	{ 'Mofiqul/vscode.nvim', opt = true },
 	{ 'tiagovla/scope.nvim', opt = true },
 	{ 'rebelot/heirline.nvim', opt = true },
-	{ 'navarasu/onedark.nvim', opt = true },
 	{ 'tiagovla/tokyodark.nvim', opt = true, as = 'tokyodark' },
+	{ 'nickkadutskyi/jb.nvim', opt = true, as = 'jb' },
+	{ 'WTFox/jellybeans.nvim', opt = true, as = 'jellybeans' },
+	{ 'olimorris/onedarkpro.nvim', opt = true, as = 'onedarkpro' },
 }
 
 function M.load()
 	require('lze').load({
 		{
+			'onedarkpro',
+			colorscheme = { 'onedark', 'onelight', 'onedark_dark', 'onedark_vivid' },
+		},
+		{
+			'jb',
+			colorscheme = 'jb',
+		},
+		{
 			'tokyonight.nvim',
 			colorscheme = 'tokyonight',
+		},
+		{
+			'jellybeans',
+			after = function()
+				require('jellybeans').setup()
+			end,
+			colorscheme = 'jellybeans',
 		},
 		{
 			'catppuccin',

@@ -1,13 +1,21 @@
 local M = {}
 M.plugins = {
-	{ 'saghen/blink.cmp', opt = true, branch = 'v0.11.0' },
+	{ 'saghen/blink.cmp', opt = true, build = 'cargo build --release' },
 	{ 'mikavilpas/blink-ripgrep.nvim', opt = true },
 	{ 'saghen/blink.compat', opt = true },
+	{ 'xzbdmw/colorful-menu.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
 		{ 'blink-ripgrep.nvim', dep_of = { 'blink.cmp' } },
+		{
+			'colorful-menu.nvim',
+			dep_of = { 'blink.cmp' },
+			after = function()
+				require('colorful-menu').setup({})
+			end,
+		},
 		{ 'blink.compat', dep_of = { 'blink.cmp' } },
 		{
 			'blink.cmp',
@@ -25,6 +33,21 @@ function M.load()
 							auto_show = function(ctx)
 								return ctx.mode ~= 'cmdline'
 							end,
+							draw = {
+								-- We don't need label_description now because label and label_description are already
+								-- combined together in label by colorful-menu.nvim.
+								columns = { { 'kind_icon' }, { 'label', gap = 1 } },
+								components = {
+									label = {
+										text = function(ctx)
+											return require('colorful-menu').blink_components_text(ctx)
+										end,
+										highlight = function(ctx)
+											return require('colorful-menu').blink_components_highlight(ctx)
+										end,
+									},
+								},
+							},
 						},
 					},
 
@@ -37,9 +60,9 @@ function M.load()
 						['<C-n>'] = { 'select_next' },
 						['<c-d>'] = { 'snippet_forward' },
 						['<c-u>'] = { 'snippet_backward' },
-						cmdline = {
-							preset = 'none',
-						},
+					},
+					cmdline = {
+						keymap = { preset = 'none' },
 					},
 
 					snippets = { preset = 'luasnip' },

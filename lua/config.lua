@@ -1,6 +1,7 @@
 local set = vim.o
 set.autoindent = true
 set.shada = "'50,<1000,s100,:50"
+set.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
 set.tabstop = 4
 set.laststatus = 3
 set.scrolloff = 10
@@ -21,7 +22,7 @@ set.undofile = true
 set.termguicolors = true
 set.cursorline = true
 set.foldcolumn = '1' -- '0' is not bad
-set.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+set.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 set.foldlevelstart = 99
 set.foldenable = true
 set.ignorecase = true
@@ -35,7 +36,8 @@ set.concealcursor = 'nc'
 if vim.uv.os_uname().sysname == 'Windows_NT' then
 	local powershell_options = {
 		shell = vim.fn.executable('pwsh') == 1 and 'pwsh' or 'powershell',
-		shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;',
+		shellcmdflag =
+		'-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;',
 		shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait',
 		shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode',
 		shellquote = '',
@@ -50,7 +52,7 @@ end
 
 vim.g.maplocalleader = ','
 set.fillchars =
-	[[horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,foldopen:▼,foldclose:>,fold: ,eob: ]]
+[[horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,foldopen:▼,foldclose:>,fold: ,eob: ]]
 
 -- This works but don't abuse status column :)
 --vim.o.statuscolumn = '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼ " : "> ") : "  " }%*'

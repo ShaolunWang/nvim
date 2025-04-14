@@ -7,6 +7,7 @@ function M.load()
 	require('lze').load({
 		{
 			'nvim-lspconfig',
+			on_require = { 'lspconfig' },
 			after = function()
 				local utils = require('utils.lsp')
 				local c = require('blink.cmp').get_lsp_capabilities(utils.c)
@@ -27,7 +28,14 @@ function M.load()
 				local lsp_keymap = require('keymap.lsp_keymaps')
 
 				-- simple example
-				lsp.pyright.setup({
+				lsp.basedpyright.setup({
+					settings = {
+						basedpyright = {
+							analysis = {
+								diagnosticMode = 'openFilesOnly',
+							},
+						},
+					},
 					on_attach = lsp_keymap.on_attach,
 					handlers = utils.lsp_handlers,
 					capabilities = c,
@@ -60,7 +68,7 @@ function M.load()
 						'clangd',
 						'--background-index',
 						'--clang-tidy',
-						'--header-insertion=iwyu',
+						'--header-insertion=never',
 						'--completion-style=detailed',
 						'--function-arg-placeholders',
 						'--fallback-style=llvm',
@@ -112,9 +120,20 @@ function M.load()
 					handlers = utils.lsp_handlers,
 					capabilities = c,
 				})
+				lsp.tinymist.setup({
+					settings = {
+						formatterMode = 'typstyle',
+						exportPdf = 'onType',
+						semanticTokens = 'disable',
+					},
+					on_attach = lsp_keymap.on_attach,
+					handlers = utils.lsp_handlers,
+					capabilities = c,
+				})
 			end,
 			ft = {
 				-- make sure only adding configured ones here
+				'typst',
 				'python',
 				'ocaml',
 				'cpp',

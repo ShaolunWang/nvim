@@ -3,6 +3,7 @@ M.plugins = {
 	{ 'echasnovski/mini.icons' },
 	{ 'folke/todo-comments.nvim', opt = true },
 	{ 'stevearc/quicker.nvim', opt = true },
+	{ 'aidancz/buvvers.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
 	{ 'stevearc/dressing.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
@@ -10,7 +11,7 @@ M.plugins = {
 function M.load()
 	require('lze').load({
 
-		{ 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
+		{ 'nvim-web-devicons', enabled = false, optional = true },
 		{
 			'mini.icons',
 			after = function()
@@ -101,6 +102,14 @@ function M.load()
 				})
 			end,
 			cmd = { 'WinShift' },
+		},
+		{
+			'buvvers.nvim',
+			after = function()
+				require('buvvers').setup()
+			end,
+			cmd = { 'B' },
+			on_require = { 'buvvers' },
 		},
 	})
 end

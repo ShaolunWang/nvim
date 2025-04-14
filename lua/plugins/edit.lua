@@ -7,6 +7,8 @@ M.plugins = {
 			require('fundo').install()
 		end,
 	},
+	{ 'kazhala/close-buffers.nvim', opt = true, as = 'close-buffers' },
+	{ 'chrisgrieser/nvim-early-retirement', opt = true, as = 'early-retirement' },
 	{ 'numToStr/Comment.nvim', opt = true },
 	{ 'chrisbra/NrrwRgn', opt = true },
 	{ 'danymat/neogen', opt = true },
@@ -18,6 +20,24 @@ M.plugins = {
 }
 function M.load()
 	require('lze').load({
+		{
+			'close-buffers',
+			after = function()
+				require('close_buffers').setup({})
+			end,
+			cmd = { 'BDelete', 'BWipeout' },
+			on_require = { 'close_buffers' },
+			keys = { '<leader><leader>' },
+		},
+		--[[ {
+			'early-retirement',
+			after = function()
+				require("early-retirement").setup({
+					retirementAgeMins = .5,
+				})
+			end,
+			event = 'BufReadPost'
+		}, ]]
 		{
 			'nvim-fundo',
 			after = function()
@@ -228,7 +248,14 @@ function M.load()
 		},
 
 		{ 'NrrwRgn', cmd = { 'NR' } },
-		{ 'neogen', keys = { ',g' } },
+		{
+			'neogen',
+			after = function()
+				require('neogen').setup({})
+			end,
+			keys = { ',g' },
+			cmd = { 'Neogen' },
+		},
 		{
 			'nvim-rip-substitute',
 			after = function()

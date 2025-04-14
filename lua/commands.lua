@@ -10,7 +10,21 @@ end, {})
 vim.api.nvim_create_user_command('UndotreeToggle', function()
 	vim.cmd([[:lua require('undotree').toggle()]])
 end, {})
-
+vim.api.nvim_create_user_command('PReload', function()
+	local luacache = (_G.__luacache or {}).cache
+	-- TODO unload commands, mappings + ?symbols?
+	for pkg, _ in pairs(package.loaded) do
+		if pkg:match('^my_.+') then
+			print(pkg)
+			package.loaded[pkg] = nil
+			if luacache then
+				lucache[pkg] = nil
+			end
+		end
+	end
+	dofile(vim.env.MYVIMRC)
+	vim.notify('Config reloaded!', vim.log.levels.INFO)
+end, {})
 vim.api.nvim_create_user_command('T', function()
 	-- require('nvim-tree.api').tree.toggle()
 	--	vim.cmd([[:lua MiniFiles.open()]])
@@ -52,6 +66,7 @@ vim.api.nvim_create_user_command('Make', function(params)
 		cmd = vim.fn.expandcmd(cmd),
 		components = {
 			{ 'on_output_quickfix', open = not params.bang, open_height = 8 },
+			{ 'on_complete_dispose', timeout = 1 },
 			'default',
 		},
 	})
@@ -68,6 +83,7 @@ vim.api.nvim_create_user_command('Build', function(params)
 	local task = require('overseer').new_task({
 		cmd = vim.fn.expandcmd(cmd),
 		components = {
+			{ 'on_complete_dispose', timeout = 1 },
 			'default',
 		},
 	})
@@ -98,3 +114,11 @@ end, {
 		end
 	end
 end ]]
+vim.api.nvim_create_user_command('OpenPdf', function()
+	local filepath = vim.api.nvim_buf_get_name(0)
+	if filepath:match('%.typ$') then
+		os.execute('open ' .. vim.fn.shellescape(filepath:gsub('%.typ$', '.pdf')))
+		-- replace open with your preferred pdf viewer
+		-- os.execute("zathura " .. vim.fn.shellescape(filepath:gsub("%.typ$", ".pdf")))
+	end
+end, {})

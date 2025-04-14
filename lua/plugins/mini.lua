@@ -9,8 +9,8 @@ function M.load()
 			'mini.nvim',
 			event = 'BufReadPost',
 			after = function()
+				require('mini.pick').setup()
 				require('mini.ai').setup()
-				--		require('mini.pick').setup()
 				require('mini.indentscope').setup({
 					draw = {
 						animation = function()

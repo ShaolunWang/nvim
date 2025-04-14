@@ -17,6 +17,13 @@ function M.load()
 		},
 		{
 			'markview.nvim',
+			after = function()
+				require('markview').setup({
+					markdown = {
+						tables = require('markview.presets').tables.single,
+					},
+				})
+			end,
 			ft = 'markdown',
 		},
 		{
