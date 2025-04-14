@@ -10,6 +10,13 @@ M.plugins = {
 	{ 'olimorris/onedarkpro.nvim', opt = true, as = 'onedarkpro' },
 	{ 'oonamo/ef-themes.nvim', opt = true, as = 'ef' },
 	{ 'Shatur/neovim-ayu', opt = true, as = 'ayu' },
+	{ 'nvchad/ui' },
+	{
+		'nvchad/base46',
+		build = function()
+			require('base46').load_all_highlights()
+		end,
+	},
 }
 
 function M.load()
@@ -115,6 +122,24 @@ function M.load()
 			'heirline.nvim',
 			lazy = false,
 		},
+		-- 'nvim-lua/plenary.nvim',
+		-- { 'nvim-tree/nvim-web-devicons', lazy = true },
+
+		{
+			'ui',
+			beforeAll = function()
+				require('nvchad')
+			end,
+		},
+
+		{
+			'base46',
+			lazy = true,
+			on_require = 'base46',
+		},
+
+		{ 'volt', on_require = 'volt' }, -- optional, needed for theme switcher
+		-- or just use Telescope themes
 	})
 end
 

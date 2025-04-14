@@ -1,4 +1,9 @@
 vim.g.mapleader = ' '
+vim.g.base46_cache = vim.fn.stdpath('data') .. '/base46_cache/'
+
+-- put this after lazy setup
+
+-- (method 1, For heavy lazyloaders)
 vim.loader.enable()
 
 local function clone_paq()
@@ -37,3 +42,6 @@ require('keymap')
 require('theme')
 require('autocmd')
 require('commands')
+
+-- dofile(vim.g.base46_cache .. 'defaults')
+-- dofile(vim.g.base46_cache .. 'statusline')
