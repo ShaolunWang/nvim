@@ -11,12 +11,8 @@ M.plugins = {
 	{ 'oonamo/ef-themes.nvim', opt = true, as = 'ef' },
 	{ 'Shatur/neovim-ayu', opt = true, as = 'ayu' },
 	{ 'nvchad/ui' },
-	{
-		'nvchad/base46',
-		build = function()
-			require('base46').load_all_highlights()
-		end,
-	},
+	{ 'notken12/base46-colors' },
+	{ 'nvchad/base46' },
 }
 
 function M.load()
@@ -130,15 +126,18 @@ function M.load()
 			beforeAll = function()
 				require('nvchad')
 			end,
+			event = 'DeferredUIEnter',
 		},
 
 		{
 			'base46',
-			lazy = true,
-			on_require = 'base46',
+			dep_of = 'ui',
+			after = function()
+				require('base46').load_all_highlights()
+			end,
 		},
 
-		{ 'volt', on_require = 'volt' }, -- optional, needed for theme switcher
+		{ 'volt', dep_of = 'ui' }, -- optional, needed for theme switcher
 		-- or just use Telescope themes
 	})
 end
