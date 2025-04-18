@@ -1,7 +1,7 @@
 local options = {
 
 	base46 = {
-		theme = 'ayu_dark', -- default theme
+		theme = 'everforest', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
@@ -51,7 +51,7 @@ local options = {
 			-- { txt = '  Find File', keys = 'ff', cmd = 'Telescope find_files' },
 			-- { txt = '  Recent Files', keys = 'fo', cmd = 'Telescope oldfiles' },
 			-- { txt = '󰈭  Find Word', keys = 'fw', cmd = 'Telescope live_grep' },
-			{ txt = '󱥚  Themes', keys = 'th', cmd = ":lua require('nvchad.themes').open()" },
+			{ txt = '󱥚  Themes ', keys = 'th', cmd = ":lua require('nvchad.themes').open()" },
 			-- { txt = '  Mappings', keys = 'ch', cmd = 'NvCheatsheet' },
 
 			{ txt = '─', hl = 'NvDashFooter', no_gap = true, rep = true },
