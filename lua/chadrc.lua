@@ -1,7 +1,7 @@
 local options = {
 
 	base46 = {
-		theme = 'everforest', -- default theme
+		theme = 'ayu_light', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
@@ -56,16 +56,16 @@ local options = {
 
 			{ txt = '─', hl = 'NvDashFooter', no_gap = true, rep = true },
 
-			{
+			--[[ {
 				txt = function()
-					return 'placeholder'
+					return ''
 					-- local stats = require('lazy').stats()
 					-- local ms = math.floor(stats.startuptime) .. ' ms'
 					-- return '  Loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms
 				end,
 				hl = 'NvDashFooter',
 				no_gap = true,
-			},
+			}, ]]
 
 			{ txt = '─', hl = 'NvDashFooter', no_gap = true, rep = true },
 		},
