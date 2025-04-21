@@ -15,7 +15,6 @@ M.plugins = {
 	{ 'chrisgrieser/nvim-rip-substitute', opt = true },
 	{ 'MagicDuck/grug-far.nvim', opt = true },
 	{ 'monaqa/dial.nvim', opt = true },
-	{ 'brenton-leighton/multiple-cursors.nvim', branch = 'main', opt = true },
 	{ 'kevinhwang91/promise-async', opt = true },
 }
 function M.load()
@@ -29,15 +28,15 @@ function M.load()
 			on_require = { 'close_buffers' },
 			keys = { '<leader><leader>' },
 		},
-		--[[ {
+		{
 			'early-retirement',
 			after = function()
-				require("early-retirement").setup({
-					retirementAgeMins = .5,
+				require('early-retirement').setup({
+					retirementAgeMins = 5,
 				})
 			end,
-			event = 'BufReadPost'
-		}, ]]
+			event = 'BufReadPost',
+		},
 		{
 			'nvim-fundo',
 			after = function()
@@ -45,68 +44,6 @@ function M.load()
 			end,
 			event = { 'BufRead' },
 			lazy = false,
-		},
-		{
-			-- This causes the plugin setup function to be called
-			'multiple-cursors.nvim',
-			after = function()
-				local opts = {
-					pre_hook = function()
-						vim.g.minipairs_disable = true
-						require('nvim-autopairs').disable()
-					end,
-					post_hook = function()
-						vim.g.minipairs_disable = false
-						require('nvim-autopairs').enable()
-					end,
-				}
-				require('multiple-cursors').setup(opts)
-			end,
-			keys = {
-				{
-					'<C-\\>j',
-					'<Cmd>MultipleCursorsAddDown<CR>',
-					mode = { 'n', 'i', 'x' },
-					desc = 'Add cursor and move down',
-				},
-				{
-					'<C-\\>k',
-					'<Cmd>MultipleCursorsAddUp<CR>',
-					mode = { 'n', 'i', 'x' },
-					desc = 'Add cursor and move up',
-				},
-				{
-					'<c-\\>d',
-					'<Cmd>MultipleCursorsMouseAddDelete<CR>',
-					mode = { 'n', 'i', 'x' },
-					desc = 'Add or remove cursor',
-				},
-				{
-					'<c-\\>m',
-					'<Cmd>MultipleCursorsAddMatches<CR>',
-					mode = { 'n', 'x' },
-					desc = 'Add cursors to cword',
-				},
-				{
-					'<c-\\>v',
-					'<Cmd>MultipleCursorsAddMatchesV<CR>',
-					mode = { 'n', 'x' },
-					desc = 'Add cursors to cword in previous area',
-				},
-				{
-					'<c-\\>n',
-					'<Cmd>MultipleCursorsAddJumpNextMatch<CR>',
-					mode = { 'n', 'x' },
-					desc = 'Add cursor and jump to next cword',
-				},
-				{ '<c-\\>g', '<Cmd>MultipleCursorsJumpNextMatch<CR>', mode = { 'n', 'x' }, desc = 'Jump to next cword' },
-				{
-					'<c-\\>l',
-					'<Cmd>MultipleCursorsLock<CR>',
-					mode = { 'n', 'x' },
-					desc = 'Lock virtual cursors',
-				},
-			},
 		},
 		{
 			'Comment.nvim',
@@ -251,10 +188,11 @@ function M.load()
 		{
 			'neogen',
 			after = function()
-				require('neogen').setup({})
+				require('neogen').setup()
 			end,
 			keys = { ',g' },
 			cmd = { 'Neogen' },
+			on_require = { 'neogen' },
 		},
 		{
 			'nvim-rip-substitute',

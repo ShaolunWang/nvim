@@ -59,37 +59,12 @@ function M.load()
 				})
 			end,
 			event = 'FileType qf',
+			on_require = { 'quicker' },
 		},
-		--[[ {
-		'kevinhwang91/nvim-bqf',
-		opts = {
-			preview = { auto_preview = false },
-		},
-		ft = { 'qf' },
-	}, ]]
 		{
 			'highlight-undo.nvim',
 			keys = { { 'u' }, { '<C-r>' } },
 		},
-		-- {
-		-- 	'dressing.nvim',
-		-- 	after = function()
-		-- 		require('dressing').setup({
-		-- 			input = { enabled = true },
-		-- 			select = {
-		-- 				enabled = false,
-		-- 				--[[
-		-- 		backend = { 'pick', 'nui', 'fzf_lua', 'builtin' },
-		-- 			nui = {
-		-- 			buf_options = {
-		-- 				filetype = 'nui',
-		-- 			},
-		-- 		}, ]]
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- 	event = 'UIEnter',
-		-- },
 		{
 			'winshift.nvim',
 			after = function()
