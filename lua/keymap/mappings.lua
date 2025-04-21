@@ -1,14 +1,3 @@
---vim.keymap.set('n', '<leader>bb',  ':ls<CR>:b<space>', {noremap = true, desc = 'buffers'})
---vim.keymap.set('n', '<leader>bd',  ':ls<CR>:bd <space>', {noremap = true, desc = 'buffers'})
-
---[[ vim.keymap.set('n', '<c-n>', function()
-	if vim.bo.filetype == 'oil' then
-		require('oil').close()
-	else
-		require('oil').open()
-	end
-end, { desc = 'File navigation' }) ]]
--- neorg
 vim.keymap.set('n', '<c-n>', function()
 	vim.cmd([[Neotree toggle]])
 end, { noremap = true, desc = 'neotree' })
