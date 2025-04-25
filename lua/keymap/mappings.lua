@@ -1,3 +1,6 @@
+vim.keymap.set('n', '<leader>s', function()
+	vim.cmd([[Oil --float]])
+end, { noremap = true, desc = 'float oil' })
 vim.keymap.set('n', '<c-n>', function()
 	vim.cmd([[Neotree toggle]])
 end, { noremap = true, desc = 'neotree' })
