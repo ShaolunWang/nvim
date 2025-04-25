@@ -5,7 +5,7 @@ local options = {
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
-		changed_themes = {},
+		changed_themes = { 'rosepine' },
 		transparency = false,
 		theme_toggle = { 'onedark', 'one_light' },
 	},
