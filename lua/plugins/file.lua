@@ -120,6 +120,7 @@ function M.load()
 						},
 					},
 					window = {
+						width = 25,
 						mappings = {
 							['<space>'] = {
 								'toggle_node',

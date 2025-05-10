@@ -27,6 +27,7 @@ function M.load()
 				local lsp = require('lspconfig')
 				local lsp_keymap = require('keymap.lsp_keymaps')
 
+				vim.lsp.enable('tblgen_lsp_server')
 				-- simple example
 				lsp.basedpyright.setup({
 					settings = {
@@ -140,6 +141,7 @@ function M.load()
 				'c',
 				'ts',
 				'lua',
+				'tablegen',
 			},
 		},
 	})

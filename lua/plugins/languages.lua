@@ -12,7 +12,7 @@ M.plugins = {
 	{ 'stevearc/conform.nvim', opt = true },
 	{ 'fei6409/log-highlight.nvim', opt = true },
 	{ 'Bekaboo/dropbar.nvim', opt = true },
-	{ 'lervag/vimtex', opt = true },
+	{ 'lervag/vimtex' },
 	{ 'ThePrimeagen/refactoring.nvim', opt = true },
 }
 
@@ -166,19 +166,28 @@ function M.load()
 		},
 		{
 			'vimtex',
-			ft = { 'tex' },
-			before = function()
+			after = function()
 				-- VimTeX configuration goes here, e.g.
 				--			vim.g.vimtex_view_general_viewer = 'okular'
 				--			vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
-				vim.g.vimtex_latex_viewer = 'sioyek'
+				vim.g.vimtex_latex_viewer = 'skimpdf'
 				vim.g.vimtex_compiler_method = 'latexmk'
+				vim.g.vimtex_compiler_engine = 'lualatex'
+
 				-- vim.cmd([[
 				--   let g:vimtex_compiler_method = 'generic'
 				--   let g:vimtex_compiler_generic = {
 				-- 		\ 'command': 'ls *.tex | entr -c tectonic /_ --synctex --keep-logs',
 				-- 		\}
 				-- ]])
+				vim.cmd([[
+				let g:vimtex_compiler_latexmk = {
+					\ 'options' : [
+					\   '-interaction=nonstopmode',
+					\   '-shell-escape',
+					\ ],
+					\ 'build_dir' : 'livepreview'}
+				]])
 			end,
 		},
 		{
