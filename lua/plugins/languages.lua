@@ -2,7 +2,9 @@ local lsp_keymap = require('keymap.lsp_keymaps')
 local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
+	{ 'vlime/vlime', opt = true },
 	{ 'folke/lazydev.nvim', opt = true },
+	{ 'julienvincent/nvim-paredit', opt = true },
 	{ 'mrcjkb/rustaceanvim', opt = true },
 	{ 'folke/trouble.nvim', opt = true },
 	{ 'p00f/clangd_extensions.nvim', opt = true },
@@ -16,7 +18,30 @@ M.plugins = {
 
 function M.load()
 	require('lze').load({
-
+		{
+			'vlime',
+			after = function()
+				vim.g['vlime_contribs'] = {
+					'SWANK-ASDF',
+					'SWANK-PACKAGE-FU',
+					'SWANK-PRESENTATIONS',
+					'SWANK-FANCY-INSPECTOR',
+					'SWANK-C-P-C',
+					'SWANK-ARGLISTS',
+					'SWANK-REPL',
+					'SWANK-FUZZY',
+					'SWANK-TRACE-DIALOG',
+				}
+			end,
+			ft = 'lisp',
+		},
+		{
+			'nvim-paredit',
+			after = function()
+				require('nvim-paredit').setup()
+			end,
+			ft = 'lisp',
+		},
 		{
 			'lazydev.nvim',
 			ft = 'lua', -- only load on lua files

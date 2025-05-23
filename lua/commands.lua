@@ -122,9 +122,3 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 		-- os.execute("zathura " .. vim.fn.shellescape(filepath:gsub("%.typ$", ".pdf")))
 	end
 end, {})
-vim.api.nvim_create_user_command('Ui', function(params)
-	require('nvconfig').base46.theme = params.args
-	require('nvconfig').base46.theme = require('base46').load_all_highlights()
-	require('plenary.reload').reload_module('volt.highlights')
-	require('volt.highlights')
-end, { nargs = 1 })
