@@ -136,10 +136,10 @@ function M.load()
 					notifier = { enabled = false },
 					scroll = { enabled = false },
 				})
-				Snacks.toggle.diagnostics():map(',d')
+				-- Snacks.toggle.diagnostics():map(',d')
 				Snacks.toggle
 					.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-					:map(',c')
+					:map('\\c')
 			end,
 			keys = {
 				{
@@ -171,9 +171,6 @@ function M.load()
 				require('gitsigns').setup()
 			end,
 			--			cmd = { 'G' },
-		},
-		{
-			'vim-fugitive',
 		},
 	})
 end
