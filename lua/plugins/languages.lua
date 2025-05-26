@@ -21,6 +21,9 @@ function M.load()
 		{
 			'vlime',
 			after = function()
+				vim.g['vlime_cl_impl'] = 'ccl'
+				vim.g['vlime_force_default_keys'] = true
+				vim.g['vlime_leader'] = ';'
 				vim.g['vlime_contribs'] = {
 					'SWANK-ASDF',
 					'SWANK-PACKAGE-FU',

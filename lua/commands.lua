@@ -1,3 +1,4 @@
+local ar = require('utils.arglist')
 vim.api.nvim_create_user_command('G', function()
 	vim.cmd([[Neogit]])
 end, {})
@@ -28,7 +29,7 @@ end, {})
 vim.api.nvim_create_user_command('T', function()
 	-- require('nvim-tree.api').tree.toggle()
 	--	vim.cmd([[:lua MiniFiles.open()]])
-	vim.cmd([[Neotree toggle]])
+	vim.cmd([[Fyler]])
 end, {})
 
 vim.api.nvim_create_user_command('Grep', function(params)
@@ -94,26 +95,6 @@ end, {
 	bang = true,
 })
 
---[[ local function qftree(location)
-	local entries
-	local list_name
-	local path
-	if location == true then
-		entries = vim.fn.getloclist(0)
-		list_name = 'Location'
-	else
-		entries = vim.fn.getqflist(0)
-		list_name = 'Quickfix'
-	end
-	if next(entries) == nil then
-		vim.print(list_name + 'list is empty')
-		return
-	else
-		for e in entries do
-			vim.fn.fnamemodify(vim.api.nvim_buf_get_name(enties['bufnr']), ':p:.')
-		end
-	end
-end ]]
 vim.api.nvim_create_user_command('OpenPdf', function()
 	local filepath = vim.api.nvim_buf_get_name(0)
 	if filepath:match('%.typ$') then
@@ -121,4 +102,19 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 		-- replace open with your preferred pdf viewer
 		-- os.execute("zathura " .. vim.fn.shellescape(filepath:gsub("%.typ$", ".pdf")))
 	end
+end, {})
+
+vim.api.nvim_create_user_command('ArgEdit', function()
+	ar.arg_edit()
+end, {})
+
+vim.api.nvim_create_user_command('ArgAdd', function()
+	local pos = vim.fn.getpos('.')
+	local path = vim.fn.expand('%:.')
+	ar.arg_add(path, pos)
+end, {})
+
+vim.api.nvim_create_user_command('ArgDebug', function()
+	vim.cmd([[grep getqf]])
+	ar.qf_to_arglist()
 end, {})

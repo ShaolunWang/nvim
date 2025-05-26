@@ -1,19 +1,39 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/overseer.nvim',    opt = true },
-	{ 'NeogitOrg/neogit',          opt = true },
-	{ 'folke/which-key.nvim',      opt = true },
-	{ 'folke/snacks.nvim',         opt = true },
-	{ 'sindrets/diffview.nvim',    opt = true },
-	{ 'FabijanZulj/blame.nvim',    opt = true },
+	{ 'stevearc/overseer.nvim', opt = true },
+	{ 'OXY2DEV/helpview.nvim', opt = false },
+	{ 'NeogitOrg/neogit', opt = true },
+	{ 'folke/which-key.nvim', opt = true },
+	{ 'OneOfOne/spm.nvim', opt = false },
+	{ 'pechorin/any-jump.vim', opt = true },
+	{ 'folke/snacks.nvim', opt = true },
+	{ 'sindrets/diffview.nvim', opt = true },
+	{ 'FabijanZulj/blame.nvim', opt = true },
 	{ 'akinsho/git-conflict.nvim', opt = true },
-	{
-		'lewis6991/gitsigns.nvim', --[[ opt = true  ]]
-	},
+	{ 'lewis6991/gitsigns.nvim' },
 }
 
 function M.load()
 	require('lze').load({
+		{
+			'spm.nvim',
+			after = function()
+				-- default settings
+				require('spm').setup({
+					dir = '.nvim',
+					set_cwd = true,
+					use_views = true,
+					local_only = true, -- don't save views / files unless they're in the project
+					use_shada = true,
+					keys = {
+						create = '<leader>pc',
+					},
+
+					pre_load_fn = function() end,
+					post_load_fn = function() end,
+				})
+			end,
+		},
 		{
 			'overseer.nvim',
 			on_require = { 'overseer' },
@@ -59,6 +79,12 @@ function M.load()
 			keys = { '<F5>' },
 		},
 		{
+			'helpview.nvim',
+			after = function()
+				require('helpview').setup()
+			end,
+		},
+		{
 			'blame.nvim',
 			after = function()
 				require('blame').setup({
@@ -70,8 +96,19 @@ function M.load()
 		{
 			'git-conflict.nvim',
 			after = function()
-				require('git-conflict').setup()
+				require('git-conflict').setup({})
 			end,
+			cmd = {
+				'GitConflictListQf',
+				'GitConflictRefresh',
+				'GitConflictChooseBase',
+				'GitConflictChooseBoth',
+				'GitConflictChooseNone',
+				'GitConflictChooseOurs',
+				'GitConflictChooseTheirs',
+				'GitConflictNextConflict',
+				'GitConflictPrevConflict',
+			},
 		},
 		{
 			'neogit',
@@ -170,6 +207,15 @@ function M.load()
 				require('gitsigns').setup()
 			end,
 			--			cmd = { 'G' },
+		},
+		{
+			'any-jump.vim',
+			after = function()
+				vim.g.any_jump_window_width_ratio = 0.8
+				vim.g.any_jump_window_height_ratio = 0.8
+				vim.g.any_jump_disable_default_keybindings = 1
+			end,
+			cmd = { 'AnyJump', 'AnyJumpArg', 'AnyJumpVisual', 'AnyJumpBack', 'AnyJumpLastResults' },
 		},
 	})
 end

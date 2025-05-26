@@ -11,6 +11,8 @@ function M.load()
 				require('unimpaired').setup({
 					default_keymaps = true,
 					keymaps = {
+						next = false,
+						prev = false,
 						toggle_spell = {
 							mapping = ',s',
 							description = 'Toggle spell check',

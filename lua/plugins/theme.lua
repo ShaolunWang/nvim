@@ -23,7 +23,6 @@ function M.load()
 			end,
 			event = 'DeferredUIEnter',
 		},
-
 		{
 			'base46',
 			dep_of = 'ui',
@@ -33,7 +32,6 @@ function M.load()
 		},
 
 		{ 'volt', dep_of = 'ui' }, -- optional, needed for theme switcher
-		-- or just use Telescope themes
 	})
 end
 

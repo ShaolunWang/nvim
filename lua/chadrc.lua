@@ -1,11 +1,11 @@
 local options = {
 
 	base46 = {
-		theme = 'solarized_osaka', -- default theme
+		theme = 'ayu_light', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
-		changed_themes = { 'rosepine' },
+		changed_themes = {},
 		transparency = false,
 		theme_toggle = { 'onedark', 'one_light' },
 	},
@@ -26,7 +26,7 @@ local options = {
 			theme = 'default', -- default/vscode/vscode_colored/minimal
 			-- default/round/block/arrow separators work only for default statusline theme
 			-- round and block will work for minimal theme only
-			separator_style = 'default',
+			separator_style = 'arrow',
 			order = nil,
 			modules = nil,
 		},

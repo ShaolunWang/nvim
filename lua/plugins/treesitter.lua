@@ -46,7 +46,7 @@ function M.load()
 		{ 'vim-matchup', dep_of = 'nvim-treesitter' },
 		{
 			'iswap.nvim',
-			cmd = { 'ISwapWith', 'IMove', 'ISwap' },
+			cmd = { 'ISwapNode', 'IMove', 'ISwap', 'ISwapWith' },
 		},
 		{
 			'nvim-treesitter-cpp-tools',

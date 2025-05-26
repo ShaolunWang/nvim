@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'saghen/blink.cmp', opt = true, build = 'cargo build --release' },
+	{ 'saghen/blink.cmp', opt = true, branch = 'v1.3.1' },
 	{ 'mikavilpas/blink-ripgrep.nvim', opt = true },
 	{ 'saghen/blink.compat', opt = true },
 	{ 'xzbdmw/colorful-menu.nvim', opt = true },
@@ -19,7 +19,7 @@ function M.load()
 		{ 'blink.compat', dep_of = { 'blink.cmp' } },
 		{
 			'blink.cmp',
-			dep_of = { 'nvim-lspconfig' },
+			on_require = 'blink.cmp',
 			after = function()
 				require('blink.cmp').setup({
 					completion = {
@@ -30,9 +30,7 @@ function M.load()
 							show_on_trigger_character = false,
 						},
 						menu = {
-							auto_show = function(ctx)
-								return ctx.mode ~= 'cmdline'
-							end,
+
 							draw = {
 								-- We don't need label_description now because label and label_description are already
 								-- combined together in label by colorful-menu.nvim.
@@ -63,6 +61,7 @@ function M.load()
 					},
 					cmdline = {
 						keymap = { preset = 'none' },
+						enabled = false,
 					},
 
 					snippets = { preset = 'luasnip' },
@@ -71,7 +70,7 @@ function M.load()
 							'lsp',
 							'path',
 							'snippets',
-							-- 'ripgrep',
+							'ripgrep',
 						},
 						providers = {
 							lsp = {

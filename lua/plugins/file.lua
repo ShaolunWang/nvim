@@ -1,15 +1,32 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/oil.nvim', opt = true },
+	{ 'A7Lavinraj/fyler.nvim', opt = true },
+	-- { 'stevearc/oil.nvim', opt = true },
 	{ 'nvim-lua/plenary.nvim', opt = true },
-	{ 'nvim-neo-tree/neo-tree.nvim', opt = true },
+	-- { 'nvim-neo-tree/neo-tree.nvim', opt = true },
 	{ 'chrisgrieser/nvim-early-retirement', opt = true },
 	{ 'MunifTanjim/nui.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
-		{ 'plenary.nvim', dep_of = { 'oil.nvim', 'neo-tree.nvim' }, on_require = 'plenary' },
+		{ 'plenary.nvim', on_require = 'plenary' },
+		{
+			'fyler.nvim',
+			cmd = { 'Fyler' },
+			after = function()
+				require('fyler').setup({
+					window_config = {
+						width = 0.25,
+						split = 'left',
+					},
+					window_options = {
+						number = true,
+						relativenumbers = false,
+					},
+				})
+			end,
+		},
 		{
 			'nvim-early-retirement',
 			dep_of = { 'neo-tree.nvim' },
@@ -17,11 +34,12 @@ function M.load()
 				require('early-retirement').setup({ retirementAgeMins = 1 })
 			end,
 		},
-		{ 'nui.nvim', dep_of = { 'neo-tree.nvim' }, on_require = 'nui' },
-		{
+		{ 'nui.nvim', on_require = 'nui' },
+		--[[ {
 			'oil.nvim',
 
 			cmd = { 'Oil' },
+			on_require = 'oil',
 			after = function()
 				require('oil').setup({
 					float = {
@@ -56,8 +74,8 @@ function M.load()
 					},
 				})
 			end,
-		},
-		{
+		}, ]]
+		--[[ {
 			'neo-tree.nvim',
 			cmd = { 'Neotree' },
 			after = function()
@@ -128,7 +146,7 @@ function M.load()
 					},
 				})
 			end,
-		},
+		}, ]]
 	})
 end
 
