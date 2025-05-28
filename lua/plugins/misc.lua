@@ -3,14 +3,12 @@ M.plugins = {
 	{ 'stevearc/overseer.nvim', opt = true },
 	{ 'NeogitOrg/neogit', opt = true },
 	{ 'folke/which-key.nvim', opt = true },
+	{ 'pechorin/any-jump.vim', opt = true },
 	{ 'folke/snacks.nvim', opt = true },
 	{ 'sindrets/diffview.nvim', opt = true },
 	{ 'FabijanZulj/blame.nvim', opt = true },
 	{ 'akinsho/git-conflict.nvim', opt = true },
-	{
-		'lewis6991/gitsigns.nvim', --[[ opt = true  ]]
-	},
-	{ 'tpope/vim-fugitive' },
+	{ 'lewis6991/gitsigns.nvim' },
 }
 
 function M.load()
@@ -171,6 +169,10 @@ function M.load()
 				require('gitsigns').setup()
 			end,
 			--			cmd = { 'G' },
+		},
+		{
+			'any-jump.vim',
+			cmd = { 'AnyJump', 'AnyJumpArg', 'AnyJumpVisual', 'AnyJumpBack', 'AnyJumpLastResults' },
 		},
 	})
 end
