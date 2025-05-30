@@ -3,10 +3,12 @@ M.plugins = {
 	{ 'stevearc/overseer.nvim', opt = true },
 	{ 'NeogitOrg/neogit', opt = true },
 	{ 'folke/which-key.nvim', opt = true },
+	{ 'pechorin/any-jump.vim', opt = true },
 	{ 'folke/snacks.nvim', opt = true },
 	{ 'sindrets/diffview.nvim', opt = true },
 	{ 'FabijanZulj/blame.nvim', opt = true },
 	{ 'akinsho/git-conflict.nvim', opt = true },
+	{ 'lewis6991/gitsigns.nvim' },
 }
 
 function M.load()
@@ -79,7 +81,7 @@ function M.load()
 					graph_style = 'unicode',
 					auto_refresh = true,
 					integrations = { diffview = true },
-					kind = 'floating',
+					kind = 'tab',
 					use_magit_keybindings = true,
 					disable_builtin_notifications = false,
 				})
@@ -132,10 +134,10 @@ function M.load()
 					notifier = { enabled = false },
 					scroll = { enabled = false },
 				})
-				Snacks.toggle.diagnostics():map(',d')
+				-- Snacks.toggle.diagnostics():map(',d')
 				Snacks.toggle
 					.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-					:map(',c')
+					:map('\\c')
 			end,
 			keys = {
 				{
@@ -160,6 +162,17 @@ function M.load()
 					desc = 'Prev Reference',
 				},
 			},
+		},
+		{
+			'gitsigns.nvim',
+			after = function()
+				require('gitsigns').setup()
+			end,
+			--			cmd = { 'G' },
+		},
+		{
+			'any-jump.vim',
+			cmd = { 'AnyJump', 'AnyJumpArg', 'AnyJumpVisual', 'AnyJumpBack', 'AnyJumpLastResults' },
 		},
 	})
 end

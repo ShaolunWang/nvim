@@ -138,7 +138,7 @@ function M.load()
 						cyclic = true,
 					})
 
-					return {
+					local options = {
 						groups = {
 							default = {
 								augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
@@ -168,8 +168,9 @@ function M.load()
 							},
 						},
 					}
+					return options
 				end
-				require('dial.config').augends:register_group(opts.groups)
+				require('dial.config').augends:register_group(opts().groups)
 				vim.cmd([[
 					nmap  <C-a>  <Plug>(dial-increment)
 					nmap  <C-x>  <Plug>(dial-decrement)
