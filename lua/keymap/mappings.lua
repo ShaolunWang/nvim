@@ -46,6 +46,10 @@ end, { desc = 'Picker: pickers' })
 vim.keymap.set('n', '<leader>fl', function()
 	Snacks.picker.lsp_symbols({ layout = { preset = 'vscode', preview = 'main' } })
 end, { desc = 'Picker: lsp symbols' })
+vim.keymap.set('n', '<leader>fb', function()
+	Snacks.picker.buffers({ layout = { preset = 'vscode', preview = 'main' } })
+end, { desc = 'Picker: buffers' })
+
 --
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })
