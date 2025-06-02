@@ -69,8 +69,19 @@ function M.load()
 		{
 			'git-conflict.nvim',
 			after = function()
-				require('git-conflict').setup()
+				require('git-conflict').setup({})
 			end,
+			cmd = {
+				'GitConflictListQf',
+				'GitConflictRefresh',
+				'GitConflictChooseBase',
+				'GitConflictChooseBoth',
+				'GitConflictChooseNone',
+				'GitConflictChooseOurs',
+				'GitConflictChooseTheirs',
+				'GitConflictNextConflict',
+				'GitConflictPrevConflict',
+			},
 		},
 		{
 			'neogit',
