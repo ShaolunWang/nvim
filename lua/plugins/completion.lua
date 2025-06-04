@@ -20,7 +20,6 @@ function M.load()
 		{
 			'blink.cmp',
 			on_require = 'blink.cmp',
-			dep_of = { 'nvim-lspconfig' },
 			after = function()
 				require('blink.cmp').setup({
 					completion = {
@@ -71,7 +70,7 @@ function M.load()
 							'lsp',
 							'path',
 							'snippets',
-							-- 'ripgrep',
+							'ripgrep',
 						},
 						providers = {
 							lsp = {

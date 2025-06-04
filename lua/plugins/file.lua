@@ -9,7 +9,7 @@ M.plugins = {
 
 function M.load()
 	require('lze').load({
-		{ 'plenary.nvim', dep_of = { 'oil.nvim', 'neo-tree.nvim' }, on_require = 'plenary' },
+		{ 'plenary.nvim', on_require = 'plenary' },
 		{
 			'nvim-early-retirement',
 			dep_of = { 'neo-tree.nvim' },
@@ -17,7 +17,7 @@ function M.load()
 				require('early-retirement').setup({ retirementAgeMins = 1 })
 			end,
 		},
-		{ 'nui.nvim', dep_of = { 'neo-tree.nvim' }, on_require = 'nui' },
+		{ 'nui.nvim', on_require = 'nui' },
 		{
 			'oil.nvim',
 
