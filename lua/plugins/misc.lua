@@ -1,6 +1,7 @@
 local M = {}
 M.plugins = {
 	{ 'stevearc/overseer.nvim', opt = true },
+	{ 'OXY2DEV/helpview.nvim', opt = false },
 	{ 'NeogitOrg/neogit', opt = true },
 	{ 'folke/which-key.nvim', opt = true },
 	{ 'pechorin/any-jump.vim', opt = true },
@@ -56,6 +57,12 @@ function M.load()
 			end,
 			cmd = { 'OverseerRun' },
 			keys = { '<F5>' },
+		},
+		{
+			'helpview.nvim',
+			after = function()
+				require('helpview').setup()
+			end,
 		},
 		{
 			'blame.nvim',
