@@ -418,7 +418,6 @@ local MacroRec = {
 		'RecordingLeave',
 	},
 }
-
 vim.opt.showcmdloc = 'statusline'
 
 local ShowCmd = {
