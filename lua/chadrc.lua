@@ -1,11 +1,11 @@
 local options = {
 
 	base46 = {
-		theme = 'aylin', -- default theme
+		theme = 'onedark', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
-		changed_themes = { 'rosepine' },
+		changed_themes = {},
 		transparency = false,
 		theme_toggle = { 'onedark', 'one_light' },
 	},
@@ -65,7 +65,6 @@ local options = {
 				end,
 				hl = 'NvDashFooter',
 				no_gap = true,
-			}, ]]
 
 			{ txt = '─', hl = 'NvDashFooter', no_gap = true, rep = true },
 		},
