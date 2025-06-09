@@ -1,7 +1,7 @@
 local options = {
 
 	base46 = {
-		theme = 'ayu_light', -- default theme
+		theme = 'solarized_osaka', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},

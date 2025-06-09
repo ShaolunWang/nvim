@@ -106,7 +106,6 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 		-- os.execute("zathura " .. vim.fn.shellescape(filepath:gsub("%.typ$", ".pdf")))
 	end
 end, {})
-
 vim.api.nvim_create_user_command('ArgEdit', function()
 	ar.arg_edit()
 end, {})
