@@ -2,6 +2,7 @@ local M = {}
 
 M.plugins = {
 	{ 'rafamadriz/friendly-snippets', opt = true },
+	{ 'evesdropper/luasnip-latex-snippets.nvim', opt = true },
 	{
 		'L3MON4D3/LuaSnip',
 		opt = true,
@@ -41,12 +42,8 @@ function M.load()
 		{
 			'luasnip-latex-snippets.nvim',
 			-- vimtex isn't required if using treesitter
-			build = 'make install_jsregexp',
-			after = function()
-				require('luasnip-latex-snippets').setup()
-				require('luasnip').config.setup({ enable_autosnippets = true })
-			end,
-			ft = { 'tex' },
+			-- build = 'make install_jsregexp',
+			on_require = { 'luasnip' },
 		},
 	})
 end

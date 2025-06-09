@@ -58,11 +58,15 @@ end
 
 M.lsp_handlers = {
 	['textDocument/hover'] = vim.lsp.with(
-		vim.lsp.handlers.hover,
+		vim.lsp.hover,
 		{ border = border, contentFormat = { 'plaintext' }, dynamicRegistration = true }
 	),
-	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.buf.signature_help, { border = border }),
 	['textDocument/definition'] = M.goto_definition('split'),
+	['textDocument/publishDiagnostics'] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics,
+		{ virtual_text = false, signs = true, update_in_insert = false, underline = true }
+	),
 }
 M.c.textDocument.completion.completionItem.snippetSupport = true
 M.c.textDocument.completion.completionItem.resolveSupport = {

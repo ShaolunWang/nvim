@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'saghen/blink.cmp', opt = true, branch = 'v1.3.1' },
+	{ 'saghen/blink.cmp', opt = true, branch = 'v1.6.0' },
 	{ 'mikavilpas/blink-ripgrep.nvim', opt = true },
 	{ 'saghen/blink.compat', opt = true },
 	{ 'xzbdmw/colorful-menu.nvim', opt = true },
@@ -30,7 +30,6 @@ function M.load()
 							show_on_trigger_character = false,
 						},
 						menu = {
-
 							draw = {
 								-- We don't need label_description now because label and label_description are already
 								-- combined together in label by colorful-menu.nvim.
@@ -95,26 +94,26 @@ function M.load()
 							},
 							buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true },
 							ripgrep = {
+								score_offset = -3,
 								module = 'blink-ripgrep',
 								name = 'Ripgrep',
 								opts = {
-									prefix_min_len = 3,
+									{
 
-									context_size = 5,
+										prefix_min_len = 3,
+										backend = {
+											context_size = 5,
+											ripgrep = {
+												search_casing = '--smart-case',
+												additional_rg_options = { '--hidden', '--vimgrep', '--no-heading' },
+												max_filesize = '1M',
+											},
+										},
 
-									max_filesize = '1M',
-									project_root_marker = { '.git', '.rgignore' },
-
-									-- The casing to use for the search in a format that ripgrep
-									-- accepts. Defaults to "--ignore-case". See `rg --help` for all the
-									-- available options ripgrep supports, but you can try
-									-- "--case-sensitive" or "--smart-case".
-									search_casing = '--smart-case',
-									additional_rg_options = { '--hidden', '--vimgrep', '--no-heading' },
-
-									fallback_to_regex_highlighting = true,
-
-									debug = false,
+										project_root_marker = { '.git', '.rgignore' },
+										fallback_to_regex_highlighting = true,
+										debug = false,
+									},
 								},
 							},
 						},

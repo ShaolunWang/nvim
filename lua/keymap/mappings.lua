@@ -2,11 +2,11 @@
 -- 	vim.cmd([[Fyler]])
 -- end, { noremap = true, desc = 'float oil' })
 vim.keymap.set('n', '<c-n>', function()
-	vim.cmd([[Fyler]])
+	vim.cmd([[Otree]])
 end, { noremap = true, desc = 'neotree' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
-	vim.cmd([[lua MiniNotify.clear()]])
+	-- vim.cmd([[lua MiniNotify.clear()]])
 	--	require('close_buffers').wipe({ type = 'hidden', force = true }) -- Delete all non-visible buffers
 	require('close_buffers').wipe({ type = 'nameless' }) -- Delete all buffers without name
 	--	vim.cmd('Fidget clear')
@@ -23,7 +23,9 @@ vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 -- grapple
 
 vim.keymap.set('n', '<leader>ff', function()
-	Snacks.picker.files()
+	--require('fff').find_files() -- Find files in current directory
+
+	require('pickme').pick('files')
 	-- MiniPick.builtin.files()
 end, { desc = 'Picker: find files' })
 vim.keymap.set('n', '<leader>fg', function()
@@ -134,3 +136,12 @@ vim.keymap.set({ 'n' }, '<leader>aa', ':ArgAdd<cr>', { desc = 'add current line 
 vim.keymap.set({ 'n' }, '<leader>ad', ':argdel *<cr>', { desc = 'clear arglist' })
 vim.keymap.set({ 'n' }, '<leader>ao', ':ArgEdit<cr>', { desc = 'edit arglist' })
 vim.keymap.set({ 'n' }, '<leader>ao', ':ArgEdit<cr>', { desc = 'edit arglist' })
+
+-- snacks <localleader> helper inputs
+vim.keymap.set({ 'n' }, ',x', function()
+	Snacks.bufdelete()
+end, { desc = 'Delete Buffer' })
+
+-- vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+-- vim.keymap.set({ 'n', 'x' }, 'r', '<Nop>')
+-- vim.keymap.set({ 'n' }, '<c-w>', '<Nop>')

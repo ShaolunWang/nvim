@@ -1,5 +1,6 @@
 local set = vim.o
 set.autoindent = true
+set.timeoutlen = 500
 set.shada = "'50,<1000,s100,:50"
 set.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
 set.tabstop = 4

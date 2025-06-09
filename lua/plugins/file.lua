@@ -1,45 +1,88 @@
 local M = {}
 M.plugins = {
-	{ 'A7Lavinraj/fyler.nvim', opt = true },
-	-- { 'stevearc/oil.nvim', opt = true },
+	-- { 'A7Lavinraj/fyler.nvim', opt = true },
 	{ 'nvim-lua/plenary.nvim', opt = true },
-	-- { 'nvim-neo-tree/neo-tree.nvim', opt = true },
-	{ 'chrisgrieser/nvim-early-retirement', opt = true },
+	{ 'chrisgrieser/nvim-early-retirement' },
 	{ 'MunifTanjim/nui.nvim', opt = true },
+	--[[ {
+		'dmtrKovalenko/fff.nvim',
+		build = 'cargo build --release',
+	}, ]]
+	{ 'Eutrius/Otree.nvim', opt = true },
+	{ 'stevearc/oil.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
+		--[[ {
+			'fff.nvim',
+			after = function()
+				require('fff').setup({
+
+					prompt = '> ', -- Input prompt symbol
+					preview = { enabled = false },
+				})
+			end,
+		}, ]]
 		{ 'plenary.nvim', on_require = 'plenary' },
 		{
-			'fyler.nvim',
-			cmd = { 'Fyler' },
+			'Otree.nvim',
+			cmd = 'Otree',
 			after = function()
-				require('fyler').setup({
-					window_config = {
-						width = 0.25,
-						split = 'left',
+				require('Otree').setup({
+					win_size = 30,
+					open_on_startup = false,
+					use_default_keymaps = false,
+					hijack_netrw = true,
+					show_hidden = false,
+					show_ignore = false,
+					cursorline = true,
+					oil = 'float',
+					float = {
+						center = true,
+						width_ratio = 0.4,
+						height_ratio = 0.7,
+						padding = 2,
+						cursorline = true,
+						border = 'none',
 					},
-					window_options = {
-						number = true,
-						relativenumbers = false,
+					ignore_patterns = {},
+					keymaps = {
+						['<CR>'] = 'actions.select',
+						['l'] = 'actions.select',
+						['h'] = 'actions.close_dir',
+						['q'] = 'actions.close_win',
+						['-'] = 'actions.goto_parent',
+						['o'] = 'actions.goto_dir',
+						['O'] = 'actions.oil_into_dir',
+						['gh'] = 'actions.goto_home_dir',
+						['H'] = 'actions.open_dirs',
+						['C'] = 'actions.close_dirs',
+						['t'] = 'actions.open_tab',
+						['<c-v>'] = 'actions.open_vsplit',
+						['<c-s>'] = 'actions.open_split',
+						['g.'] = 'actions.toggle_hidden',
+						['gi'] = 'actions.toggle_ignore',
+						['r'] = 'actions.refresh',
+						['f'] = 'actions.focus_file',
+						['?'] = 'actions.open_help',
 					},
 				})
 			end,
 		},
 		{
 			'nvim-early-retirement',
-			dep_of = { 'neo-tree.nvim' },
+			-- dep_of = { 'neo-tree.nvim' },
 			after = function()
 				require('early-retirement').setup({ retirementAgeMins = 1 })
 			end,
 		},
 		{ 'nui.nvim', on_require = 'nui' },
-		--[[ {
+		{
 			'oil.nvim',
-
 			cmd = { 'Oil' },
 			on_require = 'oil',
+			dep_of = 'Otree',
 			after = function()
 				require('oil').setup({
 					float = {
@@ -53,8 +96,12 @@ function M.load()
 							return conf
 						end,
 					},
-					default_file_explorer = true,
+					default_file_explorer = false,
 					use_default_keymaps = false,
+
+					preview_win = {
+						update_on_cursor_moved = true,
+					},
 					keymaps = {
 						['<CR>'] = 'actions.select',
 						['-'] = 'actions.parent',
@@ -74,7 +121,7 @@ function M.load()
 					},
 				})
 			end,
-		}, ]]
+		},
 		--[[ {
 			'neo-tree.nvim',
 			cmd = { 'Neotree' },
@@ -87,6 +134,7 @@ function M.load()
 						},
 					},
 					window = {
+						width = 25,
 						mappings = {
 							['<space>'] = {
 								'toggle_node',

@@ -3,6 +3,8 @@ local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
 	{ 'vlime/vlime', opt = true },
+	{ 'apyra/nvim-unity-sync', opt = true },
+	{ 'windwp/nvim-ts-autotag', opt = true },
 	{ 'folke/lazydev.nvim', opt = true },
 	{ 'julienvincent/nvim-paredit', opt = true },
 	{ 'mrcjkb/rustaceanvim', opt = true },
@@ -12,12 +14,26 @@ M.plugins = {
 	{ 'stevearc/conform.nvim', opt = true },
 	{ 'fei6409/log-highlight.nvim', opt = true },
 	{ 'Bekaboo/dropbar.nvim', opt = true },
-	{ 'lervag/vimtex', opt = true },
+	{ 'lervag/vimtex' },
 	{ 'ThePrimeagen/refactoring.nvim', opt = true },
+	{ 'pmizio/typescript-tools.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
+		{
+			'nvim-ts-autotag',
+			after = function()
+				require('nvim-ts-autotag').setup({
+					opts = {
+						-- Defaults
+						enable_close = true, -- Auto close tags
+						enable_rename = true, -- Auto rename pairs of tags
+						enable_close_on_slash = true, -- Auto close on trailing </
+					},
+				})
+			end,
+		},
 		{
 			'vlime',
 			after = function()
@@ -166,19 +182,28 @@ function M.load()
 		},
 		{
 			'vimtex',
-			ft = { 'tex' },
-			before = function()
+			after = function()
 				-- VimTeX configuration goes here, e.g.
 				--			vim.g.vimtex_view_general_viewer = 'okular'
 				--			vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
-				vim.g.vimtex_latex_viewer = 'sioyek'
+				vim.g.vimtex_latex_viewer = 'skimpdf'
 				vim.g.vimtex_compiler_method = 'latexmk'
+				vim.g.vimtex_compiler_engine = 'lualatex'
+
 				-- vim.cmd([[
 				--   let g:vimtex_compiler_method = 'generic'
 				--   let g:vimtex_compiler_generic = {
 				-- 		\ 'command': 'ls *.tex | entr -c tectonic /_ --synctex --keep-logs',
 				-- 		\}
 				-- ]])
+				vim.cmd([[
+				let g:vimtex_compiler_latexmk = {
+					\ 'options' : [
+					\   '-interaction=nonstopmode',
+					\   '-shell-escape',
+					\ ],
+					\ 'build_dir' : 'livepreview'}
+				]])
 			end,
 		},
 		{
@@ -224,6 +249,23 @@ function M.load()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			end,
+		},
+		{
+			'typescript-tools.nvim',
+			after = function()
+				require('typescript-tools').setup({
+					on_attach = lsp_keymap.on_attach,
+					handlers = utils.lsp_handlers,
+				})
+			end,
+			ft = { 'typescript', 'typescriptreact', 'typescript.tsx' },
+		},
+		{
+			'nvim-unity-sync',
+			after = function()
+				require('unity.plugin').setup()
+			end,
+			ft = { 'cs' },
 		},
 	})
 end

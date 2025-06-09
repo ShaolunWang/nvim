@@ -13,7 +13,7 @@ function M.load()
 				local dap = require('dap')
 				dap.adapters.lldb = {
 					type = 'executable',
-					command = '/usr/sbin/lldb', -- TODO: adjust as needed, must be absolute path
+					command = '/usr/bin/lldb', -- TODO: adjust as needed, must be absolute path
 					name = 'lldb',
 				}
 				dap.configurations.cpp = {

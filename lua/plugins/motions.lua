@@ -90,6 +90,7 @@ function M.load()
 					},
 				})
 			end,
+			on_require = { 'smart-splits' },
 			event = { 'WinEnter' },
 		},
 		{

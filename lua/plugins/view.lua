@@ -1,24 +1,14 @@
 local M = {}
 M.plugins = {
-	{ 'echasnovski/mini.icons' },
 	{ 'folke/todo-comments.nvim', opt = true },
 	{ 'stevearc/quicker.nvim', opt = true },
-	{ 'aidancz/buvvers.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
-	-- { 'stevearc/dressing.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
+	{ 'mistweaverco/bafa.nvim' },
 }
 function M.load()
 	require('lze').load({
 
-		{ 'nvim-web-devicons', enabled = false, optional = true },
-		{
-			'mini.icons',
-			after = function()
-				require('mini.icons').setup({})
-				require('mini.icons').mock_nvim_web_devicons()
-			end,
-		},
 		{
 			'todo-comments.nvim',
 			after = function()
@@ -44,6 +34,9 @@ function M.load()
 			'quicker.nvim',
 			after = function()
 				require('quicker').setup({
+					edit = {
+						enabled = true,
+					},
 					max_filename_width = function()
 						return math.floor(math.min(45, vim.o.columns / 2))
 					end,
@@ -79,11 +72,11 @@ function M.load()
 			cmd = { 'WinShift' },
 		},
 		{
-			'buvvers.nvim',
+			'bafa.nvim',
 			after = function()
-				require('buvvers').setup()
+				require('bafa').setup()
 			end,
-			on_require = { 'buvvers' },
+			cmd = { 'B' },
 		},
 	})
 end
