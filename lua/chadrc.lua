@@ -1,7 +1,7 @@
 local options = {
 
 	base46 = {
-		theme = 'solarized_osaka', -- default theme
+		theme = 'rosepine', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
