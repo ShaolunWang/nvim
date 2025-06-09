@@ -189,7 +189,7 @@ function M.load()
 		{
 			'neogen',
 			after = function()
-				require('neogen').setup()
+				require('neogen').setup({})
 			end,
 			keys = { ',g' },
 			cmd = { 'Neogen' },
