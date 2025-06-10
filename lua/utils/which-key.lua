@@ -13,12 +13,9 @@ function M.setup_which_key()
 			{ ',', group = '+unimpaired ...' },
 			{ '[', group = '+unimpaired ...' },
 			{ ']', group = '+unimpaired ...' },
+			{ ',', group = '+<localleader> ...' },
 		},
 		{ mode = { 'n', 'v', 'o', 'x' }, { 'r', group = '+surround ...' } },
-	})
-	wk.show({
-		keys = '<c-w>',
-		loop = true, -- this will keep the popup open until you hit <esc>
 	})
 end
 return M

@@ -96,7 +96,9 @@ function M.load()
 		{
 			'git-conflict.nvim',
 			after = function()
-				require('git-conflict').setup({})
+				require('git-conflict').setup({
+					default_mappings = false,
+				})
 			end,
 			cmd = {
 				'GitConflictListQf',
@@ -178,13 +180,6 @@ function M.load()
 					:map('\\c')
 			end,
 			keys = {
-				{
-					',x',
-					function()
-						Snacks.bufdelete()
-					end,
-					desc = 'Delete Buffer',
-				},
 				{
 					']]',
 					function()
