@@ -1,15 +1,13 @@
 local M = {}
 M.plugins = {
-	{ 'folke/tokyonight.nvim', opt = true },
 	{ 'catppuccin/nvim', opt = true, as = 'catppuccin' },
-	{ 'Mofiqul/vscode.nvim', opt = true },
 	{ 'tiagovla/scope.nvim', opt = true },
 	{ 'rebelot/heirline.nvim', opt = true },
 	{ 'tiagovla/tokyodark.nvim', opt = true, as = 'tokyodark' },
 	{ 'WTFox/jellybeans.nvim', opt = true, as = 'jellybeans' },
 	{ 'olimorris/onedarkpro.nvim', opt = true, as = 'onedarkpro' },
-	{ 'oonamo/ef-themes.nvim', opt = true, as = 'ef' },
 	{ 'Shatur/neovim-ayu', opt = true, as = 'ayu' },
+	{ 'OXY2DEV/ui.nvim', opt = true, as = 'ui_boilerplate' },
 }
 
 function M.load()
@@ -30,10 +28,6 @@ function M.load()
 			colorscheme = { 'onedark', 'onelight', 'onedark_dark', 'onedark_vivid' },
 		},
 		{
-			'tokyonight.nvim',
-			colorscheme = 'tokyonight',
-		},
-		{
 			'jellybeans',
 			after = function()
 				require('jellybeans').setup()
@@ -52,56 +46,6 @@ function M.load()
 			'tokyodark',
 			colorscheme = 'tokyodark',
 		},
-		{
-			'onedark.nvim',
-			colorscheme = 'onedark',
-			after = function()
-				require('onedark').setup({
-					style = 'cool',
-				})
-			end,
-		},
-
-		{
-			'ef',
-			colorscheme = {
-				'ef-theme',
-				'ef-arbutus',
-				'ef-autumn',
-				'ef-bio',
-				'ef-cherie',
-				'ef-cyprus',
-				'ef-dark',
-				'ef-day',
-				'ef-deuteranopia-dark',
-				'ef-deuteranopia-light',
-				'ef-dream',
-				'ef-duo-dark',
-				'ef-duo-light',
-				'ef-eagle',
-				'ef-elea-dark',
-				'ef-elea-light',
-				'ef-frost',
-				'ef-kassio',
-				'ef-light',
-				'ef-maris-dark',
-				'ef-maris-light',
-				'ef-melissa-dark',
-				'ef-melissa-light',
-				'ef-night',
-				'ef-owl',
-				'ef-reverie',
-				'ef-rosa',
-				'ef-spring',
-				'ef-summer',
-				'ef-symbiosis',
-				'ef-trio-dark',
-				'ef-trio-light',
-				'ef-tritanopia-dark',
-				'ef-tritanopia-light',
-				'ef-winter',
-			},
-		},
 	})
 	require('lze').load({
 		{
@@ -114,6 +58,33 @@ function M.load()
 		{
 			'heirline.nvim',
 			lazy = false,
+		},
+		{
+
+			'ui_boilerplate',
+			after = function()
+				require('ui').setup({
+					popupmenu = {
+						enable = false,
+					},
+
+					cmdline = {
+						enable = true,
+						styles = {
+							default = {
+								cursor = 'Cursor',
+								filetype = 'vim',
+
+								icon = { { 'I ', '@comment' } },
+								offset = 0,
+
+								title = nil,
+								winhl = '',
+							},
+						},
+					},
+				})
+			end,
 		},
 	})
 end

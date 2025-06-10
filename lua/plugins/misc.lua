@@ -1,6 +1,7 @@
 local M = {}
 M.plugins = {
 	{ 'stevearc/overseer.nvim', opt = true },
+	{ 'OXY2DEV/helpview.nvim', opt = false },
 	{ 'NeogitOrg/neogit', opt = true },
 	{ 'folke/which-key.nvim', opt = true },
 	{ 'OneOfOne/spm.nvim', opt = false },
@@ -78,6 +79,12 @@ function M.load()
 			keys = { '<F5>' },
 		},
 		{
+			'helpview.nvim',
+			after = function()
+				require('helpview').setup()
+			end,
+		},
+		{
 			'blame.nvim',
 			after = function()
 				require('blame').setup({
@@ -89,7 +96,9 @@ function M.load()
 		{
 			'git-conflict.nvim',
 			after = function()
-				require('git-conflict').setup({})
+				require('git-conflict').setup({
+					default_mappings = false,
+				})
 			end,
 			cmd = {
 				'GitConflictListQf',
@@ -171,13 +180,6 @@ function M.load()
 					:map('\\c')
 			end,
 			keys = {
-				{
-					',x',
-					function()
-						Snacks.bufdelete()
-					end,
-					desc = 'Delete Buffer',
-				},
 				{
 					']]',
 					function()

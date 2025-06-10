@@ -32,7 +32,7 @@ end, {})
 vim.api.nvim_create_user_command('T', function()
 	-- require('nvim-tree.api').tree.toggle()
 	--	vim.cmd([[:lua MiniFiles.open()]])
-	vim.cmd([[Neotree toggle]])
+	vim.cmd([[Otree]])
 end, {})
 
 vim.api.nvim_create_user_command('Grep', function(params)

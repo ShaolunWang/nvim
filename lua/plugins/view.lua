@@ -5,7 +5,6 @@ M.plugins = {
 	{ 'stevearc/quicker.nvim', opt = true },
 	{ 'aidancz/buvvers.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
-	-- { 'stevearc/dressing.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
 }
 function M.load()
@@ -15,7 +14,7 @@ function M.load()
 		{
 			'mini.icons',
 			after = function()
-				require('mini.icons').setup({})
+				require('mini.icons').setup()
 				require('mini.icons').mock_nvim_web_devicons()
 			end,
 		},

@@ -1,15 +1,22 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/oil.nvim', opt = true },
 	{ 'nvim-lua/plenary.nvim', opt = true },
-	{ 'nvim-neo-tree/neo-tree.nvim', opt = true },
 	{ 'chrisgrieser/nvim-early-retirement', opt = true },
 	{ 'MunifTanjim/nui.nvim', opt = true },
+	{ 'Eutrius/Otree.nvim', opt = true },
+	{ 'stevearc/oil.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
 		{ 'plenary.nvim', on_require = 'plenary' },
+		{
+			'Otree.nvim',
+			cmd = 'Otree',
+			after = function()
+				require('Otree').setup()
+			end,
+		},
 		{
 			'nvim-early-retirement',
 			dep_of = { 'neo-tree.nvim' },
@@ -22,6 +29,7 @@ function M.load()
 			'oil.nvim',
 
 			cmd = { 'Oil' },
+			on_require = 'oil',
 			after = function()
 				require('oil').setup({
 					float = {
@@ -57,7 +65,7 @@ function M.load()
 				})
 			end,
 		},
-		{
+		--[[ {
 			'neo-tree.nvim',
 			cmd = { 'Neotree' },
 			after = function()
@@ -128,7 +136,7 @@ function M.load()
 					},
 				})
 			end,
-		},
+		}, ]]
 	})
 end
 
