@@ -15,25 +15,39 @@ function M.load()
 			'Otree.nvim',
 			cmd = 'Otree',
 			after = function()
-				require('Otree').setup()
+				require('Otree').setup({
+					win_size = 30,
+					open_on_startup = false,
+					use_default_keymaps = false,
+					hijack_netrw = true,
+					show_hidden = false,
+					show_ignore = false,
+					cursorline = true,
+					oil = 'float',
+					ignore_patterns = {},
+					keymaps = {
+						['<CR>'] = 'actions.select',
+						['l'] = 'actions.select',
+						['h'] = 'actions.close_dir',
+						['q'] = 'actions.close_win',
+						['-'] = 'actions.goto_parent',
+						['o'] = 'actions.goto_dir',
+						['gh'] = 'actions.goto_home_dir',
+						['H'] = 'actions.open_dirs',
+						['C'] = 'actions.close_dirs',
+						['i'] = 'actions.edit_into_dir',
+						['t'] = 'actions.open_tab',
+						['<c-v>'] = 'actions.open_vsplit',
+						['<c-s>'] = 'actions.open_split',
+						['g.'] = 'actions.toggle_hidden',
+						['gi'] = 'actions.toggle_ignore',
+						['r'] = 'actions.refresh',
+						['f'] = 'actions.focus_file',
+						['?'] = 'actions.open_help',
+					},
+				})
 			end,
 		},
-		-- {
-		-- 	'fyler.nvim',
-		-- 	cmd = { 'Fyler' },
-		-- 	after = function()
-		-- 		require('fyler').setup({
-		-- 			window_config = {
-		-- 				width = 0.25,
-		-- 				split = 'left',
-		-- 			},
-		-- 			window_options = {
-		-- 				number = false,
-		-- 				relativenumbers = false,
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- },
 		{
 			'nvim-early-retirement',
 			dep_of = { 'neo-tree.nvim' },

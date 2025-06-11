@@ -2,6 +2,7 @@ local M = {}
 M.plugins = {
 	{ 'nanotee/zoxide.vim', opt = true },
 	{ '2KAbhishek/pickme.nvim', opt = true },
+	{ 'prabirshrestha/tv.vim', opt = true },
 }
 function M.load()
 	require('lze').load({

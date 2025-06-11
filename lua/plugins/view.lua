@@ -3,7 +3,6 @@ M.plugins = {
 	{ 'echasnovski/mini.icons' },
 	{ 'folke/todo-comments.nvim', opt = true },
 	{ 'stevearc/quicker.nvim', opt = true },
-	{ 'aidancz/buvvers.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
 }
@@ -76,13 +75,6 @@ function M.load()
 				})
 			end,
 			cmd = { 'WinShift' },
-		},
-		{
-			'buvvers.nvim',
-			after = function()
-				require('buvvers').setup()
-			end,
-			on_require = { 'buvvers' },
 		},
 	})
 end
