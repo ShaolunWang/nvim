@@ -2,7 +2,7 @@ local M = {}
 M.plugins = {
 	-- { 'A7Lavinraj/fyler.nvim', opt = true },
 	{ 'nvim-lua/plenary.nvim', opt = true },
-	{ 'chrisgrieser/nvim-early-retirement', opt = true },
+	{ 'chrisgrieser/nvim-early-retirement' },
 	{ 'MunifTanjim/nui.nvim', opt = true },
 	{ 'Eutrius/Otree.nvim', opt = true },
 	{ 'stevearc/oil.nvim', opt = true },
@@ -24,6 +24,14 @@ function M.load()
 					show_ignore = false,
 					cursorline = true,
 					oil = 'float',
+					float = {
+						center = true,
+						width_ratio = 0.4,
+						height_ratio = 0.7,
+						padding = 2,
+						cursorline = true,
+						border = 'none',
+					},
 					ignore_patterns = {},
 					keymaps = {
 						['<CR>'] = 'actions.select',
@@ -32,10 +40,10 @@ function M.load()
 						['q'] = 'actions.close_win',
 						['-'] = 'actions.goto_parent',
 						['o'] = 'actions.goto_dir',
+						['O'] = 'actions.oil_into_dir',
 						['gh'] = 'actions.goto_home_dir',
 						['H'] = 'actions.open_dirs',
 						['C'] = 'actions.close_dirs',
-						['i'] = 'actions.edit_into_dir',
 						['t'] = 'actions.open_tab',
 						['<c-v>'] = 'actions.open_vsplit',
 						['<c-s>'] = 'actions.open_split',
@@ -50,7 +58,7 @@ function M.load()
 		},
 		{
 			'nvim-early-retirement',
-			dep_of = { 'neo-tree.nvim' },
+			-- dep_of = { 'neo-tree.nvim' },
 			after = function()
 				require('early-retirement').setup({ retirementAgeMins = 1 })
 			end,
@@ -58,9 +66,9 @@ function M.load()
 		{ 'nui.nvim', on_require = 'nui' },
 		{
 			'oil.nvim',
-
 			cmd = { 'Oil' },
 			on_require = 'oil',
+			dep_of = 'Otree',
 			after = function()
 				require('oil').setup({
 					float = {
@@ -74,8 +82,12 @@ function M.load()
 							return conf
 						end,
 					},
-					default_file_explorer = true,
+					default_file_explorer = false,
 					use_default_keymaps = false,
+
+					preview_win = {
+						update_on_cursor_moved = true,
+					},
 					keymaps = {
 						['<CR>'] = 'actions.select',
 						['-'] = 'actions.parent',

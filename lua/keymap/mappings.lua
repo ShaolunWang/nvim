@@ -139,3 +139,7 @@ vim.keymap.set({ 'n' }, '<leader>ao', ':ArgEdit<cr>', { desc = 'edit arglist' })
 vim.keymap.set({ 'n' }, ',x', function()
 	Snacks.bufdelete()
 end, { desc = 'Delete Buffer' })
+
+-- vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+-- vim.keymap.set({ 'n', 'x' }, 'r', '<Nop>')
+-- vim.keymap.set({ 'n' }, '<c-w>', '<Nop>')

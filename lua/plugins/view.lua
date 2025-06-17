@@ -1,22 +1,14 @@
 local M = {}
 M.plugins = {
-	{ 'echasnovski/mini.icons' },
 	{ 'folke/todo-comments.nvim', opt = true },
 	{ 'stevearc/quicker.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
+	-- { 'nvimtools/hydra.nvim', opt = true },
 }
 function M.load()
 	require('lze').load({
 
-		{ 'nvim-web-devicons', enabled = false, optional = true },
-		{
-			'mini.icons',
-			after = function()
-				require('mini.icons').setup()
-				require('mini.icons').mock_nvim_web_devicons()
-			end,
-		},
 		{
 			'todo-comments.nvim',
 			after = function()
@@ -76,6 +68,16 @@ function M.load()
 			end,
 			cmd = { 'WinShift' },
 		},
+		--[[ 		{
+			'hydra.nvim',
+			after = function()
+				require('hydra').setup({
+					timeout = 1000,
+				})
+				require('utils.hydra').hydra_setup()
+			end,
+			--			keys = { '<c-w>' },
+		}, ]]
 	})
 end
 

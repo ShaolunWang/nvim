@@ -3,7 +3,7 @@ M.plugins = {
 	{ 'stevearc/overseer.nvim', opt = true },
 	{ 'OXY2DEV/helpview.nvim', opt = false },
 	{ 'NeogitOrg/neogit', opt = true },
-	{ 'folke/which-key.nvim', opt = true },
+	{ 'folke/which-key.nvim' },
 	{ 'OneOfOne/spm.nvim', opt = false },
 	{ 'pechorin/any-jump.vim', opt = true },
 	{ 'folke/snacks.nvim', opt = true },

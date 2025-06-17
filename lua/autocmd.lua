@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'InsertEnter' }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd('User', {
+--[[ vim.api.nvim_create_autocmd('User', {
 	pattern = 'OilEnter',
 	callback = vim.schedule_wrap(function(args)
 		local oil = require('oil')
@@ -145,7 +145,7 @@ vim.api.nvim_create_autocmd('User', {
 			oil.open_preview()
 		end
 	end),
-})
+}) ]]
 vim.api.nvim_create_autocmd('BufWritePre', {
 	pattern = '*',
 	callback = vim.schedule_wrap(function(args)

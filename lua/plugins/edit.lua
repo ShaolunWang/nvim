@@ -15,6 +15,7 @@ M.plugins = {
 	{ 'chrisgrieser/nvim-rip-substitute', opt = true },
 	{ 'MagicDuck/grug-far.nvim', opt = true },
 	{ 'monaqa/dial.nvim', opt = true },
+	{ 'kylechui/nvim-surround', opt = true },
 	{ 'kevinhwang91/promise-async', opt = true },
 }
 function M.load()
@@ -222,6 +223,19 @@ function M.load()
 		},
 
 		{ 'promise-async', dep_of = { 'nvim-fundo', 'nvim-ufo' } },
+		{
+			'nvim-surround',
+			event = 'BufReadPost',
+			after = function()
+				require('nvim-surround').setup({
+					keymaps = {
+						normal = 'sa',
+						delete = 'sd',
+						change = 'sr',
+					},
+				})
+			end,
+		},
 	})
 end
 

@@ -1,16 +1,20 @@
 local M = {}
 M.plugins = {
-	{ 'echasnovski/mini.nvim', branch = 'main', opt = true },
+	{ 'echasnovski/mini.nvim', branch = 'main' },
 }
 
 function M.load()
 	require('lze').load({
+		{ 'nvim-web-devicons', enabled = false, optional = true },
 		{
 			'mini.nvim',
-			event = 'BufReadPost',
-			on_require = { 'mini.pick' },
-			cmd = { 'Pick' },
+			-- event = 'BufReadPost',
+			-- on_require = { 'mini.pick' },
+			-- cmd = { 'Pick' },
+			lazy = false,
 			after = function()
+				require('mini.icons').setup()
+				require('mini.icons').mock_nvim_web_devicons()
 				-- require('mini.pick').setup()
 				require('mini.ai').setup()
 				require('mini.indentscope').setup({
@@ -26,13 +30,6 @@ function M.load()
 					scroll = { enable = false },
 					cursor = { enable = false },
 				})
-				local win_config = function()
-					local has_statusline = vim.o.laststatus > 0
-					local pad = vim.o.cmdheight + (has_statusline and 1 or 0)
-					return { anchor = 'SE', col = vim.o.columns, row = vim.o.lines - pad }
-				end
-				-- require('mini.notify').setup({ window = { config = win_config } })
-				require('mini.extra').setup()
 				require('mini.cursorword').setup()
 				require('mini.move').setup({
 					mappings = {
@@ -58,8 +55,7 @@ function M.load()
 
 				--		vim.ui.select = MiniPick.ui_select
 				-- xxx cterm=underline gui=underline
-				require('mini.surround').setup({
-
+				--[[ 				require('mini.surround').setup({
 					mappings = {
 						add = 'sa', -- Add surrounding in Normal and Visual modes
 						delete = 'sd', -- Delete surrounding
@@ -72,7 +68,8 @@ function M.load()
 						suffix_last = 'l', -- Suffix to search with "prev" method
 						suffix_next = 'n', -- Suffix to search with "next" method
 					},
-				})
+				}) ]]
+				require('mini.extra').setup()
 			end,
 		},
 	})
