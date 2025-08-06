@@ -1,11 +1,11 @@
 local options = {
 
 	base46 = {
-		theme = 'catppuccin', -- default theme
+		theme = 'rosepine', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
-		changed_themes = { 'rosepine' },
+		changed_themes = { 'carbonfox' },
 		transparency = false,
 		theme_toggle = { 'onedark', 'one_light' },
 	},

@@ -55,7 +55,7 @@ function M.load()
 
 				--		vim.ui.select = MiniPick.ui_select
 				-- xxx cterm=underline gui=underline
-				--[[ 				require('mini.surround').setup({
+				require('mini.surround').setup({
 					mappings = {
 						add = 'sa', -- Add surrounding in Normal and Visual modes
 						delete = 'sd', -- Delete surrounding
@@ -68,7 +68,7 @@ function M.load()
 						suffix_last = 'l', -- Suffix to search with "prev" method
 						suffix_next = 'n', -- Suffix to search with "next" method
 					},
-				}) ]]
+				})
 				require('mini.extra').setup()
 			end,
 		},

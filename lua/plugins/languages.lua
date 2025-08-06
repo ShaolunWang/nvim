@@ -3,6 +3,7 @@ local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
 	{ 'vlime/vlime', opt = true },
+	{ 'apyra/nvim-unity-sync', opt = true },
 	{ 'windwp/nvim-ts-autotag', opt = true },
 	{ 'folke/lazydev.nvim', opt = true },
 	{ 'julienvincent/nvim-paredit', opt = true },
@@ -258,6 +259,13 @@ function M.load()
 				})
 			end,
 			ft = { 'typescript', 'typescriptreact', 'typescript.tsx' },
+		},
+		{
+			'nvim-unity-sync',
+			after = function()
+				require('unity.plugin').setup()
+			end,
+			ft = { 'cs' },
 		},
 	})
 end

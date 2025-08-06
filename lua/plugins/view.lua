@@ -4,7 +4,7 @@ M.plugins = {
 	{ 'stevearc/quicker.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
-	-- { 'nvimtools/hydra.nvim', opt = true },
+	{ 'mistweaverco/bafa.nvim' },
 }
 function M.load()
 	require('lze').load({
@@ -71,16 +71,13 @@ function M.load()
 			end,
 			cmd = { 'WinShift' },
 		},
-		--[[ 		{
-			'hydra.nvim',
+		{
+			'bafa.nvim',
 			after = function()
-				require('hydra').setup({
-					timeout = 1000,
-				})
-				require('utils.hydra').hydra_setup()
+				require('bafa').setup()
 			end,
-			--			keys = { '<c-w>' },
-		}, ]]
+			cmd = { 'B' },
+		},
 	})
 end
 

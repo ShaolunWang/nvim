@@ -2,7 +2,7 @@ local M = {}
 M.plugins = {
 	{ 'tiagovla/scope.nvim', opt = true },
 	{ 'nvchad/ui' },
-	{ 'OXY2DEV/ui.nvim', as = 'ui_boilerplate' },
+	-- { 'OXY2DEV/ui.nvim', as = 'ui_boilerplate' },
 	{ 'nvchad/base46' },
 	{ 'nvzone/volt' },
 }
@@ -32,7 +32,7 @@ function M.load()
 		},
 
 		{ 'volt', dep_of = 'ui' }, -- optional, needed for theme switcher
-		{
+		--[[ {
 			'ui_boilerplate',
 			after = function()
 				if not vim.g.vscode then
@@ -59,7 +59,7 @@ function M.load()
 					})
 				end
 			end,
-		},
+		}, ]]
 	})
 end
 
