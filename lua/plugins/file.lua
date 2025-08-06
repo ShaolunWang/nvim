@@ -4,12 +4,26 @@ M.plugins = {
 	{ 'nvim-lua/plenary.nvim', opt = true },
 	{ 'chrisgrieser/nvim-early-retirement' },
 	{ 'MunifTanjim/nui.nvim', opt = true },
+	{
+		'dmtrKovalenko/fff.nvim',
+		build = 'cargo build --release',
+	},
 	{ 'Eutrius/Otree.nvim', opt = true },
 	{ 'stevearc/oil.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
+		{
+			'fff.nvim',
+			after = function()
+				require('fff').setup({
+
+					prompt = '> ', -- Input prompt symbol
+					preview = { enabled = false },
+				})
+			end,
+		},
 		{ 'plenary.nvim', on_require = 'plenary' },
 		{
 			'Otree.nvim',

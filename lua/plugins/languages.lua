@@ -3,6 +3,7 @@ local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
 	{ 'vlime/vlime', opt = true },
+	{ 'windwp/nvim-ts-autotag', opt = true },
 	{ 'folke/lazydev.nvim', opt = true },
 	{ 'julienvincent/nvim-paredit', opt = true },
 	{ 'mrcjkb/rustaceanvim', opt = true },
@@ -14,10 +15,24 @@ M.plugins = {
 	{ 'Bekaboo/dropbar.nvim', opt = true },
 	{ 'lervag/vimtex' },
 	{ 'ThePrimeagen/refactoring.nvim', opt = true },
+	{ 'pmizio/typescript-tools.nvim', opt = true },
 }
 
 function M.load()
 	require('lze').load({
+		{
+			'nvim-ts-autotag',
+			after = function()
+				require('nvim-ts-autotag').setup({
+					opts = {
+						-- Defaults
+						enable_close = true, -- Auto close tags
+						enable_rename = true, -- Auto rename pairs of tags
+						enable_close_on_slash = true, -- Auto close on trailing </
+					},
+				})
+			end,
+		},
 		{
 			'vlime',
 			after = function()
@@ -233,6 +248,16 @@ function M.load()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			end,
+		},
+		{
+			'typescript-tools.nvim',
+			after = function()
+				require('typescript-tools').setup({
+					on_attach = lsp_keymap.on_attach,
+					handlers = utils.lsp_handlers,
+				})
+			end,
+			ft = { 'typescript', 'typescriptreact', 'typescript.tsx' },
 		},
 	})
 end

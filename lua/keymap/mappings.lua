@@ -23,7 +23,7 @@ vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 -- grapple
 
 vim.keymap.set('n', '<leader>ff', function()
-	Snacks.picker.files()
+	require('fff').find_files() -- Find files in current directory
 	-- MiniPick.builtin.files()
 end, { desc = 'Picker: find files' })
 vim.keymap.set('n', '<leader>fg', function()
