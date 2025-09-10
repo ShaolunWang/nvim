@@ -3,6 +3,14 @@ M.plugins = {
 	{ 'neovim/nvim-lspconfig' },
 }
 function M.load()
+	vim.keymap.del('n', 'grn')
+	vim.keymap.del('n', 'gra')
+	vim.keymap.del('n', 'grr')
+	vim.keymap.del('n', 'gri')
+	vim.keymap.del('n', 'grt')
+	vim.keymap.del('n', 'gO')
+
+	--"an" and "in" are mapped in Visual mode to outer and inner incremental selections, respectively, using vim.lsp.buf.selection_range()
 	vim.lsp.log.set_level(vim.log.levels.ERROR)
 	vim.o.updatetime = 1
 	vim.cmd([[
@@ -21,7 +29,6 @@ function M.load()
 	local utils = require('utils.lsp')
 
 	local c = require('blink.cmp').get_lsp_capabilities(utils.c)
-
 	vim.lsp.config('*', {
 		on_attach = lsp_keymap.on_attach,
 		handlers = utils.lsp_handlers,
@@ -40,6 +47,10 @@ function M.load()
 	})
 	vim.lsp.config('clangd', {
 		filetypes = { 'c', 'h', 'cpp', 'hpp' },
+
+		on_attach = lsp_keymap.on_attach,
+		handlers = utils.lsp_handlers,
+		capabilities = c,
 		init_options = {
 			usePlaceholders = true,
 			completeUnimported = true,
@@ -104,31 +115,31 @@ function M.load()
 		},
 	})
 	vim.lsp.config('tinymist', {
-		filetypes = { 'typ' },
+		filetypes = { 'typst' },
 		settings = {
 			formatterMode = 'typstyle',
 			exportPdf = 'onType',
 			semanticTokens = 'disable',
 		},
 	})
-	vim.lsp.config('omnisharp', {
-		filetypes = { 'cs' },
+	vim.lsp.config('roslyn', {
 		settings = {
-			FormattingOptions = {
-				EnableEditorConfigSupport = false,
-				OrganizeImports = true,
+			['csharp|inlay_hints'] = {
+				csharp_enable_inlay_hints_for_implicit_object_creation = true,
+				csharp_enable_inlay_hints_for_implicit_variable_types = true,
 			},
-			Sdk = {
-				IncludePrereleases = true,
+			['csharp|code_lens'] = {
+				dotnet_enable_references_code_lens = true,
 			},
 		},
 	})
+
 	vim.lsp.enable({
 		'lua_ls',
-		'omnisharp',
 		'clangd',
 		'tinymist',
 		'basedpyright',
+		'roslyn',
 	})
 end
 return M

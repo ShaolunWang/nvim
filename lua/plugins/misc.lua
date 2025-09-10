@@ -4,7 +4,8 @@ M.plugins = {
 	{ 'OXY2DEV/helpview.nvim', opt = false },
 	{ 'NeogitOrg/neogit', opt = true },
 	{ 'folke/which-key.nvim' },
-	{ 'OneOfOne/spm.nvim', opt = false },
+	{ 'chrisgrieser/nvim-justice' },
+	{ 'BartSte/nvim-project-marks', opt = false },
 	{ 'pechorin/any-jump.vim', opt = true },
 	{ 'folke/snacks.nvim', opt = true },
 	{ 'sindrets/diffview.nvim', opt = true },
@@ -16,21 +17,17 @@ M.plugins = {
 function M.load()
 	require('lze').load({
 		{
-			'spm.nvim',
+			'nvim-justice',
 			after = function()
-				-- default settings
-				require('spm').setup({
-					dir = '.nvim',
-					set_cwd = true,
-					use_views = true,
-					local_only = true, -- don't save views / files unless they're in the project
-					use_shada = true,
-					keys = {
-						create = '<leader>pc',
-					},
-
-					pre_load_fn = function() end,
-					post_load_fn = function() end,
+				require('justice').setup({})
+			end,
+		},
+		{
+			'nvim-project-marks',
+			after = function()
+				require('projectmarks').setup({
+					mappings = true,
+					shadafile = vim.fn.stdpath('data') .. '/shadas/' .. vim.fn.getcwd():gsub("[/\\]", "") .. '.shada',
 				})
 			end,
 		},

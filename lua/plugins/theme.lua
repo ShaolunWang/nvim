@@ -3,7 +3,7 @@ M.plugins = {
 	{ 'tiagovla/scope.nvim', opt = true },
 	{ 'nvchad/ui' },
 	-- { 'OXY2DEV/ui.nvim', as = 'ui_boilerplate' },
-	{ 'nvchad/base46' },
+	{ 'nvchad/base46', branch = 'v3.0' },
 	{ 'nvzone/volt' },
 }
 

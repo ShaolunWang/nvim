@@ -8,7 +8,6 @@ M.plugins = {
 	{ 'folke/lazydev.nvim', opt = true },
 	{ 'julienvincent/nvim-paredit', opt = true },
 	{ 'mrcjkb/rustaceanvim', opt = true },
-	{ 'folke/trouble.nvim', opt = true },
 	{ 'p00f/clangd_extensions.nvim', opt = true },
 	{ 'folke/trouble.nvim', opt = true },
 	{ 'stevearc/conform.nvim', opt = true },
@@ -17,6 +16,7 @@ M.plugins = {
 	{ 'lervag/vimtex' },
 	{ 'ThePrimeagen/refactoring.nvim', opt = true },
 	{ 'pmizio/typescript-tools.nvim', opt = true },
+	{ 'seblyng/roslyn.nvim', opt = true },
 }
 
 function M.load()
@@ -266,6 +266,12 @@ function M.load()
 				require('unity.plugin').setup()
 			end,
 			ft = { 'cs' },
+		},
+		{
+			'roslyn.nvim',
+			after = function()
+				require('roslyn').setup()
+			end,
 		},
 	})
 end

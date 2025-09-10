@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'echasnovski/mini.nvim', branch = 'main' },
+	{ 'nvim-mini/mini.nvim', branch = 'main' },
 }
 
 function M.load()

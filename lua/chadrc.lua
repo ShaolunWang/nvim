@@ -1,13 +1,13 @@
 local options = {
 
 	base46 = {
-		theme = 'rosepine', -- default theme
+		theme = 'tokyonight', -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
 		changed_themes = { 'carbonfox' },
 		transparency = false,
-		theme_toggle = { 'onedark', 'one_light' },
+		theme_toggle = { 'gruvchad', 'gruvbox_light' },
 	},
 
 	ui = {

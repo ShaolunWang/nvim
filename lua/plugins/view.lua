@@ -4,7 +4,6 @@ M.plugins = {
 	{ 'stevearc/quicker.nvim', opt = true },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
-	{ 'mistweaverco/bafa.nvim' },
 }
 function M.load()
 	require('lze').load({
@@ -70,13 +69,6 @@ function M.load()
 				})
 			end,
 			cmd = { 'WinShift' },
-		},
-		{
-			'bafa.nvim',
-			after = function()
-				require('bafa').setup()
-			end,
-			cmd = { 'B' },
 		},
 	})
 end

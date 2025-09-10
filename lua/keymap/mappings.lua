@@ -2,7 +2,7 @@
 -- 	vim.cmd([[Fyler]])
 -- end, { noremap = true, desc = 'float oil' })
 vim.keymap.set('n', '<c-n>', function()
-	vim.cmd([[Otree]])
+	vim.cmd([[Neotree toggle]])
 end, { noremap = true, desc = 'neotree' })
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')

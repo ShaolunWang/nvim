@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'saghen/blink.cmp', opt = true, branch = 'v1.6.0' },
+	{ 'saghen/blink.cmp', opt = true, branch = 'v1.7.0' },
 	{ 'mikavilpas/blink-ripgrep.nvim', opt = true },
 	{ 'saghen/blink.compat', opt = true },
 	{ 'xzbdmw/colorful-menu.nvim', opt = true },

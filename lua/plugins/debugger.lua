@@ -12,8 +12,10 @@ function M.load()
 			after = function()
 				local dap = require('dap')
 				dap.adapters.lldb = {
+					initialize_timeout_sec = 10,
+
 					type = 'executable',
-					command = '/usr/bin/lldb', -- TODO: adjust as needed, must be absolute path
+					command = '/usr/local/bin/codelldb_adapter/adapter/codelldb', -- adjust as needed, must be absolute path
 					name = 'lldb',
 				}
 				dap.configurations.cpp = {
@@ -21,6 +23,7 @@ function M.load()
 						name = 'Launch',
 						type = 'lldb',
 						request = 'launch',
+						initialize_timeout_sec = 10,
 						program = function()
 							return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 						end,
