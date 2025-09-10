@@ -2,27 +2,28 @@ local lsp_keymap = require('keymap.lsp_keymaps')
 local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
-	{ 'vlime/vlime', opt = true },
-	{ 'apyra/nvim-unity-sync', opt = true },
-	{ 'windwp/nvim-ts-autotag', opt = true },
-	{ 'folke/lazydev.nvim', opt = true },
-	{ 'julienvincent/nvim-paredit', opt = true },
-	{ 'mrcjkb/rustaceanvim', opt = true },
-	{ 'folke/trouble.nvim', opt = true },
-	{ 'p00f/clangd_extensions.nvim', opt = true },
-	{ 'folke/trouble.nvim', opt = true },
-	{ 'stevearc/conform.nvim', opt = true },
-	{ 'fei6409/log-highlight.nvim', opt = true },
-	{ 'Bekaboo/dropbar.nvim', opt = true },
-	{ 'lervag/vimtex' },
-	{ 'ThePrimeagen/refactoring.nvim', opt = true },
-	{ 'pmizio/typescript-tools.nvim', opt = true },
+	{ src = 'https://github.com/vlime/vlime' },
+	{ src = 'https://github.com/apyra/nvim-unity-sync' },
+	{ src = 'https://github.com/windwp/nvim-ts-autotag' },
+	{ src = 'https://github.com/folke/lazydev.nvim' },
+	{ src = 'https://github.com/julienvincent/nvim-paredit' },
+	{ src = 'https://github.com/mrcjkb/rustaceanvim' },
+	{ src = 'https://github.com/p00f/clangd_extensions.nvim' },
+	{ src = 'https://github.com/folke/trouble.nvim' },
+	{ src = 'https://github.com/stevearc/conform.nvim' },
+	{ src = 'https://github.com/fei6409/log-highlight.nvim' },
+	{ src = 'https://github.com/Bekaboo/dropbar.nvim' },
+	{ src = 'https://github.com/lervag/vimtex' },
+	{ src = 'https://github.com/pmizio/typescript-tools.nvim' },
+	{ src = 'https://github.com/seblyng/roslyn.nvim' },
 }
 
 function M.load()
+	-- we don't need immediate load of any of these
 	require('lze').load({
 		{
 			'nvim-ts-autotag',
+			ft = { 'typescript', 'javascript' },
 			after = function()
 				require('nvim-ts-autotag').setup({
 					opts = {
@@ -152,36 +153,10 @@ function M.load()
 				})
 			end,
 		},
-		{
-			'refactoring.nvim',
-			cmd = { 'Refactor' },
-			-- fundo and ufo requires plenary and promise async before this
-			keys = {'<leader>r'},
-			after = function()
-				require('refactoring').setup({
-					prompt_func_return_type = {
-						go = false,
-						java = false,
-						cpp = true,
-						c = false,
-						h = true,
-						hpp = false,
-						cxx = true,
-					},
-					prompt_func_param_type = {
-						go = false,
-						java = false,
-						cpp = true,
-						c = true,
-						h = false,
-						hpp = false,
-						cxx = true,
-					},
-				})
-			end,
-		},
+
 		{
 			'vimtex',
+			ft = { 'tex' },
 			after = function()
 				-- VimTeX configuration goes here, e.g.
 				--			vim.g.vimtex_view_general_viewer = 'okular'
@@ -211,7 +186,7 @@ function M.load()
 			after = function()
 				require('dropbar').setup({ { general = { enable = false } } })
 			end,
-			events = 'BufRead',
+			events = 'BufReadPost',
 		},
 		{
 			'log-highlight.nvim',
@@ -244,7 +219,6 @@ function M.load()
 					},
 				})
 			end,
-			on_require = { 'conform' },
 			before = function()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -264,6 +238,13 @@ function M.load()
 			'nvim-unity-sync',
 			after = function()
 				require('unity.plugin').setup()
+			end,
+			ft = { 'cs' },
+		},
+		{
+			'roslyn.nvim',
+			after = function()
+				require('roslyn').setup()
 			end,
 			ft = { 'cs' },
 		},

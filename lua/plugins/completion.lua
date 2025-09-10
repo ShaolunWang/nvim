@@ -1,9 +1,12 @@
 local M = {}
 M.plugins = {
-	{ 'saghen/blink.cmp', opt = true, branch = 'v1.6.0' },
-	{ 'mikavilpas/blink-ripgrep.nvim', opt = true },
-	{ 'saghen/blink.compat', opt = true },
-	{ 'xzbdmw/colorful-menu.nvim', opt = true },
+	{
+		src = 'https://github.com/saghen/blink.cmp',
+		version = 'v1.7.0',
+	},
+	{ src = 'https://github.com/mikavilpas/blink-ripgrep.nvim' },
+	{ src = 'https://github.com/saghen/blink.compat' },
+	{ src = 'https://github.com/xzbdmw/colorful-menu.nvim' },
 }
 
 function M.load()

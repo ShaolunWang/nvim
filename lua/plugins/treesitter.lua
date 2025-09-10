@@ -1,11 +1,10 @@
 local M = {}
 M.plugins = {
-	{ 'nvim-treesitter/nvim-treesitter', opt = true },
-	{ 'nvim-treesitter/nvim-treesitter-textobjects', opt = true, as = 'nvim-treesitter-textobjects' },
-	{ 'andymass/vim-matchup', opt = true },
-	{ 'mizlan/iswap.nvim', opt = true },
-	--	{ 'chrisgrieser/nvim-various-textobjs',          opt = true },
-	{ 'Badhi/nvim-treesitter-cpp-tools', opt = true },
+	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
+	{ src = 'https://github.com/andymass/vim-matchup' },
+	{ src = 'https://github.com/mizlan/iswap.nvim' },
+	{ src = 'https://github.com/Badhi/nvim-treesitter-cpp-tools' },
 }
 function M.load()
 	require('lze').load({

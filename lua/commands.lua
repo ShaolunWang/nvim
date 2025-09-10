@@ -1,39 +1,14 @@
-local ar = require('utils.arglist')
 vim.api.nvim_create_user_command('G', function()
 	vim.cmd([[Neogit]])
 end, {})
-vim.api.nvim_create_user_command('B', function()
-	require('bafa.ui').toggle()
-end, {})
-
 vim.api.nvim_create_user_command('Sg', function()
 	vim.cmd([[:lua require('grug-far').open({ engine = 'astgrep' }) ]])
 end, {})
 vim.api.nvim_create_user_command('Rg', function()
 	vim.cmd([[:lua require('grug-far').open({ engine = 'ripgrep' }) ]])
 end, {})
-vim.api.nvim_create_user_command('UndotreeToggle', function()
-	vim.cmd([[:lua require('undotree').toggle()]])
-end, {})
-vim.api.nvim_create_user_command('PReload', function()
-	local luacache = (_G.__luacache or {}).cache
-	-- TODO unload commands, mappings + ?symbols?
-	for pkg, _ in pairs(package.loaded) do
-		if pkg:match('^my_.+') then
-			print(pkg)
-			package.loaded[pkg] = nil
-			if luacache then
-				lucache[pkg] = nil
-			end
-		end
-	end
-	dofile(vim.env.MYVIMRC)
-	vim.notify('Config reloaded!', vim.log.levels.INFO)
-end, {})
 vim.api.nvim_create_user_command('T', function()
-	-- require('nvim-tree.api').tree.toggle()
-	--	vim.cmd([[:lua MiniFiles.open()]])
-	vim.cmd([[Otree]])
+	vim.cmd([[Neotree toggle]])
 end, {})
 
 vim.api.nvim_create_user_command('Grep', function(params)
@@ -107,17 +82,12 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 		-- os.execute("zathura " .. vim.fn.shellescape(filepath:gsub("%.typ$", ".pdf")))
 	end
 end, {})
-vim.api.nvim_create_user_command('ArgEdit', function()
-	ar.arg_edit()
-end, {})
 
-vim.api.nvim_create_user_command('ArgAdd', function()
-	local pos = vim.fn.getpos('.')
-	local path = vim.fn.expand('%:.')
-	ar.arg_add(path, pos)
-end, {})
-
-vim.api.nvim_create_user_command('ArgDebug', function()
-	vim.cmd([[grep getqf]])
-	ar.qf_to_arglist()
+vim.api.nvim_create_user_command('UpdatePlugins', function()
+	local plugin_names = {}
+	for _, v in ipairs(vim.pack.get()) do
+		vim.print(v.spec.name)
+		table.insert(plugin_names, v.spec.name)
+	end
+	vim.pack.update(plugin_names)
 end, {})

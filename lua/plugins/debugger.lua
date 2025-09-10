@@ -1,8 +1,34 @@
 local M = {}
 M.plugins = {
-	{ 'mfussenegger/nvim-dap', opt = true },
-	{ 'igorlfs/nvim-dap-view', opt = true },
+	{ src = 'https://github.com/mfussenegger/nvim-dap' },
+	{ src = 'https://github.com/igorlfs/nvim-dap-view' },
 }
+-- using ${PICKER} to pick executables
+local function pick_executable(under_git_root, subdir)
+	return coroutine.create(function(dap_run_co)
+		local root = '.'
+		if under_git_root then
+			root = Snacks.git.get_root()
+		end
+		if subdir ~= nil then
+			root = root .. '/' .. subdir
+		end
+		-- NOTE: replace this with other pickers
+		Snacks.picker.files({
+			hidden = true,
+			ignored = true,
+			dirs = { root },
+			cmd = 'fd',
+			type = { 'x' },
+			confirm = function(picker, item)
+				picker:norm(function()
+					picker:close()
+					coroutine.resume(dap_run_co, item.text)
+				end)
+			end,
+		})
+	end)
+end
 
 function M.load()
 	require('lze').load({
@@ -12,8 +38,9 @@ function M.load()
 			after = function()
 				local dap = require('dap')
 				dap.adapters.lldb = {
+					initialize_timeout_sec = 10,
 					type = 'executable',
-					command = '/usr/bin/lldb', -- TODO: adjust as needed, must be absolute path
+					command = '/usr/local/bin/codelldb_adapter/adapter/codelldb', -- adjust as needed, must be absolute path
 					name = 'lldb',
 				}
 				dap.configurations.cpp = {
@@ -21,25 +48,13 @@ function M.load()
 						name = 'Launch',
 						type = 'lldb',
 						request = 'launch',
+						initialize_timeout_sec = 10,
 						program = function()
-							return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+							return pick_executable(true, 'build/')
 						end,
 						cwd = '${workspaceFolder}',
 						stopOnEntry = false,
 						args = {},
-
-						-- 💀
-						-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-						--
-						--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-						--
-						-- Otherwise you might get the following error:
-						--
-						--    Error on launch: Failed to attach to the target process
-						--
-						-- But you should be aware of the implications:
-						-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-						-- runInTerminal = false,
 					},
 				}
 			end,
@@ -47,7 +62,13 @@ function M.load()
 		{
 			'nvim-dap-view',
 			after = function()
-				require('dap-view').setup()
+				require('dap-view').setup({
+					winbar = {
+						default_section = 'scopes',
+							controls = { enabled = true },
+					},
+					windows = { position = 'right' },
+				})
 			end,
 			keys = {
 				{
@@ -58,6 +79,7 @@ function M.load()
 					end,
 					{ desc = 'Toggle nvim-dap-view' },
 				},
+				'<leader>l',
 			},
 		},
 	})

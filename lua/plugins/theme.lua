@@ -1,13 +1,39 @@
 local M = {}
 M.plugins = {
-	{ 'tiagovla/scope.nvim', opt = true },
-	{ 'nvchad/ui' },
-	-- { 'OXY2DEV/ui.nvim', as = 'ui_boilerplate' },
-	{ 'nvchad/base46' },
-	{ 'nvzone/volt' },
+	{ src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
+	{ src = 'https://github.com/tiagovla/scope.nvim' },
+	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
+	{ src = 'https://github.com/tiagovla/tokyodark.nvim', name = 'tokyodark' },
+	{ src = 'https://github.com/olimorris/onedarkpro.nvim', name = 'onedarkpro' },
+	{ src = 'https://github.com/Shatur/neovim-ayu', name = 'ayu' },
 }
 
 function M.load()
+	require('lze').load({
+		{
+			'ayu',
+			after = function()
+				require('ayu').setup({
+					mirage = true, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
+					terminal = true, -- Set to `false` to let terminal manage its own colors.
+					overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
+				})
+			end,
+			colorscheme = { 'ayu', 'ayu-light', 'ayu-mirage', 'ayu-dark' },
+		},
+		{
+			'catppuccin',
+			colorscheme = { 'catppuccin', 'catppuccin-latte', 'catppuccin-frappe', 'catppuccin-mocha' },
+		},
+		{
+			'vscode.nvim',
+			colorscheme = 'vscode',
+		},
+		{
+			'tokyodark',
+			colorscheme = 'tokyodark',
+		},
+	})
 	require('lze').load({
 		{
 			'scope.nvim',
@@ -17,49 +43,12 @@ function M.load()
 			lazy = false,
 		},
 		{
-			'ui',
-			beforeAll = function()
-				require('nvchad')
-			end,
-			event = 'DeferredUIEnter',
-		},
-		{
-			'base46',
-			dep_of = 'ui',
+			'lualine.nvim',
 			after = function()
-				require('base46').load_all_highlights()
+				require('theme.line').setup()
 			end,
+			lazy = false,
 		},
-
-		{ 'volt', dep_of = 'ui' }, -- optional, needed for theme switcher
-		--[[ {
-			'ui_boilerplate',
-			after = function()
-				if not vim.g.vscode then
-					require('ui').setup({
-						popupmenu = {
-							enable = false,
-						},
-
-						cmdline = {
-							enable = true,
-							styles = {
-								default = {
-									cursor = 'Cursor',
-									filetype = 'vim',
-
-									icon = { { 'I ', '@comment' } },
-									offset = 0,
-
-									title = nil,
-									winhl = '',
-								},
-							},
-						},
-					})
-				end
-			end,
-		}, ]]
 	})
 end
 

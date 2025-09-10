@@ -1,36 +1,34 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/overseer.nvim', opt = true },
-	{ 'OXY2DEV/helpview.nvim', opt = false },
-	{ 'NeogitOrg/neogit', opt = true },
-	{ 'folke/which-key.nvim' },
-	{ 'OneOfOne/spm.nvim', opt = false },
-	{ 'pechorin/any-jump.vim', opt = true },
-	{ 'folke/snacks.nvim', opt = true },
-	{ 'sindrets/diffview.nvim', opt = true },
-	{ 'FabijanZulj/blame.nvim', opt = true },
-	{ 'akinsho/git-conflict.nvim', opt = true },
-	{ 'lewis6991/gitsigns.nvim' },
+	{ src = 'https://github.com/stevearc/overseer.nvim' },
+	{ src = 'https://github.com/OXY2DEV/helpview.nvim' },
+	{ src = 'https://github.com/NeogitOrg/neogit' },
+	{ src = 'https://github.com/folke/which-key.nvim' },
+	{ src = 'https://github.com/chrisgrieser/nvim-justice' },
+	{ src = 'https://github.com/BartSte/nvim-project-marks' },
+	{ src = 'https://github.com/pechorin/any-jump.vim' },
+	{ src = 'https://github.com/folke/snacks.nvim' },
+	{ src = 'https://github.com/sindrets/diffview.nvim' },
+	{ src = 'https://github.com/FabijanZulj/blame.nvim' },
+	{ src = 'https://github.com/akinsho/git-conflict.nvim' },
+	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
 }
 
 function M.load()
 	require('lze').load({
 		{
-			'spm.nvim',
+			'nvim-justice',
 			after = function()
-				-- default settings
-				require('spm').setup({
-					dir = '.nvim',
-					set_cwd = true,
-					use_views = true,
-					local_only = true, -- don't save views / files unless they're in the project
-					use_shada = true,
-					keys = {
-						create = '<leader>pc',
-					},
-
-					pre_load_fn = function() end,
-					post_load_fn = function() end,
+				require('justice').setup({})
+			end,
+			cmd = { 'Justice' },
+		},
+		{
+			'nvim-project-marks',
+			after = function()
+				require('projectmarks').setup({
+					mappings = true,
+					shadafile = vim.fn.stdpath('data') .. '/shadas/' .. vim.fn.getcwd():gsub('[/\\]', '') .. '.shada',
 				})
 			end,
 		},
@@ -42,6 +40,7 @@ function M.load()
 				overseer.setup({
 					dap = false,
 					strategy = 'jobstart',
+					templates = { 'builtin' },
 				})
 				-- Add on_output_quickfix component to all "cargo" templates
 				overseer.add_template_hook({ module = '^just$' }, function(task_defn, util)
@@ -201,7 +200,7 @@ function M.load()
 			after = function()
 				require('gitsigns').setup()
 			end,
-			--			cmd = { 'G' },
+			cmd = { 'Gitsigns' },
 		},
 		{
 			'any-jump.vim',

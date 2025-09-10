@@ -1,62 +1,38 @@
-local paq_plugins = {
-	{ 'savq/paq-nvim', branch = 'nightly' },
-	{ 'BirdeeHub/lze' }, -- loader
-}
+M = {}
+M.plugins = {}
+vim.pack.add({
+	{ src = 'https://github.com/BirdeeHub/lze' },
+	{ src = 'https://github.com/BirdeeHub/lzextras' },
+})
 
--- local snip = require('plugins.luasnip').plugins
--- local compl = require('plugins.completion').plugins
--- local lsp = require('plugins.lsp').plugins
--- local treesitter = require('plugins.treesitter').plugins
--- local edit = require('plugins.edit').plugins
--- local dap = require('plugins.debugger').plugins
--- local pears = require('plugins.pairs').plugins
--- local file = require('plugins.file').plugins
--- local folds = require('plugins.folds').plugins
--- local fuzzy = require('plugins.fuzzy').plugins
--- local languages = require('plugins.languages').plugins
--- local mini = require('plugins.mini').plugins
--- local misc = require('plugins.misc').plugins
---
+-- reading files from $configpath/lua/plugins/*
+local config_files_table = vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/plugins', [[v:val =~ '\.lua$']])
+
+--  merging tables for plugins from each files
 local function merge(a, b)
+	if a == nil then
+		return b
+	elseif b == nil then
+		return a
+	end
 	local result = { unpack(a) }
 	table.move(b, 1, #b, #result + 1, result)
 	return result
 end
 
--- paq_plugins = merge(paq_plugins, snip)
--- paq_plugins = merge(paq_plugins, compl)
--- paq_plugins = merge(paq_plugins, lsp)
--- paq_plugins = merge(paq_plugins, treesitter)
--- paq_plugins = merge(paq_plugins, edit)
--- paq_plugins = merge(paq_plugins, dap)
--- paq_plugins = merge(paq_plugins, pears)
--- paq_plugins = merge(paq_plugins, file)
--- paq_plugins = merge(paq_plugins, folds)
--- paq_plugins = merge(paq_plugins, fuzzy)
--- paq_plugins = merge(paq_plugins, languages)
--- paq_plugins = merge(paq_plugins, mini)
--- paq_plugins = merge(paq_plugins, misc)
---
-for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/plugins', [[v:val =~ '\.lua$']])) do
-	local plugins_table = require('plugins.' .. file:gsub('%.lua$', '')).plugins
-	paq_plugins = merge(paq_plugins, plugins_table)
+function M.get_all_plugins()
+	for _, file in ipairs(config_files_table) do
+		-- TODO: cache this plugins_table?
+		local plugins_table = require('plugins.' .. file:gsub('%.lua$', '')).plugins
+		M.plugins = merge(M.plugins, plugins_table)
+	end
+end
+-- end merging tables
+
+function M.load_all()
+	for _, file in ipairs(config_files_table) do
+		require('plugins.' .. file:gsub('%.lua$', '')).load()
+	end
 end
 
--- require('plugins.luasnip').load()
--- require('plugins.lsp').load()
--- require('plugins.completion').load()
--- require('plugins.treesitter').load()
--- require('plugins.edit').load()
--- require('plugins.debugger').load()
--- require('plugins.pairs').load()
--- require('plugins.file').load()
--- require('plugins.folds').load()
--- require('plugins.fuzzy').load()
--- require('plugins.languages').load()
--- require('plugins.mini').load()
--- require('plugins.misc').load()
-for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/plugins', [[v:val =~ '\.lua$']])) do
-	require('plugins.' .. file:gsub('%.lua$', '')).load()
-end
-
-return paq_plugins
+return M

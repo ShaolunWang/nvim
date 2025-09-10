@@ -1,11 +1,10 @@
 local M = {}
 M.plugins = {
-	{ 'folke/flash.nvim', opt = true },
-	{ 'kwkarlwang/bufjump.nvim', opt = true },
-	{ 'chentoast/marks.nvim', opt = true },
-	{ 'cbochs/grapple.nvim', opt = true },
-	{ 'mrjones2014/smart-splits.nvim', opt = true },
-	-- { 'luiscassih/AniMotion.nvim', opt = true, as = 'animotion' },
+	{ src = 'https://github.com/folke/flash.nvim' },
+	{ src = 'https://github.com/kwkarlwang/bufjump.nvim' },
+	{ src = 'https://github.com/chentoast/marks.nvim' },
+	{ src = 'https://github.com/cbochs/grapple.nvim' },
+	{ src = 'https://github.com/mrjones2014/smart-splits.nvim' },
 }
 function M.load()
 	require('lze').load({
@@ -13,9 +12,7 @@ function M.load()
 			'flash.nvim',
 			after = function()
 				require('flash').setup({
-
 					label = { rainbow = { enabled = true } },
-
 					jump = {
 						nohlsearch = true,
 					},
@@ -26,26 +23,10 @@ function M.load()
 							autohide = true,
 							jump_labels = true,
 							highlight = { backdrop = false },
-							--					jump = { autojump = true },
 						},
 					},
 					search = {
-						exclude = {
-							'notify',
-							'terminal',
-							'cmp_menu',
-							'noice',
-							'flash_prompt',
-							'NeogitStatus',
-							'NeogitConsole',
-							'NeogitStatusNew',
-							'NeogitGitCommandHistory',
-							'NeogitCommitSelectView',
-							'NeogitLogView',
-							'NeogitRebaseTodo',
-							'NeogitPopup',
-							'NeogitCommitView',
-						},
+						exclude = require('utils.exclude_ft'),
 						mode = 'exact',
 					},
 				})
@@ -90,7 +71,6 @@ function M.load()
 					},
 				})
 			end,
-			on_require = { 'smart-splits' },
 			event = { 'WinEnter' },
 		},
 		{
@@ -107,17 +87,6 @@ function M.load()
 			end,
 			keys = { 'm' },
 		},
-		--[[ {
-			'animotion',
-			after = function()
-				require('AniMotion').setup({
-					mode = 'helix',
-					clear_keys = { '<C-c>' },
-					color = 'Visual',
-				})
-			end,
-			events = 'BufRead',
-		}, ]]
 	})
 end
 

@@ -1,6 +1,6 @@
---vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme onedark_vivid')
+vim.cmd('colorscheme catppuccin')
+vim.o.background = 'dark'
 
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },
@@ -21,22 +21,6 @@ for group, color in pairs(ts_extra_highlights) do
 	vim.api.nvim_set_hl(0, group, color)
 end
 
---require('theme.ui').override_ui_input()
---require('theme.ui').override_ui_select()
-
-local function hl(highlight, fg, bg, link)
-	if fg == nil then
-		fg = 'none'
-	end
-	if bg == nil then
-		bg = 'none'
-	end
-	vim.api.nvim_set_hl(0, highlight, { fg = fg, bg = bg, link = link })
-	if link ~= nil then
-		vim.api.nvim_set_hl(0, highlight, { link = link })
-	end
-end
-
 local colors = {
 	fg = '#BBB6B6',
 	bg = '#1F1F1F',
@@ -53,16 +37,7 @@ local colors = {
 	purple = '#A988B0',
 	ash = '#BBB6B6',
 }
--- vim.api.nvim_set_hl(0, 'FzfLuaBorder', { link = 'Directory' })
--- vim.api.nvim_set_hl(0, 'FzfLuaTitle', { link = 'Float' })
--- vim.api.nvim_set_hl(0, 'FzfLuaCursor', { link = 'Float' })
--- vim.api.nvim_set_hl(0, 'FzfLuaCursorLine', { link = 'Float' })
--- vim.api.nvim_set_hl(0, 'FzfLuaCursorLineNr', { link = 'Float' })
--- vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = colors.darkwhite, bg = bg, link = link })
--- vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = colors.darkwhite, bg = bg, link = link })
+
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = colors.darkwhite, bg = bg, link = link })
 vim.api.nvim_set_hl(0, 'MiniCursorword', { underline = true })
 vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { underline = true })
-
-require('theme.line')
-require('theme.ui')

@@ -8,10 +8,6 @@ local function add_desc(opt, description)
 end
 
 function M.on_attach(client, bufnr)
-	--	local navic = require('nvim-navic')
-	--	if client.server_capabilities.documentSymbolProvider then
-	--		navic.attach(client, bufnr)
-	--	end
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 
 	-- Enable completion triggered by <c-x><c-o>
@@ -23,7 +19,6 @@ function M.on_attach(client, bufnr)
 	vim.keymap.set('n', '\\q', vim.diagnostic.setloclist, add_desc(opts, 'Diag Loclist'))
 	vim.keymap.set('n', '\\f', function()
 		require('conform').format()
-		--		vim.lsp.buf.format({ async = true })
 	end, add_desc(bufopts, 'format code'))
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, add_desc(bufopts, 'Goto Decl'))
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, add_desc(bufopts, 'Goto Def'))

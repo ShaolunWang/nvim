@@ -1,7 +1,7 @@
 local M = {}
 M.plugins = {
-	{ 'nanotee/zoxide.vim', opt = true },
-	{ '2KAbhishek/pickme.nvim', opt = true },
+	{ src = 'https://github.com/nanotee/zoxide.vim' },
+	{ src = 'https://github.com/2KAbhishek/pickme.nvim' },
 }
 function M.load()
 	require('lze').load({
@@ -14,7 +14,6 @@ function M.load()
 		},
 		{
 			'pickme.nvim',
-			on_require = { 'pickme' },
 			cmd = { 'PickMe' },
 			after = function()
 				require('pickme').setup({

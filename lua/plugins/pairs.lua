@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	'windwp/nvim-autopairs',
+	{ src = 'https://github.com/windwp/nvim-autopairs' },
 }
 
 function M.load()

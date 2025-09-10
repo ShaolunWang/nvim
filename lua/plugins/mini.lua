@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'echasnovski/mini.nvim', branch = 'main' },
+	{ src = 'https://github.com/nvim-mini/mini.nvim', version = 'main' },
 }
 
 function M.load()
@@ -8,10 +8,7 @@ function M.load()
 		{ 'nvim-web-devicons', enabled = false, optional = true },
 		{
 			'mini.nvim',
-			-- event = 'BufReadPost',
-			-- on_require = { 'mini.pick' },
-			-- cmd = { 'Pick' },
-			lazy = false,
+			event = 'BufReadPost',
 			after = function()
 				require('mini.icons').setup()
 				require('mini.icons').mock_nvim_web_devicons()

@@ -47,8 +47,6 @@ if vim.uv.os_uname().sysname == 'Windows_NT' then
 	for option, value in pairs(powershell_options) do
 		vim.opt[option] = value
 	end
-else
-	set.shell = 'zsh'
 end
 
 vim.g.maplocalleader = ','
