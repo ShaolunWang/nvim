@@ -1,5 +1,4 @@
 local options = {
-
 	base46 = {
 		theme = 'tokyonight', -- default theme
 		hl_add = {},

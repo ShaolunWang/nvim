@@ -1,7 +1,6 @@
 local M = {}
 M.plugins = {
 
-	{ 'atiladefreitas/dooing', opt = true },
 	{ 'OXY2DEV/markview.nvim', opt = true },
 	{ 'jbyuki/venn.nvim', opt = true },
 	{ 'wurli/contextindent.nvim', opt = true },
@@ -25,15 +24,6 @@ function M.load()
 				})
 			end,
 			ft = 'markdown',
-		},
-		{
-			'dooing',
-			after = function()
-				require('dooing').setup({
-					-- your custom config here (optional)
-				})
-			end,
-			cmd = { 'Dooing' },
 		},
 		{
 			'contextindent.nvim',

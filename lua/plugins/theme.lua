@@ -2,7 +2,6 @@ local M = {}
 M.plugins = {
 	{ 'tiagovla/scope.nvim', opt = true },
 	{ 'nvchad/ui' },
-	-- { 'OXY2DEV/ui.nvim', as = 'ui_boilerplate' },
 	{ 'nvchad/base46', branch = 'v3.0' },
 	{ 'nvzone/volt' },
 }
@@ -32,34 +31,6 @@ function M.load()
 		},
 
 		{ 'volt', dep_of = 'ui' }, -- optional, needed for theme switcher
-		--[[ {
-			'ui_boilerplate',
-			after = function()
-				if not vim.g.vscode then
-					require('ui').setup({
-						popupmenu = {
-							enable = false,
-						},
-
-						cmdline = {
-							enable = true,
-							styles = {
-								default = {
-									cursor = 'Cursor',
-									filetype = 'vim',
-
-									icon = { { 'I ', '@comment' } },
-									offset = 0,
-
-									title = nil,
-									winhl = '',
-								},
-							},
-						},
-					})
-				end
-			end,
-		}, ]]
 	})
 end
 

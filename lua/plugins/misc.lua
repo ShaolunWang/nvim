@@ -27,7 +27,7 @@ function M.load()
 			after = function()
 				require('projectmarks').setup({
 					mappings = true,
-					shadafile = vim.fn.stdpath('data') .. '/shadas/' .. vim.fn.getcwd():gsub("[/\\]", "") .. '.shada',
+					shadafile = vim.fn.stdpath('data') .. '/shadas/' .. vim.fn.getcwd():gsub('[/\\]', '') .. '.shada',
 				})
 			end,
 		},

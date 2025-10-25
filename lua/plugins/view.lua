@@ -2,6 +2,7 @@ local M = {}
 M.plugins = {
 	{ 'folke/todo-comments.nvim', opt = true },
 	{ 'stevearc/quicker.nvim', opt = true },
+	{ 'j-hui/fidget.nvim' },
 	{ 'tzachar/highlight-undo.nvim', opt = true },
 	{ 'sindrets/winshift.nvim', opt = true },
 }
@@ -69,6 +70,12 @@ function M.load()
 				})
 			end,
 			cmd = { 'WinShift' },
+		},
+		{
+			'fidget.nvim',
+			after = function()
+				require('fidget').setup()
+			end,
 		},
 	})
 end
