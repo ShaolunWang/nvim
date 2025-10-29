@@ -4,6 +4,7 @@ M.exclude_ft = {
 	'notify',
 	'TelescopePrompt',
 	'cmp_menu',
+	'neo-tree',
 	'qf',
 	'noice',
 	'flash_prompt',

@@ -2,12 +2,11 @@ local M = {}
 M.plugins = {
 	{ src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
 	{ src = 'https://github.com/tiagovla/scope.nvim' },
-	{ src = 'https://github.com/rebelot/heirline.nvim' },
+	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
 	{ src = 'https://github.com/tiagovla/tokyodark.nvim', name = 'tokyodark' },
-	{ src = 'https://github.com/WTFox/jellybeans.nvim', name = 'jellybean' },
+	{ src = 'https://github.com/WTFox/jellybeans.nvim', name = 'jellybeans' },
 	{ src = 'https://github.com/olimorris/onedarkpro.nvim', name = 'onedarkpro' },
 	{ src = 'https://github.com/Shatur/neovim-ayu', name = 'ayu' },
-	-- { 'OXY2DEV/ui.nvim', opt = true, as = 'ui_boilerplate' },
 }
 
 function M.load()
@@ -30,7 +29,7 @@ function M.load()
 		{
 			'jellybeans',
 			after = function()
-				require('jellybeans').setup()
+				require('jellybeans').setup({})
 			end,
 			colorscheme = 'jellybeans',
 		},
@@ -56,8 +55,10 @@ function M.load()
 			lazy = false,
 		},
 		{
-			'heirline.nvim',
-			lazy = false,
+			'lualine.nvim',
+			after = function()
+				require('theme.line').setup()
+			end,
 		},
 	})
 end

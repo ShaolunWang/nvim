@@ -4,7 +4,6 @@ M.plugins = {
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
 	{ src = 'https://github.com/andymass/vim-matchup' },
 	{ src = 'https://github.com/mizlan/iswap.nvim' },
-	--	{ 'chrisgrieser/nvim-various-textobjs',          opt = true },
 	{ src = 'https://github.com/Badhi/nvim-treesitter-cpp-tools' },
 }
 function M.load()

@@ -7,12 +7,7 @@ end, {})
 vim.api.nvim_create_user_command('Rg', function()
 	vim.cmd([[:lua require('grug-far').open({ engine = 'ripgrep' }) ]])
 end, {})
--- vim.api.nvim_create_user_command('UndotreeToggle', function()
--- 	vim.cmd([[:lua require('undotree').toggle()]])
--- end, {})
 vim.api.nvim_create_user_command('T', function()
-	-- require('nvim-tree.api').tree.toggle()
-	--	vim.cmd([[:lua MiniFiles.open()]])
 	vim.cmd([[Neotree toggle]])
 end, {})
 
@@ -86,4 +81,8 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 		-- replace open with your preferred pdf viewer
 		-- os.execute("zathura " .. vim.fn.shellescape(filepath:gsub("%.typ$", ".pdf")))
 	end
+end, {})
+
+vim.api.nvim_create_user_command('UpdatePlugins', function()
+		vim.pack.update()
 end, {})
