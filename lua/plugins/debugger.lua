@@ -1,7 +1,7 @@
 local M = {}
 M.plugins = {
-	{ 'mfussenegger/nvim-dap', opt = true },
-	{ 'igorlfs/nvim-dap-view', opt = true },
+	{ src = 'https://github.com/mfussenegger/nvim-dap' },
+	{ src = 'https://github.com/igorlfs/nvim-dap-view' },
 }
 
 function M.load()

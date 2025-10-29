@@ -1,14 +1,13 @@
 M = {}
-M.plugins = {
-	{ 'neovim/nvim-lspconfig' },
-}
+M.plugins = {}
+vim.pack.add({ { src = 'https://github.com/neovim/nvim-lspconfig' } })
 function M.load()
-	vim.keymap.del('n', 'grn')
-	vim.keymap.del('n', 'gra')
-	vim.keymap.del('n', 'grr')
-	vim.keymap.del('n', 'gri')
-	vim.keymap.del('n', 'grt')
-	vim.keymap.del('n', 'gO')
+	--	vim.keymap.del('n', 'grn')
+	--vim.keymap.del('n', 'gra')
+	--vim.keymap.del('n', 'grr')
+	--vim.keymap.del('n', 'gri')
+	--vim.keymap.del('n', 'grt')
+	--vim.keymap.del('n', 'gO')
 
 	--"an" and "in" are mapped in Visual mode to outer and inner incremental selections, respectively, using vim.lsp.buf.selection_range()
 	vim.lsp.log.set_level(vim.log.levels.ERROR)

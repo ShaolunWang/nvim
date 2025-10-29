@@ -1,10 +1,10 @@
 local M = {}
 M.plugins = {
-	{ 'folke/flash.nvim', opt = true },
-	{ 'kwkarlwang/bufjump.nvim', opt = true },
-	{ 'chentoast/marks.nvim', opt = true },
-	{ 'cbochs/grapple.nvim', opt = true },
-	{ 'mrjones2014/smart-splits.nvim', opt = true },
+	{ src = 'https://github.com/folke/flash.nvim' },
+	{ src = 'https://github.com/kwkarlwang/bufjump.nvim' },
+	{ src = 'https://github.com/chentoast/marks.nvim' },
+	{ src = 'https://github.com/cbochs/grapple.nvim' },
+	{ src = 'https://github.com/mrjones2014/smart-splits.nvim' },
 }
 function M.load()
 	require('lze').load({

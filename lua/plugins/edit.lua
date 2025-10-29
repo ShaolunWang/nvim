@@ -2,20 +2,29 @@ local M = {}
 
 M.plugins = {
 	{
-		'kevinhwang91/nvim-fundo',
-		build = function()
-			require('fundo').install()
-		end,
+		src = 'https://github.com/kevinhwang91/nvim-fundo',
+		-- data = {
+		-- 	build = function()
+		-- 		require('fundo').install()
+		-- 	end,
+		-- },
 	},
-	{ 'kazhala/close-buffers.nvim', opt = true, as = 'close-buffers' },
-	{ 'chrisgrieser/nvim-early-retirement', opt = true, as = 'early-retirement' },
-	{ 'numToStr/Comment.nvim', opt = true },
-	{ 'chrisbra/NrrwRgn', opt = true },
-	{ 'danymat/neogen', opt = true },
-	{ 'chrisgrieser/nvim-rip-substitute', opt = true },
-	{ 'MagicDuck/grug-far.nvim', opt = true },
-	{ 'monaqa/dial.nvim', opt = true },
-	{ 'kevinhwang91/promise-async', opt = true },
+	{
+		src = 'https://github.com/kazhala/close-buffers.nvim',
+		name = 'close-buffers',
+	},
+
+	{
+		src = 'https://github.com/chrisgrieser/nvim-early-retirement',
+		name = 'early-retirement',
+	},
+	{ src = 'https://github.com/numToStr/Comment.nvim' },
+	{ src = 'https://github.com/chrisbra/NrrwRgn' },
+	{ src = 'https://github.com/danymat/neogen' },
+	{ src = 'https://github.com/chrisgrieser/nvim-rip-substitute' },
+	{ src = 'https://github.com/MagicDuck/grug-far.nvim' },
+	{ src = 'https://github.com/monaqa/dial.nvim' },
+	{ src = 'https://github.com/kevinhwang91/promise-async' },
 }
 function M.load()
 	require('lze').load({

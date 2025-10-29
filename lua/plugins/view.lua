@@ -1,10 +1,10 @@
 local M = {}
 M.plugins = {
-	{ 'folke/todo-comments.nvim', opt = true },
-	{ 'stevearc/quicker.nvim', opt = true },
-	{ 'j-hui/fidget.nvim' },
-	{ 'tzachar/highlight-undo.nvim', opt = true },
-	{ 'sindrets/winshift.nvim', opt = true },
+	{ src = 'https://github.com/folke/todo-comments.nvim', data = { opt = true } },
+	{ src = 'https://github.com/stevearc/quicker.nvim', data = { opt = true } },
+	{ src = 'https://github.com/j-hui/fidget.nvim' },
+	{ src = 'https://github.com/tzachar/highlight-undo.nvim', data = { opt = true } },
+	{ src = 'https://github.com/sindrets/winshift.nvim', data = { data = { opt = true } } },
 }
 function M.load()
 	require('lze').load({

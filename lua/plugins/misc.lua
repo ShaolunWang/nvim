@@ -1,17 +1,17 @@
 local M = {}
 M.plugins = {
-	{ 'stevearc/overseer.nvim', opt = true },
-	{ 'OXY2DEV/helpview.nvim', opt = false },
-	{ 'NeogitOrg/neogit', opt = true },
-	{ 'folke/which-key.nvim' },
-	{ 'chrisgrieser/nvim-justice' },
-	{ 'BartSte/nvim-project-marks', opt = false },
-	{ 'pechorin/any-jump.vim', opt = true },
-	{ 'folke/snacks.nvim', opt = true },
-	{ 'sindrets/diffview.nvim', opt = true },
-	{ 'FabijanZulj/blame.nvim', opt = true },
-	{ 'akinsho/git-conflict.nvim', opt = true },
-	{ 'lewis6991/gitsigns.nvim' },
+	{ src = 'https://github.com/stevearc/overseer.nvim' },
+	{ src = 'https://github.com/OXY2DEV/helpview.nvim' },
+	{ src = 'https://github.com/NeogitOrg/neogit' },
+	{ src = 'https://github.com/folke/which-key.nvim' },
+	{ src = 'https://github.com/chrisgrieser/nvim-justice' },
+	{ src = 'https://github.com/BartSte/nvim-project-marks' },
+	{ src = 'https://github.com/pechorin/any-jump.vim' },
+	{ src = 'https://github.com/folke/snacks.nvim' },
+	{ src = 'https://github.com/sindrets/diffview.nvim' },
+	{ src = 'https://github.com/FabijanZulj/blame.nvim' },
+	{ src = 'https://github.com/akinsho/git-conflict.nvim' },
+	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
 }
 
 function M.load()

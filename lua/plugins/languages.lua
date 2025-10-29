@@ -2,21 +2,21 @@ local lsp_keymap = require('keymap.lsp_keymaps')
 local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
-	{ 'vlime/vlime', opt = true },
-	{ 'apyra/nvim-unity-sync', opt = true },
-	{ 'windwp/nvim-ts-autotag', opt = true },
-	{ 'folke/lazydev.nvim', opt = true },
-	{ 'julienvincent/nvim-paredit', opt = true },
-	{ 'mrcjkb/rustaceanvim', opt = true },
-	{ 'p00f/clangd_extensions.nvim', opt = true },
-	{ 'folke/trouble.nvim', opt = true },
-	{ 'stevearc/conform.nvim', opt = true },
-	{ 'fei6409/log-highlight.nvim', opt = true },
-	{ 'Bekaboo/dropbar.nvim', opt = true },
-	{ 'lervag/vimtex' },
-	{ 'ThePrimeagen/refactoring.nvim', opt = true },
-	{ 'pmizio/typescript-tools.nvim', opt = true },
-	{ 'seblyng/roslyn.nvim', opt = true },
+	{ src = 'https://github.com/vlime/vlime' },
+	{ src = 'https://github.com/apyra/nvim-unity-sync' },
+	{ src = 'https://github.com/windwp/nvim-ts-autotag' },
+	{ src = 'https://github.com/folke/lazydev.nvim' },
+	{ src = 'https://github.com/julienvincent/nvim-paredit' },
+	{ src = 'https://github.com/mrcjkb/rustaceanvim' },
+	{ src = 'https://github.com/p00f/clangd_extensions.nvim' },
+	{ src = 'https://github.com/folke/trouble.nvim' },
+	{ src = 'https://github.com/stevearc/conform.nvim' },
+	{ src = 'https://github.com/fei6409/log-highlight.nvim' },
+	{ src = 'https://github.com/Bekaboo/dropbar.nvim' },
+	{ src = 'https://github.com/lervag/vimtex' },
+	{ src = 'https://github.com/ThePrimeagen/refactoring.nvim' },
+	{ src = 'https://github.com/pmizio/typescript-tools.nvim' },
+	{ src = 'https://github.com/seblyng/roslyn.nvim' },
 }
 
 function M.load()

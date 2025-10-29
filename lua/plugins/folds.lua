@@ -1,7 +1,7 @@
 local M = {}
 M.plugins = {
-	{ 'chrisgrieser/nvim-origami', opt = true },
-	{ 'luukvbaal/statuscol.nvim' },
+	{ src = 'https://github.com/chrisgrieser/nvim-origami' },
+	{ src = 'https://github.com/luukvbaal/statuscol.nvim' },
 }
 function M.load()
 	require('lze').load({

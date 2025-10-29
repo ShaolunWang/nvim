@@ -1,7 +1,6 @@
 local M = {}
 M.plugins = {
-
-	{ 'tummetott/unimpaired.nvim', opt = true },
+	{ src = 'https://github.com/tummetott/unimpaired.nvim' },
 }
 function M.load()
 	require('lze').load({

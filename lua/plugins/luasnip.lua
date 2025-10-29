@@ -1,16 +1,10 @@
 local M = {}
 
 M.plugins = {
-	{ 'rafamadriz/friendly-snippets', opt = true },
-	{ 'evesdropper/luasnip-latex-snippets.nvim', opt = true },
-	{
-		'L3MON4D3/LuaSnip',
-		opt = true,
-	},
-	{
-		'chrisgrieser/nvim-scissors',
-		opt = true,
-	},
+	{ src = 'https://github.com/rafamadriz/friendly-snippets.git' },
+	{ src = 'https://github.com/evesdropper/luasnip-latex-snippets.nvim.git' },
+	{ src = 'https://github.com/L3MON4D3/LuaSnip.git' },
+	{ src = 'https://github.com/chrisgrieser/nvim-scissors.git' },
 }
 
 function M.load()

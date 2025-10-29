@@ -107,8 +107,8 @@ end
 
 local M = {}
 M.plugins = {
-	{ 'dhananjaylatkar/cscope_maps.nvim', opt = true },
-	{ 'folke/twilight.nvim', opt = true },
+	{ src = 'https://github.com/dhananjaylatkar/cscope_maps.nvim' },
+	{ src = 'https://github.com/folke/twilight.nvim' },
 }
 function M.load()
 	require('lze').load({

@@ -1,11 +1,10 @@
 local M = {}
 M.plugins = {
-	-- { 'A7Lavinraj/fyler.nvim', opt = true },
-	{ 'nvim-lua/plenary.nvim', opt = true },
-	{ 'chrisgrieser/nvim-early-retirement' },
-	{ 'MunifTanjim/nui.nvim', opt = true },
-	{ 'stevearc/oil.nvim', opt = true },
-	{ 'nvim-neo-tree/neo-tree.nvim', opt = true },
+	{ src = 'https://github.com/nvim-lua/plenary.nvim' },
+	{ src = 'https://github.com/chrisgrieser/nvim-early-retirement' },
+	{ src = 'https://github.com/MunifTanjim/nui.nvim' },
+	{ src = 'https://github.com/stevearc/oil.nvim' },
+	{ src = 'https://github.com/nvim-neo-tree/neo-tree.nvim' },
 }
 
 function M.load()

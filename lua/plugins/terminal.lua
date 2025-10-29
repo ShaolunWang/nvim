@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'nvzone/floaterm', opt = true },
+	{ src = 'https://github.com/akinsho/toggleterm.nvim' },
 }
 function M.load()
 	require('lze').load({

@@ -1,9 +1,9 @@
 local M = {}
 M.plugins = {
 
-	{ 'OXY2DEV/markview.nvim', opt = true },
-	{ 'jbyuki/venn.nvim', opt = true },
-	{ 'wurli/contextindent.nvim', opt = true },
+	{ src = 'https://github.com/OXY2DEV/markview.nvim' },
+	{ src = 'https://github.com/jbyuki/venn.nvim' },
+	{ src = 'https://github.com/wurli/contextindent.nvim' },
 }
 function M.load()
 	require('lze').load({

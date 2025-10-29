@@ -1,6 +1,6 @@
 local M = {}
 M.plugins = {
-	{ 'nvim-mini/mini.nvim', branch = 'main' },
+	{ src = 'https://github.com/nvim-mini/mini.nvim', version = 'main' },
 }
 
 function M.load()
