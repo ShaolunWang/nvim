@@ -84,5 +84,5 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 end, {})
 
 vim.api.nvim_create_user_command('UpdatePlugins', function()
-		vim.pack.update()
+	vim.pack.update()
 end, {})

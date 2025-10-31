@@ -3,7 +3,8 @@ function M.setup()
 	require('lualine').setup({
 		options = {
 			theme = 'auto',
-			section_separators = { left = '', right = '' },
+
+			section_separators = { left = '', right = '' },
 			component_separators = { left = '', right = '' },
 
 			globalstatus = true, -- enable global statusline (have a single statusline

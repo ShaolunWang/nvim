@@ -21,6 +21,7 @@ function M.load()
 			after = function()
 				require('justice').setup({})
 			end,
+			cmd = { 'Justice' },
 		},
 		{
 			'nvim-project-marks',
@@ -198,7 +199,7 @@ function M.load()
 			after = function()
 				require('gitsigns').setup()
 			end,
-			--			cmd = { 'G' },
+			cmd = { 'Gitsigns' },
 		},
 		{
 			'any-jump.vim',

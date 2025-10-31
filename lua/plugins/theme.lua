@@ -23,25 +23,6 @@ function M.load()
 			colorscheme = { 'ayu', 'ayu-light', 'ayu-mirage', 'ayu-dark' },
 		},
 		{
-			'onedarkpro',
-			colorscheme = { 'onedark', 'onelight', 'onedark_dark', 'onedark_vivid' },
-		},
-		{
-			'jellybeans',
-			after = function()
-				require('jellybeans').setup()
-			end,
-			colorscheme = {
-				'jellybeans',
-				'jellybeans-light',
-				'jellybeans-default',
-				'jellybeans-mono',
-				'jellybeans-mono-light',
-				'jellybeans-muted',
-				'jellybeans-muted-light',
-			},
-		},
-		{
 			'catppuccin',
 			colorscheme = { 'catppuccin', 'catppuccin-latte', 'catppuccin-frappe', 'catppuccin-mocha' },
 		},
@@ -67,6 +48,7 @@ function M.load()
 			after = function()
 				require('theme.line').setup()
 			end,
+			lazy = false,
 		},
 	})
 end

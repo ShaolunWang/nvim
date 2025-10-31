@@ -14,7 +14,6 @@ function M.load()
 		},
 		{
 			'pickme.nvim',
-			on_require = { 'pickme' },
 			cmd = { 'PickMe' },
 			after = function()
 				require('pickme').setup({

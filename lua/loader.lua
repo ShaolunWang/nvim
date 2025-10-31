@@ -1,7 +1,9 @@
-local paq_plugins = {
+local paq_plugins = {}
+
+vim.pack.add({
 	{ src = 'https://github.com/BirdeeHub/lze' },
-}
-vim.pack.add({ { src = 'https://github.com/BirdeeHub/lze' } })
+	{ src = 'https://github.com/BirdeeHub/lzextras' },
+})
 
 local function merge(a, b)
 	local result = { unpack(a) }

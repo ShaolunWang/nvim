@@ -8,10 +8,7 @@ function M.load()
 		{ 'nvim-web-devicons', enabled = false, optional = true },
 		{
 			'mini.nvim',
-			-- event = 'BufReadPost',
-			-- on_require = { 'mini.pick' },
-			-- cmd = { 'Pick' },
-			lazy = false,
+			event = 'BufReadPost',
 			after = function()
 				require('mini.icons').setup()
 				require('mini.icons').mock_nvim_web_devicons()

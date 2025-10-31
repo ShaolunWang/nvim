@@ -76,6 +76,7 @@ function M.load()
 			after = function()
 				require('fidget').setup()
 			end,
+			event = { 'BufReadPost' },
 		},
 	})
 end

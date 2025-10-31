@@ -1,19 +1,11 @@
 local M = {}
 
 M.plugins = {
-	{
-		src = 'https://github.com/kevinhwang91/nvim-fundo',
-		-- data = {
-		-- 	build = function()
-		-- 		require('fundo').install()
-		-- 	end,
-		-- },
-	},
+	{ src = 'https://github.com/kevinhwang91/nvim-fundo' },
 	{
 		src = 'https://github.com/kazhala/close-buffers.nvim',
 		name = 'close-buffers',
 	},
-
 	{
 		src = 'https://github.com/chrisgrieser/nvim-early-retirement',
 		name = 'early-retirement',
@@ -34,7 +26,6 @@ function M.load()
 				require('close_buffers').setup({})
 			end,
 			cmd = { 'BDelete', 'BWipeout' },
-			on_require = { 'close_buffers' },
 			keys = { '<leader><leader>' },
 		},
 		{
@@ -223,7 +214,6 @@ function M.load()
 		},
 		{
 			'grug-far.nvim',
-			on_require = { 'grug-far' },
 			after = function()
 				require('grug-far').setup({})
 			end,
