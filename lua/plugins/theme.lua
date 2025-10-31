@@ -29,13 +29,21 @@ function M.load()
 		{
 			'jellybeans',
 			after = function()
-				require('jellybeans').setup({})
+				require('jellybeans').setup()
 			end,
-			colorscheme = 'jellybeans',
+			colorscheme = {
+				'jellybeans',
+				'jellybeans-light',
+				'jellybeans-default',
+				'jellybeans-mono',
+				'jellybeans-mono-light',
+				'jellybeans-muted',
+				'jellybeans-muted-light',
+			},
 		},
 		{
 			'catppuccin',
-			colorscheme = 'catppuccin',
+			colorscheme = { 'catppuccin', 'catppuccin-latte', 'catppuccin-frappe', 'catppuccin-mocha' },
 		},
 		{
 			'vscode.nvim',

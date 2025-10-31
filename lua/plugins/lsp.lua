@@ -2,14 +2,6 @@ M = {}
 M.plugins = {}
 vim.pack.add({ { src = 'https://github.com/neovim/nvim-lspconfig' } })
 function M.load()
-	--	vim.keymap.del('n', 'grn')
-	--vim.keymap.del('n', 'gra')
-	--vim.keymap.del('n', 'grr')
-	--vim.keymap.del('n', 'gri')
-	--vim.keymap.del('n', 'grt')
-	--vim.keymap.del('n', 'gO')
-
-	--"an" and "in" are mapped in Visual mode to outer and inner incremental selections, respectively, using vim.lsp.buf.selection_range()
 	vim.lsp.log.set_level(vim.log.levels.ERROR)
 	vim.o.updatetime = 1
 	vim.cmd([[
@@ -33,111 +25,12 @@ function M.load()
 		handlers = utils.lsp_handlers,
 		capabilities = c,
 	})
-
-	vim.lsp.config('basedpyright', {
-		filetypes = { 'python' },
-		settings = {
-			basedpyright = {
-				analysis = {
-					diagnosticMode = 'openFilesOnly',
-				},
-			},
-		},
-	})
-	vim.lsp.config('clangd', {
-		filetypes = { 'c', 'h', 'cpp', 'hpp' },
-
-		on_attach = lsp_keymap.on_attach,
-		handlers = utils.lsp_handlers,
-		capabilities = c,
-		init_options = {
-			usePlaceholders = true,
-			completeUnimported = true,
-			clangdFileStatus = true,
-		},
-		cmd = {
-			'clangd',
-			'--background-index',
-			'--clang-tidy',
-			'--header-insertion=never',
-			'--completion-style=detailed',
-			'--function-arg-placeholders',
-			'--fallback-style=llvm',
-		},
-	})
-	vim.lsp.config('lua_ls', {
-		on_init = function(client)
-			if client.workspace_folders then
-				local path = client.workspace_folders[1].name
-				if
-					path ~= vim.fn.stdpath('config')
-					and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
-				then
-					return
-				end
-			end
-
-			client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-				runtime = {
-					-- Tell the language server which version of Lua you're using (most
-					-- likely LuaJIT in the case of Neovim)
-					version = 'LuaJIT',
-					-- Tell the language server how to find Lua modules same way as Neovim
-					-- (see `:h lua-module-load`)
-					path = {
-						'lua/?.lua',
-						'lua/?/init.lua',
-					},
-				},
-				-- Make the server aware of Neovim runtime files
-				workspace = {
-					checkThirdParty = false,
-					library = {
-						vim.env.VIMRUNTIME,
-						-- Depending on the usage, you might want to add additional paths
-						-- here.
-						-- '${3rd}/luv/library'
-						-- '${3rd}/busted/library'
-					},
-					-- Or pull in all of 'runtimepath'.
-					-- NOTE: this is a lot slower and will cause issues when working on
-					-- your own configuration.
-					-- See https://github.com/neovim/nvim-lspconfig/issues/3189
-					-- library = {
-					--   vim.api.nvim_get_runtime_file('', true),
-					-- }
-				},
-			})
-		end,
-		settings = {
-			Lua = {},
-		},
-	})
-	vim.lsp.config('tinymist', {
-		filetypes = { 'typst' },
-		settings = {
-			formatterMode = 'typstyle',
-			exportPdf = 'onType',
-			semanticTokens = 'disable',
-		},
-	})
-	vim.lsp.config('roslyn', {
-		settings = {
-			['csharp|inlay_hints'] = {
-				csharp_enable_inlay_hints_for_implicit_object_creation = true,
-				csharp_enable_inlay_hints_for_implicit_variable_types = true,
-			},
-			['csharp|code_lens'] = {
-				dotnet_enable_references_code_lens = true,
-			},
-		},
-	})
-
 	vim.lsp.enable({
 		'lua_ls',
 		'clangd',
 		'tinymist',
 		'basedpyright',
+		'sourcekit',
 		'roslyn',
 	})
 end

@@ -1,6 +1,7 @@
---vim.o.showtabline = 2
 vim.g.termguicolors = true
-vim.cmd('colorscheme tokyodark')
+--vim.cmd('colorscheme tokyodark')
+vim.cmd('colorscheme catppuccin')
+vim.o.background = 'light'
 
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },
