@@ -2,6 +2,7 @@ local M = {}
 M.plugins = {
 	{ src = 'https://github.com/nanotee/zoxide.vim' },
 	{ src = 'https://github.com/2KAbhishek/pickme.nvim' },
+	{ src = 'https://github.com/ahkohd/context.nvim' },
 }
 function M.load()
 	require('lze').load({
@@ -20,6 +21,12 @@ function M.load()
 					pick_provider = 'snacks',
 					add_default_keybindings = false,
 				})
+			end,
+		},
+		{
+			'context.nvim',
+			after = function()
+				require('context').setup()
 			end,
 		},
 	})

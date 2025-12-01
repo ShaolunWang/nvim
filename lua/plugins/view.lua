@@ -1,10 +1,11 @@
 local M = {}
 M.plugins = {
-	{ src = 'https://github.com/folke/todo-comments.nvim', data = { opt = true } },
-	{ src = 'https://github.com/stevearc/quicker.nvim', data = { opt = true } },
+	{ src = 'https://github.com/folke/todo-comments.nvim' },
+	{ src = 'https://github.com/stevearc/quicker.nvim' },
 	{ src = 'https://github.com/j-hui/fidget.nvim' },
-	{ src = 'https://github.com/tzachar/highlight-undo.nvim', data = { opt = true } },
-	{ src = 'https://github.com/sindrets/winshift.nvim', data = { opt = true } },
+	{ src = 'https://github.com/tzachar/highlight-undo.nvim' },
+	{ src = 'https://github.com/sindrets/winshift.nvim' },
+	{ src = 'https://github.com/krissen/output-panel.nvim' },
 }
 function M.load()
 	require('lze').load({
@@ -77,6 +78,25 @@ function M.load()
 				require('fidget').setup()
 			end,
 			event = { 'BufReadPost' },
+		},
+		{
+			'output-panel.nvim',
+			after = function()
+				require('output-panel').setup({
+					profiles = {
+						overseer = {
+							enabled = false,
+							notifications = { title = 'Overseer' },
+							window_title = 'Overseer',
+						},
+						vimtex = {
+							enabled = true,
+						},
+					},
+				})
+			end,
+			keys = { '<leader>rr', '<leader>rk', '<leader>rl' },
+			on_require = { 'output-panel' },
 		},
 	})
 end

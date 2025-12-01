@@ -24,10 +24,10 @@ vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 -- grapple
 
 vim.keymap.set('n', '<leader>ff', function()
-	vim.cmd([[PickMe files]])
+	vim.cmd([[TvFiles]])
 end, { desc = 'Picker: find files' })
 vim.keymap.set('n', '<leader>fg', function()
-	Snacks.picker.grep()
+	vim.cmd([[TvText]])
 end, { desc = 'Picker: live grep' })
 vim.keymap.set('n', '<leader>fo', function()
 	vim.cmd([[PickMe oldfiles]])
@@ -44,6 +44,9 @@ end, { desc = 'Picker: lsp symbols' })
 vim.keymap.set('n', '<leader>fb', function()
 	Snacks.picker.buffers({ layout = { preset = 'vscode', preview = 'main' } })
 end, { desc = 'Picker: buffers' })
+vim.keymap.set('n', '<leader>fc', function()
+	require('context').pick()
+end, { desc = 'Picker: context' })
 
 --
 -- tabline
@@ -127,3 +130,20 @@ vim.keymap.set({ 'n' }, '\\s', ':ISwapNode<cr>', { desc = 'swap cursor node with
 vim.keymap.set({ 'n' }, ',x', function()
 	Snacks.bufdelete()
 end, { desc = 'Delete Buffer' })
+-- output-panel
+--
+vim.keymap.set({ 'n' }, '<leader>rr', function()
+	vim.ui.input({ prompt = 'Enter command: ' }, function(input)
+		if input == nil or input == '' then
+			return -- user cancelled
+		end
+		require('output-panel').run({ cmd = input })
+	end)
+end, { desc = 'run something' })
+
+vim.keymap.set({ 'n' }, '<leader>rk', function()
+	require('output-panel').toggle()
+end, { desc = 'toggle output panel' })
+vim.keymap.set({ 'n' }, '<leader>rl', function()
+	require('output-panel').toggle_focus()
+end, { desc = 'focus output panel' })

@@ -34,6 +34,9 @@ function M.load()
 		},
 		{
 			'luasnip-latex-snippets.nvim',
+			after = function()
+				require('luasnip-latex-snippets')
+			end,
 			-- vimtex isn't required if using treesitter
 			-- build = 'make install_jsregexp',
 			on_require = { 'luasnip' },

@@ -57,6 +57,20 @@ function M.load()
 						args = {},
 					},
 				}
+				dap.configurations.c = {
+					{
+						name = 'Launch',
+						type = 'lldb',
+						request = 'launch',
+						initialize_timeout_sec = 10,
+						program = function()
+							return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+						end,
+						cwd = '${workspaceFolder}',
+						stopOnEntry = false,
+						args = {},
+					},
+				}
 			end,
 		},
 		{
@@ -65,7 +79,7 @@ function M.load()
 				require('dap-view').setup({
 					winbar = {
 						default_section = 'scopes',
-							controls = { enabled = true },
+						controls = { enabled = true },
 					},
 					windows = { position = 'right' },
 				})

@@ -1,5 +1,7 @@
 M = {}
+M.plugins = {}
 vim.pack.add({ { src = 'https://github.com/neovim/nvim-lspconfig' } })
+
 function M.load()
 	require('lze').load({
 		{

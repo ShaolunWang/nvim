@@ -156,8 +156,9 @@ function M.load()
 
 		{
 			'vimtex',
-			ft = { 'tex' },
-			after = function()
+			lazy = false,
+			-- ft = { 'latex' },
+			before = function()
 				-- VimTeX configuration goes here, e.g.
 				--			vim.g.vimtex_view_general_viewer = 'okular'
 				--			vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'

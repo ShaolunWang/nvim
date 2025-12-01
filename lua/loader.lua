@@ -8,26 +8,18 @@ vim.pack.add({
 -- reading files from $configpath/lua/plugins/*
 local config_files_table = vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/plugins', [[v:val =~ '\.lua$']])
 
---  merging tables for plugins from each files
-local function merge(a, b)
-	if a == nil then
-		return b
-	elseif b == nil then
-		return a
-	end
-	local result = { unpack(a) }
-	table.move(b, 1, #b, #result + 1, result)
-	return result
-end
-
 function M.get_all_plugins()
-	for _, file in ipairs(config_files_table) do
-		-- TODO: cache this plugins_table?
-		local plugins_table = require('plugins.' .. file:gsub('%.lua$', '')).plugins
-		M.plugins = merge(M.plugins, plugins_table)
-	end
+	local list = {}
+    for _, file in ipairs(config_files_table) do
+    local ok, module = pcall(require, "plugins." .. file:gsub("%.lua$", ""))
+	if module.plugins ~= nil then
+		for _, p in ipairs(module.plugins) do
+			table.insert(list, vim.deepcopy(p))
+		end
+    end
+	M.plugins = list
 end
--- end merging tables
+end
 
 function M.load_all()
 	for _, file in ipairs(config_files_table) do

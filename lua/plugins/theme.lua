@@ -2,6 +2,7 @@ local M = {}
 M.plugins = {
 	{ src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
 	{ src = 'https://github.com/tiagovla/scope.nvim' },
+	{ src = 'https://github.com/thesimonho/kanagawa-paper.nvim', name = 'kanagawa-paper' },
 	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
 	{ src = 'https://github.com/tiagovla/tokyodark.nvim', name = 'tokyodark' },
 	{ src = 'https://github.com/olimorris/onedarkpro.nvim', name = 'onedarkpro' },
@@ -26,13 +27,10 @@ function M.load()
 			colorscheme = { 'catppuccin', 'catppuccin-latte', 'catppuccin-frappe', 'catppuccin-mocha' },
 		},
 		{
-			'vscode.nvim',
-			colorscheme = 'vscode',
-		},
-		{
 			'tokyodark',
 			colorscheme = 'tokyodark',
 		},
+		{ 'kanagawa-paper', colorscheme = 'kanagawa-paper' },
 	})
 	require('lze').load({
 		{
