@@ -2,16 +2,11 @@ local M = {}
 M.plugins = {
 	{ src = 'https://github.com/stevearc/overseer.nvim' },
 	{ src = 'https://github.com/OXY2DEV/helpview.nvim' },
-	{ src = 'https://github.com/NeogitOrg/neogit' },
 	{ src = 'https://github.com/folke/which-key.nvim' },
 	{ src = 'https://github.com/chrisgrieser/nvim-justice' },
 	{ src = 'https://github.com/BartSte/nvim-project-marks' },
 	{ src = 'https://github.com/pechorin/any-jump.vim' },
 	{ src = 'https://github.com/folke/snacks.nvim' },
-	{ src = 'https://github.com/sindrets/diffview.nvim' },
-	{ src = 'https://github.com/FabijanZulj/blame.nvim' },
-	{ src = 'https://github.com/akinsho/git-conflict.nvim' },
-	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
 }
 
 function M.load()
@@ -83,50 +78,7 @@ function M.load()
 				require('helpview').setup()
 			end,
 		},
-		{
-			'blame.nvim',
-			after = function()
-				require('blame').setup({
-					blame_options = { '-w' },
-				})
-			end,
-			cmd = { 'BlameToggle' },
-		},
-		{
-			'git-conflict.nvim',
-			after = function()
-				require('git-conflict').setup({
-					default_mappings = false,
-				})
-			end,
-			cmd = {
-				'GitConflictListQf',
-				'GitConflictRefresh',
-				'GitConflictChooseBase',
-				'GitConflictChooseBoth',
-				'GitConflictChooseNone',
-				'GitConflictChooseOurs',
-				'GitConflictChooseTheirs',
-				'GitConflictNextConflict',
-				'GitConflictPrevConflict',
-			},
-		},
-		{
-			'neogit',
-			cmd = 'Neogit',
-			-- plenary should already be loaded here, no need to load it again
-			after = function()
-				require('neogit').setup({
-					graph_style = 'unicode',
-					auto_refresh = true,
-					integrations = { diffview = true },
-					kind = 'tab',
-					use_magit_keybindings = true,
-					disable_builtin_notifications = false,
-				})
-			end,
-		},
-		{
+				{
 			'which-key.nvim',
 			after = function()
 				require('which-key').setup({
@@ -136,11 +88,7 @@ function M.load()
 				})
 			end,
 		},
-		{
-			'diffview.nvim',
-			cmd = { 'DiffviewOpen' },
-		},
-		{
+				{
 			'snacks.nvim',
 			priority = 1000,
 			lazy = false,
@@ -195,13 +143,7 @@ function M.load()
 				},
 			},
 		},
-		{
-			'gitsigns.nvim',
-			after = function()
-				require('gitsigns').setup()
-			end,
-			cmd = { 'Gitsigns' },
-		},
+		
 		{
 			'any-jump.vim',
 			after = function()

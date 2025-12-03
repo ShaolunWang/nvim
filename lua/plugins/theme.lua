@@ -30,7 +30,10 @@ function M.load()
 			'tokyodark',
 			colorscheme = 'tokyodark',
 		},
-		{ 'kanagawa-paper', colorscheme = 'kanagawa-paper' },
+		{
+			'kanagawa-paper',
+			colorscheme = { 'kanagawa-paper', 'kanagawa-paper-canvas', 'kanagawa-paper-ink' },
+		},
 	})
 	require('lze').load({
 		{
