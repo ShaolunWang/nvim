@@ -5,7 +5,6 @@ M.plugins = {
 	{ src = 'https://github.com/akinsho/git-conflict.nvim' },
 	{ src = 'https://github.com/FabijanZulj/blame.nvim' },
 	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
-	{ src = 'https://github.com/NicolasGB/jj.nvim' },
 }
 function M.load()
 	require('lze').load({
@@ -62,13 +61,6 @@ function M.load()
 				require('gitsigns').setup()
 			end,
 			cmd = { 'Gitsigns' },
-		},
-		{
-			'jj.nvim',
-			after = function()
-				require('jj').setup()
-			end,
-			cmd = { 'J' },
 		},
 	})
 end

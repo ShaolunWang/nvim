@@ -2,11 +2,10 @@ local M = {}
 M.plugins = {
 	{ src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
 	{ src = 'https://github.com/tiagovla/scope.nvim' },
-	{ src = 'https://github.com/thesimonho/kanagawa-paper.nvim', name = 'kanagawa-paper' },
-	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
+	{ src = 'https://github.com/sschleemilch/slimline.nvim' },
 	{ src = 'https://github.com/tiagovla/tokyodark.nvim', name = 'tokyodark' },
-	{ src = 'https://github.com/olimorris/onedarkpro.nvim', name = 'onedarkpro' },
 	{ src = 'https://github.com/Shatur/neovim-ayu', name = 'ayu' },
+	{ src = 'https://github.com/navarasu/onedark.nvim', name = 'onedark' },
 }
 
 function M.load()
@@ -15,9 +14,9 @@ function M.load()
 			'ayu',
 			after = function()
 				require('ayu').setup({
-					mirage = true, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
-					terminal = true, -- Set to `false` to let terminal manage its own colors.
-					overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
+					mirage = true,
+					terminal = true,
+					overrides = {},
 				})
 			end,
 			colorscheme = { 'ayu', 'ayu-light', 'ayu-mirage', 'ayu-dark' },
@@ -31,8 +30,16 @@ function M.load()
 			colorscheme = 'tokyodark',
 		},
 		{
-			'kanagawa-paper',
-			colorscheme = { 'kanagawa-paper', 'kanagawa-paper-canvas', 'kanagawa-paper-ink' },
+			'onedark',
+			after = function()
+				require('onedark').setup({
+					-- Main options --
+					style = 'deep',
+					transparent = false,
+					toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' },
+				})
+			end,
+			colorscheme = { 'onedark' },
 		},
 	})
 	require('lze').load({
@@ -44,9 +51,29 @@ function M.load()
 			lazy = false,
 		},
 		{
-			'lualine.nvim',
+			'slimline.nvim',
 			after = function()
-				require('theme.line').setup()
+				require('slimline').setup({
+					style = 'fg',
+					bold = true,
+					configs = {
+						path = {
+							hl = {
+								primary = 'Label',
+							},
+						},
+						git = {
+							hl = {
+								primary = 'Function',
+							},
+						},
+						filetype_lsp = {
+							hl = {
+								primary = 'String',
+							},
+						},
+					},
+				})
 			end,
 			lazy = false,
 		},

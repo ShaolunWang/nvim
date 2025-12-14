@@ -24,10 +24,10 @@ vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 -- grapple
 
 vim.keymap.set('n', '<leader>ff', function()
-	vim.cmd([[TvFiles]])
+	vim.cmd([[Tv files]])
 end, { desc = 'Picker: find files' })
 vim.keymap.set('n', '<leader>fg', function()
-	vim.cmd([[TvText]])
+	vim.cmd([[Tv text]])
 end, { desc = 'Picker: live grep' })
 vim.keymap.set('n', '<leader>fo', function()
 	vim.cmd([[PickMe oldfiles]])
@@ -147,3 +147,29 @@ end, { desc = 'toggle output panel' })
 vim.keymap.set({ 'n' }, '<leader>rl', function()
 	require('output-panel').toggle_focus()
 end, { desc = 'focus output panel' })
+vim.keymap.set({ 'n' }, '<leader>j', function()
+	vim.cmd([[Justice]])
+end, { desc = 'just file runner' })
+
+-- faster macro
+vim.cmd([[function! <SID>ToggleMacro(...)
+  if get(g:, '_macro', {}) ==# {}
+    let g:_macro = {'state': 1}
+    let g:_macro.eventignore = &eventignore
+    set eventignore=all
+  else
+    let g:_macro.state = 0
+    let &eventignore = g:_macro.eventignore
+  endif
+
+  if g:_macro.state
+    echo 'Macro boost: On'
+  else
+    echo 'Macro boost: Off'
+    unlet g:_macro
+  endif
+endfunction
+
+nnoremap ,m  :call <SID>ToggleMacro()<CR>
+command! -nargs=? ToggleMacro call <SID>ToggleMacro(<f-args>)
+]])

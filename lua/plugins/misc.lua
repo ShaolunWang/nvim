@@ -51,19 +51,19 @@ function M.load()
 				end)
 				-- Add an environment variable for all go tasks in a specific dir
 				local cmd = {
-					'OverseerOpen',
-					'OverseerClose',
-					'OverseerToggle',
-					'OverseerSaveBundle',
-					'OverseerLoadBundle',
-					'OverseerDeleteBundle',
-					'OverseerRunCmd',
-					-- 'OverseerRun',
-					'OverseerInfo',
-					'OverseerBuild',
-					'OverseerQuickAction',
-					'OverseerTaskAction',
-					'OverseerClearCache',
+					-- 'OverseerOpen',
+					-- 'OverseerClose',
+					-- 'OverseerToggle',
+					-- 'OverseerSaveBundle',
+					-- 'OverseerLoadBundle',
+					-- 'OverseerDeleteBundle',
+					-- 'OverseerRunCmd',
+					-- -- 'OverseerRun',
+					-- 'OverseerInfo',
+					-- 'OverseerBuild',
+					-- 'OverseerQuickAction',
+					-- 'OverseerTaskAction',
+					-- 'OverseerClearCache',
 				}
 				for _, iter in pairs(cmd) do
 					vim.api.nvim_del_user_command(iter)
@@ -78,7 +78,7 @@ function M.load()
 				require('helpview').setup()
 			end,
 		},
-				{
+		{
 			'which-key.nvim',
 			after = function()
 				require('which-key').setup({
@@ -88,7 +88,7 @@ function M.load()
 				})
 			end,
 		},
-				{
+		{
 			'snacks.nvim',
 			priority = 1000,
 			lazy = false,
@@ -143,7 +143,7 @@ function M.load()
 				},
 			},
 		},
-		
+
 		{
 			'any-jump.vim',
 			after = function()

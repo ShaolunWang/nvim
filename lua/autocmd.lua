@@ -157,3 +157,9 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 		vim.keymap.set({ 'n' }, '<leader>a', ':DapContinue<cr>', { desc = 'Continue' })
 	end,
 })
+vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+	pattern = '*',
+	callback = function()
+		require('diagnostics').setup()
+	end,
+})

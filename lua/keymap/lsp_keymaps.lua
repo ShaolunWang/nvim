@@ -23,7 +23,7 @@ function M.on_attach(client, bufnr)
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, add_desc(bufopts, 'Goto Decl'))
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, add_desc(bufopts, 'Goto Def'))
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, add_desc(bufopts, 'Show Impl'))
-	vim.keymap.set('n', 'gK', vim.diagnostic.open_float, add_desc(bufopts, 'Line Diag'))
+	-- vim.keymap.set('n', 'gK', vim.diagnostic.open_float, add_desc(bufopts, 'Line Diag'))
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, add_desc(bufopts, 'Show References'))
 end
 
