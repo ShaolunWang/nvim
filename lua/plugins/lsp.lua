@@ -6,7 +6,7 @@ function M.load()
 	require('lze').load({
 		{
 			'nvim-lspconfig',
-			ft = { 'lua', 'cpp', 'c', 'h', 'typst', 'swift', 'csharp', 'hpp', 'python', 'gleam' },
+			ft = { 'lua', 'cpp', 'c', 'h', 'typst', 'swift', 'csharp', 'hpp', 'python', 'gleam', 'zig' },
 			before = function()
 				vim.lsp.log.set_level(vim.log.levels.ERROR)
 				vim.o.updatetime = 1
@@ -39,6 +39,7 @@ function M.load()
 					'basedpyright',
 					'sourcekit',
 					'roslyn',
+					'zls',
 				})
 			end,
 		},

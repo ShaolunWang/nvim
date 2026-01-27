@@ -14,6 +14,15 @@ function M.load()
 			after = function()
 				require('lze').load({ 'nvim-treesitter-textobjects' })
 				local opts = {
+					incremental_selection = {
+						enable = true,
+						keymaps = {
+							init_selection = ',a',
+							node_incremental = ',a',
+							scope_incremental = ',A',
+							node_decremental = ',d',
+						},
+					},
 					ensure_installed = {
 						'c',
 						'cpp',

@@ -99,11 +99,3 @@ vim.api.nvim_create_user_command('GetPlugins', function()
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, plugin_names)
 	vim.api.nvim_set_current_buf(buf)
 end, {})
-
--- vim.api.nvim_create_user_command('InstallPlugins', function()
--- 	local plugin_names = {}
--- 	for _, v in ipairs(vim.pack.get()) do
--- 		table.insert(plugin_names, v.spec.name)
--- 	end
--- 	vim.pack.add(plugin_names)
--- end, {})

@@ -4,22 +4,19 @@ M.plugins = {
 	{ src = 'https://github.com/tiagovla/scope.nvim' },
 	{ src = 'https://github.com/sschleemilch/slimline.nvim' },
 	{ src = 'https://github.com/tiagovla/tokyodark.nvim', name = 'tokyodark' },
-	{ src = 'https://github.com/Shatur/neovim-ayu', name = 'ayu' },
+	{ src = 'https://github.com/sainnhe/edge', name = 'edge' },
 	{ src = 'https://github.com/navarasu/onedark.nvim', name = 'onedark' },
+	{ src = 'https://github.com/folke/tokyonight.nvim', name = 'tokyonight' },
 }
 
 function M.load()
 	require('lze').load({
 		{
-			'ayu',
+			'tokyonight',
+			colorscheme = 'tokyonight',
 			after = function()
-				require('ayu').setup({
-					mirage = true,
-					terminal = true,
-					overrides = {},
-				})
+				require('tokyonight').setup()
 			end,
-			colorscheme = { 'ayu', 'ayu-light', 'ayu-mirage', 'ayu-dark' },
 		},
 		{
 			'catppuccin',
@@ -41,6 +38,7 @@ function M.load()
 			end,
 			colorscheme = { 'onedark' },
 		},
+		{ 'edge', colorscheme = 'edge' },
 	})
 	require('lze').load({
 		{
