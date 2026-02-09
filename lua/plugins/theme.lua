@@ -7,10 +7,14 @@ M.plugins = {
 	{ src = 'https://github.com/sainnhe/edge', name = 'edge' },
 	{ src = 'https://github.com/navarasu/onedark.nvim', name = 'onedark' },
 	{ src = 'https://github.com/folke/tokyonight.nvim', name = 'tokyonight' },
+	{ src= 'https://github.com/Mofiqul/vscode.nvim', name = 'vscode' },
+	{ src = 'https://github.com/pappasam/papercolor-theme-slim', name = 'papercolor' },
 }
 
 function M.load()
 	require('lze').load({
+		{ 'vscode', colorscheme = { 'vscode' } },
+		{ 'papercolor', colorscheme = { 'PaperColorSlim', 'PaperColorSlimLight' } },
 		{
 			'tokyonight',
 			colorscheme = 'tokyonight',

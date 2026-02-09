@@ -75,7 +75,9 @@ function M.load()
 		{
 			'fidget.nvim',
 			after = function()
-				require('fidget').setup()
+				local fidget = require('fidget')
+				fidget.setup({})
+				vim.notify = fidget.notify
 			end,
 			event = { 'BufReadPost' },
 		},

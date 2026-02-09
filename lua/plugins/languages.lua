@@ -3,7 +3,6 @@ local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
 	{ src = 'https://github.com/vlime/vlime' },
-	{ src = 'https://github.com/apyra/nvim-unity-sync' },
 	{ src = 'https://github.com/windwp/nvim-ts-autotag' },
 	{ src = 'https://github.com/folke/lazydev.nvim' },
 	{ src = 'https://github.com/julienvincent/nvim-paredit' },
@@ -14,7 +13,6 @@ M.plugins = {
 	{ src = 'https://github.com/fei6409/log-highlight.nvim' },
 	{ src = 'https://github.com/Bekaboo/dropbar.nvim' },
 	{ src = 'https://github.com/lervag/vimtex' },
-	{ src = 'https://github.com/pmizio/typescript-tools.nvim' },
 	{ src = 'https://github.com/seblyng/roslyn.nvim' },
 }
 
@@ -224,23 +222,6 @@ function M.load()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			end,
-		},
-		{
-			'typescript-tools.nvim',
-			after = function()
-				require('typescript-tools').setup({
-					on_attach = lsp_keymap.on_attach,
-					handlers = utils.lsp_handlers,
-				})
-			end,
-			ft = { 'typescript', 'typescriptreact', 'typescript.tsx' },
-		},
-		{
-			'nvim-unity-sync',
-			after = function()
-				require('unity.plugin').setup()
-			end,
-			ft = { 'cs' },
 		},
 		{
 			'roslyn.nvim',

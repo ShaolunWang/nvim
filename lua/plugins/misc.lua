@@ -7,7 +7,7 @@ M.plugins = {
 	{ src = 'https://github.com/BartSte/nvim-project-marks' },
 	{ src = 'https://github.com/pechorin/any-jump.vim' },
 	{ src = 'https://github.com/folke/snacks.nvim' },
-	{ src = 'http://github.com/mistweaverco/bafa.nvim' },
+	{ src = 'https://github.com/serhez/bento.nvim' },
 }
 
 function M.load()
@@ -155,24 +155,12 @@ function M.load()
 			cmd = { 'AnyJump', 'AnyJumpArg', 'AnyJumpVisual', 'AnyJumpBack', 'AnyJumpLastResults' },
 		},
 		{
-			'bafa.nvim',
+			'bento.nvim',
 			after = function()
-				require('bafa').setup({
-					diagnostics = false,
-					ui = {
-						title = {
-							-- Title of the floating window
-							text = 'Buffers',
-							-- Position of the title: "left", "center", "right"
-							-- See `:h nvim_open_win` for more details
-							pos = 'center',
-						},
-					},
+				require('bento').setup({
+					main_keymap = '<leader>;', -- Main toggle/expand key
 				})
 			end,
-			cmd = { 'B' },
-			keys = { '<leader>fb' },
-			on_require = { 'bafa.ui' },
 		},
 	})
 end

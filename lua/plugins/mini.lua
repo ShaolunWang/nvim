@@ -68,6 +68,14 @@ function M.load()
 				})
 				require('mini.extra').setup()
 			end,
+			colorscheme = {
+				'minicyan',
+				'miniautumn',
+				'minischeme',
+				'minispring',
+				'minisummer',
+				'miniwinter',
+			},
 		},
 	})
 end

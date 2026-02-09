@@ -1,5 +1,5 @@
 vim.g.termguicolors = true
-vim.cmd('colorscheme tokyonight')
+vim.cmd('colorscheme minischeme')
 vim.o.background = 'dark'
 
 local ts_extra_highlights = {

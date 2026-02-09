@@ -6,7 +6,23 @@ function M.load()
 	require('lze').load({
 		{
 			'nvim-lspconfig',
-			ft = { 'lua', 'cpp', 'c', 'h', 'typst', 'swift', 'csharp', 'hpp', 'python', 'gleam', 'zig' },
+			ft = {
+				'lua',
+				'cpp',
+				'c',
+				'h',
+				'typst',
+				'swift',
+				'csharp',
+				'hpp',
+				'python',
+				'gleam',
+				'zig',
+				'javascript',
+				'javascriptreact',
+				'typescript',
+				'typescriptreact',
+			},
 			before = function()
 				vim.lsp.log.set_level(vim.log.levels.ERROR)
 				vim.o.updatetime = 1
@@ -33,6 +49,7 @@ function M.load()
 				})
 				vim.lsp.enable({
 					'lua_ls',
+					'tsp_server',
 					'clangd',
 					'gleam',
 					'tinymist',
