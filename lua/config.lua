@@ -141,3 +141,14 @@ function _G.qftf(info)
 end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+-- simple fidnfunc setup w/ fd
+local filescache = {}
+function _G.FindFiles(arg, _)
+	if #filescache == 0 then
+		filescache = vim.fn.systemlist('fd --type f --follow --hidden --exclude .git')
+	end
+	return #arg == 0 and filescache or vim.fn.matchfuzzy(filescache, arg)
+end
+
+vim.o.findfunc = 'v:lua.FindFiles'
+

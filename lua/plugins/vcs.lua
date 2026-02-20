@@ -60,7 +60,7 @@ function M.load()
 			after = function()
 				require('gitsigns').setup()
 			end,
-			cmd = { 'Gitsigns' },
+			lazy = false,
 		},
 	})
 end

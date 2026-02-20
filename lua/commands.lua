@@ -10,7 +10,6 @@ end, {})
 vim.api.nvim_create_user_command('T', function()
 	vim.cmd([[Neotree toggle]])
 end, {})
-
 vim.api.nvim_create_user_command('Grep', function(params)
 	-- Insert args at the '$*' in the grepprg
 	local overseer = require('overseer')
@@ -83,19 +82,6 @@ vim.api.nvim_create_user_command('OpenPdf', function()
 	end
 end, {})
 
-vim.api.nvim_create_user_command('UpdatePlugins', function()
-	local plugin_names = {}
-	for _, v in ipairs(vim.pack.get()) do
-		table.insert(plugin_names, v.spec.name)
-	end
-	vim.pack.update(plugin_names)
-end, {})
-vim.api.nvim_create_user_command('GetPlugins', function()
-	local plugin_names = {}
-	for _, v in ipairs(vim.pack.get()) do
-		table.insert(plugin_names, v.spec.name)
-	end
-	local buf = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_lines(buf, 0, -1, false, plugin_names)
-	vim.api.nvim_set_current_buf(buf)
+vim.api.nvim_create_user_command('Plugins', function()
+	vim.pack.update(nil)
 end, {})

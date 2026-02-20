@@ -8,6 +8,7 @@ M.plugins = {
 	{ src = 'https://github.com/julienvincent/nvim-paredit' },
 	{ src = 'https://github.com/mrcjkb/rustaceanvim' },
 	{ src = 'https://github.com/p00f/clangd_extensions.nvim' },
+	{ src = 'https://github.com/Olical/conjure' },
 	{ src = 'https://github.com/folke/trouble.nvim' },
 	{ src = 'https://github.com/stevearc/conform.nvim' },
 	{ src = 'https://github.com/fei6409/log-highlight.nvim' },
@@ -34,9 +35,16 @@ function M.load()
 			end,
 		},
 		{
+
+			'conjure',
+			beforeAll = function() end,
+
+			ft = { 'racket', 'clojure', 'fennel', 'python' }, -- etc
+		},
+		{
 			'vlime',
 			after = function()
-				vim.g['vlime_cl_impl'] = 'ccl'
+				vim.g['vlime_cl_impl'] = 'clasp'
 				vim.g['vlime_force_default_keys'] = true
 				vim.g['vlime_leader'] = ';'
 				vim.g['vlime_contribs'] = {
