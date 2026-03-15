@@ -13,6 +13,13 @@ M.plugins = {
 function M.load()
 	require('lze').load({
 		{
+			'nvim.undotree',
+			after =  function ()
+				vim.keymap.set('n', '<leader>u', require('undotree').open)
+			end,
+			keys = {'<leader>u'}
+		},
+		{
 			'nvim-justice',
 			after = function()
 				require('justice').setup({})

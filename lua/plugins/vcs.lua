@@ -21,13 +21,13 @@ function M.load()
 			'git-conflict.nvim',
 			after = function()
 				require('git-conflict').setup({
-					default_mappings = false,
+					default_mappings = true,
+					default_commands = true,
 				})
 			end,
 			cmd = {
 				'GitConflictListQf',
 				'GitConflictRefresh',
-				'GitConflictChooseBase',
 				'GitConflictChooseBoth',
 				'GitConflictChooseNone',
 				'GitConflictChooseOurs',

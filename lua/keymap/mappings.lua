@@ -2,9 +2,9 @@
 -- 	vim.cmd([[Fyler]])
 -- end, { noremap = true, desc = 'float oil' })
 vim.keymap.set('n', '<c-n>', function()
-	-- vim.cmd([[Neotree toggle]])
-	_G.toggle_oil_split()
+	vim.cmd([[Neotree toggle]])
 end, { noremap = true, desc = 'Oil as drawers' })
+
 vim.keymap.set('n', '  ', function()
 	vim.cmd('noh')
 	-- vim.cmd([[lua MiniNotify.clear()]])

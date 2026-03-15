@@ -53,7 +53,7 @@ function M.load()
 					'clangd',
 					'gleam',
 					'tinymist',
-					'basedpyright',
+					'ty',
 					'sourcekit',
 					'roslyn',
 					'zls',

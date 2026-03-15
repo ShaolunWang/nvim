@@ -15,11 +15,30 @@ M.plugins = {
 	{ src = 'https://github.com/Bekaboo/dropbar.nvim' },
 	{ src = 'https://github.com/lervag/vimtex' },
 	{ src = 'https://github.com/seblyng/roslyn.nvim' },
+	{ src = 'https://github.com/scalameta/nvim-metals' },
 }
 
 function M.load()
 	-- we don't need immediate load of any of these
 	require('lze').load({
+		{
+			'nvim-metals',
+
+			ft = { 'scala', 'sbt', 'java' },
+			after = function()
+				local metals_config = require('metals').bare_config()
+				metals_config.on_attach = lsp_keymap.on_attach
+				metals_config.handlers = utils.lsp_handlers
+				local nvim_metals_group = vim.api.nvim_create_augroup('nvim-metals', { clear = true })
+				vim.api.nvim_create_autocmd('FileType', {
+					pattern = { 'scala', 'sbt', 'java' },
+					callback = function()
+						require('metals').initialize_or_attach(metals_config)
+					end,
+					group = nvim_metals_group,
+				})
+			end,
+		},
 		{
 			'nvim-ts-autotag',
 			ft = { 'typescript', 'javascript' },
