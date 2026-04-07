@@ -12,46 +12,39 @@ function M.load()
 			'nvim-treesitter',
 			dep_of = { 'markview.nvim', 'nvim-treesitter' },
 			after = function()
-				require('lze').load({ 'nvim-treesitter-textobjects' })
-				local opts = {
-					incremental_selection = {
-						enable = true,
-						keymaps = {
-							init_selection = ',a',
-							node_incremental = ',a',
-							scope_incremental = ',A',
-							node_decremental = ',d',
-						},
-					},
-					ensure_installed = {
-						'c',
-						'cpp',
-						'lua',
-						'python',
-						'vim',
-						'vimdoc',
-					},
-					highlight = { enable = true },
-					matchup = { enable = true },
-					textobjects = {
-						select = {
-							enable = true,
-							keymaps = {
-								['iv'] = { query = '@parameter.inner', desc = 'inner parameter' },
-							},
-						},
-					},
+				-- require('lze').load({ 'nvim-treesitter-textobjects' })
+				local ensure_installed = {
+					'c',
+					'cpp',
+					'lua',
+					'python',
+					'vim',
+					'vimdoc',
+					'markdown',
+					'markdown_inline',
 				}
-				require('nvim-treesitter.configs').setup(opts)
+				require('nvim-treesitter').setup({
+					install_dir = vim.fn.stdpath('data') .. '/site',
+				})
+				require('nvim-treesitter').install(ensure_installed)
+				-- making windows happy
 				require('nvim-treesitter.install').compilers = { 'gcc' }
 			end,
 			event = { 'BufRead' },
 		},
-		--[[ {
-			'nvim-various-textobjs',
-			event = 'BufReadPre',
-		}, ]]
-		{ 'vim-matchup', dep_of = 'nvim-treesitter' },
+		{
+			'vim-matchup',
+			dep_of = 'nvim-treesitter',
+			after = function()
+				-- modify your configuration vars here
+				vim.g.matchup_treesitter_stopline = 500
+				require('match-up').setup({
+					treesitter = {
+						stopline = 500,
+					},
+				})
+			end,
+		},
 		{
 			'iswap.nvim',
 			cmd = { 'ISwapNode', 'IMove', 'ISwap', 'ISwapWith' },
