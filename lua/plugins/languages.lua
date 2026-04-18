@@ -207,13 +207,15 @@ function M.load()
 				]])
 			end,
 		},
-		{
-			'dropbar.nvim',
-			after = function()
-				require('dropbar').setup({ { general = { enable = false } } })
-			end,
-			events = 'BufReadPost',
-		},
+		-- {
+		-- 	'dropbar.nvim',
+		-- 	after = function()
+		-- 		require('dropbar').setup({
+		-- 			{ general = { enable = false } },
+		-- 		})
+		-- 	end,
+		-- 	events = 'BufReadPost',
+		-- },
 		{
 			'log-highlight.nvim',
 			ft = { 'log' },

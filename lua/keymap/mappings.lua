@@ -128,23 +128,8 @@ vim.keymap.set({ 'n' }, '\\s', ':ISwapNode<cr>', { desc = 'swap cursor node with
 vim.keymap.set({ 'n' }, ',x', function()
 	Snacks.bufdelete()
 end, { desc = 'Delete Buffer' })
--- output-panel
---
-vim.keymap.set({ 'n' }, '<leader>rr', function()
-	vim.ui.input({ prompt = 'Enter command: ' }, function(input)
-		if input == nil or input == '' then
-			return -- user cancelled
-		end
-		require('output-panel').run({ cmd = input })
-	end)
-end, { desc = 'run something' })
 
-vim.keymap.set({ 'n' }, '<leader>rk', function()
-	require('output-panel').toggle()
-end, { desc = 'toggle output panel' })
-vim.keymap.set({ 'n' }, '<leader>rl', function()
-	require('output-panel').toggle_focus()
-end, { desc = 'focus output panel' })
+-- just file runner
 vim.keymap.set({ 'n' }, '<leader>j', function()
 	vim.cmd([[Justice]])
 end, { desc = 'just file runner' })
