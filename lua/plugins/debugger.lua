@@ -60,11 +60,14 @@ function M.load()
 						request = 'launch',
 						initialize_timeout_sec = 10,
 						program = function()
-							return pick_executable(true, { 'build/', 'build_release/' })
+							return pick_executable(true, { 'build/', 'build_release/', 'build_debug/', 'build_thread/' })
 						end,
 						cwd = '${workspaceFolder}',
 						stopOnEntry = false,
-						args = {},
+						args = function()
+							local args_string = vim.fn.input('Arguments: ')
+							return vim.split(args_string, ' ')
+						end,
 					},
 				}
 				dap.configurations.c = {
@@ -78,7 +81,10 @@ function M.load()
 						end,
 						cwd = '${workspaceFolder}',
 						stopOnEntry = false,
-						args = {},
+						args = function()
+							local args_string = vim.fn.input('Arguments: ')
+							return vim.split(args_string, ' ')
+						end,
 					},
 				}
 			end,
@@ -87,11 +93,12 @@ function M.load()
 			'nvim-dap-view',
 			after = function()
 				require('dap-view').setup({
+					virtual_text = { enabled = true },
 					winbar = {
 						default_section = 'scopes',
 						controls = { enabled = true },
 					},
-					windows = { position = 'right' },
+					windows = { position = 'below' },
 				})
 			end,
 			keys = {

@@ -3,7 +3,7 @@ M.plugins = {
 	{ src = 'https://github.com/nvim-lua/plenary.nvim' },
 	{ src = 'https://github.com/chrisgrieser/nvim-early-retirement' },
 	{ src = 'https://github.com/MunifTanjim/nui.nvim' },
-	{ src = 'https://github.com/stevearc/oil.nvim' },
+	{ src = 'https://github.com/barrettruth/canola.nvim' },
 	{ src = 'https://github.com/alexpasmantier/tv.nvim' },
 	{ src = 'https://github.com/nvim-neo-tree/neo-tree.nvim' },
 	{ src = 'https://github.com/refractalize/oil-git-status.nvim' },
@@ -21,7 +21,7 @@ function M.load()
 		},
 		{ 'nui.nvim', on_require = 'nui' },
 		{
-			'oil.nvim',
+			'canola.nvim',
 			cmd = { 'Oil' },
 			on_require = 'oil',
 			beforeAll = function()
@@ -53,39 +53,39 @@ function M.load()
 						['<CR>'] = 'actions.select',
 						-- {
 
-							-- callback = function()
-							-- 	local oil = require('oil')
-							-- 	local entry = oil.get_cursor_entry()
-							--
-							-- 	if entry and entry.type == 'file' then
-							-- 		local dir = oil.get_current_dir()
-							-- 		local filepath = dir .. entry.name
-							--
-							-- 		local target_win = _G.oil_source_win
-							-- 		if not target_win or not vim.api.nvim_win_is_valid(target_win) then
-							-- 			local wins = vim.api.nvim_list_wins()
-							-- 			for _, win in ipairs(wins) do
-							-- 				local buf = vim.api.nvim_win_get_buf(win)
-							-- 				if vim.bo[buf].filetype ~= 'oil' and win ~= _G.oil_win_id then
-							-- 					target_win = win
-							-- 				end
-							-- 			end
-							-- 		end
-							--
-							-- 		if target_win and vim.api.nvim_win_is_valid(target_win) then
-							-- 			vim.api.nvim_set_current_win(target_win)
-							-- 			vim.cmd('edit ' .. vim.fn.fnameescape(filepath))
-							-- 		else
-							-- 			-- Fallback: use default behavior
-							-- 			oil.select()
-							-- 		end
-							-- 	else
-							-- 		-- For directories, use default behavior
-							-- 		oil.select()
-							-- 	end
-							-- end,
-							desc = 'Open in target window',
-							mode = 'n',
+						-- callback = function()
+						-- 	local oil = require('oil')
+						-- 	local entry = oil.get_cursor_entry()
+						--
+						-- 	if entry and entry.type == 'file' then
+						-- 		local dir = oil.get_current_dir()
+						-- 		local filepath = dir .. entry.name
+						--
+						-- 		local target_win = _G.oil_source_win
+						-- 		if not target_win or not vim.api.nvim_win_is_valid(target_win) then
+						-- 			local wins = vim.api.nvim_list_wins()
+						-- 			for _, win in ipairs(wins) do
+						-- 				local buf = vim.api.nvim_win_get_buf(win)
+						-- 				if vim.bo[buf].filetype ~= 'oil' and win ~= _G.oil_win_id then
+						-- 					target_win = win
+						-- 				end
+						-- 			end
+						-- 		end
+						--
+						-- 		if target_win and vim.api.nvim_win_is_valid(target_win) then
+						-- 			vim.api.nvim_set_current_win(target_win)
+						-- 			vim.cmd('edit ' .. vim.fn.fnameescape(filepath))
+						-- 		else
+						-- 			-- Fallback: use default behavior
+						-- 			oil.select()
+						-- 		end
+						-- 	else
+						-- 		-- For directories, use default behavior
+						-- 		oil.select()
+						-- 	end
+						-- end,
+						desc = 'Open in target window',
+						mode = 'n',
 						-- },
 						['-'] = 'actions.parent',
 						['_'] = 'actions.open_cwd',
