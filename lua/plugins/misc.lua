@@ -7,17 +7,17 @@ M.plugins = {
 	{ src = 'https://github.com/BartSte/nvim-project-marks' },
 	{ src = 'https://github.com/pechorin/any-jump.vim' },
 	{ src = 'https://github.com/folke/snacks.nvim' },
-	{ src = 'https://github.com/serhez/bento.nvim' },
+	{ src = 'https://github.com/serhez/bento.nvim', version = 'feat/v2' },
 }
 
 function M.load()
 	require('lze').load({
 		{
 			'nvim.undotree',
-			after =  function ()
+			after = function()
 				vim.keymap.set('n', '<leader>u', require('undotree').open)
 			end,
-			keys = {'<leader>u'}
+			keys = { '<leader>u' },
 		},
 		{
 			'nvim-justice',
@@ -85,6 +85,7 @@ function M.load()
 			after = function()
 				require('helpview').setup()
 			end,
+			ft = { 'vimdoc' },
 		},
 		{
 			'which-key.nvim',

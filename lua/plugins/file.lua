@@ -3,7 +3,7 @@ M.plugins = {
 	{ src = 'https://github.com/nvim-lua/plenary.nvim' },
 	{ src = 'https://github.com/chrisgrieser/nvim-early-retirement' },
 	{ src = 'https://github.com/MunifTanjim/nui.nvim' },
-	{ src = 'https://github.com/barrettruth/canola.nvim' },
+	{ src = 'https://github.com/barrettruth/canola.nvim', version = 'canola' },
 	{ src = 'https://github.com/alexpasmantier/tv.nvim' },
 	{ src = 'https://github.com/nvim-neo-tree/neo-tree.nvim' },
 	{ src = 'https://github.com/refractalize/oil-git-status.nvim' },
@@ -22,92 +22,69 @@ function M.load()
 		{ 'nui.nvim', on_require = 'nui' },
 		{
 			'canola.nvim',
-			cmd = { 'Oil' },
-			on_require = 'oil',
+			cmd = { 'Canola' },
+			-- on_require = 'oil',
+			-- beforeAll = function()
+			-- 	require('utils.oil')
+			-- end,
 			beforeAll = function()
-				require('utils.oil')
-			end,
-			after = function()
-				require('oil').setup({
-					win_options = {
-						signcolumn = 'yes:2',
-					},
+				vim.g.canola = {
 					float = {
-						-- optionally override the oil buffers window title with custom function: fun(winid: integer): string
-						get_win_title = nil,
-						-- preview_split: Split direction: "auto", "left", "right", "above", "below".
-						preview_split = 'right',
-						-- This is the config that will be passed to nvim_open_win.
-						-- Change values here to customize the layout
-						override = function(conf)
-							return conf
-						end,
+						default = true,
+						title = false,
+						padding = 2,
+						max_width = 0,
+						max_height = 0,
+						border = 'rounded',
+						preview_split = 'auto',
+						win = { winblend = 0 },
 					},
-					default_file_explorer = false,
-					use_default_keymaps = false,
-
-					preview_win = {
-						update_on_cursor_moved = true,
+					columns = { 'icon' },
+					cursor = true,
+					hidden = {
+						enabled = true,
 					},
 					keymaps = {
-						['<CR>'] = 'actions.select',
-						-- {
-
-						-- callback = function()
-						-- 	local oil = require('oil')
-						-- 	local entry = oil.get_cursor_entry()
-						--
-						-- 	if entry and entry.type == 'file' then
-						-- 		local dir = oil.get_current_dir()
-						-- 		local filepath = dir .. entry.name
-						--
-						-- 		local target_win = _G.oil_source_win
-						-- 		if not target_win or not vim.api.nvim_win_is_valid(target_win) then
-						-- 			local wins = vim.api.nvim_list_wins()
-						-- 			for _, win in ipairs(wins) do
-						-- 				local buf = vim.api.nvim_win_get_buf(win)
-						-- 				if vim.bo[buf].filetype ~= 'oil' and win ~= _G.oil_win_id then
-						-- 					target_win = win
-						-- 				end
-						-- 			end
-						-- 		end
-						--
-						-- 		if target_win and vim.api.nvim_win_is_valid(target_win) then
-						-- 			vim.api.nvim_set_current_win(target_win)
-						-- 			vim.cmd('edit ' .. vim.fn.fnameescape(filepath))
-						-- 		else
-						-- 			-- Fallback: use default behavior
-						-- 			oil.select()
-						-- 		end
-						-- 	else
-						-- 		-- For directories, use default behavior
-						-- 		oil.select()
-						-- 	end
-						-- end,
-						desc = 'Open in target window',
-						mode = 'n',
-						-- },
 						['-'] = 'actions.parent',
-						['_'] = 'actions.open_cwd',
-						['~'] = 'actions.tcd',
-						['g.'] = 'actions.toggle_hidden',
-						['<c-p>'] = 'actions.preview',
-						['g?'] = false,
-						['<C-s>'] = false,
-						['<C-h>'] = false,
-						['<C-t>'] = false,
 						['<C-c>'] = false,
+						['<C-h>'] = false,
 						['<C-l>'] = false,
-						['gs'] = false,
-						['gx'] = false,
+						['<C-p>'] = false,
+						['<C-s>'] = false,
+						['<C-t>'] = false,
+						['<CR>'] = 'actions.select',
+						['<c-p>'] = 'actions.preview',
+						_ = 'actions.open_cwd',
+						['`'] = false,
+						desc = 'Open in target window',
+						['g.'] = 'actions.toggle_hidden',
+						['g?'] = false,
 						['g\\'] = false,
+						gs = false,
+						gx = false,
+						gy = false,
+						['g~'] = false,
+						mode = 'n',
+						q = false,
+						-- ['~'] = 'actions.tcd',
 					},
-				})
+					watch = false,
+					win_options = {
+						concealcursor = 'nvic',
+						conceallevel = 3,
+						cursorcolumn = false,
+						foldcolumn = '0',
+						list = false,
+						signcolumn = 'yes:2',
+						spell = false,
+						wrap = false,
+					},
+				}
 
-				require('oil-git-status').setup()
+				-- require('oil-git-status').setup()
 			end,
 		},
-		{ 'oil-git-status.nvim', on_require = 'oil-git-status' },
+		-- { 'oil-git-status.nvim', on_require = 'oil-git-status' },
 		{
 			'neo-tree.nvim',
 			cmd = { 'Neotree' },

@@ -8,7 +8,6 @@ M.plugins = {
 }
 function M.load()
 	require('lze').load({
-
 		{
 			'todo-comments.nvim',
 			after = function()

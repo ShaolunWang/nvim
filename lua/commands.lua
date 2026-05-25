@@ -11,8 +11,9 @@ vim.api.nvim_create_user_command('T', function()
 	vim.cmd([[Neotree toggle]])
 end, {})
 vim.api.nvim_create_user_command('O', function()
-	_G.toggle_oil_split()
+	vim.cmd([[:Canola --float ]])
 end, {})
+
 vim.api.nvim_create_user_command('Grep', function(params)
 	-- Insert args at the '$*' in the grepprg
 	local overseer = require('overseer')

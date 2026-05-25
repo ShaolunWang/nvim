@@ -19,6 +19,7 @@ set.incsearch = true
 set.inccommand = 'split'
 set.clipboard = 'unnamedplus'
 set.splitkeep = 'screen'
+set.winborder='rounded'
 set.undofile = true
 set.termguicolors = true
 set.cursorline = true

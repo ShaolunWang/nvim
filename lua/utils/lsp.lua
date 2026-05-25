@@ -27,7 +27,7 @@ M.c = vim.tbl_deep_extend('force', p, {
 
 function M.goto_definition(split_cmd)
 	local util = vim.lsp.util
-	local log = require('vim.lsp.log')
+	local log = vim.lsp.log
 	local api = vim.api
 
 	-- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
@@ -57,16 +57,7 @@ function M.goto_definition(split_cmd)
 end
 
 M.lsp_handlers = {
-	['textDocument/hover'] = vim.lsp.with(
-		vim.lsp.hover,
-		{ border = border, contentFormat = { 'plaintext' }, dynamicRegistration = true }
-	),
-	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.buf.signature_help, { border = border }),
 	['textDocument/definition'] = M.goto_definition('split'),
-	['textDocument/publishDiagnostics'] = vim.lsp.with(
-		vim.lsp.diagnostic.on_publish_diagnostics,
-		{ virtual_text = false, signs = true, update_in_insert = false, underline = true }
-	),
 }
 M.c.textDocument.completion.completionItem.snippetSupport = true
 M.c.textDocument.completion.completionItem.resolveSupport = {

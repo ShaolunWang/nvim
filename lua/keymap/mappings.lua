@@ -46,6 +46,10 @@ vim.keymap.set('n', '<leader>fc', function()
 	require('context').pick()
 end, { desc = 'Picker: context' })
 
+vim.keymap.set({ 'n' }, '<leader>o', function()
+	vim.cmd([[Canola]])
+end, { desc = 'just file runner' })
+
 --
 -- tabline
 vim.keymap.set('n', '<leader>tt', ':$tabnew<CR>', { noremap = true, desc = 'New Tab' })

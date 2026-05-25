@@ -1,47 +1,23 @@
-local lsp_keymap = require('keymap.lsp_keymaps')
-local utils = require('utils.lsp')
 local M = {}
 M.plugins = {
-	{ src = 'https://github.com/vlime/vlime' },
 	{ src = 'https://github.com/windwp/nvim-ts-autotag' },
 	{ src = 'https://github.com/folke/lazydev.nvim' },
-	{ src = 'https://github.com/julienvincent/nvim-paredit' },
 	{ src = 'https://github.com/mrcjkb/rustaceanvim' },
 	{ src = 'https://github.com/p00f/clangd_extensions.nvim' },
-	{ src = 'https://github.com/Olical/conjure' },
 	{ src = 'https://github.com/folke/trouble.nvim' },
 	{ src = 'https://github.com/stevearc/conform.nvim' },
 	{ src = 'https://github.com/fei6409/log-highlight.nvim' },
 	{ src = 'https://github.com/Bekaboo/dropbar.nvim' },
 	{ src = 'https://github.com/lervag/vimtex' },
-	{ src = 'https://github.com/seblyng/roslyn.nvim' },
-	{ src = 'https://github.com/scalameta/nvim-metals' },
 }
 
 function M.load()
-	-- we don't need immediate load of any of these
+	local lsp_keymap = require('keymap.lsp_keymaps')
+	local utils = require('utils.lsp')
 	require('lze').load({
 		{
-			'nvim-metals',
-
-			ft = { 'scala', 'sbt', 'java' },
-			after = function()
-				local metals_config = require('metals').bare_config()
-				metals_config.on_attach = lsp_keymap.on_attach
-				metals_config.handlers = utils.lsp_handlers
-				local nvim_metals_group = vim.api.nvim_create_augroup('nvim-metals', { clear = true })
-				vim.api.nvim_create_autocmd('FileType', {
-					pattern = { 'scala', 'sbt', 'java' },
-					callback = function()
-						require('metals').initialize_or_attach(metals_config)
-					end,
-					group = nvim_metals_group,
-				})
-			end,
-		},
-		{
 			'nvim-ts-autotag',
-			ft = { 'typescript', 'javascript' },
+			ft = { 'typescript', 'javascript', 'tsx' },
 			after = function()
 				require('nvim-ts-autotag').setup({
 					opts = {
@@ -52,40 +28,6 @@ function M.load()
 					},
 				})
 			end,
-		},
-		{
-
-			'conjure',
-			beforeAll = function() end,
-
-			ft = { 'racket', 'clojure', 'fennel', 'python' }, -- etc
-		},
-		{
-			'vlime',
-			after = function()
-				vim.g['vlime_cl_impl'] = 'clasp'
-				vim.g['vlime_force_default_keys'] = true
-				vim.g['vlime_leader'] = ';'
-				vim.g['vlime_contribs'] = {
-					'SWANK-ASDF',
-					'SWANK-PACKAGE-FU',
-					'SWANK-PRESENTATIONS',
-					'SWANK-FANCY-INSPECTOR',
-					'SWANK-C-P-C',
-					'SWANK-ARGLISTS',
-					'SWANK-REPL',
-					'SWANK-FUZZY',
-					'SWANK-TRACE-DIALOG',
-				}
-			end,
-			ft = 'lisp',
-		},
-		{
-			'nvim-paredit',
-			after = function()
-				require('nvim-paredit').setup()
-			end,
-			ft = 'lisp',
 		},
 		{
 			'lazydev.nvim',
@@ -198,13 +140,13 @@ function M.load()
 				-- 		\}
 				-- ]])
 				vim.cmd([[
-				let g:vimtex_compiler_latexmk = {
-					\ 'options' : [
-					\   '-interaction=nonstopmode',
-					\   '-shell-escape',
-					\ ],
-					\ 'build_dir' : 'livepreview'}
-				]])
+ 			let g:vimtex_compiler_latexmk = {
+ 				\ 'options' : [
+ 				\   '-interaction=nonstopmode',
+ 				\   '-shell-escape',
+ 				\ ],
+ 				\ 'build_dir' : 'livepreview'}
+ 			]])
 			end,
 		},
 		-- {
@@ -251,13 +193,6 @@ function M.load()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			end,
-		},
-		{
-			'roslyn.nvim',
-			after = function()
-				require('roslyn').setup()
-			end,
-			ft = { 'cs' },
 		},
 	})
 end
