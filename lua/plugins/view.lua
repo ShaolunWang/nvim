@@ -1,8 +1,8 @@
 local M = {}
+
 M.plugins = {
 	{ src = 'https://github.com/folke/todo-comments.nvim' },
 	{ src = 'https://github.com/stevearc/quicker.nvim' },
-	-- { src = 'https://github.com/j-hui/fidget.nvim' },
 	{ src = 'https://github.com/tzachar/highlight-undo.nvim' },
 	{ src = 'https://github.com/sindrets/winshift.nvim' },
 }

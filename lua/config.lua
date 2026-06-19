@@ -153,26 +153,36 @@ end
 
 vim.o.findfunc = 'v:lua.FindFiles'
 
+vim.g.msgarea_enabled = true
+vim.g.msgarea_max_height = 15
+-- vim.g.msgarea_max_height = 0.4    OR fractional heights 0-1 are percentage of editor height
+vim.g.msgarea_min_height = 3
+-- vim.g.msgarea_min_height = 0.1    same as above
+
+-- if you use blink.cmp and want to have cmdline completions render in msgarea
+-- require("msgarea.blink_integration").disable()  -- can be disabled at any time
+
+-- set a keymap to collapse the msgarea
+
 require('vim._core.ui2').enable({
-	enable = true, -- Whether to enable or disable the UI.
-	msg = { -- Options related to the message module.
-		---@type 'cmd'|'msg' Default message target, either in the
-		---cmdline or in a separate ephemeral message window.
-		---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
-		---or table mapping |ui-messages| kinds and triggers to a target.
-		targets = 'cmd',
-		cmd = { -- Options related to messages in the cmdline window.
-			height = 0.5, -- Maximum height while expanded for messages beyond 'cmdheight'.
+	enable = true,
+	msg = {
+		targets = {
+			default = 'msg',
+			typed_cmd = 'msgarea',
+			wmsg = 'msgarea',
+			emsg = 'msgarea',
+			lua_error = 'msgarea',
+			list_cmd = 'msgarea',
+			lua_print = 'msgarea',
+			echoerr = 'msgarea',
+			shell_out = 'msgarea',
+			shell_cmd = 'msgarea',
+			shell_err = 'msgarea',
+			confirm = 'pager',
+			rpc_error = 'pager',
 		},
-		dialog = { -- Options related to dialog window.
-			height = 0.5, -- Maximum height.
-		},
-		msg = { -- Options related to msg window.
-			height = 0.5, -- Maximum height.
-			timeout = 4000, -- Time a message is visible in the message window.
-		},
-		pager = { -- Options related to message window.
-			height = 1, -- Maximum height.
-		},
+		msg = { timeout = 4000 },
+		pager = { height = 0.75 },
 	},
 })

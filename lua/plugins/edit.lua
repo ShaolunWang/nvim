@@ -214,7 +214,9 @@ function M.load()
 		{
 			'grug-far.nvim',
 			after = function()
-				require('grug-far').setup({})
+				require('grug-far').setup({
+					win,
+				})
 			end,
 			cmd = { 'Rg', 'Sg', 'GrugFar' },
 		},

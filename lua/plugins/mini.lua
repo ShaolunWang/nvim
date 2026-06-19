@@ -8,11 +8,19 @@ function M.load()
 		{ 'nvim-web-devicons', enabled = false, optional = true },
 		{
 			'mini.nvim',
-			event = 'BufReadPost',
+			lazy = false,
 			after = function()
 				require('mini.icons').setup()
 				require('mini.icons').mock_nvim_web_devicons()
-				-- require('mini.pick').setup()
+				require('mini.pick').setup({
+					window = {
+						config = {
+							relative = 'msgarea',
+							border = { '▔', '▔', '▔', ' ', ' ', ' ', ' ', ' ' },
+							height = 15,
+						},
+					},
+				})
 				require('mini.ai').setup()
 				require('mini.indentscope').setup({
 					draw = {

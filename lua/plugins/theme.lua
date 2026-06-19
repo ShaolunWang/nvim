@@ -14,8 +14,8 @@ function M.load()
 		{
 			'base46',
 			after = function()
-				require("base46").setup()
-			end
+				require('base46').setup()
+			end,
 		},
 		{ 'vscode', colorscheme = { 'vscode' } },
 		{

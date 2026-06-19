@@ -62,7 +62,6 @@ function M.load()
 						['<c-u>'] = { 'snippet_backward' },
 					},
 					cmdline = {
-						keymap = { preset = 'none' },
 						enabled = false,
 					},
 
@@ -71,6 +70,7 @@ function M.load()
 						default = {
 							'lsp',
 							'path',
+							'buffer',
 							'snippets',
 							'ripgrep',
 						},
@@ -95,29 +95,11 @@ function M.load()
 									show_hidden_files_by_default = false,
 								},
 							},
-							buffer = { module = 'blink.cmp.sources.buffer', name = 'Buffer', enabled = true },
 							ripgrep = {
 								score_offset = -3,
 								module = 'blink-ripgrep',
 								name = 'Ripgrep',
-								opts = {
-									{
-
-										prefix_min_len = 3,
-										backend = {
-											context_size = 5,
-											ripgrep = {
-												search_casing = '--smart-case',
-												additional_rg_options = { '--hidden', '--vimgrep', '--no-heading' },
-												max_filesize = '1M',
-											},
-										},
-
-										project_root_marker = { '.git', '.rgignore' },
-										fallback_to_regex_highlighting = true,
-										debug = false,
-									},
-								},
+								opts = {},
 							},
 						},
 					},

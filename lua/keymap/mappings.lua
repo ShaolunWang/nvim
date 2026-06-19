@@ -25,30 +25,21 @@ vim.keymap.set('n', '<C-l>', ':SmartCursorMoveRight<cr>', { noremap = true })
 -- grapple
 
 vim.keymap.set('n', '<leader>ff', function()
-	vim.cmd([[Tv files]])
+	vim.cmd([[Pick files]])
 end, { desc = 'Picker: find files' })
 vim.keymap.set('n', '<leader>fg', function()
-	vim.cmd([[Tv text]])
+	vim.cmd([[Pick grep_live]])
 end, { desc = 'Picker: live grep' })
 vim.keymap.set('n', '<leader>fo', function()
-	vim.cmd([[PickMe oldfiles]])
+	vim.cmd([[Pick oldfiles]])
 end, { desc = 'Picker: oldfiles' })
 vim.keymap.set('n', '<leader>fh', function()
-	vim.cmd([[PickMe help]])
+	vim.cmd([[Pick help]])
 end, { desc = 'Picker: help tags' })
-vim.keymap.set('n', '<leader>fp', function()
-	vim.cmd([[PickMe pickers]])
-end, { desc = 'Picker: pickers' })
-vim.keymap.set('n', '<leader>fl', function()
-	Snacks.picker.lsp_symbols({ layout = { preset = 'vscode', preview = 'main' } })
-end, { desc = 'Picker: lsp symbols' })
-vim.keymap.set('n', '<leader>fc', function()
-	require('context').pick()
-end, { desc = 'Picker: context' })
 
 vim.keymap.set({ 'n' }, '<leader>o', function()
 	vim.cmd([[Canola]])
-end, { desc = 'just file runner' })
+end, { desc = 'oil file manager' })
 
 --
 -- tabline
@@ -160,3 +151,7 @@ endfunction
 nnoremap ,m  :call <SID>ToggleMacro()<CR>
 command! -nargs=? ToggleMacro call <SID>ToggleMacro(<f-args>)
 ]])
+
+vim.keymap.set('n', '<c-;>', function()
+	require('msgarea').close_all()
+end)

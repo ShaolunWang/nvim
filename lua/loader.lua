@@ -3,6 +3,7 @@ M.plugins = {}
 vim.pack.add({
 	{ src = 'https://github.com/BirdeeHub/lze' },
 	{ src = 'https://github.com/BirdeeHub/lzextras' },
+	{ src = 'https://github.com/edisj/msgarea.nvim' }, -- this needs to be loaded early
 })
 
 local config_files_table = vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/plugins', [[v:val =~ '\.lua$']])

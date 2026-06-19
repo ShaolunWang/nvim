@@ -48,6 +48,7 @@ function M.load()
 					capabilities = c,
 				})
 				vim.lsp.enable({
+					-- 'clice',
 					'lua_ls',
 					'tsp_server',
 					'clangd',

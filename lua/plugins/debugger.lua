@@ -98,7 +98,9 @@ function M.load()
 						default_section = 'scopes',
 						controls = { enabled = true },
 					},
-					windows = { position = 'below' },
+					windows = {
+						position = 'below',
+					},
 				})
 			end,
 			keys = {
