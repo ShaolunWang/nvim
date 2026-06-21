@@ -36,7 +36,9 @@ function M.load()
 						max_height = 0,
 						border = 'rounded',
 						preview_split = 'auto',
-						win = { winblend = 0 },
+						win = {
+							winblend = 0,
+						},
 					},
 					columns = { 'icon' },
 					cursor = true,
@@ -69,7 +71,6 @@ function M.load()
 					},
 					watch = false,
 					win = {
-
 						concealcursor = 'nvic',
 						conceallevel = 3,
 						cursorcolumn = false,

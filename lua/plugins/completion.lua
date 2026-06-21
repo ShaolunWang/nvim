@@ -23,6 +23,7 @@ function M.load()
 		{
 			'blink.cmp',
 			on_require = 'blink.cmp',
+			lazy = false,
 			after = function()
 				require('blink.cmp').setup({
 					completion = {
@@ -63,6 +64,13 @@ function M.load()
 					},
 					cmdline = {
 						enabled = false,
+						completion = {
+							menu = {
+								auto_show = true,
+								draw = { columns = { { 'label' }, { 'label_description' } } },
+							},
+						},
+						sources = { 'cmdline' },
 					},
 
 					snippets = { preset = 'luasnip' },
@@ -101,11 +109,23 @@ function M.load()
 								name = 'Ripgrep',
 								opts = {},
 							},
+							omni = {
+								module = 'blink.cmp.sources.complete_func',
+								enabled = function()
+									return vim.bo.omnifunc ~= 'v:lua.vim.lsp.omnifunc'
+								end,
+								---@type blink.cmp.CompleteFuncOpts
+								opts = {
+									complete_func = function()
+										return vim.bo.omnifunc
+									end,
+								},
+							},
 						},
 					},
 				})
 			end,
-			event = 'InsertEnter',
+			-- event = 'InsertEnter',
 		},
 	})
 end

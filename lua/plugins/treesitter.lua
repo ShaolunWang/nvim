@@ -1,7 +1,8 @@
 local M = {}
 M.plugins = {
-	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
+	{ src = 'https://github.com/romus204/tree-sitter-manager.nvim' },
+	{ src = 'https://github.com/HiPhish/rainbow-delimiters.nvim' },
 	{ src = 'https://github.com/andymass/vim-matchup' },
 	{ src = 'https://github.com/mizlan/iswap.nvim' },
 	{ src = 'https://github.com/Badhi/nvim-treesitter-cpp-tools' },
@@ -9,28 +10,23 @@ M.plugins = {
 function M.load()
 	require('lze').load({
 		{
-			'nvim-treesitter',
-			dep_of = { 'markview.nvim', 'nvim-treesitter' },
+			'tree-sitter-manager.nvim',
+			dep_of = { 'markview.nvim', 'nvim-treesitter', 'rainbow-delimiters.nvim' },
 			after = function()
-				-- require('lze').load({ 'nvim-treesitter-textobjects' })
-				local ensure_installed = {
-					'c',
-					'cpp',
-					'lua',
-					'python',
-					'vim',
-					'vimdoc',
-					'markdown',
-					'markdown_inline',
-				}
-				require('nvim-treesitter').setup({
-					install_dir = vim.fn.stdpath('data') .. '/site',
+				require('tree-sitter-manager').setup({
+					ensure_installed = {
+						'c',
+						'cpp',
+						'janet_simple',
+						'lua',
+						'python',
+						'vim',
+						'vimdoc',
+						'markdown',
+						'markdown_inline',
+					},
 				})
-				require('nvim-treesitter').install(ensure_installed)
-				-- making windows happy
-				require('nvim-treesitter.install').compilers = { 'gcc' }
 			end,
-			event = { 'BufRead' },
 		},
 		{
 			'vim-matchup',
@@ -76,6 +72,10 @@ function M.load()
 				})
 			end,
 			ft = { 'cpp', 'h' },
+		},
+		{
+			'rainbow-delimiters.nvim',
+			event = { 'BufRead' },
 		},
 	})
 end

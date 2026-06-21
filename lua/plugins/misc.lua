@@ -115,6 +115,9 @@ function M.load()
 						},
 					},
 					picker = {
+						-- NOTE: disabling it because some finder issues
+						-- likely related to colors according to github issues
+						enabled = false,
 						formatters = {
 							file = {
 								filename_first = true,

@@ -154,13 +154,13 @@ end
 vim.o.findfunc = 'v:lua.FindFiles'
 
 vim.g.msgarea_enabled = true
-vim.g.msgarea_max_height = 15
--- vim.g.msgarea_max_height = 0.4    OR fractional heights 0-1 are percentage of editor height
-vim.g.msgarea_min_height = 3
--- vim.g.msgarea_min_height = 0.1    same as above
+-- vim.g.msgarea_max_height = 15
+vim.g.msgarea_max_height = 0.4 --OR fractional heights 0-1 are percentage of editor height
+-- vim.g.msgarea_min_height = 3
+vim.g.msgarea_min_height = 1 -- same as above
 
 -- if you use blink.cmp and want to have cmdline completions render in msgarea
--- require("msgarea.blink_integration").disable()  -- can be disabled at any time
+require('msgarea.blink_integration').enable() -- can be disabled at any time
 
 -- set a keymap to collapse the msgarea
 

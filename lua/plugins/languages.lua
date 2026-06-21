@@ -1,7 +1,8 @@
 local M = {}
 M.plugins = {
-	{ src = 'https://github.com/windwp/nvim-ts-autotag' },
+	-- { src = 'https://github.com/windwp/nvim-ts-autotag' },
 	{ src = 'https://github.com/folke/lazydev.nvim' },
+	{ src = 'https://github.com/Olical/conjure' },
 	{ src = 'https://github.com/mrcjkb/rustaceanvim' },
 	{ src = 'https://github.com/p00f/clangd_extensions.nvim' },
 	{ src = 'https://github.com/folke/trouble.nvim' },
@@ -15,20 +16,20 @@ function M.load()
 	local lsp_keymap = require('keymap.lsp_keymaps')
 	local utils = require('utils.lsp')
 	require('lze').load({
-		{
-			'nvim-ts-autotag',
-			ft = { 'typescript', 'javascript', 'tsx' },
-			after = function()
-				require('nvim-ts-autotag').setup({
-					opts = {
-						-- Defaults
-						enable_close = true, -- Auto close tags
-						enable_rename = true, -- Auto rename pairs of tags
-						enable_close_on_slash = true, -- Auto close on trailing </
-					},
-				})
-			end,
-		},
+		-- {
+		-- 	'nvim-ts-autotag',
+		-- 	ft = { 'typescript', 'javascript', 'tsx' },
+		-- 	after = function()
+		-- 		require('nvim-ts-autotag').setup({
+		-- 			opts = {
+		-- 				-- Defaults
+		-- 				enable_close = true, -- Auto close tags
+		-- 				enable_rename = true, -- Auto rename pairs of tags
+		-- 				enable_close_on_slash = true, -- Auto close on trailing </
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- },
 		{
 			'lazydev.nvim',
 			ft = 'lua', -- only load on lua files
@@ -192,6 +193,16 @@ function M.load()
 			before = function()
 				-- If you want the formatexpr, here is the place to set it
 				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+			end,
+		},
+		{
+			'conjure',
+			ft = { 'janet' }, -- etc
+			after = function()
+				-- Set configuration options here
+				-- Uncomment this to get verbose logging to help diagnose internal Conjure issues
+				-- This is VERY helpful when reporting an issue with the project
+				-- vim.g["conjure#debug"] = true
 			end,
 		},
 	})
