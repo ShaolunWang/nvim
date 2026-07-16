@@ -1,13 +1,19 @@
 local M = {}
 M.plugins = {
 	{ src = 'https://github.com/windwp/nvim-autopairs' },
+	{ src = 'https://github.com/gpanders/nvim-parinfer' },
 }
 
 function M.load()
 	require('lze').load({
 		{
+			'nvim-parinfer',
+			ft = { 'janet', 'scheme', 'lisp' },
+		},
+		{
 			'nvim-autopairs',
-			event = 'InsertEnter',
+			event = { 'BufEnter', 'BufWinEnter' },
+			on_require = { 'nvim-autopairs' },
 			after = function()
 				local remap = vim.api.nvim_set_keymap
 				local npairs = require('nvim-autopairs')
@@ -34,8 +40,8 @@ function M.load()
 						return npairs.autopairs_bs()
 					end
 				end
+
 				remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
-				local npairs = require('nvim-autopairs')
 				local Rule = require('nvim-autopairs.rule')
 				local cond = require('nvim-autopairs.conds')
 
@@ -86,6 +92,8 @@ function M.load()
 							end),
 					})
 				end
+
+				npairs.get_rules("'")[1].not_filetypes = { 'clojure', 'scheme', 'lisp' }
 			end,
 		},
 	})

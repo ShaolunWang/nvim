@@ -7,6 +7,7 @@ M.plugins = {
 	{ src = 'https://github.com/mikavilpas/blink-ripgrep.nvim' },
 	{ src = 'https://github.com/saghen/blink.compat' },
 	{ src = 'https://github.com/xzbdmw/colorful-menu.nvim' },
+	{ src = 'https://github.com/PaterJason/cmp-conjure' },
 }
 
 function M.load()
@@ -20,6 +21,7 @@ function M.load()
 			end,
 		},
 		{ 'blink.compat', dep_of = { 'blink.cmp' } },
+		{ 'cmp-conjure', dep_of = { 'blink.cmp' }, ft = { 'janet' } },
 		{
 			'blink.cmp',
 			on_require = 'blink.cmp',
@@ -75,6 +77,12 @@ function M.load()
 
 					snippets = { preset = 'luasnip' },
 					sources = {
+						per_filetype = {
+							janet = {
+								inherit_defaults = true,
+								'conjure',
+							},
+						},
 						default = {
 							'lsp',
 							'path',
@@ -83,6 +91,11 @@ function M.load()
 							'ripgrep',
 						},
 						providers = {
+							conjure = {
+								name = 'conjure',
+								module = 'blink.compat.source',
+								async = true,
+							},
 							lsp = {
 								module = 'blink.cmp.sources.lsp',
 								name = 'LSP',
@@ -108,18 +121,6 @@ function M.load()
 								module = 'blink-ripgrep',
 								name = 'Ripgrep',
 								opts = {},
-							},
-							omni = {
-								module = 'blink.cmp.sources.complete_func',
-								enabled = function()
-									return vim.bo.omnifunc ~= 'v:lua.vim.lsp.omnifunc'
-								end,
-								---@type blink.cmp.CompleteFuncOpts
-								opts = {
-									complete_func = function()
-										return vim.bo.omnifunc
-									end,
-								},
 							},
 						},
 					},

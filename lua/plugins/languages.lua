@@ -2,6 +2,7 @@ local M = {}
 M.plugins = {
 	-- { src = 'https://github.com/windwp/nvim-ts-autotag' },
 	{ src = 'https://github.com/folke/lazydev.nvim' },
+	{ src = 'https://github.com/julienvincent/nvim-paredit' },
 	{ src = 'https://github.com/Olical/conjure' },
 	{ src = 'https://github.com/mrcjkb/rustaceanvim' },
 	{ src = 'https://github.com/p00f/clangd_extensions.nvim' },
@@ -16,20 +17,13 @@ function M.load()
 	local lsp_keymap = require('keymap.lsp_keymaps')
 	local utils = require('utils.lsp')
 	require('lze').load({
-		-- {
-		-- 	'nvim-ts-autotag',
-		-- 	ft = { 'typescript', 'javascript', 'tsx' },
-		-- 	after = function()
-		-- 		require('nvim-ts-autotag').setup({
-		-- 			opts = {
-		-- 				-- Defaults
-		-- 				enable_close = true, -- Auto close tags
-		-- 				enable_rename = true, -- Auto rename pairs of tags
-		-- 				enable_close_on_slash = true, -- Auto close on trailing </
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- },
+		{
+			'dropbar.nvim',
+			after = function()
+				require('dropbar').setup({ { general = { enable = false } } })
+			end,
+			events = 'BufReadPost',
+		},
 		{
 			'lazydev.nvim',
 			ft = 'lua', -- only load on lua files
@@ -197,12 +191,22 @@ function M.load()
 		},
 		{
 			'conjure',
-			ft = { 'janet' }, -- etc
+			-- ft = { 'janet' }, -- etc
 			after = function()
 				-- Set configuration options here
 				-- Uncomment this to get verbose logging to help diagnose internal Conjure issues
 				-- This is VERY helpful when reporting an issue with the project
 				-- vim.g["conjure#debug"] = true
+				vim.g['conjure#client#scheme#stdio#command'] = 'csi -:c'
+				vim.g['conjure#client#scheme#stdio#prompt_pattern'] = '\n-#;%d-> '
+				vim.g['conjure#client#scheme#stdio#value_prefix_pattern'] = false
+			end,
+		},
+		{
+			'nvim-paredit',
+			ft = { 'janet', 'scheme', 'lisp' },
+			after = function()
+				require('nvim-paredit').setup()
 			end,
 		},
 	})

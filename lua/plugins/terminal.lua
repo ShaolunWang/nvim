@@ -6,6 +6,7 @@ function M.load()
 	require('lze').load({
 		{
 			'toggleterm.nvim',
+			on_require = 'toggleterm',
 			after = function()
 				require('toggleterm').setup({
 					shell = vim.fn.executable('pwsh') == 1 or vim.o.shell,

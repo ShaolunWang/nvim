@@ -1,6 +1,8 @@
 vim.g.termguicolors = true
 vim.cmd('colorscheme base46-tokyonight')
 vim.o.background = 'dark'
+-- vim.cmd('colorscheme base46-solarized_light')
+-- vim.o.background = 'light'
 
 local ts_extra_highlights = {
 	['@text.strong'] = { bold = true },
