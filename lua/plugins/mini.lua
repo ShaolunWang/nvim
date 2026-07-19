@@ -12,15 +12,15 @@ function M.load()
 			after = function()
 				require('mini.icons').setup()
 				require('mini.icons').mock_nvim_web_devicons()
-				require('mini.pick').setup({
-					window = {
-						config = {
-							relative = 'msgarea',
-							border = { '▔', '▔', '▔', ' ', ' ', ' ', ' ', ' ' },
-							height = 15,
-						},
-					},
-				})
+				-- require('mini.pick').setup({
+				-- 	window = {
+				-- 		config = {
+				-- 			relative = 'msgarea',
+				-- 			border = { '▔', '▔', '▔', ' ', ' ', ' ', ' ', ' ' },
+				-- 			height = 15,
+				-- 		},
+				-- 	},
+				-- })
 				require('mini.ai').setup()
 				require('mini.indentscope').setup({
 					draw = {

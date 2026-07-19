@@ -8,6 +8,7 @@ M.plugins = {
 	{ src = 'https://github.com/saghen/blink.compat' },
 	{ src = 'https://github.com/xzbdmw/colorful-menu.nvim' },
 	{ src = 'https://github.com/PaterJason/cmp-conjure' },
+	{ src = 'https://github.com/HiPhish/nvim-cmp-vlime' },
 }
 
 function M.load()
@@ -21,7 +22,8 @@ function M.load()
 			end,
 		},
 		{ 'blink.compat', dep_of = { 'blink.cmp' } },
-		{ 'cmp-conjure', dep_of = { 'blink.cmp' }, ft = { 'janet' } },
+		-- { 'cmp-conjure', dep_of = { 'blink.cmp' }, ft = { 'janet' } },
+		{ 'nvim-cmp-vlime', dep_of = { 'blink.cmp' } },
 		{
 			'blink.cmp',
 			on_require = 'blink.cmp',
@@ -77,12 +79,6 @@ function M.load()
 
 					snippets = { preset = 'luasnip' },
 					sources = {
-						per_filetype = {
-							janet = {
-								inherit_defaults = true,
-								'conjure',
-							},
-						},
 						default = {
 							'lsp',
 							'path',
@@ -90,9 +86,26 @@ function M.load()
 							'snippets',
 							'ripgrep',
 						},
+						per_filetype = {
+							lisp = {
+								inherit_defaults = false,
+								'path',
+								'vlime',
+							},
+							janet = {
+								inherit_defaults = true,
+								'conjure',
+							},
+						},
+
 						providers = {
 							conjure = {
 								name = 'conjure',
+								module = 'blink.compat.source',
+								async = true,
+							},
+							vlime = {
+								name = 'vlime',
 								module = 'blink.compat.source',
 								async = true,
 							},

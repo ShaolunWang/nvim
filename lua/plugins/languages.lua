@@ -2,7 +2,6 @@ local M = {}
 M.plugins = {
 	-- { src = 'https://github.com/windwp/nvim-ts-autotag' },
 	{ src = 'https://github.com/folke/lazydev.nvim' },
-	{ src = 'https://github.com/julienvincent/nvim-paredit' },
 	{ src = 'https://github.com/Olical/conjure' },
 	{ src = 'https://github.com/mrcjkb/rustaceanvim' },
 	{ src = 'https://github.com/p00f/clangd_extensions.nvim' },
@@ -11,6 +10,7 @@ M.plugins = {
 	{ src = 'https://github.com/fei6409/log-highlight.nvim' },
 	{ src = 'https://github.com/Bekaboo/dropbar.nvim' },
 	{ src = 'https://github.com/lervag/vimtex' },
+	{ src = 'https://github.com/vlime/vlime' },
 }
 
 function M.load()
@@ -191,7 +191,7 @@ function M.load()
 		},
 		{
 			'conjure',
-			-- ft = { 'janet' }, -- etc
+			ft = { 'janet' }, -- etc
 			after = function()
 				-- Set configuration options here
 				-- Uncomment this to get verbose logging to help diagnose internal Conjure issues
@@ -203,10 +203,24 @@ function M.load()
 			end,
 		},
 		{
-			'nvim-paredit',
-			ft = { 'janet', 'scheme', 'lisp' },
+			'vlime',
+			ft = { 'lisp' },
+			before = function()
+				local path = vim.fn.stdpath('data')
+				local cmd = 'ros run --load ' .. path .. '/site/pack/core/opt/vlime/lisp/start-vlime.lisp'
+				vim.print(cmd)
+				local toggleterm = require('toggleterm')
+				toggleterm.exec(cmd)
+			end,
 			after = function()
-				require('nvim-paredit').setup()
+				-- since we are using vim.pack the dir
+				-- is kinda known
+				-- vim.api.nvim_create_user_command('StartVlime', function() end, {})
+				vim.keymap.set('n', 'K', function()
+					vim.cmd([[call vlime#plugin#DescribeSymbol(vlime#ui#CurOperator())]])
+				end, {})
+
+				-- vim.cmd([[:call vlime#plugin#ConnectREPL()]])
 			end,
 		},
 	})

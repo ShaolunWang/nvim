@@ -25,6 +25,7 @@ function M.load()
 			after = function()
 				require('close_buffers').setup({})
 			end,
+			on_require = 'close_buffers',
 			cmd = { 'BDelete', 'BWipeout' },
 			keys = { '<leader><leader>' },
 		},
